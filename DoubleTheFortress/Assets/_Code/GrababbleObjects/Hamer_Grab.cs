@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hamer : MonoBehaviour, IGrabbable
+public class Hamer_Grab : MonoBehaviour, IGrabbable
 {
 
     #region Variables
@@ -23,11 +23,7 @@ public class Hamer : MonoBehaviour, IGrabbable
     
 
     #endregion
-    
-    
-    
 
-  
     #region unity Methods
     void Start()
     {
@@ -44,18 +40,8 @@ public class Hamer : MonoBehaviour, IGrabbable
    
 
     #region public Methods
-
-    public void ReposObject()
-    {
-        
-    }
     
-    public void DoAction()
-    {
-        
-    }
     
-
     #endregion
 
     #region private Methods
