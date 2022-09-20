@@ -5,8 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Update = UnityEngine.PlayerLoop.Update;
 
-public class Gun_Fire : MonoBehaviour
+public class Musket_Gun : MonoBehaviour, IGrabbable
 {
+
+    #region Variables
+
     [SerializeField] float bulletSpeed;
     [SerializeField] GameObject hitMarkerRed;
     [SerializeField] GameObject hitMarkerBlue;
@@ -16,16 +19,35 @@ public class Gun_Fire : MonoBehaviour
     private Vector3 hitPosition;
     private Vector3 gravity = new Vector3(0, 9.8f, 0);
     
-    
     //saves the position the gun was... 
     //in when it fired the  hitScan
     private Vector3 savedFirePosition;
+    
+    public Vector3 Position
+    {
+        get;
+        set;
+    }
+
+    public Vector3 Rotation
+    {
+        get;
+        set;
+    }
+
+
+
+    #endregion
+    
+    #region Unity Methods
     private void Update()
     {
         checkInput();
     }
-    
-    
+    #endregion
+
+
+    #region private Methods
     private void checkInput()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && canFire)
@@ -59,5 +81,14 @@ public class Gun_Fire : MonoBehaviour
         canFire = true;
     }
 
+    #endregion
+   
+
+    #region public Methods
+    
+    
+
+    #endregion
+    
     
 }

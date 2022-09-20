@@ -17,7 +17,13 @@ public interface IGrabbable
     }
 
 
-   public void ReposObject();
-   public void DoAction();
+    public void ReposObject()
+    {
+        Debug.Log("hola");
+    }
+   public void DoAction()
+   {
+       Debug.Log("hola");
+   }
 
 }
