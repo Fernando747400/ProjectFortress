@@ -2,29 +2,39 @@ using UnityEngine;
 
 public interface IGeneralTarget
 {
-    float GTargetMaxHp
+    float MaxHp
     {
         get;
         set;
     }    
-    float GTargetCurrentHp
+    float CurrentHp
     {
         get;
         set;
     }
-
+    //Contains the team that the target is on
+    //0 for Red 1 for Blue
+    int Team
+    {
+        get;
+        set;
+    }
     void TakeDamage(float dmgValue)
     {
-        GTargetCurrentHp -= dmgValue;
+        CurrentHp -= dmgValue;
+    }
+    void Disable(GameObject self)
+    {
+        if (CurrentHp < 0f)
+        {
+            self.SetActive(false);
+        }   
     }
 
-    void Disable()
+    void RecieveRayCaster(GameObject sender)
     {
-        if (GTargetCurrentHp < 0f)
-        {
-            
-        }
-        
+        //needs to evaluate if the sender is on the same team
+
     }
 
     
