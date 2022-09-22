@@ -6,7 +6,8 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 {
 
     #region Variables
-   
+
+    [SerializeField] private Collider topCollider;
     
     public Vector3 Position
     {
