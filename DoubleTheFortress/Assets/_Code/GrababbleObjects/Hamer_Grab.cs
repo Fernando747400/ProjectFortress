@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Hamer_Grab : MonoBehaviour, IGrabbable
@@ -8,6 +7,8 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
     #region Variables
 
     [SerializeField] private Collider topCollider;
+    [SerializeField] private float pointsToRepair;
+    [SerializeField] private float pointsToUpgrade;
     
     public Vector3 Position
     {
@@ -47,7 +48,15 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     #region private Methods
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<WallManager>())
+        {
+            Debug.Log("<color=#FFB233>Receive Hammer</color>");
+            WallManager wallManager = other.GetComponent<WallManager>();
+            wallManager.ReceiveHammer(pointsToRepair, pointsToUpgrade);
+        }
+    }
 
     #endregion
     
