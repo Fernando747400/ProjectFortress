@@ -2,6 +2,11 @@ using UnityEngine;
 
 public interface IGeneralTarget
 {
+    bool Sensitive
+    {
+        get;
+        set;
+    }
     float MaxHp
     {
         get;
@@ -12,28 +17,24 @@ public interface IGeneralTarget
         get;
         set;
     }
-    //Contains the team that the target is on
-    //0 for Red 1 for Blue
-    int Team
-    {
-        get;
-        set;
-    }
     void TakeDamage(float dmgValue)
     {
         CurrentHp -= dmgValue;
     }
-    void Disable(GameObject self)
+    
+    void CheckHp(GameObject self)
     {
         if (CurrentHp < 0f)
         {
             self.SetActive(false);
         }   
     }
-
-    void RecieveRayCaster(GameObject sender)
+    
+    public void ReceiveRayCaster(GameObject sender, float dmg)
     {
         //needs to evaluate if the sender is on the same team
+        Debug.Log("Hit By: " + sender.gameObject.name);
+        TakeDamage(dmg);
 
     }
 
