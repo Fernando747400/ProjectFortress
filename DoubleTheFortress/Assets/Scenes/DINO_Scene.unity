@@ -815,7 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610e85fbcc049ec45993cf4dda087ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: {x: 1, y: 1, z: 0}
+  Offset: {x: 0.4, y: 1, z: 0}
   Reference: {fileID: 845775148}
 --- !u!1001 &7820679523608132142
 PrefabInstance:
