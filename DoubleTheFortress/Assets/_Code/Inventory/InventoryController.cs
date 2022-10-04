@@ -26,4 +26,13 @@ public class InventoryController : MonoBehaviour
     {
         
     }
+
+    void HandleGameInventory(GameObject objHand, GameObject objInv, bool active)
+    {
+        objHand.SetActive(active);
+        objInv.SetActive(!active);
+    }
+    
+    
+    
 }
