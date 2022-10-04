@@ -261,6 +261,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4336766266370611108}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6666415395256701131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 949563822928971571}
+    m_Modifications:
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8149395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2044032
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261105681348793635, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+        type: 3}
+      propertyPath: m_Name
+      value: Domo de cristal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87, type: 3}
+--- !u!4 &8829812299381694290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2741028587640311705, guid: 3d7b16b612f3d4a4e9c894cfd99b1a87,
+    type: 3}
+  m_PrefabInstance: {fileID: 6666415395256701131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7566290922814904505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,78 +453,3 @@ MonoBehaviour:
   speedRotationX: 0
   speedRotationY: -900
   speedRotationZ: 0
---- !u!1001 &9008170108420896953
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 949563822928971571}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.8149395
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.2044032
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 45ea352594c37a5418a6e096f7b73bf9,
-        type: 3}
-      propertyPath: m_Name
-      value: Domo de cristal
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ea352594c37a5418a6e096f7b73bf9, type: 3}
---- !u!4 &8829812299381694290 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 45ea352594c37a5418a6e096f7b73bf9,
-    type: 3}
-  m_PrefabInstance: {fileID: 9008170108420896953}
-  m_PrefabAsset: {fileID: 0}
