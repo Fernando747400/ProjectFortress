@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class DebugGunFire :  IGeneralOffender
+public class DebugGunFire :  GeneralAgressor
 {
     [SerializeField] float bulletSpeed;
+    [SerializeField] float maxDistance;
     [SerializeField] GameObject hitMarkerRed;
     [SerializeField] GameObject hitMarkerBlue;
     private float _bulletMass;
@@ -33,13 +34,15 @@ public class DebugGunFire :  IGeneralOffender
         StopAllCoroutines();
         RaycastHit hitScan;
         _savedFirePosition = transform.position;
-        Physics.Raycast(transform.position, transform.forward,out hitScan, Mathf.Infinity, Physics.DefaultRaycastLayers);
+        if (!Physics.Raycast(transform.position, transform.forward, out hitScan, maxDistance,
+                Physics.DefaultRaycastLayers)) return;
+        
         Debug.DrawLine(transform.position,hitScan.point,Color.red);
 
         Instantiate(hitMarkerRed, hitScan.point, Quaternion.identity);
         _hitPosition = hitScan.point;
         float travelDistance = hitScan.distance;
-        _travelTime = travelDistance / (bulletSpeed * Time.fixedTime);
+        _travelTime = travelDistance / (bulletSpeed);
         _canFire = false;
 
         StartCoroutine(CorWaitForTravel());
@@ -58,11 +61,13 @@ public class DebugGunFire :  IGeneralOffender
         RaycastHit simulatedHit;
         Vector3 simulatedHitPos = Vector3.zero;
         simulatedHitPos = _hitPosition - ((_gravity) * _travelTime);
-        Physics.Raycast(_savedFirePosition, simulatedHitPos,out simulatedHit, Mathf.Infinity, Physics.DefaultRaycastLayers);
+        Physics.Raycast(_savedFirePosition, simulatedHitPos,out simulatedHit, maxDistance, Physics.DefaultRaycastLayers);
+        Debug.DrawLine(transform.position,simulatedHit.point,Color.blue);
         Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
         if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
         {
-            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, Damage);
+            Debug.Log("TryGetGeneralTarget is true");
+            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
             
         }
         _canFire = true;

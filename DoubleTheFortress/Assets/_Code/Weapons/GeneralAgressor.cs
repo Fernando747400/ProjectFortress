@@ -1,13 +1,9 @@
 using UnityEngine;
 
-public class IGeneralOffender : MonoBehaviour
+public class GeneralAgressor : MonoBehaviour
 {
 
-    protected float Damage
-    {
-        get;
-        set;
-    }
+    [SerializeField] protected float damage;
     protected bool TryGetGeneralTarget(GameObject target)
     {
         try

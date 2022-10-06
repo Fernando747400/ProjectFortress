@@ -17,9 +17,10 @@ public interface IGeneralTarget
         get;
         set;
     }
-    void TakeDamage(float dmgValue)
+    protected virtual void TakeDamage(float dmgValue)
     {
         CurrentHp -= dmgValue;
+        Debug.Log("TookDamage");
     }
     
     void CheckHp(GameObject self)
