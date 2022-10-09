@@ -757,6 +757,15 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Diselect_Hammer"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6b3d570-a7f4-4c0f-8de7-c1a11a7464ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -851,10 +860,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""f6ca1b60-d159-48d4-9f73-edc261ad73cc"",
-                    ""path"": ""<OculusTouchController>{RightHand}/triggerPressed"",
+                    ""path"": ""<XRController>{RightHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Generic XR Controller"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -863,7 +872,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""name"": """",
                     ""id"": ""c4c81120-5f9b-4b97-9892-4e05b5034a34"",
                     ""path"": ""<XRController>{RightHand}/gripPressed"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""Select_Hammer"",
@@ -876,8 +885,19 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""path"": ""<XRController>{RightHand}/primaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Generic XR Controller"",
                     ""action"": ""Select_Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45a435df-3bea-46a3-8e99-ebaf48b6c0db"",
+                    ""path"": ""<XRController>{RightHand}/gripPressed"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Diselect_Hammer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1564,6 +1584,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRIRightHandInteraction_Shoot = m_XRIRightHandInteraction.FindAction("Shoot", throwIfNotFound: true);
         m_XRIRightHandInteraction_Select_Hammer = m_XRIRightHandInteraction.FindAction("Select_Hammer", throwIfNotFound: true);
         m_XRIRightHandInteraction_Select_Weapon = m_XRIRightHandInteraction.FindAction("Select_Weapon", throwIfNotFound: true);
+        m_XRIRightHandInteraction_Diselect_Hammer = m_XRIRightHandInteraction.FindAction("Diselect_Hammer", throwIfNotFound: true);
         // XRI RightHand Locomotion
         m_XRIRightHandLocomotion = asset.FindActionMap("XRI RightHand Locomotion", throwIfNotFound: true);
         m_XRIRightHandLocomotion_TeleportSelect = m_XRIRightHandLocomotion.FindAction("Teleport Select", throwIfNotFound: true);
@@ -1960,6 +1981,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRIRightHandInteraction_Shoot;
     private readonly InputAction m_XRIRightHandInteraction_Select_Hammer;
     private readonly InputAction m_XRIRightHandInteraction_Select_Weapon;
+    private readonly InputAction m_XRIRightHandInteraction_Diselect_Hammer;
     public struct XRIRightHandInteractionActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -1975,6 +1997,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @Shoot => m_Wrapper.m_XRIRightHandInteraction_Shoot;
         public InputAction @Select_Hammer => m_Wrapper.m_XRIRightHandInteraction_Select_Hammer;
         public InputAction @Select_Weapon => m_Wrapper.m_XRIRightHandInteraction_Select_Weapon;
+        public InputAction @Diselect_Hammer => m_Wrapper.m_XRIRightHandInteraction_Diselect_Hammer;
         public InputActionMap Get() { return m_Wrapper.m_XRIRightHandInteraction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2017,6 +2040,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Select_Weapon.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Weapon;
                 @Select_Weapon.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Weapon;
                 @Select_Weapon.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Weapon;
+                @Diselect_Hammer.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnDiselect_Hammer;
+                @Diselect_Hammer.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnDiselect_Hammer;
+                @Diselect_Hammer.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnDiselect_Hammer;
             }
             m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -2054,6 +2080,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Select_Weapon.started += instance.OnSelect_Weapon;
                 @Select_Weapon.performed += instance.OnSelect_Weapon;
                 @Select_Weapon.canceled += instance.OnSelect_Weapon;
+                @Diselect_Hammer.started += instance.OnDiselect_Hammer;
+                @Diselect_Hammer.performed += instance.OnDiselect_Hammer;
+                @Diselect_Hammer.canceled += instance.OnDiselect_Hammer;
             }
         }
     }
@@ -2290,6 +2319,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnShoot(InputAction.CallbackContext context);
         void OnSelect_Hammer(InputAction.CallbackContext context);
         void OnSelect_Weapon(InputAction.CallbackContext context);
+        void OnDiselect_Hammer(InputAction.CallbackContext context);
     }
     public interface IXRIRightHandLocomotionActions
     {

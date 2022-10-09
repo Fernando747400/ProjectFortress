@@ -20,6 +20,7 @@ public class InventoryController : MonoBehaviour
     public bool hasObjectSelected = false;
 
     public InputActionReference hammerReference;
+    public InputActionReference hammerDiselect;
     public InputActionReference gunReference;
 
     private InputDevice rightHand;
@@ -36,12 +37,14 @@ public class InventoryController : MonoBehaviour
         }
         
         hammerReference.action.performed += ctx => SelectHammer();
+        hammerDiselect.action.performed += ctx => DeselectHammer();
         gunReference.action.performed += ctx => SelectWeapon();
         InitializeHandObjects();
     }
 
     private void Update()
     {
+        /*
         rightHand.TryGetFeatureValue(CommonUsages.grip, out float gripValue);
 
         if (gripValue < 0.1f)
@@ -49,6 +52,7 @@ public class InventoryController : MonoBehaviour
             if (!hasObjectSelected) return;
             DeselectHammer();
         }
+        */
     }
 
     void InitializeHandObjects()
