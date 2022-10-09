@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
+
+
 public class InventoryController : MonoBehaviour
 {
  
@@ -15,14 +18,32 @@ public class InventoryController : MonoBehaviour
     private XRIDefaultInputActions inputActions;
     private XRIDefaultInputActions.XRIRightHandInteractionActions rightHandActions;
 
-    
+
+    private InputDevice targetDevice;
+
     void Start()
     {
-        inputActions = new XRIDefaultInputActions();
-        rightHandActions = inputActions.XRIRightHandInteraction;
-        rightHandActions.Select_Hammer.performed += ctx => SelectHammer();
-        rightHandActions.Select_Weapon.performed += ctx => SelectWeapon();
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDeviceCharacteristics rightHandCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+        InputDevices.GetDevicesWithCharacteristics(rightHandCharacteristics, devices);
+        
+        
+        
+        // inputActions = new XRIDefaultInputActions();
+        // rightHandActions = inputActions.XRIRightHandInteraction;
+        // rightHandActions.Select_Hammer.performed += ctx => SelectHammer();
+        // rightHandActions.Select_Weapon.performed += ctx => SelectWeapon();
         InitializeHandObjects();
+    }
+
+
+    private void Update()
+    {
+        targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
+        if (primaryButtonValue)
+        {
+            Debug.Log("Primary button pressed");
+        }
     }
 
     void InitializeHandObjects()
