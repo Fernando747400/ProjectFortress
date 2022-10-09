@@ -859,11 +859,33 @@
                 },
                 {
                     "name": "",
+                    "id": "e394c79f-f65f-4351-8796-4d2d31212c12",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select_Hammer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d92d34ee-e68e-4205-9dd3-fe68a97c15ed",
                     "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
+                    "action": "Select_Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d2cdf48-f0f4-46a7-b87d-6ea170968b93",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Select_Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -876,6 +898,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Diselect_Hammer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1545e4e5-5f80-49ae-bd0c-c47714ebccde",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

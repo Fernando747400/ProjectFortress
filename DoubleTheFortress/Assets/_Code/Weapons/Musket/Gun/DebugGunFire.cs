@@ -1,4 +1,5 @@
 using System.Collections;
+using DebugStuff.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,10 +20,12 @@ public class DebugGunFire :  GeneralAgressor
     //saves the position the gun was... 
     //in when it fired the  hitScan
     private Vector3 _savedFirePosition;
+    private PlayerSelectedItem selectedItem;
 
     private void Start()
     {
         GunShoot.action.performed += ctx => HarcodeShoot();
+        
     }
 
     //Comentado para el testeo de vr y porque te quedaste dormido uwu suerte con tu bug xD
@@ -35,7 +38,8 @@ public class DebugGunFire :  GeneralAgressor
 
     private void HarcodeShoot()
     {
-        if(_canFire) FireHitScan();
+        selectedItem = InventoryController.Instance.SelectedItem;
+        if(_canFire && selectedItem == PlayerSelectedItem.Musket) FireHitScan();
     }
     
     private void CheckInput()

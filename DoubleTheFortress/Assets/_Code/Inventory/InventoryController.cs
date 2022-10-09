@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DebugStuff.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -12,54 +13,54 @@ public class InventoryController : MonoBehaviour
 {
  
 
-    public InputDeviceCharacteristics rightController;    
+    public static InventoryController Instance;
 
     [SerializeField] private GameObject hammerHand;
-    [SerializeField] private GameObject gunHand;
+    [SerializeField] private GameObject musketGunHand;
+    [SerializeField] private PlayerSelectedItem _playerSelectedItem;
+        
     
     public bool hasObjectSelected = false;
-
+    
     public InputActionReference hammerReference;
     public InputActionReference hammerDiselect;
     public InputActionReference gunReference;
 
-    private InputDevice rightHand;
+    
+    private Action<PlayerSelectedItem> OnPlayerSelectItem;
 
+    public PlayerSelectedItem SelectedItem
+    {
+        get => _playerSelectedItem;
+    }
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        List<InputDevice> devices = new List<InputDevice>();
-
-        InputDevices.GetDevicesWithCharacteristics(rightController, devices);
-        if (devices.Count > 0)
-        {
-            rightHand = devices[0];
-        }
         
         hammerReference.action.performed += ctx => SelectHammer();
         hammerDiselect.action.performed += ctx => DeselectHammer();
         gunReference.action.performed += ctx => SelectWeapon();
+        OnPlayerSelectItem += HandleSelectedItem;
         InitializeHandObjects();
     }
 
-    private void Update()
+    void HandleSelectedItem(PlayerSelectedItem item)
     {
-        /*
-        rightHand.TryGetFeatureValue(CommonUsages.grip, out float gripValue);
+        _playerSelectedItem = item;
+        print(_playerSelectedItem);
 
-        if (gripValue < 0.1f)
-        {
-            if (!hasObjectSelected) return;
-            DeselectHammer();
-        }
-        */
     }
-
+   
     void InitializeHandObjects()
     {
         hammerHand.SetActive(false);
-        gunHand.SetActive(false);
+        musketGunHand.SetActive(false);
         hasObjectSelected = false;
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
     }
     void SelectHammer()
     {
@@ -71,12 +72,14 @@ public class InventoryController : MonoBehaviour
         {
             hammerHand.SetActive(true);
             hasObjectSelected = true;
+            OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
         }
        
     }
     
     void DeselectHammer()
     {
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
         hammerHand.SetActive(false);
         hasObjectSelected = false;
     }
@@ -88,8 +91,10 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            gunHand.SetActive(true);
+            musketGunHand.SetActive(true);
             hasObjectSelected = true;
+            OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
+
 
         }
     }
