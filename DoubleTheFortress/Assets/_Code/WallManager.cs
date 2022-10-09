@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class WallManager : MonoBehaviour
 {
+    #region Configuration
     [Header("Dependencies")]
 
     [Header("Wall Script")]
@@ -34,7 +35,7 @@ public class WallManager : MonoBehaviour
     private GameObject _currentWallObject;
     private IConstructable _mywall;
     private int _wallIndex;
-
+    #endregion
 
     private void Start()
     {
@@ -48,12 +49,20 @@ public class WallManager : MonoBehaviour
             _mywall.Repair(repairPoints);
             _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
             Debug.Log("Repaired life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
-        } else if ( _mywall.CurrentHealth >= _mywall.MaxHealth && _mywall.UpgradePoints < _mywall.UpgradePointsRequired)
+            return;
+        }
+
+        if (GetCurrentIndex() == 3) return;
+
+        if (_mywall.UpgradePoints < _mywall.UpgradePointsRequired)
         {
             _mywall.AddUpgradePoints(upgradePoints);
             _upgradeBar.UpdateBar(_mywall.UpgradePoints, _mywall.UpgradePointsRequired);
             Debug.Log("Upgraded " + _mywall.UpgradePoints + " out of " + _mywall.UpgradePointsRequired);
-        } else if (_mywall.CurrentHealth >= _mywall.MaxHealth && _mywall.UpgradePoints >= _mywall.UpgradePointsRequired)
+            return;
+        } 
+        
+        if (_mywall.CurrentHealth >= _mywall.MaxHealth && _mywall.UpgradePoints >= _mywall.UpgradePointsRequired)
         {
             _mywall.Upgrade(_mywall.CurrentObject, _wallsList[GetCurrentIndex() + 1].Model);
             Debug.Log("Upgraded to new Model");
@@ -101,7 +110,7 @@ public class WallManager : MonoBehaviour
         _wallIndex = 0;
         NewWall(_currentWall);
         _currentWallObject = _currentWall.Model;
-        _mywall.Build(_currentWallObject,Vector3.zero, Quaternion.Euler(_instanciateRotationOffset));
+        _mywall.Build(_currentWallObject,this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
         UpdateBars();
     }
 
