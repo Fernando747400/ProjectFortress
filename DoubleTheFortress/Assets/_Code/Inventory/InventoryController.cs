@@ -51,7 +51,7 @@ public class InventoryController : MonoBehaviour
     void HandleSelectedItem(PlayerSelectedItem item)
     {
         _playerSelectedItem = item;
-        print(_playerSelectedItem);
+        // print(_playerSelectedItem);
 
     }
    

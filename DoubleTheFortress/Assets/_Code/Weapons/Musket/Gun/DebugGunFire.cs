@@ -81,15 +81,22 @@ public class DebugGunFire :  GeneralAgressor
         RaycastHit simulatedHit;
         Vector3 simulatedHitPos = Vector3.zero;
         simulatedHitPos = _hitPosition - ((_gravity) * _travelTime);
+        print(simulatedHitPos);
         Physics.Raycast(_savedFirePosition, simulatedHitPos,out simulatedHit, maxDistance, Physics.DefaultRaycastLayers);
         Debug.DrawLine(transform.position,simulatedHit.point,Color.blue);
         Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
-        if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
+        
+        if (simulatedHit.collider != null)
         {
-            Debug.Log("TryGetGeneralTarget is true");
-            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
-            
+            Debug.Log("Hit: " + simulatedHit.collider.name);
         }
+            
+        // if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
+        // {
+        //     Debug.Log("TryGetGeneralTarget is true");
+        //     simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
+        //     
+        // }
         _canFire = true;
         
     }
