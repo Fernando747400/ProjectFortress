@@ -862,10 +862,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""c4c81120-5f9b-4b97-9892-4e05b5034a34"",
-                    ""path"": ""<OculusTouchController>{RightHand}/primaryButton"",
+                    ""path"": ""<XRController>{RightHand}/primaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Generic XR Controller"",
                     ""action"": ""Select_Hammer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
