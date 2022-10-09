@@ -69,6 +69,21 @@ public class WallManager : MonoBehaviour
         }
     }
 
+    public void ReceiveDamage(float damage)
+    {
+        if (GetCurrentIndex() == 0) return;
+        if (_mywall.CurrentHealth > 0)
+        {
+            _mywallScript.ReceiveRayCaster(this.gameObject, damage);
+            _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
+            Debug.Log("Reduced life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
+            return;
+        }
+
+        DownGrade();
+        Debug.Log("Downgraded wall");
+    }
+
     public void UpgradeSuccess()
     {
         UpgradeCurrentWall();
@@ -78,8 +93,8 @@ public class WallManager : MonoBehaviour
 
     private void NewWall(WallScriptableObject currentWall)
     {
-        _mywall.CurrentHealth = currentWall.HealthPool / 2; //for testing only
-        //_mywall.CurrentHealth = currentWall.HealthPool;
+        //_mywall.CurrentHealth = currentWall.HealthPool / 2; //for testing only
+        _mywall.CurrentHealth = currentWall.HealthPool;
         _mywall.MaxHealth = currentWall.HealthPool;
         _mywall.UpgradePoints = 0f;
         _mywall.UpgradePointsRequired = currentWall.UpgradeCost;
@@ -119,4 +134,17 @@ public class WallManager : MonoBehaviour
         _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
         _upgradeBar.UpdateBar(_mywall.UpgradePoints, _mywall.UpgradePointsRequired);
     }
+
+    private void DownGrade()
+    {
+        _wallIndex--;
+        Destroy(_mywall.CurrentObject);
+        _currentWall = _wallsList[_wallIndex];
+        _mywall.CurrentObject = _currentWall.Model;
+        _currentWallObject = _mywall.CurrentObject;
+        _mywall.Build(_currentWallObject, this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
+        NewWall(_currentWall);
+        UpdateBars();
+    }
+
 }
