@@ -862,7 +862,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""c4c81120-5f9b-4b97-9892-4e05b5034a34"",
-                    ""path"": ""<XRController>{RightHand}/primaryButton"",
+                    ""path"": ""<XRController>{RightHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
@@ -873,7 +873,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""d92d34ee-e68e-4205-9dd3-fe68a97c15ed"",
-                    ""path"": ""<OculusTouchController>{RightHand}/secondaryButton"",
+                    ""path"": ""<XRController>{RightHand}/primaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

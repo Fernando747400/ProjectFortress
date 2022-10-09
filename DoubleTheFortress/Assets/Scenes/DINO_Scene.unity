@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -475,15 +475,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1332481332282465037, guid: 5ee832267c06df84d849d33bab1c15c7,
         type: 3}
-      propertyPath: handReferences
-      value: 
-      objectReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
-        type: 3}
-    - target: {fileID: 1332481332282465037, guid: 5ee832267c06df84d849d33bab1c15c7,
-        type: 3}
-      propertyPath: actionBasedController
-      value: 
-      objectReference: {fileID: 1731264918}
+      propertyPath: controllerCharacteristics
+      value: 576
+      objectReference: {fileID: 0}
     - target: {fileID: 8970719298639973856, guid: 5ee832267c06df84d849d33bab1c15c7,
         type: 3}
       propertyPath: m_Name
@@ -546,15 +540,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ee832267c06df84d849d33bab1c15c7, type: 3}
---- !u!114 &1731264918 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8970719297707858422, guid: 5ee832267c06df84d849d33bab1c15c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1731264917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

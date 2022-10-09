@@ -4,64 +4,83 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using CommonUsages = UnityEngine.XR.CommonUsages;
+using InputDevice = UnityEngine.XR.InputDevice;
 
 
 public class InventoryController : MonoBehaviour
 {
  
 
+    public InputDeviceCharacteristics rightController;    
+
     [SerializeField] private GameObject hammerHand;
     [SerializeField] private GameObject gunHand;
     
-    private bool hasObjectSelected = false;
+    public bool hasObjectSelected = false;
 
-    public InputActionReference handReferences;
+    public InputActionReference hammerReference;
+    public InputActionReference gunReference;
+
+    private InputDevice rightHand;
+
 
     void Start()
     {
-        handReferences.action.performed += ctx => SelectHammer();
+        List<InputDevice> devices = new List<InputDevice>();
+
+        InputDevices.GetDevicesWithCharacteristics(rightController, devices);
+        if (devices.Count > 0)
+        {
+            rightHand = devices[0];
+        }
+        
+        hammerReference.action.performed += ctx => SelectHammer();
+        gunReference.action.performed += ctx => SelectWeapon();
         InitializeHandObjects();
+    }
+
+    private void Update()
+    {
+        rightHand.TryGetFeatureValue(CommonUsages.grip, out float gripValue);
+
+        if (gripValue < 0.1f)
+        {
+            if (!hasObjectSelected) return;
+            DeselectHammer();
+        }
     }
 
     void InitializeHandObjects()
     {
         hammerHand.SetActive(false);
         gunHand.SetActive(false);
+        hasObjectSelected = false;
     }
     void SelectHammer()
     {
         if (hasObjectSelected)
         {
             InitializeHandObjects();
-            hasObjectSelected = false;
-        }
-        
-        //Handle Hammer Selection
-        if(hammerHand.activeSelf)
-        {
-            hammerHand.SetActive(false);
-            hasObjectSelected = false;
-            
         }
         else
         {
             hammerHand.SetActive(true);
             hasObjectSelected = true;
         }
+       
+    }
+    
+    void DeselectHammer()
+    {
+        hammerHand.SetActive(false);
+        hasObjectSelected = false;
     }
     void SelectWeapon()
     {
         if (hasObjectSelected)
         {
             InitializeHandObjects();
-            hasObjectSelected = false;
-        }
-        //Handle Weapon Selection
-        if(gunHand.activeSelf)
-        {
-            gunHand.SetActive(false);
-            hasObjectSelected = false;
-
         }
         else
         {
