@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,11 +7,27 @@ using UnityEngine.Events;
 public class WallManager : MonoBehaviour
 {
     [Header("Dependencies")]
+
+    [Header("Wall Script")]
     [SerializeField] private Wall _mywallScript;
+
+    [Header("Walls Models")]
     [SerializeField] private WallScriptableObject _ghost;
     [SerializeField] private WallScriptableObject _basic;
     [SerializeField] private WallScriptableObject _upgradeOne;
     [SerializeField] private WallScriptableObject _upgradeTwo;
+
+    [Header("Colliders")]
+    [SerializeField] private Collider _wallCollider;
+    [SerializeField] private Rigidbody _wallRigidBody;
+
+    [Header("Status Bars")]
+    [SerializeField] private InformationBar _healthBar;
+    [SerializeField] private InformationBar _upgradeBar;
+
+    [Header("Settings")]
+    [SerializeField] private Vector3 _instanciateRotationOffset;
+
 
     private List<WallScriptableObject> _wallsList = new List<WallScriptableObject>();
     private WallScriptableObject _currentWall;
@@ -29,10 +46,12 @@ public class WallManager : MonoBehaviour
         if(_mywall.CurrentHealth < _mywall.MaxHealth)
         {
             _mywall.Repair(repairPoints);
+            _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
             Debug.Log("Repaired life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
         } else if ( _mywall.CurrentHealth >= _mywall.MaxHealth && _mywall.UpgradePoints < _mywall.UpgradePointsRequired)
         {
             _mywall.AddUpgradePoints(upgradePoints);
+            _upgradeBar.UpdateBar(_mywall.UpgradePoints, _mywall.UpgradePointsRequired);
             Debug.Log("Upgraded " + _mywall.UpgradePoints + " out of " + _mywall.UpgradePointsRequired);
         } else if (_mywall.CurrentHealth >= _mywall.MaxHealth && _mywall.UpgradePoints >= _mywall.UpgradePointsRequired)
         {
@@ -43,7 +62,7 @@ public class WallManager : MonoBehaviour
 
     public void UpgradeSuccess()
     {
-        ChangeCurrentWall();
+        UpgradeCurrentWall();
         NewWall(_currentWall);
         Debug.Log("You got upgraded");
     }
@@ -55,13 +74,15 @@ public class WallManager : MonoBehaviour
         _mywall.MaxHealth = currentWall.HealthPool;
         _mywall.UpgradePoints = 0f;
         _mywall.UpgradePointsRequired = currentWall.UpgradeCost;
+        UpdateBars();
     }
 
-    private void ChangeCurrentWall()
+    private void UpgradeCurrentWall()
     {
         _wallIndex++;
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
+        UpdateBars();
     }
 
     private int GetCurrentIndex()
@@ -80,6 +101,13 @@ public class WallManager : MonoBehaviour
         _wallIndex = 0;
         NewWall(_currentWall);
         _currentWallObject = _currentWall.Model;
-        _mywall.Build(_currentWallObject,Vector3.zero, Quaternion.identity);
+        _mywall.Build(_currentWallObject,Vector3.zero, Quaternion.Euler(_instanciateRotationOffset));
+        UpdateBars();
+    }
+
+    private void UpdateBars()
+    {
+        _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
+        _upgradeBar.UpdateBar(_mywall.UpgradePoints, _mywall.UpgradePointsRequired);
     }
 }
