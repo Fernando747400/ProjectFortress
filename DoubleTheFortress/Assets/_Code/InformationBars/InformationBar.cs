@@ -8,8 +8,9 @@ public class InformationBar : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private Image _fillImage;
 
-    private void FixedUpdate()
+    public void UpdateBar(float currentValue, float maxValue)
     {
+        _slider.value = currentValue / maxValue;
         ChangeColor();
     }
 
