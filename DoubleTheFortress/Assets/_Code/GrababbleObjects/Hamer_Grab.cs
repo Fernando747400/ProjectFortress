@@ -6,7 +6,6 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     #region Variables
 
-    [SerializeField] private Collider topCollider;
     [SerializeField] private float pointsToRepair;
     [SerializeField] private float pointsToUpgrade;
     
