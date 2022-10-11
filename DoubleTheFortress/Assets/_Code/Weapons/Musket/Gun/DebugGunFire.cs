@@ -54,7 +54,6 @@ public class DebugGunFire :  GeneralAgressor
     {
         StopAllCoroutines();
         RaycastHit hitScan;
-        _savedFirePosition = transform.position;
         if (!Physics.Raycast(transform.position, transform.forward, out hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
         
@@ -63,7 +62,7 @@ public class DebugGunFire :  GeneralAgressor
         Instantiate(hitMarkerRed, hitScan.point, Quaternion.identity);
         _hitPosition = hitScan.point;
         float travelDistance = hitScan.distance;
-        _travelTime = travelDistance / (bulletSpeed);
+        _travelTime = travelDistance / (bulletSpeed) * Time.fixedDeltaTime;
         _canFire = false;
 
         StartCoroutine(CorWaitForTravel());
@@ -80,12 +79,13 @@ public class DebugGunFire :  GeneralAgressor
     {
         RaycastHit simulatedHit;
         Vector3 simulatedHitPos = Vector3.zero;
-        simulatedHitPos = _hitPosition - ((_gravity) * _travelTime);
+        
+        simulatedHitPos = _hitPosition - ((_gravity) * _travelTime) ;
         print(simulatedHitPos);
         Physics.Raycast(_savedFirePosition, simulatedHitPos,out simulatedHit, maxDistance, Physics.DefaultRaycastLayers);
         Debug.DrawLine(transform.position,simulatedHit.point,Color.blue);
         Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
-        
+
         if (simulatedHit.collider != null)
         {
             Debug.Log("Hit: " + simulatedHit.collider.name);
