@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
 {
@@ -15,6 +17,7 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     public UnityEvent RepairEvent;
     public UnityEvent UpgradePointsEvent;
     public UnityEvent UpgradeEvent;
+    public UnityEvent ReceiveHammerEvent;
 
     private GameObject _currentObject;
     private float _maxHealth;
@@ -22,6 +25,12 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     private bool _sensitive;
     private float _maxHp;
     private float _currentHp;
+
+    public delegate void OnRecieveHammer(float repairValue, float upgradeValue);
+    public event OnRecieveHammer onRecieveHammer;
+
+    public delegate void OnRecieveDamage(GameObject Sender, float damage);
+    public event OnRecieveDamage onRecieveDamage;
 
     #region Get and set
     public float CurrentHealth { get => _currentHealth; set { _currentHealth = value; _currentHp = value; } }
@@ -37,6 +46,7 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     public UnityEvent IRepairEvent => RepairEvent;
     public UnityEvent IUpgradePointsEvent => UpgradePointsEvent;
     public UnityEvent IUpgradeEvent => UpgradeEvent;
+    public UnityEvent IRecieveHammerEvent => IRecieveHammerEvent;
 
     #endregion
 
@@ -44,6 +54,11 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     {
         _maxHp = _maxHealth;
         _currentHp = _currentHealth;
+    }
+
+    public void RecieveHammer(float repairValue, float upgradeValue)
+    {
+        onRecieveHammer?.Invoke(repairValue, upgradeValue);
     }
 
     protected virtual void TakeDamage(float dmgValue)
@@ -61,8 +76,8 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     public void ReceiveRayCaster(GameObject sender, float dmg)
     {
         //needs to evaluate if the sender is on the same team
+        onRecieveDamage?.Invoke(sender, dmg);
         Debug.Log("Hit By: " + sender.gameObject.name);
-        TakeDamage(dmg);
     }
 
 }

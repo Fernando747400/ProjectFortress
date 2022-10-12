@@ -55,6 +55,11 @@ public interface IConstructable
         get;
     }
 
+    void RecieveHammer(float repairValue, float upgradeValue)
+    {
+        
+    }
+
     void Build(GameObject building, Vector3 position, Quaternion rotation)
     {
         CurrentObject = GameObject.Instantiate(building, position, rotation);
