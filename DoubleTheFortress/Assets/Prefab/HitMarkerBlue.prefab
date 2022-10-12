@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5172007605442680574}
   - component: {fileID: 7687984287706800319}
   - component: {fileID: 8312132274922096612}
-  - component: {fileID: 6322881681645529267}
   m_Layer: 2
   m_Name: HitMarkerBlue
   m_TagString: Untagged
@@ -97,16 +96,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6322881681645529267
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3532336229597066646}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
