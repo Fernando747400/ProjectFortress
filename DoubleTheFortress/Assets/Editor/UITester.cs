@@ -17,7 +17,7 @@ public class UITester : Editor
         if (GUILayout.Button("Hit with raycaster"))
         {
             Debug.Log("Sent ray");
-            wallManager.ReceiveDamage(15);
+            wallManager.ReceiveDamage(new GameObject(),15f);
         }
     }
 }
