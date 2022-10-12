@@ -69,7 +69,7 @@ public class WallManager : MonoBehaviour
         }
     }
 
-    public void ReceiveDamage(float damage)
+    public void ReceiveDamage(GameObject sender, float damage)
     {
         if (GetCurrentIndex() == 0) return;
         if (_mywall.CurrentHealth > 0)
@@ -126,6 +126,8 @@ public class WallManager : MonoBehaviour
         NewWall(_currentWall);
         _currentWallObject = _currentWall.Model;
         _mywall.Build(_currentWallObject,this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
+        _mywallScript.onRecieveHammer += ReceiveHammer;
+        _mywallScript.onRecieveDamage += ReceiveDamage;
         UpdateBars();
     }
 
