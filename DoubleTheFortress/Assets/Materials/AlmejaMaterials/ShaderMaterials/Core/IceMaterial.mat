@@ -54,7 +54,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Refract_Streight: -1
+    - _Refract_Streight: -0.12
     m_Colors:
     - _Ice_Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Icecolor: {r: 0, g: 0.8261435, b: 1, a: 1}
