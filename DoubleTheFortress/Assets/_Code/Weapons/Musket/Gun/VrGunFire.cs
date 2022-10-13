@@ -19,4 +19,10 @@ public class VrGunFire : DebugGunFire
     {
         //overriden do not use
     }
+
+    protected override void CheckInput()
+    {
+        //overriden do not use  
+        
+    }
 }

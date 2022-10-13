@@ -21,7 +21,7 @@ public class DebugGunFire :  GeneralAgressor
         CheckInput();
     }
     
-    private void CheckInput()
+    protected virtual void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && _canFire)
         {
@@ -29,7 +29,7 @@ public class DebugGunFire :  GeneralAgressor
         }
     }
 
-    protected virtual  void FireHitScan()
+    protected void FireHitScan()
     {
         StopAllCoroutines();
         RaycastHit hitScan;
@@ -54,13 +54,12 @@ public class DebugGunFire :  GeneralAgressor
         FireSimulated();
     }
 
-    private void FireSimulated()
+    protected void FireSimulated()
     {
         RaycastHit simulatedHit;
         Vector3 simulatedHitPos = Vector3.zero;
         
         simulatedHitPos = _hitPosition - ((_gravity) * _travelTime) ;
-        print(simulatedHitPos);
         Physics.Raycast(_savedFirePosition, simulatedHitPos,out simulatedHit, maxDistance, Physics.DefaultRaycastLayers);
         Debug.DrawLine(transform.position,simulatedHit.point,Color.blue);
         Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
