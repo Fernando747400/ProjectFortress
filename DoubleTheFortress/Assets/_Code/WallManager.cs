@@ -72,9 +72,10 @@ public class WallManager : MonoBehaviour
     public void ReceiveDamage(GameObject sender, float damage)
     {
         if (GetCurrentIndex() == 0) return;
-        if (_mywall.CurrentHealth > 0)
+        if (_mywall.CurrentHealth > 0 && damage < _mywall.CurrentHealth)
         {
-            _mywallScript.ReceiveRayCaster(this.gameObject, damage);
+            //_mywallScript.ReceiveRayCaster(this.gameObject, damage);
+            _mywall.CurrentHealth -= damage;
             _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
             Debug.Log("Reduced life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
             return;
