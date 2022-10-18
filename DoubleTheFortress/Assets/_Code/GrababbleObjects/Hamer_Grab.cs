@@ -52,8 +52,7 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
         if (other.GetComponent<WallManager>())
         {
             Debug.Log("<color=#FFB233>Receive Hammer</color>");
-            WallManager wallManager = other.GetComponent<WallManager>();
-            wallManager.ReceiveHammer(pointsToRepair, pointsToUpgrade);
+            other.GetComponent<IConstructable>().RecieveHammer(pointsToRepair, pointsToUpgrade);
         }
     }
 
