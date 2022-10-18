@@ -11,7 +11,7 @@ public class UITester : Editor
         WallManager wallManager = (WallManager)target;
         if (GUILayout.Button("Hit with hammer"))
         {
-            wallManager.ReceiveHammer(10,5);
+            wallManager.ReceiveHammer(10,15);
         }
 
         if (GUILayout.Button("Hit with raycaster"))
