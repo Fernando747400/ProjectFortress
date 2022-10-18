@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: d9cac68e4eacc754bb33b256473df95e
-=======
-guid: c7305bdaf54b5804bbd9577404502aeb
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4781951162920444690
+    second: Armature|ArmatureAction
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -107,4 +107,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
->>>>>>> Development
