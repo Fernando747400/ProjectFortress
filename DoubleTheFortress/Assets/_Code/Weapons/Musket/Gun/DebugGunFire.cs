@@ -1,7 +1,5 @@
 using System.Collections;
-using DebugStuff.Inventory;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class DebugGunFire :  GeneralAgressor
 {
@@ -14,35 +12,16 @@ public class DebugGunFire :  GeneralAgressor
     private bool _canFire = true;
     private Vector3 _hitPosition;
     private Vector3 _gravity = new Vector3(0, 9.8f, 0);
-
-    public InputActionReference GunShoot;
     
     //saves the position the gun was... 
     //in when it fired the  hitScan
     private Vector3 _savedFirePosition;
-    private PlayerSelectedItem selectedItem;
-
-    private void Start()
-    {
-        GunShoot.action.performed += ctx => HarcodeShoot();
-        
-    }
-
-    //Comentado para el testeo de vr y porque te quedaste dormido uwu suerte con tu bug xD
-    /*
-    private void Update()
+    protected virtual  void Update()
     {
         CheckInput();
     }
-    */
-
-    private void HarcodeShoot()
-    {
-        selectedItem = InventoryController.Instance.SelectedItem;
-        if(_canFire && selectedItem == PlayerSelectedItem.Musket) FireHitScan();
-    }
     
-    private void CheckInput()
+    protected virtual void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && _canFire)
         {
@@ -50,7 +29,7 @@ public class DebugGunFire :  GeneralAgressor
         }
     }
 
-    private void FireHitScan()
+    protected void FireHitScan()
     {
         StopAllCoroutines();
         RaycastHit hitScan;
@@ -75,28 +54,22 @@ public class DebugGunFire :  GeneralAgressor
         FireSimulated();
     }
 
-    private void FireSimulated()
+    protected void FireSimulated()
     {
         RaycastHit simulatedHit;
         Vector3 simulatedHitPos = Vector3.zero;
         
         simulatedHitPos = _hitPosition - ((_gravity) * _travelTime) ;
-        print(simulatedHitPos);
         Physics.Raycast(_savedFirePosition, simulatedHitPos,out simulatedHit, maxDistance, Physics.DefaultRaycastLayers);
         Debug.DrawLine(transform.position,simulatedHit.point,Color.blue);
         Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
 
-        if (simulatedHit.collider != null)
+        if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
         {
-            Debug.Log("Hit: " + simulatedHit.collider.name);
-        }
+            Debug.Log("TryGetGeneralTarget is true");
+            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
             
-        // if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
-        // {
-        //     Debug.Log("TryGetGeneralTarget is true");
-        //     simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
-        //     
-        // }
+        }
         _canFire = true;
         
     }

@@ -20,6 +20,6 @@ public class Gun_Rotate : MonoBehaviour
         mouseX += Input.GetAxis("Mouse X");
         mouseY += Input.GetAxis("Mouse Y");
         
-        transform.localRotation = Quaternion.Euler(-mouseY,mouseX,0f);
+        transform.localRotation = Quaternion.Euler(-mouseY,mouseX,0);
     }
 }
