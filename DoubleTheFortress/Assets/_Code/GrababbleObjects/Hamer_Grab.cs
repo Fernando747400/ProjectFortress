@@ -6,8 +6,11 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     #region Variables
 
+    [Header("Settings")]
     [SerializeField] private float pointsToRepair;
     [SerializeField] private float pointsToUpgrade;
+
+    public event Action ConstructableHitEvent;
     
     public Vector3 Position
     {
@@ -49,10 +52,11 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<WallManager>())
+        if (other.gameObject.GetComponent<IConstructable>() != null)
         {
             Debug.Log("<color=#FFB233>Receive Hammer</color>");
             other.GetComponent<IConstructable>().RecieveHammer(pointsToRepair, pointsToUpgrade);
+            ConstructableHitEvent?.Invoke();
         }
     }
 
