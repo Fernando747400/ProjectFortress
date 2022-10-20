@@ -22,10 +22,6 @@ public class WallManager : MonoBehaviour
     [SerializeField] private Collider _wallCollider;
     [SerializeField] private Rigidbody _wallRigidBody;
 
-    [Header("Status Bars")]
-    [SerializeField] private InformationBar _healthBar;
-    [SerializeField] private InformationBar _upgradeBar;
-
     [Header("Settings")]
     [SerializeField] private Vector3 _instanciateRotationOffset;
 
@@ -47,7 +43,6 @@ public class WallManager : MonoBehaviour
         if(_mywall.CurrentHealth < _mywall.MaxHealth)
         {
             _mywall.Repair(repairPoints);
-            _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
             Debug.Log("Repaired life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
             return;
         }
@@ -57,7 +52,6 @@ public class WallManager : MonoBehaviour
         if (_mywall.UpgradePoints < _mywall.UpgradePointsRequired)
         {
             _mywall.AddUpgradePoints(upgradePoints);
-            _upgradeBar.UpdateBar(_mywall.UpgradePoints, _mywall.UpgradePointsRequired);
             Debug.Log("Upgraded " + _mywall.UpgradePoints + " out of " + _mywall.UpgradePointsRequired);
             return;
         } 
@@ -76,7 +70,6 @@ public class WallManager : MonoBehaviour
         {
             //_mywallScript.ReceiveRayCaster(this.gameObject, damage);
             _mywall.CurrentHealth -= damage;
-            _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
             Debug.Log("Reduced life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
             return;
         }
@@ -99,7 +92,6 @@ public class WallManager : MonoBehaviour
         _mywall.MaxHealth = currentWall.HealthPool;
         _mywall.UpgradePoints = 0f;
         _mywall.UpgradePointsRequired = currentWall.UpgradeCost;
-        UpdateBars();
     }
 
     private void UpgradeCurrentWall()
@@ -107,7 +99,6 @@ public class WallManager : MonoBehaviour
         _wallIndex++;
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
-        UpdateBars();
     }
 
     private int GetCurrentIndex()
@@ -129,13 +120,6 @@ public class WallManager : MonoBehaviour
         _mywall.Build(_currentWallObject,this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
         _mywallScript.onRecieveHammer += ReceiveHammer;
         _mywallScript.onRecieveDamage += ReceiveDamage;
-        UpdateBars();
-    }
-
-    private void UpdateBars()
-    {
-        _healthBar.UpdateBar(_mywall.CurrentHealth, _mywall.MaxHealth);
-        _upgradeBar.UpdateBar(_mywall.UpgradePoints, _mywall.UpgradePointsRequired);
     }
 
     private void DownGrade()
@@ -147,7 +131,6 @@ public class WallManager : MonoBehaviour
         _currentWallObject = _mywall.CurrentObject;
         _mywall.Build(_currentWallObject, this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
         NewWall(_currentWall);
-        UpdateBars();
     }
 
 }
