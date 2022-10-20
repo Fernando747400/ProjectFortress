@@ -1,11 +1,32 @@
 fileFormatVersion: 2
-guid: d9cac68e4eacc754bb33b256473df95e
+guid: 1153add7f5825124698015445078c671
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 4781951162920444690
-    second: Armature|ArmatureAction
+      74: -231221770047107540
+    second: Armature Hands|Default
+  - first:
+      74: -3345571704743757732
+    second: Armature Hands|Fist
+  - first:
+      74: -547485038837085921
+    second: Armature Hands|Hand Gun
+  - first:
+      74: -200438923630386132
+    second: Armature Hands|Nice
+  - first:
+      74: -3856609524482006157
+    second: Armature Hands|Ok
+  - first:
+      74: -1984217728415424995
+    second: Armature Hands|Open Hands
+  - first:
+      74: -6005551065005751818
+    second: Armature Hands|Rock n Roll
+  - first:
+      74: -5650401634493190939
+    second: Armature Hands|Victory
   externalObjects: {}
   materials:
     materialImportMode: 2
