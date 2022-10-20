@@ -99,6 +99,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin
       objectReference: {fileID: 0}
+    - target: {fileID: 2894884127699240246, guid: f02995fb55a25124ca8aef4f6fd98a95,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc6bc47f0a2ad2345b39edbd25cf62c8, type: 2}
+    - target: {fileID: 6713385096985074153, guid: f02995fb55a25124ca8aef4f6fd98a95,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5495902117074765545, guid: ec0e7fe892981e649897793dfbd7c05c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02995fb55a25124ca8aef4f6fd98a95, type: 3}
 --- !u!4 &7190660829930195242 stripped

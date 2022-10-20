@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4887950892451954210}
-  - component: {fileID: 5172007605442680574}
   - component: {fileID: 7687984287706800319}
   - component: {fileID: 8312132274922096612}
+  - component: {fileID: 7364239697142880043}
   m_Layer: 2
   m_Name: HitMarkerBlue
   m_TagString: Untagged
@@ -34,18 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5172007605442680574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3532336229597066646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbfcdda7715e0649972dd7f49f7e263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &7687984287706800319
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -96,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7364239697142880043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532336229597066646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c7d6b46f74be44cbd6a6e0347bba1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
