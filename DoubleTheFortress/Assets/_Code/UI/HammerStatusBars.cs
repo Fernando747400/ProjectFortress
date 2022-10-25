@@ -22,12 +22,16 @@ public class HammerStatusBars : MonoBehaviour
     private void Start()
     {
         _hamer_Grab.ConstructableHitEvent += GetConstrutableEvent;
+        _barsCanvas.SetActive(false);
     }
 
     private void GetConstrutableEvent(GameObject constructable)
     {
-        UpdateBars(constructable.GetComponent<IConstructable>());
-        if (!_isRunningShowCanvas) StartCoroutine(ShowCanvas(_showCanvasTime));
+        if(constructable.TryGetComponent(typeof(IConstructable), out Component iConstructable))
+        {
+            UpdateBars(iConstructable.GetComponent<IConstructable>());
+            if (!_isRunningShowCanvas) StartCoroutine(ShowCanvas(_showCanvasTime));
+        }
     }
 
     private void UpdateBars(IConstructable constructable)
