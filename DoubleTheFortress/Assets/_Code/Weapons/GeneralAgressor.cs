@@ -8,7 +8,6 @@ public class GeneralAgressor : MonoBehaviour
     {
         try
         { 
-            print(target.name);
             bool result = target.GetComponent<IGeneralTarget>().Sensitive; 
             return result;
         }
