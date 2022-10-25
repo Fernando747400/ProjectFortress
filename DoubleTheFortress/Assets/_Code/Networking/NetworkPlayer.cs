@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -5,15 +6,31 @@ using UnityEngine;
 
 public class NetworkPlayer : MonoBehaviour
 {
+    [SerializeField] private InventoryController _inventoryController;
+    
     private PhotonView _photonView;
-    void Start()
+    private bool _isMinePhoton;
+    
+
+    public bool IsMinePhoton { get => _isMinePhoton; }
+
+    private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
 
         if (_photonView.IsMine)
         {
-            Debug.Log(transform.name + "Photon");
+            _isMinePhoton = true;
         }
+        else
+        {
+            transform.gameObject.SetActive(false);
+        }
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame

@@ -11,13 +11,16 @@ using InputDevice = UnityEngine.XR.InputDevice;
 
 public class InventoryController : MonoBehaviour
 {
- 
 
-    public static InventoryController Instance;
-
+    [Header("Networking")] 
+    [SerializeField] private NetworkPlayer _networkPlayer;
+    [SerializeField] private NetworkManager _networkManager;
+    
     [SerializeField] private GameObject hammerHand;
     [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
+    
+    
         
     
     public bool hasObjectSelected = false;
@@ -35,19 +38,30 @@ public class InventoryController : MonoBehaviour
     }
     private void Awake()
     {
-        Instance = this;
     }
 
     void Start()
     {
-        
-        hammerReference.action.performed += ctx => SelectHammer();
-        hammerDiselect.action.performed += ctx => DeselectHammer();
-        gunReference.action.performed += ctx => SelectWeapon();
-        OnPlayerSelectItem += HandleSelectedItem;
-        InitializeHandObjects();
+        _networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<NetworkManager>();
+        _networkManager.OnPlayerFinishedConnect += InitializeInventory;
     }
 
+    void InitializeInventory()
+    {
+        if (_networkPlayer.IsMinePhoton)
+        {
+            Debug.Log("<color=#FCB354> Suscribete si IsMine true</color>");
+            hammerReference.action.performed += ctx => SelectHammer();
+            hammerDiselect.action.performed += ctx => DeselectHammer();
+            gunReference.action.performed += ctx => SelectWeapon();
+            OnPlayerSelectItem += HandleSelectedItem;
+            InitializeHandObjects();
+        }
+        
+    }
+
+    
+    
     void HandleSelectedItem(PlayerSelectedItem item)
     {
         _playerSelectedItem = item;

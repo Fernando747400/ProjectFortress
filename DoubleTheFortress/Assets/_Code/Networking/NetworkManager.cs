@@ -7,9 +7,15 @@ using Photon.Pun;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
-    private void Start()
+    public Action OnPlayerFinishedConnect;
+    private void Awake()
     {
         ConnectToServer();
+    }
+
+    private void Start()
+    {
+        // ConnectToServer();
     }
 
     void ConnectToServer()
@@ -41,6 +47,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         base.OnPlayerEnteredRoom(newPlayer);
         print("New Player Joined...");
+        OnPlayerFinishedConnect?.Invoke();
 
     }
 }

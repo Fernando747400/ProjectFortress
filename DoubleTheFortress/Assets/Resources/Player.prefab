@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e1c365e1f2d2640ab71be5f5952c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkPlayer: {fileID: 0}
+  _networkManager: {fileID: 0}
   hammerHand: {fileID: 2416471594249542853}
   musketGunHand: {fileID: 6103072570383631362}
   _playerSelectedItem: 0
@@ -101,6 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94031f76d5790a49925a1d6bdd6cec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkManager: {fileID: 0}
+  _networkPlayer: {fileID: 7826215334957360786}
   baseControllerGameObject: {fileID: 2186332813078043301}
   teleportationGameobject: {fileID: 2186332813752179943}
   teleportActivationReference: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f,
@@ -2093,6 +2097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3aff55faa327648947873cceb49230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryController: {fileID: 0}
 --- !u!114 &8244075770688227583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,6 +2392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94031f76d5790a49925a1d6bdd6cec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkManager: {fileID: 0}
+  _networkPlayer: {fileID: 0}
   baseControllerGameObject: {fileID: 2186332813249366408}
   teleportationGameobject: {fileID: 2186332813258648239}
   teleportActivationReference: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f,
