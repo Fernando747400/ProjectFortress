@@ -7,7 +7,6 @@ using Photon.Pun;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
-    public Action OnPlayerFinishedConnect;
     private void Awake()
     {
         ConnectToServer();
@@ -33,21 +32,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         roomOptions.IsOpen = true;
         PhotonNetwork.JoinOrCreateRoom("Room_1", roomOptions, TypedLobby.Default);
 
-        print("Connected...");
+        print("Connect To Room...");
     }
     
-    public  override void OnJoinedRoom()
+    public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
         print("Joined...");
-
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        base.OnPlayerEnteredRoom(newPlayer);
         print("New Player Joined...");
-        OnPlayerFinishedConnect?.Invoke();
-
+        // OnPlayerFinishedConnect?.Invoke();
+        base.OnPlayerEnteredRoom(newPlayer);
+        
     }
 }

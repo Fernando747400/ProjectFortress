@@ -14,15 +14,11 @@ public class InventoryController : MonoBehaviour
 
     [Header("Networking")] 
     [SerializeField] private NetworkPlayer _networkPlayer;
-    [SerializeField] private NetworkManager _networkManager;
     
     [SerializeField] private GameObject hammerHand;
     [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
-    
-    
-        
-    
+
     public bool hasObjectSelected = false;
     
     public InputActionReference hammerReference;
@@ -31,6 +27,8 @@ public class InventoryController : MonoBehaviour
 
     
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
+
+    public Action OnPlayerFinishedConnect;
 
     public PlayerSelectedItem SelectedItem
     {
@@ -42,15 +40,14 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        _networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<NetworkManager>();
-        _networkManager.OnPlayerFinishedConnect += InitializeInventory;
+        InitializeInventory();
     }
 
     void InitializeInventory()
     {
         if (_networkPlayer.IsMinePhoton)
         {
-            Debug.Log("<color=#FCB354> Suscribete si IsMine true</color>");
+            Debug.Log("<color=#FCB354> Suscribete si IsMine true INVENTORY</color>" + name);
             hammerReference.action.performed += ctx => SelectHammer();
             hammerDiselect.action.performed += ctx => DeselectHammer();
             gunReference.action.performed += ctx => SelectWeapon();

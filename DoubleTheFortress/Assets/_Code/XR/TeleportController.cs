@@ -5,10 +5,8 @@ using UnityEngine.Events;
 public class TeleportController : MonoBehaviour
 {
     
-    [SerializeField] private NetworkManager _networkManager;
     [SerializeField] private NetworkPlayer _networkPlayer;
-
-
+    
     public GameObject baseControllerGameObject;
     public GameObject teleportationGameobject;
 
@@ -20,8 +18,7 @@ public class TeleportController : MonoBehaviour
 
     private void Start()
     {
-        _networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<NetworkManager>();
-        _networkManager.OnPlayerFinishedConnect += InitializeTeleport;
+        InitializeTeleport();
 
     }
 
@@ -30,6 +27,7 @@ public class TeleportController : MonoBehaviour
     {
         if (_networkPlayer.IsMinePhoton)
         {
+            Debug.Log("<color=#FCB354>si IsMine true TELEPORT</color>" + name);
             teleportActivationReference.action.performed += TeleportModeActivate;
             teleportActivationReference.action.canceled += TeleportModeCancel;    
         }
