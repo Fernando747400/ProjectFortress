@@ -12,7 +12,7 @@ public class VrGunFire : DebugGunFire
     // Start is called before the first frame update
     void Start()
     {
-        GunShoot.action.performed += ctx => base.FireHitScan();
+        GunShoot.action.performed += ctx => FireHitScan();
     }
     
     protected override void Update()
@@ -23,6 +23,5 @@ public class VrGunFire : DebugGunFire
     protected override void CheckInput()
     {
         //overriden do not use  
-        
     }
 }
