@@ -2,7 +2,19 @@ fileFormatVersion: 2
 guid: ec0e7fe892981e649897793dfbd7c05c
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4781951162920444690
+    second: Armature|ArmatureAction
+  - first:
+      74: -7225310248501850256
+    second: Reference|Fist
+  - first:
+      74: 4003784987358021121
+    second: Armature Hands|Wepon RightHand.001
+  - first:
+      74: -147144927712144603
+    second: Armature Hands.001|Wepon RightHand
   externalObjects: {}
   materials:
     materialImportMode: 2
