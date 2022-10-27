@@ -55,8 +55,8 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireSimulated()
     {
         _savedFirePosition = transform.position;
-        Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, 1,0)) -_savedFirePosition;
-        // Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, _gravity.y / _travelTime / Time.fixedDeltaTime,0)) -_savedFirePosition;
+        Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, 1, 0)) - _savedFirePosition;
+        //Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, _gravity.y / _travelTime / Time.fixedDeltaTime, 0)) - _savedFirePosition;
         Debug.Log(_hitPosition);
         
         Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit,
