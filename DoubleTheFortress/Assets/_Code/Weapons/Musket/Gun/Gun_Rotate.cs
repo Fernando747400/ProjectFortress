@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Gun_Rotate : MonoBehaviour
 {
-    private float mouseX, mouseY;
+    protected float mouseX, mouseY;
     
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         Application.targetFrameRate = 60;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         mouseX += Input.GetAxis("Mouse X");
         mouseY += Input.GetAxis("Mouse Y");
         
-        transform.localRotation = Quaternion.Euler(-mouseY,mouseX,0);
+        transform.localRotation = Quaternion.Euler(-mouseY,mouseX,0f);
     }
 }

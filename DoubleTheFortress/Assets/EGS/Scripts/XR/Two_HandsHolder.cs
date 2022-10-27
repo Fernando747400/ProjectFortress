@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class HandHolder : XRGrabInteractable
+public class Two_HandsHolder : XRGrabInteractable
 {
     private Action OnGrabbed;
     private Action OnReleased;
@@ -23,6 +23,7 @@ public class HandHolder : XRGrabInteractable
     
     protected virtual void Grab(XRBaseInteractor interactor)
     {
+        print("se grabea");
         OnGrabbed?.Invoke();
         _isGrabbing = true;
     }

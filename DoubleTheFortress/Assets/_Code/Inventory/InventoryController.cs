@@ -5,29 +5,26 @@ using DebugStuff.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using CommonUsages = UnityEngine.XR.CommonUsages;
 using InputDevice = UnityEngine.XR.InputDevice;
 
 
 public class InventoryController : MonoBehaviour
 {
- 
-
-    public static InventoryController Instance;
-
     [SerializeField] private GameObject hammerHand;
     [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
-        
     
     public bool hasObjectSelected = false;
-    
     public InputActionReference hammerReference;
     public InputActionReference hammerDiselect;
     public InputActionReference gunReference;
 
-    
+    public List<BoxAreasInteraction> areasInteraction;
+
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
+    private bool _isInBoxInteraction;
 
     public PlayerSelectedItem SelectedItem
     {
@@ -35,7 +32,6 @@ public class InventoryController : MonoBehaviour
     }
     private void Awake()
     {
-        Instance = this;
     }
 
     void Start()
@@ -44,6 +40,11 @@ public class InventoryController : MonoBehaviour
         hammerReference.action.performed += ctx => SelectHammer();
         hammerDiselect.action.performed += ctx => DeselectHammer();
         gunReference.action.performed += ctx => SelectWeapon();
+
+        foreach (BoxAreasInteraction box in areasInteraction)
+        {
+            box.OnHandEnterActionZone += HandleBoxInteraction;
+        }
         OnPlayerSelectItem += HandleSelectedItem;
         InitializeHandObjects();
     }
@@ -51,8 +52,6 @@ public class InventoryController : MonoBehaviour
     void HandleSelectedItem(PlayerSelectedItem item)
     {
         _playerSelectedItem = item;
-        // print(_playerSelectedItem);
-
     }
    
     void InitializeHandObjects()
@@ -64,6 +63,8 @@ public class InventoryController : MonoBehaviour
     }
     void SelectHammer()
     {
+        if (_isInBoxInteraction) return;
+       
         if (hasObjectSelected)
         {
             InitializeHandObjects();
@@ -79,12 +80,16 @@ public class InventoryController : MonoBehaviour
     
     void DeselectHammer()
     {
+        if (_isInBoxInteraction) return;
+
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
         hammerHand.SetActive(false);
         hasObjectSelected = false;
     }
     void SelectWeapon()
     {
+        if (_isInBoxInteraction) return;
+
         if (hasObjectSelected)
         {
             InitializeHandObjects();
@@ -98,6 +103,14 @@ public class InventoryController : MonoBehaviour
 
         }
     }
+
+    void HandleBoxInteraction(bool interaction)
+    {
+        print("hande box interaction");
+
+        _isInBoxInteraction = !interaction;
+    }
+    
 }
     
     

@@ -31,7 +31,7 @@ public class DebugGunFire :  GeneralAgressor
         }
     }
 
-    protected void FireHitScan()
+    protected virtual void FireHitScan()
     {
         StopAllCoroutines();
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
