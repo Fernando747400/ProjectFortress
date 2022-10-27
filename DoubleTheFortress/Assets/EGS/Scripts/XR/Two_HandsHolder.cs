@@ -17,6 +17,7 @@ public class Two_HandsHolder : XRGrabInteractable
     {
         base.Awake();
         onSelectEntered.AddListener(Grab);
+        onSelectExit.AddListener(Drop);
         
     }
 
