@@ -6,8 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Two_HandsHolder : XRGrabInteractable
 {
-    private Action OnGrabbed;
-    private Action OnReleased;
+    public Action OnGrabbed;
+    public Action OnReleased;
 
     private bool _isGrabbing;
     
@@ -17,21 +17,22 @@ public class Two_HandsHolder : XRGrabInteractable
     {
         base.Awake();
         onSelectEntered.AddListener(Grab);
+        onSelectExit.AddListener(Drop);
         
     }
 
     
     protected virtual void Grab(XRBaseInteractor interactor)
     {
-        print("se grabea");
-        OnGrabbed?.Invoke();
         _isGrabbing = true;
+        OnGrabbed?.Invoke();
     }
 
     protected virtual void Drop(XRBaseInteractor interactor)
     {
-        OnReleased?.Invoke();
         _isGrabbing = false;
+        OnReleased?.Invoke();
+
     }
     
 }
