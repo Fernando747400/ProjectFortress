@@ -585,5 +585,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 6271185577560447778, guid: 12a75a4f4ee8fb9408320dab55890d36,
+        type: 3}
+      propertyPath: m_MovementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452764649834305409, guid: 12a75a4f4ee8fb9408320dab55890d36,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589371157497551031, guid: 12a75a4f4ee8fb9408320dab55890d36,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12a75a4f4ee8fb9408320dab55890d36, type: 3}
