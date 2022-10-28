@@ -99,15 +99,11 @@ public class InventoryController : MonoBehaviour
             musketGunHand.SetActive(true);
             hasObjectSelected = true;
             OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
-
-
         }
     }
 
     void HandleBoxInteraction(bool interaction)
     {
-        print("hande box interaction");
-
         _isInBoxInteraction = !interaction;
     }
     
