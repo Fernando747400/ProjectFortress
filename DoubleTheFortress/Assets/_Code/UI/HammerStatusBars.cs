@@ -16,13 +16,24 @@ public class HammerStatusBars : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float _showCanvasTime;
+    [SerializeField] private Vector3 _canvasOffset;
 
     private bool _isRunningShowCanvas;
+    private Camera _mainCamera;
+    private Collider _hammerCollider;
 
     private void Start()
     {
         _hamer_Grab.ConstructableHitEvent += GetConstrutableEvent;
         _barsCanvas.SetActive(false);
+        _mainCamera = Camera.main;
+        _hammerCollider = _hammer.GetComponent<Collider>();
+    }
+
+    private void FixedUpdate()
+    {
+        _barsCanvas.transform.position = _hammerCollider.bounds.center + _canvasOffset;
+        _barsCanvas.transform.LookAt(_mainCamera.transform);
     }
 
     private void GetConstrutableEvent(GameObject constructable)

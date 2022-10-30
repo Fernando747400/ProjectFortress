@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
 {
+    public static CoreManager Instance;
+    
     [Header("Settings")]
     [SerializeField] private float _maxLife;
     [SerializeField] private float _cooldown;
@@ -11,6 +13,11 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
 
     private float _life;
     private float _currentCooldown;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
