@@ -8951,6 +8951,7 @@ Transform:
   - {fileID: 432134764}
   - {fileID: 336674805}
   - {fileID: 420775518}
+  - {fileID: 1839380284}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9910,6 +9911,133 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 428935542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &429329429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429329430}
+  - component: {fileID: 429329434}
+  - component: {fileID: 429329433}
+  - component: {fileID: 429329432}
+  - component: {fileID: 429329431}
+  m_Layer: 0
+  m_Name: WallWest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &429329430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429329429}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -1.47, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1839380284}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &429329431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429329429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fcfd76507fbf344a8438bf4a9c7d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _upgradePoints: 0
+  BuildEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  RepairEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradePointsEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 429329432}
+        m_TargetAssemblyTypeName: WallManager, Assembly-CSharp
+        m_MethodName: UpgradeSuccess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ReceiveHammerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &429329432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429329429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mywallScript: {fileID: 429329431}
+  _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
+  _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
+  _upgradeOne: {fileID: 11400000, guid: e5887531e5cc6444c9a7835e589dc91d, type: 2}
+  _upgradeTwo: {fileID: 11400000, guid: 219de380baa7b4041a410f7a7c85bcdc, type: 2}
+  _wallCollider: {fileID: 429329434}
+  _wallRigidBody: {fileID: 429329433}
+  _instanciateRotationOffset: {x: -90, y: 0, z: 90}
+  _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
+  _instanciateScale: {x: 1, y: 1.28, z: 1}
+--- !u!54 &429329433
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429329429}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &429329434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429329429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.4, z: 1.1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &430552542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16315,6 +16443,133 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 774517049}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &776482834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776482835}
+  - component: {fileID: 776482839}
+  - component: {fileID: 776482838}
+  - component: {fileID: 776482837}
+  - component: {fileID: 776482836}
+  m_Layer: 0
+  m_Name: WallEast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776482835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776482834}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 1.47, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1839380284}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &776482836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776482834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fcfd76507fbf344a8438bf4a9c7d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _upgradePoints: 0
+  BuildEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  RepairEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradePointsEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 776482837}
+        m_TargetAssemblyTypeName: WallManager, Assembly-CSharp
+        m_MethodName: UpgradeSuccess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ReceiveHammerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &776482837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776482834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mywallScript: {fileID: 776482836}
+  _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
+  _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
+  _upgradeOne: {fileID: 11400000, guid: e5887531e5cc6444c9a7835e589dc91d, type: 2}
+  _upgradeTwo: {fileID: 11400000, guid: 219de380baa7b4041a410f7a7c85bcdc, type: 2}
+  _wallCollider: {fileID: 776482839}
+  _wallRigidBody: {fileID: 776482838}
+  _instanciateRotationOffset: {x: -90, y: 90, z: 0}
+  _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
+  _instanciateScale: {x: 1, y: 1.28, z: 1}
+--- !u!54 &776482838
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776482834}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &776482839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776482834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.4, z: 1.1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &779696027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16389,6 +16644,133 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 779696027}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &782457043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782457044}
+  - component: {fileID: 782457048}
+  - component: {fileID: 782457047}
+  - component: {fileID: 782457046}
+  - component: {fileID: 782457045}
+  m_Layer: 0
+  m_Name: WallSouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &782457044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782457043}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: -1.47}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1839380284}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &782457045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782457043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fcfd76507fbf344a8438bf4a9c7d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _upgradePoints: 0
+  BuildEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  RepairEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradePointsEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 782457046}
+        m_TargetAssemblyTypeName: WallManager, Assembly-CSharp
+        m_MethodName: UpgradeSuccess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ReceiveHammerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &782457046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782457043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mywallScript: {fileID: 782457045}
+  _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
+  _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
+  _upgradeOne: {fileID: 11400000, guid: e5887531e5cc6444c9a7835e589dc91d, type: 2}
+  _upgradeTwo: {fileID: 11400000, guid: 219de380baa7b4041a410f7a7c85bcdc, type: 2}
+  _wallCollider: {fileID: 782457048}
+  _wallRigidBody: {fileID: 782457047}
+  _instanciateRotationOffset: {x: -90, y: 0, z: 0}
+  _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
+  _instanciateScale: {x: 1, y: 1.28, z: 1}
+--- !u!54 &782457047
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782457043}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &782457048
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782457043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.4, z: 1.1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &783233561
 GameObject:
   m_ObjectHideFlags: 0
@@ -39179,6 +39561,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1834722643}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839380283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839380284}
+  m_Layer: 0
+  m_Name: Walls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839380284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839380283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6595506780152846142}
+  - {fileID: 782457044}
+  - {fileID: 776482835}
+  - {fileID: 429329430}
+  m_Father: {fileID: 389596172}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1848313988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54339,6 +54756,133 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6595506780152846129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595506780152846130}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.4, z: 1.1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &6595506780152846130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6595506780152846142}
+  - component: {fileID: 6595506780152846129}
+  - component: {fileID: 6595506780152846141}
+  - component: {fileID: 6595506780152846140}
+  - component: {fileID: 6595506780152846139}
+  m_Layer: 0
+  m_Name: WallNorth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &6595506780152846139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595506780152846130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fcfd76507fbf344a8438bf4a9c7d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _upgradePoints: 0
+  BuildEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  RepairEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradePointsEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UpgradeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6595506780152846140}
+        m_TargetAssemblyTypeName: WallManager, Assembly-CSharp
+        m_MethodName: UpgradeSuccess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ReceiveHammerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6595506780152846140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595506780152846130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mywallScript: {fileID: 6595506780152846139}
+  _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
+  _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
+  _upgradeOne: {fileID: 11400000, guid: e5887531e5cc6444c9a7835e589dc91d, type: 2}
+  _upgradeTwo: {fileID: 11400000, guid: 219de380baa7b4041a410f7a7c85bcdc, type: 2}
+  _wallCollider: {fileID: 6595506780152846129}
+  _wallRigidBody: {fileID: 6595506780152846141}
+  _instanciateRotationOffset: {x: -90, y: 0, z: 0}
+  _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
+  _instanciateScale: {x: 1, y: 1.28, z: 1}
+--- !u!54 &6595506780152846141
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595506780152846130}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!4 &6595506780152846142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595506780152846130}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 1.47}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1839380284}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7090409580500724690
 Transform:
   m_ObjectHideFlags: 0

@@ -24,6 +24,8 @@ public class WallManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private Vector3 _instanciateRotationOffset;
+    [SerializeField] private Vector3 _instanciatePositionOffset;
+    [SerializeField] private Vector3 _instanciateScale;
 
 
     private List<WallScriptableObject> _wallsList = new List<WallScriptableObject>();
@@ -117,7 +119,7 @@ public class WallManager : MonoBehaviour
         _wallIndex = 0;
         NewWall(_currentWall);
         _currentWallObject = _currentWall.Model;
-        _mywall.Build(_currentWallObject,this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
+        _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         _mywallScript.onRecieveHammer += ReceiveHammer;
         _mywallScript.onRecieveDamage += ReceiveDamage;
     }
@@ -129,7 +131,7 @@ public class WallManager : MonoBehaviour
         _currentWall = _wallsList[_wallIndex];
         _mywall.CurrentObject = _currentWall.Model;
         _currentWallObject = _mywall.CurrentObject;
-        _mywall.Build(_currentWallObject, this.transform.position, Quaternion.Euler(_instanciateRotationOffset));
+        _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         NewWall(_currentWall);
     }
 

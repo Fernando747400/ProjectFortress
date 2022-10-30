@@ -60,9 +60,10 @@ public interface IConstructable
         
     }
 
-    void Build(GameObject building, Vector3 position, Quaternion rotation)
+    void Build(GameObject building, Vector3 position, Quaternion rotation, GameObject parent, Vector3 scale)
     {
-        CurrentObject = GameObject.Instantiate(building, position, rotation);
+        CurrentObject = GameObject.Instantiate(building, position, rotation,parent.transform);
+        CurrentObject.transform.localScale = scale;
         CurrentObject.SetActive(true);
         IBuildEvent?.Invoke();
     }
@@ -84,7 +85,7 @@ public interface IConstructable
     void Upgrade(GameObject oldBuilding, GameObject newBuilding)
     {
         //oldBuilding.SetActive(false);
-        Build(newBuilding, oldBuilding.transform.position, oldBuilding.transform.rotation);
+        Build(newBuilding, oldBuilding.transform.position, oldBuilding.transform.rotation, oldBuilding.transform.parent.gameObject, oldBuilding.transform.localScale);
         GameObject.Destroy(oldBuilding);
         IUpgradeEvent?.Invoke();
     }
