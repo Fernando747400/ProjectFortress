@@ -11,6 +11,7 @@ public class Two_HandsHolder : XRGrabInteractable
 
     private bool _isGrabbing;
     
+    
     public bool IsGrabbing => _isGrabbing;
 
     protected override void Awake()
@@ -34,5 +35,10 @@ public class Two_HandsHolder : XRGrabInteractable
         OnReleased?.Invoke();
 
     }
-    
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
 }
