@@ -326,6 +326,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 5818192168684422704, guid: f02995fb55a25124ca8aef4f6fd98a95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5818192168689699650, guid: f02995fb55a25124ca8aef4f6fd98a95,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8094344046330992730, guid: f02995fb55a25124ca8aef4f6fd98a95,
         type: 3}
       propertyPath: areasInteraction.Array.size
@@ -565,7 +575,7 @@ GameObject:
   - component: {fileID: 6271185575849215669}
   m_Layer: 0
   m_Name: Left_Handle
-  m_TagString: Untagged
+  m_TagString: Handle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -593,7 +603,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 0.72
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -626,7 +636,7 @@ GameObject:
   - component: {fileID: 5735009855871801924}
   m_Layer: 0
   m_Name: Right_Handle
-  m_TagString: Untagged
+  m_TagString: Handle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,12 +649,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4564124388363773572}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.72
+  m_Height: 2.9031844
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.00000005256021, y: -0.22953188, z: -0.000000105120506}
 --- !u!4 &5199107295610668252
 Transform:
   m_ObjectHideFlags: 0
@@ -653,7 +663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5199107295610668259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 2.5, z: -1.39}
+  m_LocalPosition: {x: -0.007, y: 1.755, z: -1.39}
   m_LocalScale: {x: 0.45199, y: 0.45199, z: 0.45199}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -992,6 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff6f19712d49fa429b528d214710a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heavyWeaponRotateVR: {fileID: 5199107295610668253}
   rightHolder: {fileID: 5735009855871801924}
   leftHolder: {fileID: 6271185575849215669}
 --- !u!1 &5199107297466374521
