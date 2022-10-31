@@ -6,6 +6,9 @@ ModelImporter:
   - first:
       74: 6271176044998348992
     second: Armature Hands.001|Default
+  - first:
+      74: -5195425914328457609
+    second: Armature Hands.001|00HandTpose
   externalObjects: {}
   materials:
     materialImportMode: 2
