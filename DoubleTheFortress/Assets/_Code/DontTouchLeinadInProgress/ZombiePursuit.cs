@@ -1,26 +1,38 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombiePursuit : StearingBehaviours
 {
-    public RouteManagger.Route Route;
     [Header("Pursuit Dependences")]
     private Queue<Transform> transformQueue = new Queue<Transform>();
     private Transform target;
     private float distance;
+    public float maxDistance;
 
-    private void Start()
+    void NewQueue()
     {
-        transformQueue = RouteManagger.Instance.SelectRoute();
-        target = transformQueue.Peek();
+        transformQueue = RouteManagger.Instance.RandomRoute();
     }
 
     void Update()
     {
+        try 
+        {
+            Pursuit();
+        }
+        catch
+        {
+            Die();
+        }
+        
+    }
+
+    void Pursuit()
+    {
         distance = Vector3.Distance(this.transform.position, target.transform.position);
-        Debug.Log(distance);
-        if (distance < 1)
+        if (distance < maxDistance)
         {
             UpdateTarget();
         }
@@ -32,5 +44,21 @@ public class ZombiePursuit : StearingBehaviours
     {
         target = transformQueue.Dequeue();
         target = transformQueue.Peek();
+    }
+
+    void Die()
+    {
+        EnemyManagger.Instance.OnDie();
+        EnemyManagger.Instance.OnSpawn();
+        maxDistance = EnemyManagger.Instance.maxDistance;
+        this.speed = Random.Range(.5f, 4);
+        try
+        {
+            target = transformQueue.Peek();
+        }
+        catch
+        {
+            NewQueue();
+        }
     }
 }   

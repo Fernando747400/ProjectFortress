@@ -16,25 +16,30 @@ public class RouteManagger : MonoBehaviour
 
     private Queue<Transform> theRoute = new Queue<Transform>();
 
+    private int randomNum;
+
     private void Awake()
     {
         Instance = this;
     }
 
-    public Queue<Transform> SelectRoute()
+    public Queue<Transform> RandomRoute()
     {
+        int randomRoute = Random.Range(1, 5);
+        randomNum = randomRoute;
         theRoute.Clear();
-        switch(myRoute)
+        switch (randomRoute)
         {
-            case Route.One:
+            case 1:
                 return BuildQueue(routeOne);
-            case Route.Two:
-                return BuildQueue(routeTwo);
-            case Route.Three:
-                return BuildQueue(routeThree);
-            case Route.Four:
-                return BuildQueue(routeFour);
+            case 2:
+                return BuildQueue(routeOne);
+            case 3:
+                return BuildQueue(routeOne);
+            case 4:
+                return BuildQueue(routeOne);
         }
+        Vector3 nullvect = new Vector3(0, 0, 0);
         return null;
     }
 
