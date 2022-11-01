@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Wall
+  - Hand
+  - Handle
   layers:
   - Default
   - TransparentFX

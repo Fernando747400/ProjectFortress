@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon_Vr_Rotate : Gun_Rotate
+public class HeavyWeaponRotate_VR : Gun_Rotate
 {
 
 
@@ -12,12 +12,13 @@ public class Cannon_Vr_Rotate : Gun_Rotate
     
     protected override void Update()
     {
-        LookAtRotate();
+        // LookAtRotate();
 
     }
 
-    private void LookAtRotate()
-    { 
+    public void LookAtRotate(Vector3 position)
+    {
+        _handlePos = position;
         _handlePos = handle.transform.position;
         transform.LookAt(-_handlePos);
 
