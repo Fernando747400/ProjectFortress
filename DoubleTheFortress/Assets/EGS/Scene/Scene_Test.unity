@@ -200,7 +200,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 0.481
   m_FillClockwise: 1
   m_FillOrigin: 3
   m_UseSpriteMesh: 0
@@ -1021,6 +1021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2122519014}
   delay: 3
+  _isAutomatic: 0
   fill: {fileID: 119537155}
   background: {fileID: 1921109617}
   _mycColors:
@@ -1028,7 +1029,7 @@ MonoBehaviour:
   - {r: 1, g: 0.9214484, b: 0, a: 1}
   - {r: 0.29578733, g: 1, b: 0, a: 1}
   _lerpColor: 0
-  _maxValue: 0
+  _maxValue: 0.5
 --- !u!54 &2122519019
 Rigidbody:
   m_ObjectHideFlags: 0
