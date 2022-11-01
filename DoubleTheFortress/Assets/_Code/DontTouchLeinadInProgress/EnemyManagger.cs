@@ -24,7 +24,7 @@ public class EnemyManagger : MonoBehaviour
 
     private void Start()
     {
-        Pooling.Preload(Zombie, 10);
+        Pooling.Preload(Zombie, 1);
     }
 
     private void Update()
@@ -37,16 +37,17 @@ public class EnemyManagger : MonoBehaviour
 
     public void OnSpawn()
     {
-        Vector3 vector = SpawnPosition();
+        RouteManagger.Instance.RandomNum();
+        Vector3 vector = SpawnPosition().Peek().transform.position;
 
         GameObject temporal;
         temporal = Pooling.GetObject(Zombie);
         temporal.transform.position = vector;
     }
 
-    Vector3 SpawnPosition()
+    public Queue<Transform> SpawnPosition()
     {
-        return RouteManagger.Instance.RandomRoute().Peek().transform.position;
+        return RouteManagger.Instance.RandomRoute();
     }
 
     public void Despawn(GameObject primitive, GameObject temporalObject)

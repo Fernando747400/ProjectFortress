@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,11 @@ public class ZombiePursuit : StearingBehaviours
     private float distance;
     public float maxDistance;
 
+    public event Action ZombieDieEvent;
+
     private void Start()
     {
+        this.speed = UnityEngine.Random.Range(.5f, 4);
         maxDistance = EnemyManagger.Instance.maxDistance;
     }
 
@@ -24,7 +28,7 @@ public class ZombiePursuit : StearingBehaviours
         }
         catch
         {
-            Die();
+            GetRoute();
         }
         
     }
@@ -46,17 +50,27 @@ public class ZombiePursuit : StearingBehaviours
         target = transformQueue.Peek();
     }
 
+    void GetRoute()
+    {
+        transformQueue = RouteManagger.Instance.RandomRoute();
+        target = transformQueue.Peek();
+        target = transformQueue.Peek();
+    }
+
     void Die()
     {
+        transformQueue.Clear();
+        target = null;
+        ZombieDieEvent?.Invoke();
         EnemyManagger.Instance.Despawn(EnemyManagger.Instance.Zombie, this.gameObject);
-        this.speed = Random.Range(.5f, 4);
-        try
+        EnemyManagger.Instance.OnSpawn();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Final"))
         {
-            target = transformQueue.Peek();
-        }
-        catch
-        {
-            EnemyManagger.Instance.OnSpawn();
+            Die();
         }
     }
 }   
