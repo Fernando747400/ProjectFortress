@@ -27,8 +27,8 @@ public class WheelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Left" + leftHolder.IsGrabbing);
-        Debug.Log("Right"+ rightHolder.IsGrabbing);
+        // Debug.Log("Left" + leftHolder.IsGrabbing);
+        // Debug.Log("Right"+ rightHolder.IsGrabbing);
         if (rightHolder.Hand != null && leftHolder.Hand != null)
         {
             _distanceBetweenHands = rightHolder.Hand.gameObject.transform.position - leftHolder.Hand.gameObject.transform.position;
@@ -48,7 +48,7 @@ public class WheelController : MonoBehaviour
 
     void HandleWheelInteraction()
     {
-        print("send event ");
+        // print("send event ");
 
         if (!leftHolder.IsGrabbing || !rightHolder.IsGrabbing)
         {
