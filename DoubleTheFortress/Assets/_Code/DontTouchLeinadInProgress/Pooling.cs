@@ -9,10 +9,13 @@ public class Pooling : MonoBehaviour
     static Dictionary<int, Queue<GameObject>> pool = new Dictionary<int, Queue<GameObject>>();
     static Dictionary<int, GameObject> parents = new Dictionary<int, GameObject>();
 
+    [SerializeField] private static bool devMode;
+
+
     private void Awake()
     {
         if(instance == null)
-        {
+        { 
             instance = this;
         }
         else
@@ -44,8 +47,9 @@ public class Pooling : MonoBehaviour
         GameObject go = Instantiate(objecToPool) as GameObject;
         go.transform.SetParent(GetParent(id).transform);
         go.SetActive(false);
-
         pool[id].Enqueue(go);
+        if (devMode) return;
+        go.GetComponent<ZombiePursuit>().ZombieDieEvent += GameManager.Instance.AddKill;
     }
 
     static GameObject GetParent(int parentID)

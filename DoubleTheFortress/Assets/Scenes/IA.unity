@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 2
-  Zombie: {fileID: 8128219556683075854, guid: c86745178db4e744e9119d91c394bb8e, type: 3}
+  Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
 --- !u!114 &283135058
 MonoBehaviour:
   m_ObjectHideFlags: 0

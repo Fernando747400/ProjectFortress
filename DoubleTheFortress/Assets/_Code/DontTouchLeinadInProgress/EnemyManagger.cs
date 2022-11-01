@@ -24,7 +24,7 @@ public class EnemyManagger : MonoBehaviour
 
     private void Start()
     {
-        Pooling.Preload(Zombie, 30);
+        Pooling.Preload(Zombie, 1);
     }
 
     private void Update()
