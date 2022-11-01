@@ -11,7 +11,7 @@ public class WheelController : MonoBehaviour
 
     private Vector3 _distanceBetweenHands;
     private Vector3 _middlePoint;
-    private bool _canMoveCannon;
+    private bool _canMoveCannon = false;
     void Start()
     {
         rightHolder.OnGrabbed += HandleWheelInteraction;
@@ -27,6 +27,8 @@ public class WheelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Left" + leftHolder.IsGrabbing);
+        Debug.Log("Right"+ rightHolder.IsGrabbing);
         if (rightHolder.Hand != null && leftHolder.Hand != null)
         {
             _distanceBetweenHands = rightHolder.Hand.gameObject.transform.position - leftHolder.Hand.gameObject.transform.position;
@@ -35,7 +37,9 @@ public class WheelController : MonoBehaviour
 
             if (_canMoveCannon)
             {
-                _heavyWeaponRotateVR.LookAtRotate(_middlePoint);
+                print("MOVE CANNON");
+
+                _heavyWeaponRotateVR.LookAtRotate(_distanceBetweenHands);
             }
             // Debug.DrawRay();
             // Debug.DrawLine(rightHolder.Hand.gameObject.transform.position, leftHolder.Hand.gameObject.transform.position);
@@ -44,14 +48,19 @@ public class WheelController : MonoBehaviour
 
     void HandleWheelInteraction()
     {
-        if (leftHolder.IsGrabbing && rightHolder.IsGrabbing)
-        {
-            _canMoveCannon = true;
-            print("CAN MOVE CANNON = " + _canMoveCannon);
-        }
-        else
+        print("send event ");
+
+        if (!leftHolder.IsGrabbing || !rightHolder.IsGrabbing)
         {
             _canMoveCannon = false;
+        }
+
+        if (leftHolder.IsGrabbing && rightHolder.IsGrabbing)
+        {
+            
+            print("Entra aqui");
+            _canMoveCannon = true;
+            // print("CAN MOVE CANNON = " + _canMoveCannon);
         }
 
     }

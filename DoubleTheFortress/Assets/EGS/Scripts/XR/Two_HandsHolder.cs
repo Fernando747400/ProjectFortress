@@ -12,7 +12,7 @@ public class Two_HandsHolder : XRGrabInteractable
     public Action OnReleased;
     public Action OnHandsOut;
 
-    private bool _isGrabbing;
+    private bool _isGrabbing = false;
 
     public HandController_XR Hand
     {
@@ -48,7 +48,7 @@ public class Two_HandsHolder : XRGrabInteractable
         if (other.CompareTag("Hand"))
         {
             // Debug.Log("Hand is in the handle");
-            _isGrabbing = true;
+            // _isGrabbing = true;
             _hand = other.GetComponent<HandController_XR>();
             OnHandsOut?.Invoke();
 
@@ -62,8 +62,10 @@ public class Two_HandsHolder : XRGrabInteractable
             // Debug.Log("Hand is out the handle");
             _isGrabbing = false;
             _hand.HandleHandsVisible(!_isGrabbing);
-            OnHandsOut?.Invoke();
             _hand = null;
+            OnHandsOut?.Invoke();
+            print("send event onexit");
+
         }
     }
     
