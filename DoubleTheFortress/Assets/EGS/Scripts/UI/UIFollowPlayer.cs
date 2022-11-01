@@ -16,6 +16,7 @@ public class UIFollowPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.transform.rotation = Quaternion.Euler(_initialRotation.x, _player.transform.rotation.y, _initialRotation.z);
+        Debug.Log(_player.transform.rotation);
+        this.transform.rotation = Quaternion.Euler(_initialRotation.x, _player.transform.localEulerAngles.y, _initialRotation.z);
     }
 }
