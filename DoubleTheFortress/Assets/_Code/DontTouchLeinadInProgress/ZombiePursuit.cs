@@ -11,9 +11,9 @@ public class ZombiePursuit : StearingBehaviours
     private float distance;
     public float maxDistance;
 
-    void NewQueue()
+    private void Start()
     {
-        transformQueue = RouteManagger.Instance.RandomRoute();
+        maxDistance = EnemyManagger.Instance.maxDistance;
     }
 
     void Update()
@@ -48,9 +48,7 @@ public class ZombiePursuit : StearingBehaviours
 
     void Die()
     {
-        EnemyManagger.Instance.OnDie();
-        EnemyManagger.Instance.OnSpawn();
-        maxDistance = EnemyManagger.Instance.maxDistance;
+        EnemyManagger.Instance.Despawn(EnemyManagger.Instance.Zombie, this.gameObject);
         this.speed = Random.Range(.5f, 4);
         try
         {
@@ -58,7 +56,7 @@ public class ZombiePursuit : StearingBehaviours
         }
         catch
         {
-            NewQueue();
+            EnemyManagger.Instance.OnSpawn();
         }
     }
 }   

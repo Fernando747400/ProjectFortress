@@ -33,11 +33,11 @@ public class RouteManagger : MonoBehaviour
             case 1:
                 return BuildQueue(routeOne);
             case 2:
-                return BuildQueue(routeOne);
+                return BuildQueue(routeTwo);
             case 3:
-                return BuildQueue(routeOne);
+                return BuildQueue(routeThree);
             case 4:
-                return BuildQueue(routeOne);
+                return BuildQueue(routeFour);
         }
         Vector3 nullvect = new Vector3(0, 0, 0);
         return null;

@@ -8,9 +8,7 @@ public class EnemyManagger : MonoBehaviour
     public float maxDistance;
 
     [SerializeField]
-    GameObject Zombie;
-
-    private GameObject temporalZ;
+    public GameObject Zombie;
 
     private void Awake()
     {
@@ -37,17 +35,13 @@ public class EnemyManagger : MonoBehaviour
         }
     }
 
-    public void OnDie()
-    {
-        Despawn(Zombie, temporalZ);
-    }
-
     public void OnSpawn()
     {
         Vector3 vector = SpawnPosition();
 
-        temporalZ = Pooling.GetObject(Zombie);
-        temporalZ.transform.position = vector;
+        GameObject temporal;
+        temporal = Pooling.GetObject(Zombie);
+        temporal.transform.position = vector;
     }
 
     Vector3 SpawnPosition()
@@ -55,8 +49,8 @@ public class EnemyManagger : MonoBehaviour
         return RouteManagger.Instance.RandomRoute().Peek().transform.position;
     }
 
-    void Despawn(GameObject primitive, GameObject go)
+    public void Despawn(GameObject primitive, GameObject temporalObject)
     {
-        Pooling.RecicleObject(primitive, go);
+        Pooling.RecicleObject(primitive, temporalObject);
     }
 }
