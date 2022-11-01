@@ -46,7 +46,7 @@ public class InventoryController : MonoBehaviour
             box.OnHandEnterActionZone += HandleBoxInteraction;
         }
         OnPlayerSelectItem += HandleSelectedItem;
-        InitializeHandObjects();
+        DeselectHandObjects();
     }
 
     void HandleSelectedItem(PlayerSelectedItem item)
@@ -54,7 +54,7 @@ public class InventoryController : MonoBehaviour
         _playerSelectedItem = item;
     }
    
-    void InitializeHandObjects()
+   public void DeselectHandObjects()
     {
         hammerHand.SetActive(false);
         musketGunHand.SetActive(false);
@@ -63,11 +63,9 @@ public class InventoryController : MonoBehaviour
     }
     void SelectHammer()
     {
-        if (_isInBoxInteraction) return;
-       
         if (hasObjectSelected)
         {
-            InitializeHandObjects();
+            DeselectHandObjects();
         }
         else
         {
@@ -92,7 +90,7 @@ public class InventoryController : MonoBehaviour
 
         if (hasObjectSelected)
         {
-            InitializeHandObjects();
+            DeselectHandObjects();
         }
         else
         {
@@ -104,6 +102,7 @@ public class InventoryController : MonoBehaviour
 
     void HandleBoxInteraction(bool interaction)
     {
+        if (hasObjectSelected) DeselectHandObjects();
         _isInBoxInteraction = !interaction;
     }
     
