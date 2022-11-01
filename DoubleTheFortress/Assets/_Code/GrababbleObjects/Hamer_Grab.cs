@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class Hamer_Grab : MonoBehaviour, IGrabbable
@@ -7,10 +8,14 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
     #region Variables
 
     [Header("Settings")]
-    [SerializeField] private float pointsToRepair;
-    [SerializeField] private float pointsToUpgrade;
+    [SerializeField] private float _pointsToRepair;
+    [SerializeField] private float _pointsToUpgrade;
+    [SerializeField] private float _cooldown;
+
+    private float _elapsedTime = 0f;
 
     public event Action<GameObject> ConstructableHitEvent;
+    public event Action DisableHammerEvent;
     
     public Vector3 Position
     {
@@ -34,9 +39,9 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        _elapsedTime += Time.deltaTime;
     }
     
 
@@ -52,14 +57,15 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<IConstructable>() != null)
+        if (other.gameObject.GetComponent<IConstructable>() != null && _elapsedTime >= _cooldown)
         {
+            _elapsedTime = 0f;
             Debug.Log("<color=#FFB233>Receive Hammer</color>");
-            other.GetComponent<IConstructable>().RecieveHammer(pointsToRepair, pointsToUpgrade);
+            other.GetComponent<IConstructable>().RecieveHammer(_pointsToRepair, _pointsToUpgrade);
             ConstructableHitEvent?.Invoke(other.gameObject);
         }
     }
 
     #endregion
-    
+
 }
