@@ -13,16 +13,30 @@ using InputDevice = UnityEngine.XR.InputDevice;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] private GameObject hammerHand;
+    [SerializeField] private GameObject hammerBlackPart;
+    [SerializeField] private GameObject hammerWoodPart;
     [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
+
+    [SerializeField] private GameObject[] _objects;
+    
+
+    [Header("Materials")]
+    [SerializeField] private Material shadowMaterial;
+    [SerializeField] private Material hammerBlackMaterial;
+    [SerializeField] private Material hammerWoodMaterial;
+    [SerializeField] private Material gunMaterial;
     
     public bool hasObjectSelected = false;
     public InputActionReference hammerReference;
+    public InputActionReference DeselectReference;
+    public InputActionReference SelectReference;
     public InputActionReference hammerDiselect;
     public InputActionReference gunReference;
 
     public List<BoxAreasInteraction> areasInteraction;
 
+    private int selectIndex;
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     private bool _isInBoxInteraction;
 
@@ -40,6 +54,9 @@ public class InventoryController : MonoBehaviour
         hammerReference.action.performed += ctx => SelectHammer();
         hammerDiselect.action.performed += ctx => DeselectHammer();
         gunReference.action.performed += ctx => SelectWeapon();
+
+
+        DeselectReference.action.performed += ctx => DeselectHammer();
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
@@ -84,6 +101,25 @@ public class InventoryController : MonoBehaviour
         hammerHand.SetActive(false);
         hasObjectSelected = false;
     }
+
+    void SelectItem()
+    {
+        if (_isInBoxInteraction) return;
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
+        
+        
+
+    }
+    void DeselectItem()
+    {
+        
+    }
+
+    void ConfirmSelection()
+    {
+        
+    }
+
     void SelectWeapon()
     {
         if (_isInBoxInteraction) return;

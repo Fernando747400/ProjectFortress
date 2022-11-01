@@ -45,10 +45,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hammerHand: {fileID: 2416471594249542853}
+  hammerBlackPart: {fileID: 2578483303622644956}
+  hammerWoodPart: {fileID: 5258230327462380055}
   musketGunHand: {fileID: 6103072570383631362}
   _playerSelectedItem: 0
+  shadowMaterial: {fileID: 2100000, guid: 0c776d28f600c614584608d9dd72124c, type: 2}
+  hammerBlackMaterial: {fileID: -8796627655084249796, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
+    type: 3}
+  hammerWoodMaterial: {fileID: -3522955778539423533, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
+    type: 3}
+  gunMaterial: {fileID: -3263835130708698965, guid: ec0e7fe892981e649897793dfbd7c05c,
+    type: 3}
   hasObjectSelected: 0
   hammerReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  SelectReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   hammerDiselect: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
@@ -2569,8 +2582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToRepair: 10
-  pointsToUpgrade: 10
+  _pointsToRepair: 0
+  _pointsToUpgrade: 0
+  _cooldown: 0
 --- !u!114 &1292538165516819182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2617,7 +2631,7 @@ GameObject:
   - component: {fileID: 7703398077391027056}
   - component: {fileID: 2028642722063098321}
   m_Layer: 0
-  m_Name: Maso
+  m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7570,7 +7584,7 @@ GameObject:
   - component: {fileID: 5222551406308061495}
   - component: {fileID: 6450053817629104562}
   m_Layer: 0
-  m_Name: Palo Maso
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -728,7 +728,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Select_Weapon",
+                    "name": "Select_Inventory",
                     "type": "Button",
                     "id": "ee8e0442-f3c0-4e15-9c27-b3f2075fb79f",
                     "expectedControlType": "Button",
@@ -737,7 +737,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Diselect_Hammer",
+                    "name": "Deselect_Inventroy",
                     "type": "Button",
                     "id": "d6b3d570-a7f4-4c0f-8de7-c1a11a7464ff",
                     "expectedControlType": "Button",
@@ -875,7 +875,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Select_Weapon",
+                    "action": "Select_Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -886,7 +886,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Select_Weapon",
+                    "action": "Select_Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -897,7 +897,7 @@
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Diselect_Hammer",
+                    "action": "Deselect_Inventroy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
