@@ -17,7 +17,8 @@ namespace DebugStuff.Inventory
         None,
         Hammer,
         Musket,
-        Defibrillator
+        Defibrillator,
+        Selecting,
     }
     
 }
