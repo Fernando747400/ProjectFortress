@@ -5,6 +5,12 @@ using UnityEngine;
 public class HandController_XR : MonoBehaviour
 {
     [SerializeField] private SkinnedMeshRenderer handSkinnedMesh;
+    private Vector3 _handPos;
+    
+    public Vector3 HandPos
+    {
+        get { return transform.position; }
+    }
 
     void Start()
     {

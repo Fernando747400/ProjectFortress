@@ -23,15 +23,15 @@ public class HeavyWeaponRotate_VR : Gun_Rotate
 
     protected override void Update()
     {
-        // LookAtRotate();
+        AimAtDirection();
     }
 
-    public void LookAtRotate(Vector3 position)
+    private void AimAtDirection()
     {
-        _handlePos = position;
-        _handlePos = handle.transform.position;
-        transform.LookAt(-_handlePos);
-
+        Vector3 aimDir = transform.position - handle.transform.position;
+        transform.rotation = Quaternion.LookRotation(aimDir);
+        // Debug.DrawRay(transform.position, -(handlePos - transform.position), Color.magenta);
+        // Debug.DrawLine(transform.position, handlePos, Color.cyan);
     }
 
     // public void ResetPosition()

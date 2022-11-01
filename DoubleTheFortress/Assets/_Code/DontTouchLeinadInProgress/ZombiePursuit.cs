@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,11 @@ public class ZombiePursuit : StearingBehaviours
     private float distance;
     public float maxDistance;
 
+    public event Action ZombieDieEvent;
+
     private void Start()
     {
-        this.speed = Random.Range(.5f, 4);
+        this.speed = UnityEngine.Random.Range(.5f, 4);
         maxDistance = EnemyManagger.Instance.maxDistance;
     }
 
@@ -58,6 +61,7 @@ public class ZombiePursuit : StearingBehaviours
     {
         transformQueue.Clear();
         target = null;
+        ZombieDieEvent?.Invoke();
         EnemyManagger.Instance.Despawn(EnemyManagger.Instance.Zombie, this.gameObject);
         EnemyManagger.Instance.OnSpawn();
     }
