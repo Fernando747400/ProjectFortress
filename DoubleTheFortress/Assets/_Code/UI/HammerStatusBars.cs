@@ -25,6 +25,7 @@ public class HammerStatusBars : MonoBehaviour
     private void Start()
     {
         _hamer_Grab.ConstructableHitEvent += GetConstrutableEvent;
+        _isRunningShowCanvas = false;
         _barsCanvas.SetActive(false);
         _mainCamera = Camera.main;
         _hammerCollider = _hammer.GetComponent<Collider>();
