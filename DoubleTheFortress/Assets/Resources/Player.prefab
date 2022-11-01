@@ -2569,8 +2569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToRepair: 10
-  pointsToUpgrade: 10
+  _pointsToRepair: 0
+  _pointsToUpgrade: 0
+  _cooldown: 0
 --- !u!114 &1292538165516819182
 MonoBehaviour:
   m_ObjectHideFlags: 0

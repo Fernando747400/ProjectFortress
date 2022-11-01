@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Two_HandsHolder : XRGrabInteractable
+public class Two_HandsHolder : XRBaseInteractable
 {
     private HandController_XR _hand;
 
@@ -24,10 +24,20 @@ public class Two_HandsHolder : XRGrabInteractable
     protected override void Awake()
     {
         base.Awake();
+        
+
         onSelectEntered.AddListener(Grab);
         onSelectExited.AddListener(Drop);
 
     }
+
+    private void Start()
+    {
+        IXRSelectInteractor newInteractor = firstInteractorSelecting;
+        List<IXRSelectInteractor> moreInteractors = interactorsSelecting;
+
+    }
+
     protected virtual void Grab(XRBaseInteractor interactor)
     {
         _isGrabbing = true;
