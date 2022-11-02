@@ -51,13 +51,15 @@ public class InventoryController : MonoBehaviour
     void Start()
     {
         
-        hammerReference.action.performed += ctx => SelectHammer();
-        hammerDiselect.action.performed += ctx => DeselectHammer();
-        gunReference.action.performed += ctx => SelectWeapon();
+        // hammerReference.action.performed += ctx => SelectHammer();
+        // hammerDiselect.action.performed += ctx => DeselectItems();
+        // gunReference.action.performed += ctx => SelectWeapon();
 
 
-        DeselectReference.action.performed += ctx => DeselectHammer();
-
+        DeselectReference.action.performed += ctx => DeselectItems();
+        SelectReference.action.performed += ctx => SelectItem();
+        
+        
         foreach (BoxAreasInteraction box in areasInteraction)
         {
             box.OnHandEnterActionZone += HandleBoxInteraction;
@@ -78,7 +80,7 @@ public class InventoryController : MonoBehaviour
         hasObjectSelected = false;
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
     }
-    void SelectHammer()
+    int SelectHammer()
     {
         if (hasObjectSelected)
         {
@@ -90,40 +92,56 @@ public class InventoryController : MonoBehaviour
             hasObjectSelected = true;
             OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
         }
-       
+
+        return 0;
     }
     
-    void DeselectHammer()
+    void DeselectItems()
     {
         if (_isInBoxInteraction) return;
 
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
-        hammerHand.SetActive(false);
+
+        for (int i = 0; i < _objects.Length; i++)
+        {
+            _objects[i].SetActive(false);
+        }
         hasObjectSelected = false;
     }
 
     void SelectItem()
     {
         if (_isInBoxInteraction) return;
+        int countIndex = selectIndex;
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
         
-        
+        //Deselect current objects in hand
+        DeselectItems();
 
-    }
-    void DeselectItem()
-    {
+        if (countIndex <= _objects.Length)
+        {
+            selectIndex++;
+        }
+        else
+        {
+            selectIndex = 0;
+        }
+        
+        for (int i = 0; i < _objects.Length; i++)
+        {
+            _objects[countIndex].SetActive(true);
+        }   
         
     }
+    
 
     void ConfirmSelection()
     {
         
     }
 
-    void SelectWeapon()
+    int  SelectWeapon()
     {
-        if (_isInBoxInteraction) return;
-
         if (hasObjectSelected)
         {
             DeselectHandObjects();
@@ -134,6 +152,8 @@ public class InventoryController : MonoBehaviour
             hasObjectSelected = true;
             OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
         }
+        
+        return 2;
     }
 
     void HandleBoxInteraction(bool interaction)
@@ -141,7 +161,17 @@ public class InventoryController : MonoBehaviour
         if (hasObjectSelected) DeselectHandObjects();
         _isInBoxInteraction = !interaction;
     }
-    
+
+    void MaterialObjectSelecting(GameObject item)
+    {
+        MeshRenderer meshRenderer = item.GetComponent<MeshRenderer>();
+        meshRenderer.material = shadowMaterial;
+    }
+
+    void ResetMaterialObject()
+    {
+        
+    }
 }
     
     
