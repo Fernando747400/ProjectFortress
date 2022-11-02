@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DebugStuff.Inventory;
 using UnityEngine;
@@ -7,52 +8,62 @@ using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
+    #region Variables
+    [Header("GameObjects")]
     [SerializeField] private GameObject hammerHand;
     [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
     [SerializeField] private GameObject[] _objects;
-    
 
     [Header("Mesh Renderers")]
     [SerializeField] private MeshRenderer hammerBlackMesh;
     [SerializeField] private MeshRenderer hammerWoodMesh;
     [SerializeField] private MeshRenderer gunMesh;
     [SerializeField] private MeshRenderer[] _meshes;
+    
     [Header("Materials")]
     [SerializeField] private Material shadowMaterial;
     [SerializeField] private Material hammerBlackMaterial;
     [SerializeField] private Material hammerWoodMaterial;
     [SerializeField] private Material gunMaterial;
     
-    public bool hasObjectSelected = false;
+    
+    [Header("Input Actions")]
     public InputActionReference ConfirmSelectReference;
     public InputActionReference DeselectReference;
     public InputActionReference SelectReference;
-    public InputActionReference WeaponReference;
+    // public InputActionReference WeaponReference;
 
+    [Header("Inventory")]
+    public float _maxTimeToSelect = 1.5f;
+    public bool hasObjectSelected = false;
     public List<BoxAreasInteraction> areasInteraction;
 
-    private int selectIndex;
-    private Action<PlayerSelectedItem> OnPlayerSelectItem;
-    private bool _isInBoxInteraction;
-
     private int _currentSelected;
+    private int _selectIndex;
+    private bool _isInBoxInteraction;
+   
+    private float _time;
+    private float _initialTimer;
+    private bool _timerHasStarted;
+    private bool _timerHasFinished;
+    
+    private Action<PlayerSelectedItem> OnPlayerSelectItem;
 
+    
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
     }
-    private void Awake()
-    {
-    }
-
+    #endregion
+    
     void Start()
     {
         
         DeselectReference.action.performed += ctx => DeselectItems();
         SelectReference.action.performed += ctx => SelectItem();
         ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
-        WeaponReference.action.performed += ctx => SelectWeapon();
+        // WeaponReference.action.performed += ctx => SelectWeapon();
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
@@ -62,23 +73,14 @@ public class InventoryController : MonoBehaviour
         DeselectItems();
     }
 
+    private void Update()
+    {
+        HandleTimer();
+    }
+
     void HandleSelectedItem(PlayerSelectedItem item)
     {
         _playerSelectedItem = item;
-    }
-    
-    void SelectHammer()
-    {
-        if (hasObjectSelected)
-        {
-            DeselectItems();
-        }
-        else
-        {
-            hasObjectSelected = true;
-            OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
-        }
-
     }
     
     void DeselectItems()
@@ -93,38 +95,33 @@ public class InventoryController : MonoBehaviour
 
     void SelectItem()
     {
+        
         if (_isInBoxInteraction) return;
 
+        ResetTimer();
         //Deselect current objects in hand
-        if (hasObjectSelected) DeselectItems();
+        DeselectItems();
         
-        if (selectIndex >= _objects.Length) selectIndex = 0;
+        if (_selectIndex >= _objects.Length) _selectIndex = 0;
 
-        Debug.Log(selectIndex);
-        _currentSelected = selectIndex;
+        Debug.Log(_selectIndex);
+        _currentSelected = _selectIndex;
         _objects[_currentSelected].SetActive(true);
         MaterialObjectSelecting(_currentSelected);
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
 
-        selectIndex++;
+        _selectIndex++;
+
+        StartTimer();
+        
     }
     
     void ConfirmSelection()
     {
         HandleSelectedItem(_currentSelected);
+        hasObjectSelected = true;
     }
-
-    void SelectWeapon()
-    {
-        if (_isInBoxInteraction) return;
-        if (hasObjectSelected) DeselectItems();
-            
-            
-        musketGunHand.SetActive(true); 
-        hasObjectSelected = true; 
-        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
-    }
-
+    
     void HandleBoxInteraction(bool interaction)
     {
         if (hasObjectSelected) DeselectItems();
@@ -139,10 +136,12 @@ public class InventoryController : MonoBehaviour
                 hammerBlackMesh.material = shadowMaterial;
                 hammerWoodMesh.material = shadowMaterial;
                 break;
-            case 1:
+            
+            case 1 :
                 gunMesh.material = shadowMaterial;
                 break;
         }
+        
     }
 
     void HandleSelectedItem(int itemSelected)
@@ -153,14 +152,46 @@ public class InventoryController : MonoBehaviour
             case 0:
                 hammerBlackMesh.material = hammerBlackMaterial;
                 hammerWoodMesh.material = hammerWoodMaterial;
-                SelectHammer();
+                
+                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
+
                 break;
             //Gun selected
             case 1 :
                 gunMesh.material = gunMaterial;
-                SelectWeapon();
+                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
+
                 break;
         }
+
+        _selectIndex = _objects.Length;
+        
+    }
+
+
+    void HandleTimer()
+    {
+        if (!_timerHasStarted && _timerHasFinished) return;
+            
+        _time += Time.deltaTime;
+
+        if (_time > _maxTimeToSelect)
+        {
+            ResetTimer();
+            DeselectItems();
+        }
+        
+    }
+    void StartTimer()
+    {
+        _time = _initialTimer;
+        _timerHasStarted = true;
+        _timerHasFinished = false;
+    }
+    void ResetTimer()
+    {
+        _time = 0;
+        _timerHasFinished = true;
     }
 }
     

@@ -37,7 +37,7 @@ public class ButtonCannon : MonoBehaviour
         StartTimer();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         HandleTimer();
     }
@@ -60,10 +60,10 @@ public class ButtonCannon : MonoBehaviour
     void HandleUICannon(float value)
     {
        _initialValue = Mathf.Lerp(0, _maxValue, value);
-       _lerpedColor = Color.Lerp(background.material.color, _myColors[_colorIndex], value);
+       // _lerpedColor = Color.Lerp(background.material.color, _myColors[_colorIndex], value);
 
       // Debug.Log(_initialValue);
-       background.material.color = _lerpedColor;
+       // background.material.color = _lerpedColor;
        fill.fillAmount = _initialValue;
     }
 
