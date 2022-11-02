@@ -16,6 +16,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     public event Action <Transform> ZombieTotemEvent;
 
     //Animations
+    private Animator animator;
     private bool _walk = true;
     private bool _idle = false;
     private bool _dance = false;
