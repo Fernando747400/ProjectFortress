@@ -728,7 +728,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Select_Inventory",
+                    "name": "Select_InventoryRight",
                     "type": "Button",
                     "id": "ee8e0442-f3c0-4e15-9c27-b3f2075fb79f",
                     "expectedControlType": "Button",
@@ -749,6 +749,15 @@
                     "name": "Select_Weapon",
                     "type": "Button",
                     "id": "d3179952-a0f8-4b10-9537-5616c348bba6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select_Inventory_Left",
+                    "type": "Button",
+                    "id": "ffffe747-d7df-40e2-a8b1-d0928be52f6d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -884,7 +893,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Select_Inventory",
+                    "action": "Select_InventoryRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -895,7 +904,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Select_Inventory",
+                    "action": "Select_InventoryRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -929,6 +938,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Select_Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f9ce0f8-d1ca-483a-a426-c241a05cefd6",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Select_Inventory_Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

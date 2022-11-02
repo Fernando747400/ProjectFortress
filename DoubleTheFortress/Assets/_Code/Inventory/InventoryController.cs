@@ -19,6 +19,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private MeshRenderer hammerBlackMesh;
     [SerializeField] private MeshRenderer hammerWoodMesh;
     [SerializeField] private MeshRenderer gunMesh;
+    [SerializeField] private MeshRenderer torchMesh;
     // [SerializeField] private MeshRenderer[] _meshes;
     
     [Header("Materials")]
@@ -26,12 +27,14 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Material hammerBlackMaterial;
     [SerializeField] private Material hammerWoodMaterial;
     [SerializeField] private Material gunMaterial;
+    [SerializeField] private Material torchMaterial;
     
     
     [Header("Input Actions")]
     [SerializeField] private InputActionReference ConfirmSelectReference;
     [SerializeField] private InputActionReference DeselectReference;
-    [SerializeField] private InputActionReference SelectReference;
+    [SerializeField] private InputActionReference SelectRightReference;
+    [SerializeField] private InputActionReference SelectLeftReference;
     // public InputActionReference WeaponReference;
 
     [Header("Inventory")]
@@ -60,9 +63,9 @@ public class InventoryController : MonoBehaviour
     {
         
         DeselectReference.action.performed += ctx => DeselectItems();
-        SelectReference.action.performed += ctx => SelectItem();
+        SelectRightReference.action.performed += ctx => SelectItem(false);
+        SelectLeftReference.action.performed += ctx => SelectItem(true);
         ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
-        // WeaponReference.action.performed += ctx => SelectWeapon();
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
@@ -98,9 +101,8 @@ public class InventoryController : MonoBehaviour
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
     }
 
-    void SelectItem()
+    void SelectItem(bool isLeft)
     {
-
         if (_isInBoxInteraction) return;
 
         ResetTimer();
@@ -108,7 +110,8 @@ public class InventoryController : MonoBehaviour
         DeselectItems();
 
         if (_selectIndex >= _objects.Length) _selectIndex = 0;
-
+        if (isLeft) _selectIndex = 2;
+        
         Debug.Log(_selectIndex);
         _currentSelected = _selectIndex;
         _objects[_currentSelected].SetActive(true);
@@ -166,6 +169,10 @@ public class InventoryController : MonoBehaviour
                 gunMesh.material = gunMaterial;
                 OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
 
+                break;
+            case 2:
+                torchMesh.material = torchMaterial;
+                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Torch);
                 break;
         }
 
