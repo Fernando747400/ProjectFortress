@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 9218675000151405261}
   m_Layer: 0
   m_Name: MainWallPrefab
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,9 +1060,9 @@ MonoBehaviour:
   _upgradeTwo: {fileID: 11400000, guid: 219de380baa7b4041a410f7a7c85bcdc, type: 2}
   _wallCollider: {fileID: 9218675000151405255}
   _wallRigidBody: {fileID: 9218675000151405259}
-  _healthBar: {fileID: 4598037553012319441}
-  _upgradeBar: {fileID: 4598037554083482210}
   _instanciateRotationOffset: {x: -90, y: 0, z: 0}
+  _instanciatePositionOffset: {x: 0, y: 0, z: 0}
+  _instanciateScale: {x: 0, y: 0, z: 0}
 --- !u!114 &9218675000151405261
 MonoBehaviour:
   m_ObjectHideFlags: 0
