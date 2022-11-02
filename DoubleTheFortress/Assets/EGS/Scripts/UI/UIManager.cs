@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _killCounterCanvas;
     [SerializeField] private TextMeshProUGUI _killCounterText;
 
+    [Header("Settings")]
+    [SerializeField] private iTween.EaseType _easeType;
+
 
     private void Start()
     {
@@ -27,7 +30,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject skull = _skullPooler.GetObject(_skullPrefab);
         skull.transform.position = zombiePosition.position;
-        iTween.MoveTo(skull, iTween.Hash("position", _totemPosition.position, "time", 2f, "oncomplete", "ResetSkullPosition", "oncompletetarget", gameObject, "oncompleteparams", skull));
+        iTween.MoveTo(skull, iTween.Hash("position", _totemPosition.position, "time", 2f,"easetype", _easeType, "oncomplete", "ResetSkullPosition", "oncompletetarget", gameObject, "oncompleteparams", skull));
     }
 
     private void ResetSkullPosition(GameObject skull)
@@ -45,7 +48,7 @@ public class UIManager : MonoBehaviour
     private void UpdateCoreLife(GameObject heart)
     {
         heart.transform.parent = null;
-        iTween.MoveTo(heart, iTween.Hash("position", _totemPosition.position, "time", 3f));
+        iTween.MoveTo(heart, iTween.Hash("position", _totemPosition.position, "time", 10f, "easetype", _easeType));
     }
     
 

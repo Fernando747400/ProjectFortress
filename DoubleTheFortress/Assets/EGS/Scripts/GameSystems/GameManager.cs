@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private int _zombieKills;
-    private float _elapsedTime;
+    private double _elapsedTime;
     private bool _isPaused;
     
     public int Kills { get => _zombieKills; }
-    public float ElapsedTime { get => _elapsedTime; }
+    public double ElapsedTime { get => _elapsedTime; }
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;
@@ -71,7 +71,8 @@ public class GameManager : MonoBehaviour
     {
         _zombieKills = 0;
         _elapsedTime = 0;
-        _isPaused = true;
+        _isPaused = false;
+        Debug.LogWarning("The game manager time starts on play for dev purposes. Be sure to change the value to false before game deploy.");
     }
     
 }

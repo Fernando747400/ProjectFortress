@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
         Prepare();
         _life = _maxLife;
         _currentCooldown = 0f;
+        //StartCoroutine(TestMethod());
     }
 
     private void FixedUpdate()
@@ -87,6 +89,12 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
         {
             _heartsQueue.Enqueue(heart);
         }
+    }
+
+    private IEnumerator TestMethod()
+    {
+        yield return new WaitForSeconds(5f);
+        TakeDamage(70f);
     }
 
     #region Interface Methods
