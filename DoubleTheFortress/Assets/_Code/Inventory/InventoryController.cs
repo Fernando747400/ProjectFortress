@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DebugStuff.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
-using CommonUsages = UnityEngine.XR.CommonUsages;
-using InputDevice = UnityEngine.XR.InputDevice;
 
 
 public class InventoryController : MonoBehaviour
@@ -33,6 +28,7 @@ public class InventoryController : MonoBehaviour
     public InputActionReference ConfirmSelectReference;
     public InputActionReference DeselectReference;
     public InputActionReference SelectReference;
+    public InputActionReference WeaponReference;
 
     public List<BoxAreasInteraction> areasInteraction;
 
@@ -56,6 +52,7 @@ public class InventoryController : MonoBehaviour
         DeselectReference.action.performed += ctx => DeselectItems();
         SelectReference.action.performed += ctx => SelectItem();
         ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
+        WeaponReference.action.performed += ctx => SelectWeapon();
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
@@ -70,7 +67,7 @@ public class InventoryController : MonoBehaviour
         _playerSelectedItem = item;
     }
     
-    int SelectHammer()
+    void SelectHammer()
     {
         if (hasObjectSelected)
         {
@@ -78,17 +75,14 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            // hammerHand.SetActive(true);
             hasObjectSelected = true;
             OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
         }
 
-        return 0;
     }
     
     void DeselectItems()
     {
-        if (_isInBoxInteraction) return;
         for (int i = 0; i < _objects.Length; i++)
         {
             _objects[i].SetActive(false);
@@ -100,16 +94,12 @@ public class InventoryController : MonoBehaviour
     void SelectItem()
     {
         if (_isInBoxInteraction) return;
-        int countIndex = selectIndex;
-        
+
         //Deselect current objects in hand
         if (hasObjectSelected) DeselectItems();
         
-        if (countIndex > _objects.Length)
-        {
-            selectIndex = 0;
-        }
-        
+        if (selectIndex >= _objects.Length) selectIndex = 0;
+
         Debug.Log(selectIndex);
         _currentSelected = selectIndex;
         _objects[_currentSelected].SetActive(true);
@@ -119,18 +109,20 @@ public class InventoryController : MonoBehaviour
         selectIndex++;
     }
     
-
     void ConfirmSelection()
     {
-        ResetMaterialObject(_currentSelected);
+        HandleSelectedItem(_currentSelected);
     }
 
-    int  SelectWeapon()
+    void SelectWeapon()
     {
+        if (_isInBoxInteraction) return;
+        if (hasObjectSelected) DeselectItems();
+            
+            
         musketGunHand.SetActive(true); 
         hasObjectSelected = true; 
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
-        return 2;
     }
 
     void HandleBoxInteraction(bool interaction)
@@ -141,18 +133,19 @@ public class InventoryController : MonoBehaviour
 
     void MaterialObjectSelecting(int item)
     {
-        if (item == 0)
+        switch (item)
         {
-            hammerBlackMesh.material = shadowMaterial;
-            hammerWoodMesh.material = shadowMaterial;
-        }
-        else
-        {
-            _meshes[item].material = shadowMaterial;
+            case 0 :
+                hammerBlackMesh.material = shadowMaterial;
+                hammerWoodMesh.material = shadowMaterial;
+                break;
+            case 1:
+                gunMesh.material = shadowMaterial;
+                break;
         }
     }
 
-    void ResetMaterialObject(int itemSelected)
+    void HandleSelectedItem(int itemSelected)
     {
         switch (itemSelected)
         {
@@ -160,15 +153,12 @@ public class InventoryController : MonoBehaviour
             case 0:
                 hammerBlackMesh.material = hammerBlackMaterial;
                 hammerWoodMesh.material = hammerWoodMaterial;
-                _currentSelected = SelectHammer();
-
-                
+                SelectHammer();
                 break;
             //Gun selected
             case 1 :
                 gunMesh.material = gunMaterial;
-                _currentSelected = SelectWeapon();
-
+                SelectWeapon();
                 break;
         }
     }
