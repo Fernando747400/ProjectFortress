@@ -7,37 +7,32 @@ using Unity.VisualScripting;
 public class UIManager : MonoBehaviour
 {
     [Header("Dependencies")]
-    [Header("LifeBar")]
-    [SerializeField] private GameObject _coreLifeBarCanvas;
-    [SerializeField] private InformationBar _coreLifeBar;
+    [SerializeField] private Transform _totemPosition;
+    [SerializeField] private GameObject _skullPrefab;
+    [SerializeField] private Pooling _skullPooler;
     
     [Header("Kill Counter")]
     [SerializeField] private GameObject _killCounterCanvas;
     [SerializeField] private TextMeshProUGUI _killCounterText;
-    [SerializeField] private GameObject _skullPrefab;
-    [SerializeField] private Transform _totemPosition;
 
 
     private void Start()
     {
-        CoreManager.Instance.RecievedDamageEvent += UpdateCoreLifeBar;
+        CoreManager.Instance.LostAHeartEvent += UpdateCoreLife;
         GameManager.Instance.GotKillEvent += UpdateKillCounter;
+        _skullPooler.Preload(_skullPrefab, 10);
     }
-
-    private void FixedUpdate()
-    {
-
-    }
-
+    
     public void ZombieDeadEffect(Transform zombiePosition) 
     {
-        _skullPrefab.transform.position = zombiePosition.position;
-        iTween.MoveTo(_skullPrefab, iTween.Hash("position", _totemPosition.position, "time", 2f, "oncomplete", "ResetSkullPosition", "oncompletetarget", gameObject));
+        GameObject skull = _skullPooler.GetObject(_skullPrefab);
+        skull.transform.position = zombiePosition.position;
+        iTween.MoveTo(skull, iTween.Hash("position", _totemPosition.position, "time", 2f, "oncomplete", "ResetSkullPosition", "oncompletetarget", gameObject, "oncompleteparams", skull));
     }
 
-    private void ResetSkullPosition()
+    private void ResetSkullPosition(GameObject skull)
     {
-        _skullPrefab.transform.position = new Vector3(0, -10, 0);
+        _skullPooler.RecicleObject(_skullPrefab, skull);
     }
 
     private void UpdateKillCounter()
@@ -45,16 +40,12 @@ public class UIManager : MonoBehaviour
         _killCounterText.text = GameManager.Instance.Kills.ToString();
         iTween.PunchScale(_killCounterCanvas, Vector3.one * 0.1f, 0.5f);
     }
+   
     
-    private void UpdateTimer()
+    private void UpdateCoreLife(GameObject heart)
     {
-        
-    }
-    
-    private void UpdateCoreLifeBar()
-    {
-        _coreLifeBar.UpdateBar(CoreManager.Instance.CurrentHp, CoreManager.Instance.MaxHp);
-        iTween.PunchScale(_coreLifeBarCanvas, Vector3.one * 0.1f, 0.5f);
+        heart.transform.parent = null;
+        iTween.MoveTo(heart, iTween.Hash("position", _totemPosition.position, "time", 3f));
     }
     
 

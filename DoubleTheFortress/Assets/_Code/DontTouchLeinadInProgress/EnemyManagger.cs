@@ -23,13 +23,8 @@ public class EnemyManagger : MonoBehaviour
         {
             Destroy(this);
         }
-    }
-
-    private void Start()
-    {
         ZombiePooling.OnAddEvent += SuscribeToEvents;
         ZombiePooling.Preload(Zombie, 1);
-        
     }
 
     private void Update()

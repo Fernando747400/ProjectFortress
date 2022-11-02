@@ -21038,6 +21038,7 @@ GameObject:
   - component: {fileID: 950961009}
   - component: {fileID: 950961010}
   - component: {fileID: 950961011}
+  - component: {fileID: 950961012}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -21087,12 +21088,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2787965cd9543c4ab7367cd106c126b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coreLifeBarCanvas: {fileID: 0}
-  _coreLifeBar: {fileID: 0}
+  _totemPosition: {fileID: 6946838042450907561}
+  _skullPrefab: {fileID: 1969302531946770075}
+  _skullPooler: {fileID: 950961012}
   _killCounterCanvas: {fileID: 1271473095}
   _killCounterText: {fileID: 2107258476}
-  _skullPrefab: {fileID: 1969302531946770075}
-  _totemPosition: {fileID: 6946838042450907561}
+--- !u!114 &950961012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950961008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49208bd760234a74ebe0a18fd48416bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolList: []
 --- !u!1001 &955303901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80574,8 +80587,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697f0e67a2f96ef44b6c750d87b5f7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLife: 100
   _cooldown: 0
+  _heartValue: 20
+  _heartsList:
+  - {fileID: 7056856539605378668}
+  - {fileID: 8802666774533868303}
+  - {fileID: 3259045802487924735}
+  - {fileID: 1046311336}
+  - {fileID: 1322005385}
+  - {fileID: 1582351964}
+  - {fileID: 7359792456396574687}
 --- !u!23 &8080316142531062470
 MeshRenderer:
   m_ObjectHideFlags: 0
