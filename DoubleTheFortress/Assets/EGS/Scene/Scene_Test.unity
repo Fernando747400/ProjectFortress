@@ -395,9 +395,20 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8094344046330992730, guid: f02995fb55a25124ca8aef4f6fd98a95,
         type: 3}
+      propertyPath: WeaponReference
+      value: 
+      objectReference: {fileID: 7706329788107072680, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 8094344046330992730, guid: f02995fb55a25124ca8aef4f6fd98a95,
+        type: 3}
       propertyPath: areasInteraction.Array.data[0]
       value: 
       objectReference: {fileID: 3612603625705238211}
+    - target: {fileID: 8227264181518451798, guid: f02995fb55a25124ca8aef4f6fd98a95,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8634859005631747545, guid: f02995fb55a25124ca8aef4f6fd98a95,
         type: 3}
       propertyPath: m_AnchorMax.x
