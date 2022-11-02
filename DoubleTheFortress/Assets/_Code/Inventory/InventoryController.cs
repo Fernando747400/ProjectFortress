@@ -171,6 +171,7 @@ public class InventoryController : MonoBehaviour
 
     void HandleTimer()
     {
+        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
         if (!_timerHasStarted && _timerHasFinished) return;
             
         _time += Time.deltaTime;
@@ -190,6 +191,7 @@ public class InventoryController : MonoBehaviour
     }
     void ResetTimer()
     {
+        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
         _time = 0;
         _timerHasFinished = true;
     }
