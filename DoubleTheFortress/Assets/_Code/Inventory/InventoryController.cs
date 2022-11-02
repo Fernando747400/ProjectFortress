@@ -13,14 +13,16 @@ using InputDevice = UnityEngine.XR.InputDevice;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] private GameObject hammerHand;
-    [SerializeField] private GameObject hammerBlackPart;
-    [SerializeField] private GameObject hammerWoodPart;
     [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
-
     [SerializeField] private GameObject[] _objects;
     
 
+    [Header("Mesh Renderers")]
+    [SerializeField] private MeshRenderer hammerBlackMesh;
+    [SerializeField] private MeshRenderer hammerWoodMesh;
+    [SerializeField] private MeshRenderer gunMesh;
+    [SerializeField] private MeshRenderer[] _meshes;
     [Header("Materials")]
     [SerializeField] private Material shadowMaterial;
     [SerializeField] private Material hammerBlackMaterial;
@@ -28,17 +30,17 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Material gunMaterial;
     
     public bool hasObjectSelected = false;
-    public InputActionReference hammerReference;
+    public InputActionReference ConfirmSelectReference;
     public InputActionReference DeselectReference;
     public InputActionReference SelectReference;
-    public InputActionReference hammerDiselect;
-    public InputActionReference gunReference;
 
     public List<BoxAreasInteraction> areasInteraction;
 
     private int selectIndex;
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     private bool _isInBoxInteraction;
+
+    private int _currentSelected;
 
     public PlayerSelectedItem SelectedItem
     {
@@ -50,7 +52,7 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        
+
         // hammerReference.action.performed += ctx => SelectHammer();
         // hammerDiselect.action.performed += ctx => DeselectItems();
         // gunReference.action.performed += ctx => SelectWeapon();
@@ -58,8 +60,8 @@ public class InventoryController : MonoBehaviour
 
         DeselectReference.action.performed += ctx => DeselectItems();
         SelectReference.action.performed += ctx => SelectItem();
-        
-        
+        ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
+
         foreach (BoxAreasInteraction box in areasInteraction)
         {
             box.OnHandEnterActionZone += HandleBoxInteraction;
@@ -99,25 +101,21 @@ public class InventoryController : MonoBehaviour
     void DeselectItems()
     {
         if (_isInBoxInteraction) return;
-
-        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
-
         for (int i = 0; i < _objects.Length; i++)
         {
             _objects[i].SetActive(false);
         }
         hasObjectSelected = false;
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
     }
 
     void SelectItem()
     {
         if (_isInBoxInteraction) return;
         int countIndex = selectIndex;
-        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
         
         //Deselect current objects in hand
         DeselectItems();
-
         if (countIndex <= _objects.Length)
         {
             selectIndex++;
@@ -127,17 +125,16 @@ public class InventoryController : MonoBehaviour
             selectIndex = 0;
         }
         
-        for (int i = 0; i < _objects.Length; i++)
-        {
-            _objects[countIndex].SetActive(true);
-        }   
-        
+        _currentSelected = selectIndex;
+        _objects[_currentSelected].SetActive(true);
+        MaterialObjectSelecting(_currentSelected);
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
     }
     
 
     void ConfirmSelection()
     {
-        
+        ResetMaterialObject(_currentSelected);
     }
 
     int  SelectWeapon()
@@ -162,15 +159,33 @@ public class InventoryController : MonoBehaviour
         _isInBoxInteraction = !interaction;
     }
 
-    void MaterialObjectSelecting(GameObject item)
+    void MaterialObjectSelecting(int item)
     {
-        MeshRenderer meshRenderer = item.GetComponent<MeshRenderer>();
-        meshRenderer.material = shadowMaterial;
+        if (item == 0)
+        {
+            hammerBlackMesh.material = shadowMaterial;
+            hammerWoodMesh.material = shadowMaterial;
+        }
+        else
+        {
+            _meshes[item].material = shadowMaterial;
+        }
     }
 
-    void ResetMaterialObject()
+    void ResetMaterialObject(int itemSelected)
     {
-        
+        switch (itemSelected)
+        {
+            //hammer selected
+            case 0:
+                hammerBlackMesh.material = hammerBlackMaterial;
+                hammerWoodMesh.material = hammerWoodMaterial;
+                break;
+            //Gun selected
+            case 1 :
+                gunMesh.material = gunMaterial;
+                break;
+        }
     }
 }
     

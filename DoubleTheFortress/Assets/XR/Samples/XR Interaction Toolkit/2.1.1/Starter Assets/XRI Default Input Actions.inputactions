@@ -719,7 +719,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Select_Hammer",
+                    "name": "Select_Confirm",
                     "type": "Button",
                     "id": "c5db3ddb-ea31-4555-ac7f-af99485d15a8",
                     "expectedControlType": "Button",
@@ -853,7 +853,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Select_Hammer",
+                    "action": "Select_Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -864,7 +864,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Select_Hammer",
+                    "action": "Select_Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
