@@ -45,10 +45,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hammerHand: {fileID: 2416471594249542853}
-  hammerBlackPart: {fileID: 2578483303622644956}
-  hammerWoodPart: {fileID: 5258230327462380055}
   musketGunHand: {fileID: 6103072570383631362}
   _playerSelectedItem: 0
+  _objects:
+  - {fileID: 2416471594249542853}
+  - {fileID: 6103072570383631362}
+  hammerBlackMesh: {fileID: 2028642722063098321}
+  hammerWoodMesh: {fileID: 6450053817629104562}
+  gunMesh: {fileID: 8227264181518451798}
+  _meshes:
+  - {fileID: 2028642722063098321}
+  - {fileID: 6450053817629104562}
+  - {fileID: 8227264181518451798}
   shadowMaterial: {fileID: 2100000, guid: 0c776d28f600c614584608d9dd72124c, type: 2}
   hammerBlackMaterial: {fileID: -8796627655084249796, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
     type: 3}
@@ -57,17 +65,14 @@ MonoBehaviour:
   gunMaterial: {fileID: -3263835130708698965, guid: ec0e7fe892981e649897793dfbd7c05c,
     type: 3}
   hasObjectSelected: 0
-  hammerReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
+  ConfirmSelectReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   SelectReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  hammerDiselect: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  gunReference: {fileID: 2551534540674614116, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  areasInteraction: []
+  areasInteraction:
+  - {fileID: 0}
 --- !u!1 &2186332812943976778
 GameObject:
   m_ObjectHideFlags: 0
