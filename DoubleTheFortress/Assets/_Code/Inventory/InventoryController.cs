@@ -125,6 +125,8 @@ public class InventoryController : MonoBehaviour
     void HandleBoxInteraction(bool interaction)
     {
         if (hasObjectSelected) DeselectItems();
+        if (_timerHasStarted) ResetTimer();
+            
         _isInBoxInteraction = !interaction;
     }
 
@@ -171,6 +173,7 @@ public class InventoryController : MonoBehaviour
 
     void HandleTimer()
     {
+        if (_isInBoxInteraction) return;
         if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
         if (!_timerHasStarted && _timerHasFinished) return;
             

@@ -45028,8 +45028,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e57b34deac896b549bb36de1b71a554e, type: 2}
+  m_sharedMaterial: {fileID: 3685876407198549303, guid: e57b34deac896b549bb36de1b71a554e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -80641,11 +80642,11 @@ MonoBehaviour:
   hammerBlackMaterial: {fileID: 0}
   hammerWoodMaterial: {fileID: 0}
   gunMaterial: {fileID: 0}
-  hasObjectSelected: 0
   ConfirmSelectReference: {fileID: 0}
   DeselectReference: {fileID: 0}
   SelectReference: {fileID: 0}
-  WeaponReference: {fileID: 0}
+  _maxTimeToSelect: 1.5
+  hasObjectSelected: 0
   areasInteraction: []
 --- !u!4 &8170244846415106485
 Transform:
