@@ -741,7 +741,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Select_Hammer"",
+                    ""name"": ""Select_Confirm"",
                     ""type"": ""Button"",
                     ""id"": ""c5db3ddb-ea31-4555-ac7f-af99485d15a8"",
                     ""expectedControlType"": ""Button"",
@@ -875,7 +875,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Select_Hammer"",
+                    ""action"": ""Select_Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -886,7 +886,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Select_Hammer"",
+                    ""action"": ""Select_Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1615,7 +1615,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRIRightHandInteraction_RotateAnchor = m_XRIRightHandInteraction.FindAction("Rotate Anchor", throwIfNotFound: true);
         m_XRIRightHandInteraction_TranslateAnchor = m_XRIRightHandInteraction.FindAction("Translate Anchor", throwIfNotFound: true);
         m_XRIRightHandInteraction_Shoot = m_XRIRightHandInteraction.FindAction("Shoot", throwIfNotFound: true);
-        m_XRIRightHandInteraction_Select_Hammer = m_XRIRightHandInteraction.FindAction("Select_Hammer", throwIfNotFound: true);
+        m_XRIRightHandInteraction_Select_Confirm = m_XRIRightHandInteraction.FindAction("Select_Confirm", throwIfNotFound: true);
         m_XRIRightHandInteraction_Select_Inventory = m_XRIRightHandInteraction.FindAction("Select_Inventory", throwIfNotFound: true);
         m_XRIRightHandInteraction_Deselect_Inventroy = m_XRIRightHandInteraction.FindAction("Deselect_Inventroy", throwIfNotFound: true);
         // XRI RightHand Locomotion
@@ -2012,7 +2012,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRIRightHandInteraction_RotateAnchor;
     private readonly InputAction m_XRIRightHandInteraction_TranslateAnchor;
     private readonly InputAction m_XRIRightHandInteraction_Shoot;
-    private readonly InputAction m_XRIRightHandInteraction_Select_Hammer;
+    private readonly InputAction m_XRIRightHandInteraction_Select_Confirm;
     private readonly InputAction m_XRIRightHandInteraction_Select_Inventory;
     private readonly InputAction m_XRIRightHandInteraction_Deselect_Inventroy;
     public struct XRIRightHandInteractionActions
@@ -2028,7 +2028,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @RotateAnchor => m_Wrapper.m_XRIRightHandInteraction_RotateAnchor;
         public InputAction @TranslateAnchor => m_Wrapper.m_XRIRightHandInteraction_TranslateAnchor;
         public InputAction @Shoot => m_Wrapper.m_XRIRightHandInteraction_Shoot;
-        public InputAction @Select_Hammer => m_Wrapper.m_XRIRightHandInteraction_Select_Hammer;
+        public InputAction @Select_Confirm => m_Wrapper.m_XRIRightHandInteraction_Select_Confirm;
         public InputAction @Select_Inventory => m_Wrapper.m_XRIRightHandInteraction_Select_Inventory;
         public InputAction @Deselect_Inventroy => m_Wrapper.m_XRIRightHandInteraction_Deselect_Inventroy;
         public InputActionMap Get() { return m_Wrapper.m_XRIRightHandInteraction; }
@@ -2067,9 +2067,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Shoot.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
-                @Select_Hammer.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Hammer;
-                @Select_Hammer.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Hammer;
-                @Select_Hammer.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Hammer;
+                @Select_Confirm.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm;
+                @Select_Confirm.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm;
+                @Select_Confirm.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm;
                 @Select_Inventory.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Inventory;
                 @Select_Inventory.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Inventory;
                 @Select_Inventory.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Inventory;
@@ -2107,9 +2107,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @Select_Hammer.started += instance.OnSelect_Hammer;
-                @Select_Hammer.performed += instance.OnSelect_Hammer;
-                @Select_Hammer.canceled += instance.OnSelect_Hammer;
+                @Select_Confirm.started += instance.OnSelect_Confirm;
+                @Select_Confirm.performed += instance.OnSelect_Confirm;
+                @Select_Confirm.canceled += instance.OnSelect_Confirm;
                 @Select_Inventory.started += instance.OnSelect_Inventory;
                 @Select_Inventory.performed += instance.OnSelect_Inventory;
                 @Select_Inventory.canceled += instance.OnSelect_Inventory;
@@ -2350,7 +2350,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnRotateAnchor(InputAction.CallbackContext context);
         void OnTranslateAnchor(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnSelect_Hammer(InputAction.CallbackContext context);
+        void OnSelect_Confirm(InputAction.CallbackContext context);
         void OnSelect_Inventory(InputAction.CallbackContext context);
         void OnDeselect_Inventroy(InputAction.CallbackContext context);
     }

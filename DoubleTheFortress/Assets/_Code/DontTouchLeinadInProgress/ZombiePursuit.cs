@@ -41,6 +41,7 @@ public class ZombiePursuit : StearingBehaviours
             UpdateTarget();
         }
         Vector3 pursuit = this.Pursuit(target.transform.position);
+        transform.LookAt(target);
         transform.position += pursuit * Time.deltaTime;
     }
 

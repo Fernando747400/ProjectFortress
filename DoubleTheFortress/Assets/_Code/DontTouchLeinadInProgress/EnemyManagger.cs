@@ -24,7 +24,7 @@ public class EnemyManagger : MonoBehaviour
 
     private void Start()
     {
-        Pooling.Preload(Zombie, 1);
+        Pooling.Instance.Preload(Zombie, 1);
     }
 
     private void Update()
@@ -41,7 +41,7 @@ public class EnemyManagger : MonoBehaviour
         Vector3 vector = SpawnPosition().Peek().transform.position;
 
         GameObject temporal;
-        temporal = Pooling.GetObject(Zombie);
+        temporal = Pooling.Instance.GetObject(Zombie);
         temporal.transform.position = vector;
     }
 
@@ -52,6 +52,6 @@ public class EnemyManagger : MonoBehaviour
 
     public void Despawn(GameObject primitive, GameObject temporalObject)
     {
-        Pooling.RecicleObject(primitive, temporalObject);
+        Pooling.Instance.RecicleObject(primitive, temporalObject);
     }
 }
