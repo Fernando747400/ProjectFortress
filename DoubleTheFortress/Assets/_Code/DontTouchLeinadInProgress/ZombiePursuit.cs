@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombiePursuit : StearingBehaviours
+public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 {
     [Header("Pursuit Dependences")]
     private Queue<Transform> transformQueue = new Queue<Transform>();
@@ -12,16 +12,25 @@ public class ZombiePursuit : StearingBehaviours
     private float distance;
     public float maxDistance;
 
+    //Interfaces
+    public bool IsPaused { set => throw new NotImplementedException(); }
+    public bool Sensitive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public float MaxHp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public float CurrentHp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     public event Action ZombieDieEvent;
+    public event Action <Transform> ZombieTotemEvent;
 
     private void Start()
     {
         this.speed = UnityEngine.Random.Range(.5f, 4);
         maxDistance = EnemyManagger.Instance.maxDistance;
+        
     }
 
     void Update()
     {
+
         try 
         {
             Pursuit();
@@ -63,6 +72,7 @@ public class ZombiePursuit : StearingBehaviours
         transformQueue.Clear();
         target = null;
         ZombieDieEvent?.Invoke();
+        ZombieTotemEvent?.Invoke(this.transform);
         EnemyManagger.Instance.Despawn(EnemyManagger.Instance.Zombie, this.gameObject);
         EnemyManagger.Instance.OnSpawn();
     }
