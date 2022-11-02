@@ -744,6 +744,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Select_Weapon",
+                    "type": "Button",
+                    "id": "d3179952-a0f8-4b10-9537-5616c348bba6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -909,6 +918,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1870d4e3-8fa9-413e-87aa-7b39b07fe4c2",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Select_Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
