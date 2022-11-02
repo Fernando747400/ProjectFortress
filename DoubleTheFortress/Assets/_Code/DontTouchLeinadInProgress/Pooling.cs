@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Pooling : MonoBehaviour
 {
-    private static Pooling instance;
+    public static Pooling Instance;
 
-    static Dictionary<int, Queue<GameObject>> pool = new Dictionary<int, Queue<GameObject>>();
-    static Dictionary<int, GameObject> parents = new Dictionary<int, GameObject>();
+    Dictionary<int, Queue<GameObject>> pool = new Dictionary<int, Queue<GameObject>>();
+    Dictionary<int, GameObject> parents = new Dictionary<int, GameObject>();
 
-    [SerializeField] private static bool devMode;
+    [SerializeField] private bool devMode;
 
 
     private void Awake()
     {
-        if(instance == null)
+        if(Instance == null)
         { 
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -24,7 +24,7 @@ public class Pooling : MonoBehaviour
         }
     }
 
-    public static void Preload(GameObject objectToPool, int amount)
+    public void Preload(GameObject objectToPool, int amount)
     {
         int id = objectToPool.GetInstanceID();
 
@@ -40,7 +40,7 @@ public class Pooling : MonoBehaviour
         }
     }
 
-    static void CreateObject(GameObject objecToPool)
+    void CreateObject(GameObject objecToPool)
     {
         int id = objecToPool.GetInstanceID();
 
@@ -52,7 +52,7 @@ public class Pooling : MonoBehaviour
         go.GetComponent<ZombiePursuit>().ZombieDieEvent += GameManager.Instance.AddKill;
     }
 
-    static GameObject GetParent(int parentID)
+    GameObject GetParent(int parentID)
     {
         GameObject parent;
         parents.TryGetValue(parentID, out parent);
@@ -60,7 +60,7 @@ public class Pooling : MonoBehaviour
         return parent;
     }
 
-    public static GameObject GetObject(GameObject objectToPool)
+    public GameObject GetObject(GameObject objectToPool)
     {
         int id = objectToPool.GetInstanceID();
 
@@ -75,7 +75,7 @@ public class Pooling : MonoBehaviour
         return go;
     }
 
-    public static void RecicleObject(GameObject objectToPool, GameObject objectToRecicle)
+    public void RecicleObject(GameObject objectToPool, GameObject objectToRecicle)
     {
         int id = objectToPool.GetInstanceID();
 
