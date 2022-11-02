@@ -100,16 +100,12 @@ public class InventoryController : MonoBehaviour
     void SelectItem()
     {
         if (_isInBoxInteraction) return;
-        int countIndex = selectIndex;
-        
+
         //Deselect current objects in hand
         if (hasObjectSelected) DeselectItems();
         
-        if (countIndex > _objects.Length)
-        {
-            selectIndex = 0;
-        }
-        
+        if (selectIndex >= _objects.Length) selectIndex = 0;
+
         Debug.Log(selectIndex);
         _currentSelected = selectIndex;
         _objects[_currentSelected].SetActive(true);
@@ -122,7 +118,7 @@ public class InventoryController : MonoBehaviour
 
     void ConfirmSelection()
     {
-        ResetMaterialObject(_currentSelected);
+        HandleSelectedItem(_currentSelected);
     }
 
     int  SelectWeapon()
@@ -152,7 +148,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    void ResetMaterialObject(int itemSelected)
+    void HandleSelectedItem(int itemSelected)
     {
         switch (itemSelected)
         {
@@ -161,14 +157,11 @@ public class InventoryController : MonoBehaviour
                 hammerBlackMesh.material = hammerBlackMaterial;
                 hammerWoodMesh.material = hammerWoodMaterial;
                 _currentSelected = SelectHammer();
-
-                
                 break;
             //Gun selected
             case 1 :
                 gunMesh.material = gunMaterial;
                 _currentSelected = SelectWeapon();
-
                 break;
         }
     }
