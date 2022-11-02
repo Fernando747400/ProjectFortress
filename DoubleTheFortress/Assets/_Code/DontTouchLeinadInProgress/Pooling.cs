@@ -1,28 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Pooling : MonoBehaviour
 {
-    public static Pooling Instance;
 
     Dictionary<int, Queue<GameObject>> pool = new Dictionary<int, Queue<GameObject>>();
     Dictionary<int, GameObject> parents = new Dictionary<int, GameObject>();
 
-    [SerializeField] private bool devMode;
+    public List<GameObject> poolList = new List<GameObject>();
 
-
-    private void Awake()
-    {
-        if(Instance == null)
-        { 
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
+    public event Action <GameObject> OnAddEvent;
 
     public void Preload(GameObject objectToPool, int amount)
     {
@@ -48,8 +37,8 @@ public class Pooling : MonoBehaviour
         go.transform.SetParent(GetParent(id).transform);
         go.SetActive(false);
         pool[id].Enqueue(go);
-        if (devMode) return;
-        go.GetComponent<ZombiePursuit>().ZombieDieEvent += GameManager.Instance.AddKill;
+        poolList.Add(objecToPool);
+        OnAddEvent?.Invoke(objecToPool);
     }
 
     GameObject GetParent(int parentID)

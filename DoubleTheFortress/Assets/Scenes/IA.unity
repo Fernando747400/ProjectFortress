@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 2
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
+  ZombiePooling: {fileID: 283135058}
 --- !u!114 &283135058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49208bd760234a74ebe0a18fd48416bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devMode: 1
+  poolList: []
 --- !u!114 &283135059
 MonoBehaviour:
   m_ObjectHideFlags: 0

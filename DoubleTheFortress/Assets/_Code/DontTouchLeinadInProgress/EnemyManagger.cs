@@ -10,6 +10,9 @@ public class EnemyManagger : MonoBehaviour
     [SerializeField]
     public GameObject Zombie;
 
+    [SerializeField]
+    private Pooling ZombiePooling;
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,7 +27,9 @@ public class EnemyManagger : MonoBehaviour
 
     private void Start()
     {
-        Pooling.Instance.Preload(Zombie, 1);
+        ZombiePooling.OnAddEvent += SuscribeToEvents;
+        ZombiePooling.Preload(Zombie, 1);
+        
     }
 
     private void Update()
@@ -41,7 +46,7 @@ public class EnemyManagger : MonoBehaviour
         Vector3 vector = SpawnPosition().Peek().transform.position;
 
         GameObject temporal;
-        temporal = Pooling.Instance.GetObject(Zombie);
+        temporal = ZombiePooling.GetObject(Zombie);
         temporal.transform.position = vector;
     }
 
@@ -52,6 +57,11 @@ public class EnemyManagger : MonoBehaviour
 
     public void Despawn(GameObject primitive, GameObject temporalObject)
     {
-        Pooling.Instance.RecicleObject(primitive, temporalObject);
+        ZombiePooling.RecicleObject(primitive, temporalObject);
+    }
+
+    void SuscribeToEvents(GameObject item)
+    {
+        item.GetComponent<ZombiePursuit>().ZombieDieEvent += GameManager.Instance.AddKill;
     }
 }
