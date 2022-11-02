@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public event Action PlayGameEvent;
     public event Action StartGameEvent;
     public event Action FinishGameEvent;
+    public event Action GotKillEvent;
 
     private void Awake()
     {
@@ -26,6 +27,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Prepare();
+    }
+
+    private void FixedUpdate()
+    {
+        AddTime();
     }
 
     public void StartGame()
@@ -53,6 +59,7 @@ public class GameManager : MonoBehaviour
     public void AddKill() 
     {
         _zombieKills++;
+        GotKillEvent?.Invoke();
     }
 
     private void AddTime()

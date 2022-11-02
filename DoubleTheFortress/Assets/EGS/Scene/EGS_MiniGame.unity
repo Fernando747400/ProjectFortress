@@ -56450,7 +56450,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 33a2fe362ab468a42aa88696de403abc, type: 3}
+  - {fileID: 2100000, guid: 5f8b62a2af6a7cd459c69994f1604b0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -56500,6 +56500,7 @@ MonoBehaviour:
   ConfirmSelectReference: {fileID: 0}
   DeselectReference: {fileID: 0}
   SelectReference: {fileID: 0}
+  WeaponReference: {fileID: 0}
   areasInteraction: []
 --- !u!4 &8170244846415106485
 Transform:
