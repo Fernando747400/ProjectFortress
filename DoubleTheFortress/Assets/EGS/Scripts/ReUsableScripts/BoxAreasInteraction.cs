@@ -8,7 +8,12 @@ public class BoxAreasInteraction : MonoBehaviour
     
     public Action<bool> OnHandEnterActionZone;
     private Action OnInitializeBox;
-    
+    public InventoryController _inventoryController;
+    public InventoryController InventoryPlayer
+    {
+        get => _inventoryController;
+        set => _inventoryController = value;
+    }
 
     private void Start()
     { 
