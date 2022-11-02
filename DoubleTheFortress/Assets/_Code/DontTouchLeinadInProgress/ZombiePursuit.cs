@@ -12,12 +12,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private float distance;
     public float maxDistance;
 
-    //Interfaces
-    public bool IsPaused { set => throw new NotImplementedException(); }
-    public bool Sensitive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float MaxHp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float CurrentHp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
     public event Action ZombieDieEvent;
     public event Action <Transform> ZombieTotemEvent;
 
@@ -25,12 +19,11 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         this.speed = UnityEngine.Random.Range(.5f, 4);
         maxDistance = EnemyManagger.Instance.maxDistance;
-        
+        SubscribeToPauseEvents();
     }
 
     void Update()
     {
-
         try 
         {
             Pursuit();
@@ -38,8 +31,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         catch
         {
             GetRoute();
-        }
-        
+        }   
     }
 
     void Pursuit()
@@ -84,4 +76,41 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             Die();
         }
     }
-}   
+
+
+    protected virtual void TakeDamage(float dmgValue)
+    {
+        if (_isPaused) return;
+        CurrentHp -= dmgValue;
+        CurrentHp = Mathf.Clamp(CurrentHp, 0, MaxHp);
+    }
+
+
+    #region Interface Methods
+
+    private float _maxLife;
+    private float _life;
+    private bool _isPaused;
+    private bool _isSensitive;
+    public bool IsPaused { set => _isPaused = value; }
+    public bool Sensitive { get => _isSensitive; set => _isSensitive = value; }
+    public float MaxHp { get => _maxLife; set => _maxLife = value; }
+    public float CurrentHp { get => _life; set => _life = value; }
+    
+    void Pause()
+    {
+        _isPaused = true;
+    }
+
+    void Unpause()
+    {
+        _isPaused = false;
+    }
+
+    private void SubscribeToPauseEvents()
+    {
+        GameManager.Instance.PauseGameEvent += Pause;
+        GameManager.Instance.PlayGameEvent += Unpause;
+    }
+    #endregion
+}
