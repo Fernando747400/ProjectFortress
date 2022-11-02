@@ -116,19 +116,18 @@ public class InventoryController : MonoBehaviour
         
         //Deselect current objects in hand
         DeselectItems();
-        if (countIndex <= _objects.Length)
-        {
-            selectIndex++;
-        }
-        else
+        if (countIndex > _objects.Length)
         {
             selectIndex = 0;
         }
         
+        Debug.Log(selectIndex);
         _currentSelected = selectIndex;
         _objects[_currentSelected].SetActive(true);
         MaterialObjectSelecting(_currentSelected);
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
+
+        selectIndex++;
     }
     
 

@@ -53,7 +53,7 @@ public class ButtonCannon : MonoBehaviour
 
     void FireCannon()
     {
-        Debug.Log("FIRECannon");
+        //.Log("FIRECannon");
         StartTimer();
     }
 
@@ -62,7 +62,7 @@ public class ButtonCannon : MonoBehaviour
        _initialValue = Mathf.Lerp(0, _maxValue, value);
        _lerpedColor = Color.Lerp(background.material.color, _myColors[_colorIndex], value);
 
-       Debug.Log(_initialValue);
+      // Debug.Log(_initialValue);
        background.material.color = _lerpedColor;
        fill.fillAmount = _initialValue;
     }
@@ -79,7 +79,7 @@ public class ButtonCannon : MonoBehaviour
         if (!_timerHasStarted && _timerHasFinished) return;
         
         _time += Time.deltaTime;
-        Debug.Log(_time);
+       // Debug.Log(_time);
         if (_time > delay)
         {
             RestartTimer();
