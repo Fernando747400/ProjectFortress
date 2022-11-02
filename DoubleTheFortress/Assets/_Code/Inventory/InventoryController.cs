@@ -180,10 +180,15 @@ public class InventoryController : MonoBehaviour
             case 0:
                 hammerBlackMesh.material = hammerBlackMaterial;
                 hammerWoodMesh.material = hammerWoodMaterial;
+                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
+
+                
                 break;
             //Gun selected
             case 1 :
                 gunMesh.material = gunMaterial;
+                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
+
                 break;
         }
     }
