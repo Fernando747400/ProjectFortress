@@ -177,7 +177,7 @@ public class InventoryController : MonoBehaviour
     void HandleBoxInteraction(bool interaction)
     {
         _isInBoxInteraction = !interaction;
-        if (_playerSelectedItem != PlayerSelectedItem.None)
+        if (_playerSelectedItem == PlayerSelectedItem.Selecting)
         {
             DeselectItems(_currentSelectedObjects, _currentSelectingHand);
         }
