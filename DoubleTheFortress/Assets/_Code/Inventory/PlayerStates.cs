@@ -19,6 +19,7 @@ namespace DebugStuff.Inventory
         Musket,
         Defibrillator,
         Selecting,
+        Torch,
     }
     
 }
