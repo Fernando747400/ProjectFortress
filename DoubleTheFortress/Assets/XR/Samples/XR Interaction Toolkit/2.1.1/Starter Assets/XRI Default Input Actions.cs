@@ -899,6 +899,17 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7c826d19-265a-4b51-a03a-201d112a9eb7"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Select_Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e394c79f-f65f-4351-8796-4d2d31212c12"",
                     ""path"": ""<Keyboard>/h"",
                     ""interactions"": """",
@@ -934,6 +945,17 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""name"": """",
                     ""id"": ""45a435df-3bea-46a3-8e99-ebaf48b6c0db"",
                     ""path"": ""<XRController>{RightHand}/gripPressed"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Deselect_Inventroy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3701562c-20fe-42a0-8eeb-199154eda95f"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
                     ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",

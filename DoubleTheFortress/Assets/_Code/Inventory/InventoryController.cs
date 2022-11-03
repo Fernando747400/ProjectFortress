@@ -10,8 +10,6 @@ public class InventoryController : MonoBehaviour
 {
     #region Variables
     [Header("GameObjects")]
-    // [SerializeField] private GameObject hammerHand;
-    // [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
     [SerializeField] private GameObject[] _objects;
 
@@ -52,7 +50,8 @@ public class InventoryController : MonoBehaviour
     private bool _timerHasFinished;
     
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
-    
+    private Action<bool> OnIsSelecting;
+
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
@@ -83,7 +82,6 @@ public class InventoryController : MonoBehaviour
             HandleTimer();
             
         }
-        Debug.Log(_time);
     }
 
     void HandleSelectedItem(PlayerSelectedItem item)
@@ -112,11 +110,11 @@ public class InventoryController : MonoBehaviour
         if (_selectIndex >= _objects.Length) _selectIndex = 0;
         if (isLeft) _selectIndex = 2;
         
-        Debug.Log(_selectIndex);
         _currentSelected = _selectIndex;
         _objects[_currentSelected].SetActive(true);
         MaterialObjectSelecting(_currentSelected);
         _selectIndex++;
+        OnIsSelecting?.Invoke(true);
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
         StartTimer();
         
@@ -147,6 +145,9 @@ public class InventoryController : MonoBehaviour
             
             case 1 :
                 gunMesh.material = shadowMaterial;
+                break;
+            case 2:
+                torchMesh.material = shadowMaterial;
                 break;
         }
         
@@ -181,6 +182,7 @@ public class InventoryController : MonoBehaviour
     }
 
 
+    #region Timer Inventory
     void HandleTimer()
     {
         if (_isInBoxInteraction) return;
@@ -209,6 +211,8 @@ public class InventoryController : MonoBehaviour
         _timerHasFinished = true;
 
     }
+    #endregion
+
 }
     
     
