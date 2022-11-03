@@ -121,12 +121,13 @@ public class InventoryController : MonoBehaviour
         _playerHandsObjects = PlayerSelectedItem.None;
         
     }
-    
-    
+
+
 
     void SelectItem(bool isLeft)
     {
         if (_isInBoxInteraction) return;
+        if(hasObjectSelected) return;
 
         ResetTimer();
         //Deselect current objects in hand
