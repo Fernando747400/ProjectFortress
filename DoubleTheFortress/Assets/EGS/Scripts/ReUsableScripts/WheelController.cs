@@ -74,20 +74,8 @@ public class WheelController : MonoBehaviour
         }
 
     }
-    
-    private void LimitDistance()
-    {
-        Vector3 cannon = _heavyWeaponRotateVR.gameObject.transform.position;
-        Vector3 limited = (cannon - transform.position).normalized * maxDistance;
-        // Vector3 limitX = new Vector3();
-        // Vector3 limitY = new Vector3();
-        // Vector3 limitZ = new Vector3();
-        
-        transform.position = new Vector3(limited.x, limited.y, limited.z);
 
-    }
-    
-    
-    
-    
+
+
+
 }
