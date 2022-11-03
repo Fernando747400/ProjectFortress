@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -47,6 +48,7 @@ public class Canon_CanonBall : GeneralAgressor
 
     private void Activate()
     {
+        _particleSystem.Stop();
         _rb.isKinematic = false;
         _rend.enabled = true;
         _col.enabled = true;
@@ -55,13 +57,13 @@ public class Canon_CanonBall : GeneralAgressor
     public void Fire(Vector3 origin,Vector3 dir, float mag)
     {
         transform.position = origin;
+        transform.eulerAngles = Vector3.zero;
         Activate();
         _rb.AddForce(dir.normalized * mag);
     }
 
     void Explode()
     {
-        _particleSystem.Stop();
         _particleSystem.Play();
         CastDamage();
         Deactivate();

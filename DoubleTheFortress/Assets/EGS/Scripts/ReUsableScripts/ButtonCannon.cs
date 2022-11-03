@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -29,17 +30,29 @@ public class ButtonCannon : MonoBehaviour
     private int _colorIndex;
 
     public Action OnPushedButton;
+
+    //LerpColor
+    [SerializeField][Range(0f, 1f)] float lerpTime;
+    int colorIndex = 0;
+    float t = 0;
+    int len;
+
+    [SerializeField] Color[] myColors;
+
+
     void Start()
     {
         _collider = GetComponent<Collider>();
         _collider.isTrigger = true;
         OnPushedButton += FireCannon;
+        len = myColors.Length;
         StartTimer();
     }
 
     void Update()
     {
         HandleTimer();
+        LerpColor();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -107,4 +120,16 @@ public class ButtonCannon : MonoBehaviour
         if(_isAutomatic) StartTimer();
     }
     
+    void LerpColor()
+    {
+        fill.color = Color.Lerp(fill.color, myColors[colorIndex], lerpTime * Time.deltaTime);
+
+        t = Mathf.Lerp(t, 1.5f, lerpTime * Time.deltaTime);
+        if(t>.9f)
+        {
+            t = 0;
+            colorIndex++;
+            colorIndex = (colorIndex >= len) ? 0 : colorIndex;
+        }
+    }
 }

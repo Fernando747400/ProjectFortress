@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
     [Header("Dependencies")]
     [SerializeField] private Transform _totemPosition;
     [SerializeField] private GameObject _skullPrefab;
@@ -18,6 +19,10 @@ public class UIManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private iTween.EaseType _easeType;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -30,7 +35,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject skull = _skullPooler.GetObject(_skullPrefab);
         skull.transform.position = zombiePosition.position;
-        iTween.MoveTo(skull, iTween.Hash("position", _totemPosition.position, "time", 2f,"easetype", _easeType, "oncomplete", "ResetSkullPosition", "oncompletetarget", gameObject, "oncompleteparams", skull));
+        iTween.MoveTo(skull, iTween.Hash("position", _totemPosition.position, "time", 10f,"easetype", _easeType, "oncomplete", "ResetSkullPosition", "oncompletetarget", gameObject, "oncompleteparams", skull));
     }
 
     private void ResetSkullPosition(GameObject skull)
@@ -40,16 +45,14 @@ public class UIManager : MonoBehaviour
 
     private void UpdateKillCounter()
     {
-        _killCounterText.text = GameManager.Instance.Kills.ToString();
-        iTween.PunchScale(_killCounterCanvas, Vector3.one * 0.1f, 0.5f);
+        _killCounterText.text = GameManager.Instance.Kills.ToString("000");
+        iTween.PunchScale(_killCounterCanvas, Vector3.one * 0.001f, 0.5f);
     }
    
-    
     private void UpdateCoreLife(GameObject heart)
     {
         heart.transform.parent = null;
         iTween.MoveTo(heart, iTween.Hash("position", _totemPosition.position, "time", 10f, "easetype", _easeType));
     }
     
-
 }
