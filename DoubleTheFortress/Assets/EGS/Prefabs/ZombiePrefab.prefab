@@ -2890,8 +2890,8 @@ MonoBehaviour:
   tempPosition: {x: 0, y: 0, z: 0}
   futurePosition: {x: 0, y: 0, z: 0}
   changeInT: 0
-  maxSeeAhead: 0.5
-  maxAvoidForce: 0.5
+  maxSeeAhead: 0.005
+  maxAvoidForce: 0.3
   avoidGameObject: {fileID: 0}
   CurrentState: 0
   timeOfAvoid: 2
