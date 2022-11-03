@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DebugStuff.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,9 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
     [SerializeField] private PlayerSelectedItem _playerHandsObjects;
     [SerializeField] private GameObject[] _objects;
+    [SerializeField] private GameObject[] _objectsRightHand;
+    [SerializeField] private GameObject[] _objectsLeftHand;
+    
 
     [Header("Mesh Renderers")]
     [SerializeField] private MeshRenderer hammerBlackMesh;
@@ -112,11 +116,21 @@ public class InventoryController : MonoBehaviour
         //Deselect current objects in hand
         DeselectItems();
 
-        if (_selectIndex >= _objects.Length) _selectIndex = 0;
-        if (isLeft) _selectIndex = 2;
+        List<GameObject> objects = new List<GameObject>();
+        
+        if (isLeft)
+        {
+            objects = _objectsLeftHand.ToList();
+        }
+        else
+        {
+            objects = _objectsRightHand.ToList();
+        }
+        
+        if (_selectIndex >= objects.Count) _selectIndex = 0;
         
         _currentSelected = _selectIndex;
-        _objects[_currentSelected].SetActive(true);
+        objects[_currentSelected].SetActive(true);
         MaterialObjectSelecting(_currentSelected);
         _selectIndex++;
         OnIsSelecting?.Invoke(true);

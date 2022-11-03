@@ -34672,6 +34672,11 @@ MonoBehaviour:
   - {fileID: 2416471593635629102}
   - {fileID: 6103072571006914793}
   - {fileID: 897175033}
+  _objectsRightHand:
+  - {fileID: 2416471593635629102}
+  - {fileID: 6103072571006914793}
+  _objectsLeftHand:
+  - {fileID: 897175033}
   hammerBlackMesh: {fileID: 2028642721474360634}
   hammerWoodMesh: {fileID: 6450053817135713625}
   gunMesh: {fileID: 8227264181067993277}
