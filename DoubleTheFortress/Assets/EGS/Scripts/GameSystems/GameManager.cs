@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3)
         {
             EnemyManagger.Instance.Damage += 10f;
+            Debug.Log("Added more damage");
         }
 
         if (currentTime.Minutes > _currentMinute)
