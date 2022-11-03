@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
     #region Variables
     [Header("GameObjects")]
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
+    [SerializeField] private PlayerSelectedItem _playerHandsObjects;
     [SerializeField] private GameObject[] _objects;
 
     [Header("Mesh Renderers")]
@@ -54,6 +55,11 @@ public class InventoryController : MonoBehaviour
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
+    }
+    
+    public PlayerSelectedItem HandsObjects
+    {
+        get => _playerHandsObjects;
     }
     #endregion
     
@@ -163,17 +169,22 @@ public class InventoryController : MonoBehaviour
                 hammerWoodMesh.material = hammerWoodMaterial;
                 
                 OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
+                _playerHandsObjects = PlayerSelectedItem.ObjectsRightHand;
+                
 
                 break;
             //Gun selected
             case 1 :
                 gunMesh.material = gunMaterial;
                 OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
+                _playerHandsObjects = PlayerSelectedItem.ObjectsRightHand;
 
                 break;
+            //Torch
             case 2:
                 torchMesh.material = torchMaterial;
                 OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Torch);
+                _playerHandsObjects = PlayerSelectedItem.ObjectsLeftHand;
                 break;
         }
 
