@@ -34750,7 +34750,9 @@ MonoBehaviour:
     type: 3}
   torchMaterial: {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d,
     type: 3}
-  ConfirmSelectReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
+  ConfirmSelectRightReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  ConfirmSelectLeftReference: {fileID: 771906664130552712, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
