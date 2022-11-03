@@ -6,8 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Two_HandsHolder : XRBaseInteractable
 {
-    private HandController_XR _hand;
+    private HandController_XR _currentHand;
 
+    public List<HandController_XR> _hands;
     public Action OnGrabbed;
     public Action OnReleased;
     public Action OnHandsOut;
@@ -16,7 +17,7 @@ public class Two_HandsHolder : XRBaseInteractable
 
     public HandController_XR Hand
     {
-        get => _hand;
+        get => _currentHand;
     }
 
     public bool IsGrabbing => _isGrabbing;
@@ -24,8 +25,9 @@ public class Two_HandsHolder : XRBaseInteractable
     protected override void Awake()
     {
         base.Awake();
-        
 
+
+        _hands = new List<HandController_XR>();
         onSelectEntered.AddListener(Grab);
         onSelectExited.AddListener(Drop);
 
@@ -40,17 +42,21 @@ public class Two_HandsHolder : XRBaseInteractable
 
     protected virtual void Grab(XRBaseInteractor interactor)
     {
-        Debug.Log(_hand.HandIsEmpty + "  _hand.HandIsEmpty ");
-        if (!_hand.HandIsEmpty) return;
+        Debug.Log(_currentHand.HandIsEmpty + "  _hand.HandIsEmpty ");
+        if (!_currentHand.HandIsEmpty) return;
         _isGrabbing = true;
-        _hand.HandleHandsVisible(false);
+        _currentHand.HandleHandsVisible(false);
         OnGrabbed?.Invoke();
     }
 
     protected virtual void Drop(XRBaseInteractor interactor)
     {
         _isGrabbing = false;
-        _hand.HandleHandsVisible(true);
+
+        foreach (var hand in _hands)
+        {
+            hand.HandleHandsVisible(true);
+        }
         OnReleased?.Invoke();
 
     }
@@ -59,8 +65,12 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            _hand = other.GetComponent<HandController_XR>();
-            _hand.HandleIsEmpty();
+            _currentHand = other.GetComponent<HandController_XR>();
+            _currentHand.HandleIsEmpty();
+            if (!_hands.Contains(_currentHand))
+            {
+                _hands.Add(_currentHand);
+            }
             OnHandsOut?.Invoke();
 
         }
@@ -70,13 +80,19 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            if (_isGrabbing)
+            // if (_isGrabbing)
+            // {
+                // _hand.HandleHandsVisible(!_isGrabbing);
+            // }
+            
+            _isGrabbing = false;
+
+            foreach (var hand in _hands)
             {
-                _isGrabbing = false;
-                _hand.HandleHandsVisible(!_isGrabbing);
+                hand.HandleHandsVisible(true);
             }
            
-            _hand = null;
+            _currentHand = null;
             OnHandsOut?.Invoke();
 
         }

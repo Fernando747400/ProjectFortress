@@ -163,6 +163,7 @@ public class InventoryController : MonoBehaviour
     
     void ConfirmSelection(Hand hand)
     {
+        if (_isInBoxInteraction) return;
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
         
@@ -176,6 +177,10 @@ public class InventoryController : MonoBehaviour
     void HandleBoxInteraction(bool interaction)
     {
         _isInBoxInteraction = !interaction;
+        if (_playerSelectedItem == PlayerSelectedItem.Selecting)
+        {
+            DeselectItems(_currentSelectedObjects, _currentSelectingHand);
+        }
     }
 
     void MaterialObjectSelecting(int item, List<GameObject> objects)
