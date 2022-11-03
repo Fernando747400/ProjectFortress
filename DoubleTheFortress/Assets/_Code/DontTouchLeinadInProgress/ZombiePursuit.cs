@@ -27,7 +27,9 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public event Action ZombieDieEvent;
     public event Action <Transform> ZombieTotemEvent;
-    
+    private bool isAvoid = false;
+
+    public float timeOfAvoid = 2;
 
     private void Start()
     {
@@ -75,8 +77,32 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             _targetToDamage = other.gameObject;
             DoDamageToTarget();
             Despawn();
+        } 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            this.avoidGameObject = collision.gameObject;
+            isAvoid = true;
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            StartCoroutine(AvoidColdown());
+        }
+    }
+
+    IEnumerator AvoidColdown()
+    {
+        yield return new WaitForSeconds(timeOfAvoid);
+        isAvoid = false;
+    }
+
 
     private void OnCollisionStay(Collision collision)
     {
@@ -105,9 +131,16 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             UpdateTarget();
         }
         Vector3 pursuit = this.Pursuit(_targetTransform.position);
+        Vector3 stearing = pursuit;
+        if (isAvoid)
+        {
+            Vector3 avoid = this.Avoid();
+            stearing += avoid;
+        }
+        
         //transform.LookAt(_targetTransform);
         iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", _targetTransform,"axis", "y", "time", 2f));
-        transform.position += pursuit * Time.deltaTime;
+        transform.position += stearing * Time.deltaTime;
     }
 
     private void UpdateTarget()
@@ -208,7 +241,8 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _rigidBody = GetComponent<Rigidbody>();
         GetRoute();
         _arrivalDistance = EnemyManagger.Instance.maxDistance;
-        this.speed = UnityEngine.Random.Range(.2f, .4f);
+        //this.speed = UnityEngine.Random.Range(.2f, .4f);
+        this.speed = 3;
 
         _isAttacking = false;
         _isRecivingDamage = false;

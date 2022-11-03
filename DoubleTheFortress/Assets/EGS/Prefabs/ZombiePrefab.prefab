@@ -2819,7 +2819,7 @@ GameObject:
   - component: {fileID: 547159083977004941}
   m_Layer: 0
   m_Name: ZombiePrefab
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2890,7 +2890,11 @@ MonoBehaviour:
   tempPosition: {x: 0, y: 0, z: 0}
   futurePosition: {x: 0, y: 0, z: 0}
   changeInT: 0
+  maxSeeAhead: 0.5
+  maxAvoidForce: 0.5
+  avoidGameObject: {fileID: 0}
   CurrentState: 0
+  timeOfAvoid: 2
 --- !u!114 &5856071710979874924
 MonoBehaviour:
   m_ObjectHideFlags: 0

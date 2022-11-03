@@ -18,6 +18,11 @@ public class StearingBehaviours : MonoBehaviour
     public Vector3 futurePosition;
     public float changeInT;
 
+    [Header("Avoid")]
+    public float maxSeeAhead;
+    public float maxAvoidForce;
+    public GameObject avoidGameObject;
+
     public Vector3 Seek(Vector3 targetPos)
     {
         Vector3 distance = targetPos - transform.position;
@@ -33,5 +38,15 @@ public class StearingBehaviours : MonoBehaviour
         tempPosition = targetPos;
         futurePosition = targetPos + (VPF * changeInT);
         return Seek(futurePosition);
+    }
+
+    public Vector3 Avoid()
+    {
+        Vector3 seeAhead = transform.position + (velocity.normalized * maxSeeAhead / 2);
+        //to do rotate 
+        Vector3 avoidanceForce = seeAhead - avoidGameObject.transform.position;
+        avoidanceForce = (avoidanceForce.normalized) * maxAvoidForce;
+
+        return avoidanceForce;
     }
 }
