@@ -53,6 +53,8 @@ public class InventoryController : MonoBehaviour
     private bool _timerIsActive;
     private bool _timerHasFinished;
     
+    Hand _currentSelectingHand;
+
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
 
@@ -73,7 +75,8 @@ public class InventoryController : MonoBehaviour
         DeselectReference.action.performed += ctx => DeselectItems();
         SelectRightReference.action.performed += ctx => SelectItem(false);
         SelectLeftReference.action.performed += ctx => SelectItem(true);
-        ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
+        ConfirmSelectReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
+        ConfirmSelectReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
@@ -139,7 +142,7 @@ public class InventoryController : MonoBehaviour
         
     }
     
-    void ConfirmSelection()
+    void ConfirmSelection(Hand hand)
     {
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
             
@@ -165,10 +168,12 @@ public class InventoryController : MonoBehaviour
             
             case 1 :
                 gunMesh.material = shadowMaterial;
-                break;
-            case 2:
                 torchMesh.material = shadowMaterial;
+
                 break;
+            // case 1:
+            //     torchMesh.material = shadowMaterial;
+            //     break;
         }
         
     }
