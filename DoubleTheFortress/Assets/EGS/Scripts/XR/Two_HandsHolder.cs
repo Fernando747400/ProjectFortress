@@ -43,14 +43,14 @@ public class Two_HandsHolder : XRBaseInteractable
         Debug.Log(_hand.HandIsEmpty + "  _hand.HandIsEmpty ");
         if (!_hand.HandIsEmpty) return;
         _isGrabbing = true;
-        _hand.HandleHandsVisible(!_isGrabbing);
+        _hand.HandleHandsVisible(false);
         OnGrabbed?.Invoke();
     }
 
     protected virtual void Drop(XRBaseInteractor interactor)
     {
         _isGrabbing = false;
-        if(_hand!= null) _hand.HandleHandsVisible(!_isGrabbing);
+        _hand.HandleHandsVisible(true);
         OnReleased?.Invoke();
 
     }
