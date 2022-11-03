@@ -7,6 +7,9 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     #region Variables
 
+    [Header("Inventory")] 
+    [SerializeField] private InventoryController _inventoryController;
+
     [Header("Settings")]
     [SerializeField] private float _pointsToRepair;
     [SerializeField] private float _pointsToUpgrade;
@@ -36,7 +39,7 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
     #region unity Methods
     void Start()
     {
-
+        _inventoryController.OnIsSelecting += HandleIsSelectingState;
     }
 
     void FixedUpdate()
@@ -66,6 +69,19 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
         }
     }
 
+    void HandleIsSelectingState(bool isSelecting)
+    {
+        Collider collider = GetComponent<Collider>();
+
+        if (isSelecting)
+        {
+            collider.enabled = false;
+        }
+        else
+        {
+            collider.enabled = true;
+        }
+    }
     #endregion
 
 }

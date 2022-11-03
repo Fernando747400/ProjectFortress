@@ -85566,14 +85566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e1c365e1f2d2640ab71be5f5952c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hammerHand: {fileID: 2416471593635629102}
-  musketGunHand: {fileID: 6103072571006914793}
   _playerSelectedItem: 0
   _objects: []
   hammerBlackMesh: {fileID: 0}
   hammerWoodMesh: {fileID: 0}
   gunMesh: {fileID: 0}
-  _meshes: []
   shadowMaterial: {fileID: 0}
   hammerBlackMaterial: {fileID: 0}
   hammerWoodMaterial: {fileID: 0}
@@ -85582,7 +85579,6 @@ MonoBehaviour:
   DeselectReference: {fileID: 0}
   SelectReference: {fileID: 0}
   _maxTimeToSelect: 1.5
-  hasObjectSelected: 0
   areasInteraction: []
 --- !u!4 &8170244846415106485
 Transform:

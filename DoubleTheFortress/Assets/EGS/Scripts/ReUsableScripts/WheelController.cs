@@ -67,9 +67,9 @@ public class WheelController : MonoBehaviour
         // if (!leftHolder.IsGrabbing || !rightHolder.IsGrabbing)
             // _canMoveCannon = false;
         
-        if (leftHolder.IsGrabbing && rightHolder.IsGrabbing)
+        if (leftHolder.IsGrabbing)
         {
-            if (_inventoryController.SelectedItem == PlayerSelectedItem.None)
+            if (_inventoryController.SelectedItem == PlayerSelectedItem.None || _inventoryController.SelectedItem == PlayerSelectedItem.Torch)
             {
                 _canMoveCannon = true;
             }

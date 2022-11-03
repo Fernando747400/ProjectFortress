@@ -33,6 +33,7 @@ public class WallManager : MonoBehaviour
     private GameObject _currentWallObject;
     private IConstructable _mywall;
     private int _wallIndex;
+    private Collider _mainCollider;
     #endregion
 
     private void Start()
@@ -101,6 +102,7 @@ public class WallManager : MonoBehaviour
         _wallIndex++;
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
+        UpdateTrigger();
     }
 
     private int GetCurrentIndex()
@@ -122,6 +124,8 @@ public class WallManager : MonoBehaviour
         _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         _mywallScript.onRecieveHammer += ReceiveHammer;
         _mywallScript.onRecieveDamage += ReceiveDamage;
+        _mainCollider = this.gameObject.GetComponent<Collider>();
+        UpdateTrigger();
     }
 
     private void DownGrade()
@@ -133,6 +137,18 @@ public class WallManager : MonoBehaviour
         _currentWallObject = _mywall.CurrentObject;
         _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         NewWall(_currentWall);
+        UpdateTrigger();
+    }
+
+    private void UpdateTrigger()
+    {
+        if(GetCurrentIndex() == 0)
+        {
+            _mainCollider.isTrigger = true;
+        } else
+        {
+            _mainCollider.isTrigger = false;
+        }
     }
 
 }
