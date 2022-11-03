@@ -80,12 +80,13 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            if (_isGrabbing)
-            {
-                _isGrabbing = false;
+            // if (_isGrabbing)
+            // {
                 // _hand.HandleHandsVisible(!_isGrabbing);
-            }
+            // }
             
+            _isGrabbing = false;
+
             foreach (var hand in _hands)
             {
                 hand.HandleHandsVisible(true);
