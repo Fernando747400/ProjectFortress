@@ -40,6 +40,8 @@ public class Two_HandsHolder : XRBaseInteractable
 
     protected virtual void Grab(XRBaseInteractor interactor)
     {
+        Debug.Log(_hand.HandIsEmpty + "  _hand.HandIsEmpty ");
+        if (!_hand.HandIsEmpty) return;
         _isGrabbing = true;
         _hand.HandleHandsVisible(!_isGrabbing);
         OnGrabbed?.Invoke();
@@ -57,9 +59,8 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            // Debug.Log("Hand is in the handle");
-            // _isGrabbing = true;
             _hand = other.GetComponent<HandController_XR>();
+            _hand.HandleIsEmpty();
             OnHandsOut?.Invoke();
 
         }
