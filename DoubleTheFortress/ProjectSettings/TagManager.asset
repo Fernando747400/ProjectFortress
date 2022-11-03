@@ -11,6 +11,8 @@ TagManager:
   - Final
   - Core
   - HandTest
+  - Zombie
+  - MenuCanonBall
   layers:
   - Default
   - TransparentFX
