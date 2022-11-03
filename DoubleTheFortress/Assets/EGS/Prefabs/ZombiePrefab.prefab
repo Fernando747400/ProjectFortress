@@ -2817,6 +2817,7 @@ GameObject:
   - component: {fileID: 5856071710979874924}
   - component: {fileID: -5414638434888774667}
   - component: {fileID: 900584886756599983}
+  - component: {fileID: 547159083977004941}
   m_Layer: 0
   m_Name: ZombiePrefab
   m_TagString: Untagged
@@ -2890,8 +2891,7 @@ MonoBehaviour:
   tempPosition: {x: 0, y: 0, z: 0}
   futurePosition: {x: 0, y: 0, z: 0}
   changeInT: 0
-  maxDistance: 0
-  WallDamage: 0
+  CurrentState: 0
 --- !u!114 &5856071710979874924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,6 +2935,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &547159083977004941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8410354908158750909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8509712105442043033
 GameObject:
   m_ObjectHideFlags: 0

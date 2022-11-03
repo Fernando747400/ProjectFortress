@@ -3,9 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class ZombieAnimator : MonoBehaviour
 {
-    public enum AnimationsEnum { Idle, Walk, Death, Hit, Attack, Dance }
-    
-    [HideInInspector] public AnimationsEnum CurrentAnimation;
+    public enum AnimationsEnum { Idle, Walk, Death, Hit, Attack, Dance }   
+    public AnimationsEnum CurrentAnimation;
  
     private Animator _zombieAnimator;
     private const string IdleAnim = "IdleZombie";
@@ -13,7 +12,7 @@ public class ZombieAnimator : MonoBehaviour
     private const string DeathAnim = "DeathZombie";
     private const string HitAnim = "HitDamage";
     private const string AttackAnim = "ZombieAttack";
-    private const string DanceAnim = "ZombieDance1";
+    private const string DanceAnim = "Happy zombie";
 
     private void Awake()
     {
