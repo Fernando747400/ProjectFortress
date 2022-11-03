@@ -467,12 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f8e4d4e314e594bb181b82083bacc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers:
-  - {fileID: 1970599012}
-  myMaterials:
-  - {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d, type: 3}
-  _selectedItem: 8
-  _typeOfItem: 12
   _inventoryController: {fileID: 8094344047049755825}
   _particles: {fileID: 290376484404728263}
   _collider: {fileID: 897175036}
@@ -578,6 +572,18 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &1421472069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1613792122376627169, guid: 732166c9f10511040a0b8b10bfacb5e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1613792122392731106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1970599009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5666,12 +5672,22 @@ PrefabInstance:
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: lerpTime
-      value: 0.922
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: _maxValue
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 1421472069}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: circleMesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
@@ -5721,7 +5737,7 @@ PrefabInstance:
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.data[1].r
-      value: 0.9930656
+      value: 0.93819284
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
@@ -5741,7 +5757,7 @@ PrefabInstance:
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.data[2].r
-      value: 0.3329252
+      value: 0.1358285
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
@@ -9295,14 +9311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers:
-  - {fileID: 2028642721474360634}
-  - {fileID: 6450053817135713625}
-  myMaterials:
-  - {fileID: -8796627655084249796, guid: 5536eb113c93aae42a6010fef9b8389c, type: 3}
-  - {fileID: -3522955778539423533, guid: 820da96c311ae524e8e3c78d90d3faee, type: 3}
-  _selectedItem: 1
-  _typeOfItem: 3
   _inventoryController: {fileID: 8094344047049755825}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
@@ -25124,12 +25132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb773401382b4043a27ff2ce9b76d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers:
-  - {fileID: 8227264181067993277}
-  myMaterials:
-  - {fileID: 2100000, guid: e90227551fbab5e468eac41f012bb0fa, type: 2}
-  _selectedItem: 2
-  _typeOfItem: 3
   damage: 10
   bulletSpeed: 15
   maxDistance: 900
@@ -34818,19 +34820,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSelectedItem: 0
   _playerHandsObjects: 0
+  _objects:
+  - {fileID: 2416471593635629102}
+  - {fileID: 6103072571006914793}
+  - {fileID: 897175033}
   _objectsRightHand:
   - {fileID: 2416471593635629102}
   - {fileID: 6103072571006914793}
   _objectsLeftHand:
   - {fileID: 897175033}
+  hammerBlackMesh: {fileID: 2028642721474360634}
+  hammerWoodMesh: {fileID: 6450053817135713625}
+  gunMesh: {fileID: 8227264181067993277}
+  torchMesh: {fileID: 1970599012}
   shadowMaterial: {fileID: 2100000, guid: 0c776d28f600c614584608d9dd72124c, type: 2}
-  ConfirmSelectRightReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
+  hammerBlackMaterial: {fileID: -8796627655084249796, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
     type: 3}
-  ConfirmSelectLeftReference: {fileID: 771906664130552712, guid: c348712bda248c246b8c49b3db54643f,
+  hammerWoodMaterial: {fileID: -3522955778539423533, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
     type: 3}
-  DeselectLeftReference: {fileID: -882631382372611227, guid: c348712bda248c246b8c49b3db54643f,
+  gunMaterial: {fileID: -3263835130708698965, guid: ec0e7fe892981e649897793dfbd7c05c,
     type: 3}
-  DeselectRightReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
+  torchMaterial: {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d,
+    type: 3}
+  ConfirmSelectRightReference: {fileID: 0}
+  ConfirmSelectLeftReference: {fileID: 0}
+  DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   SelectRightReference: {fileID: 2551534540674614116, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}

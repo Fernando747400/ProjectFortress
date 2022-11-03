@@ -746,9 +746,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Deselect_Inventroy",
+                    "name": "Deselect_Inventroy_Right",
                     "type": "Button",
                     "id": "d6b3d570-a7f4-4c0f-8de7-c1a11a7464ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Deselect_Inventroy_Left",
+                    "type": "Button",
+                    "id": "67531f25-aeef-414a-a9cb-09bbd32acf43",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -924,18 +933,7 @@
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Deselect_Inventroy",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3701562c-20fe-42a0-8eeb-199154eda95f",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Deselect_Inventroy",
+                    "action": "Deselect_Inventroy_Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -991,6 +989,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select_Confirm_Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3701562c-20fe-42a0-8eeb-199154eda95f",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Deselect_Inventroy_Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
