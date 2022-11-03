@@ -130,7 +130,7 @@ public class InventoryController : MonoBehaviour
 
         ResetTimer();
         //Deselect current objects in hand
-        DeselectItems(_currentSelectedObjects , Hand.None);
+        DeselectItems(_currentSelectedObjects , _currentSelectingHand);
 
         List<GameObject> objects = new List<GameObject>();
         
