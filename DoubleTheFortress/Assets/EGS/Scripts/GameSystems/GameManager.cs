@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private int _zombieKills;
     private double _elapsedTime;
     private bool _isPaused;
+    private bool _gameStarted;
+    private bool _gameFinished;
+    private int _currentMinute;
     
     public int Kills { get => _zombieKills; }
     public double ElapsedTime { get => _elapsedTime; }
@@ -33,11 +36,16 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         AddTime();
+        ProgressGame();
+        if (Input.GetKeyDown(KeyCode.L)) StartGame();
     }
 
     public void StartGame()
     {
+        if (_gameStarted) return;
         StartGameEvent?.Invoke();
+        _gameStarted = true;
+        UnpauseGame();
     }
 
     public void FinishGame()
@@ -72,8 +80,21 @@ public class GameManager : MonoBehaviour
     {
         _zombieKills = 0;
         _elapsedTime = 0;
-        _isPaused = false;
+        _currentMinute = 0;
+        _isPaused = true;
+        _gameStarted = false;
         Debug.LogWarning("The game manager time starts on play for dev purposes. Be sure to change the value to false before game deploy.");
+    }
+
+    private void ProgressGame()
+    {
+        if (IsPaused) return;
+        if(TimeSpan.FromSeconds(_elapsedTime).Minutes > _currentMinute)
+        {
+            _currentMinute++;
+            EnemyManagger.Instance.SpawnWithDelay(1.5f,3);
+            Debug.Log("Spawned 3 more zombies");
+        }
     }
     
 }
