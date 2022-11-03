@@ -17,20 +17,8 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private GameObject[] _objectsLeftHand;
     
 
-    [Header("Mesh Renderers")]
-    [SerializeField] private MeshRenderer hammerBlackMesh;
-    [SerializeField] private MeshRenderer hammerWoodMesh;
-    [SerializeField] private MeshRenderer gunMesh;
-    [SerializeField] private MeshRenderer torchMesh;
-    // [SerializeField] private MeshRenderer[] _meshes;
-    
     [Header("Materials")]
     [SerializeField] private Material shadowMaterial;
-    [SerializeField] private Material hammerBlackMaterial;
-    [SerializeField] private Material hammerWoodMaterial;
-    [SerializeField] private Material gunMaterial;
-    [SerializeField] private Material torchMaterial;
-    
     
     [Header("Input Actions")]
     [SerializeField] private InputActionReference ConfirmSelectRightReference;
@@ -38,7 +26,6 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private InputActionReference DeselectReference;
     [SerializeField] private InputActionReference SelectRightReference;
     [SerializeField] private InputActionReference SelectLeftReference;
-    // public InputActionReference WeaponReference;
 
     [Header("Inventory")]
     [SerializeField] float _maxTimeToSelect = 1.5f;
@@ -55,6 +42,7 @@ public class InventoryController : MonoBehaviour
     private bool _timerHasFinished;
 
     private Hand _currentSelectingHand = Hand.None;
+    private List<GameObject> _currentSelectedObjects = new List<GameObject>();
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
@@ -127,11 +115,14 @@ public class InventoryController : MonoBehaviour
         if (isLeft)
         {
             objects = _objectsLeftHand.ToList();
+            _currentSelectedObjects = objects;
             _currentSelectingHand = Hand.LeftHand;
+            
         }
         else
         {
             objects = _objectsRightHand.ToList();
+            _currentSelectedObjects = objects;
             _currentSelectingHand = Hand.RightHand;
 
         }
@@ -140,7 +131,7 @@ public class InventoryController : MonoBehaviour
         
         _currentSelected = _selectIndex;
         objects[_currentSelected].SetActive(true);
-        MaterialObjectSelecting(_currentSelected);
+        MaterialObjectSelecting(_currentSelected, objects);
         _selectIndex++;
         OnIsSelecting?.Invoke(true);
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
@@ -156,7 +147,7 @@ public class InventoryController : MonoBehaviour
             
         OnIsSelecting?.Invoke(false);
         ResetTimer();
-        HandleSelectedItem(_currentSelected);
+        HandleSelectedItem(_currentSelected, _currentSelectedObjects);
         hasObjectSelected = true;
     }
     
@@ -165,56 +156,20 @@ public class InventoryController : MonoBehaviour
         _isInBoxInteraction = !interaction;
     }
 
-    void MaterialObjectSelecting(int item)
+    void MaterialObjectSelecting(int item, List<GameObject> objects)
     {
-        switch (item)
-        {
-            case 0 :
-                hammerBlackMesh.material = shadowMaterial;
-                hammerWoodMesh.material = shadowMaterial;
-                break;
-            
-            case 1 :
-                gunMesh.material = shadowMaterial;
-                torchMesh.material = shadowMaterial;
-
-                break;
-            // case 1:
-            //     torchMesh.material = shadowMaterial;
-            //     break;
-        }
-        
+        objects[item].GetComponent<IGrabbable>().SetMaterials(shadowMaterial);
     }
 
-    void HandleSelectedItem(int itemSelected)
+    void HandleSelectedItem(int itemSelected, List<GameObject> objects)
     {
-        switch (itemSelected)
-        {
-            //hammer selected
-            case 0:
-                hammerBlackMesh.material = hammerBlackMaterial;
-                hammerWoodMesh.material = hammerWoodMaterial;
-                
-                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
-                _playerHandsObjects = PlayerSelectedItem.ObjectsRightHand;
-                
-
-                break;
-            //Gun selected
-            case 1 :
-                gunMesh.material = gunMaterial;
-                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
-                _playerHandsObjects = PlayerSelectedItem.ObjectsRightHand;
-
-                break;
-            //Torch
-            case 2:
-                torchMesh.material = torchMaterial;
-                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Torch);
-                _playerHandsObjects = PlayerSelectedItem.ObjectsLeftHand;
-                break;
-        }
-
+        
+        IGrabbable item = objects[itemSelected].GetComponent<IGrabbable>();
+        item.ResetMaterials();
+        
+        OnPlayerSelectItem?.Invoke(item.Item);
+        _playerHandsObjects = item.TypeOfItem;
+        
         _selectIndex = _objects.Length;
         
     }

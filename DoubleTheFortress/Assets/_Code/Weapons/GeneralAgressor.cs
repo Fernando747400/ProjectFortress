@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GeneralAgressor : MonoBehaviour
+public class GeneralAgressor : IGrabbable
 {
 
     [SerializeField] protected float damage;

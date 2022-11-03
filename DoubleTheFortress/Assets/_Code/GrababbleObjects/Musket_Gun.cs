@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Update = UnityEngine.PlayerLoop.Update;
 
-public class Musket_Gun : MonoBehaviour, IGrabbable
+public class Musket_Gun : IGrabbable
 {
 
     #region Variables
@@ -23,20 +19,10 @@ public class Musket_Gun : MonoBehaviour, IGrabbable
     //in when it fired the  hitScan
     private Vector3 savedFirePosition;
     
-    public Vector3 Position
-    {
-        get;
-        set;
-    }
-
-    public Vector3 Rotation
-    {
-        get;
-        set;
-    }
-
-
-
+   
+    
+    
+    
     #endregion
     
     #region Unity Methods
