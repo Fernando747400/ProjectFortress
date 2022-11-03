@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using DebugStuff.Inventory;
 using UnityEngine;
 
-public class Torch_Grab : MonoBehaviour
+public class Torch_Grab : IGrabbable
 {
     [SerializeField] private InventoryController _inventoryController;
     [SerializeField] private GameObject _particles;

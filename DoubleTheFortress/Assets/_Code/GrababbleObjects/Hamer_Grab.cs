@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Hamer_Grab : MonoBehaviour, IGrabbable
+public class Hamer_Grab : IGrabbable
 {
 
     #region Variables
@@ -19,19 +19,6 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
 
     public event Action<GameObject> ConstructableHitEvent;
     public event Action DisableHammerEvent;
-    
-    public Vector3 Position
-    {
-        get;
-        set;
-    }
-
-    public Vector3 Rotation
-    {
-        get;
-        set;
-    }
-
     
 
     #endregion
