@@ -12,14 +12,21 @@ namespace DebugStuff.Inventory
         WeaponInteraction,
         GrabbingInteraction,
     }
+    
+    [System.Flags]
     public enum PlayerSelectedItem
     {
-        None,
-        Hammer,
-        Musket,
-        Defibrillator,
-        Selecting,
-        Torch,
+        None = 0,  
+        Hammer = 1 ,
+        Musket =2,
+        Defibrillator = 4,
+        Torch = 8,
+        Selecting = 16,
+
+        
+        
+        ObjectsRightHand = Musket | Hammer,
+        ObjectsLeftHand =  Torch | Defibrillator,
     }
     
 }
