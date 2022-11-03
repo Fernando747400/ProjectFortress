@@ -94,7 +94,6 @@ public class InventoryController : MonoBehaviour
         if (SelectedItem == PlayerSelectedItem.Selecting)
         {
             HandleTimer();
-            
         }
     }
 
@@ -223,7 +222,6 @@ public class InventoryController : MonoBehaviour
     }
     void ResetTimer()
     {
-        Debug.Log("RESET TIMER");
         _time = 0;
         _timerIsActive = false;
         _timerHasFinished = true;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5788,6 +5788,11 @@ PrefabInstance:
       propertyPath: _myColors.Array.data[2].r
       value: 0.2997123
       objectReference: {fileID: 0}
+    - target: {fileID: 4147161151585178640, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
 --- !u!4 &1901195146875458613
@@ -9676,7 +9681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryController: {fileID: 8094344047049755825}
   handSkinnedMesh: {fileID: 5818192169145212841}
-  _hand: 0
+  _hand: 1
   handObjects: 3
 --- !u!1 &4491282470368194180
 GameObject:
@@ -24049,7 +24054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryController: {fileID: 8094344047049755825}
   handSkinnedMesh: {fileID: 2293352914901443267}
-  _hand: 1
+  _hand: 2
   handObjects: 12
 --- !u!1 &5664256130106437634
 GameObject:
