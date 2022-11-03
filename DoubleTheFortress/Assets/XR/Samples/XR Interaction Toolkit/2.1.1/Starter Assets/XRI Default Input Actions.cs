@@ -741,9 +741,18 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Select_Confirm"",
+                    ""name"": ""Select_Confirm_Right"",
                     ""type"": ""Button"",
                     ""id"": ""c5db3ddb-ea31-4555-ac7f-af99485d15a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select_Confirm_Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f2040f4-9a6f-401d-b25b-efa7fa1d69ae"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -893,18 +902,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Select_Confirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7c826d19-265a-4b51-a03a-201d112a9eb7"",
-                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Select_Confirm"",
+                    ""action"": ""Select_Confirm_Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -915,7 +913,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Select_Confirm"",
+                    ""action"": ""Select_Confirm_Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -993,6 +991,28 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""Select_Inventory_Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40330d28-8f77-480a-bfb9-29bf9d51cd14"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Select_Confirm_Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7703c85-52f0-47d9-9bf9-394ae316e672"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select_Confirm_Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1677,7 +1697,8 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRIRightHandInteraction_RotateAnchor = m_XRIRightHandInteraction.FindAction("Rotate Anchor", throwIfNotFound: true);
         m_XRIRightHandInteraction_TranslateAnchor = m_XRIRightHandInteraction.FindAction("Translate Anchor", throwIfNotFound: true);
         m_XRIRightHandInteraction_Shoot = m_XRIRightHandInteraction.FindAction("Shoot", throwIfNotFound: true);
-        m_XRIRightHandInteraction_Select_Confirm = m_XRIRightHandInteraction.FindAction("Select_Confirm", throwIfNotFound: true);
+        m_XRIRightHandInteraction_Select_Confirm_Right = m_XRIRightHandInteraction.FindAction("Select_Confirm_Right", throwIfNotFound: true);
+        m_XRIRightHandInteraction_Select_Confirm_Left = m_XRIRightHandInteraction.FindAction("Select_Confirm_Left", throwIfNotFound: true);
         m_XRIRightHandInteraction_Select_InventoryRight = m_XRIRightHandInteraction.FindAction("Select_InventoryRight", throwIfNotFound: true);
         m_XRIRightHandInteraction_Deselect_Inventroy = m_XRIRightHandInteraction.FindAction("Deselect_Inventroy", throwIfNotFound: true);
         m_XRIRightHandInteraction_Select_Weapon = m_XRIRightHandInteraction.FindAction("Select_Weapon", throwIfNotFound: true);
@@ -2076,7 +2097,8 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRIRightHandInteraction_RotateAnchor;
     private readonly InputAction m_XRIRightHandInteraction_TranslateAnchor;
     private readonly InputAction m_XRIRightHandInteraction_Shoot;
-    private readonly InputAction m_XRIRightHandInteraction_Select_Confirm;
+    private readonly InputAction m_XRIRightHandInteraction_Select_Confirm_Right;
+    private readonly InputAction m_XRIRightHandInteraction_Select_Confirm_Left;
     private readonly InputAction m_XRIRightHandInteraction_Select_InventoryRight;
     private readonly InputAction m_XRIRightHandInteraction_Deselect_Inventroy;
     private readonly InputAction m_XRIRightHandInteraction_Select_Weapon;
@@ -2094,7 +2116,8 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @RotateAnchor => m_Wrapper.m_XRIRightHandInteraction_RotateAnchor;
         public InputAction @TranslateAnchor => m_Wrapper.m_XRIRightHandInteraction_TranslateAnchor;
         public InputAction @Shoot => m_Wrapper.m_XRIRightHandInteraction_Shoot;
-        public InputAction @Select_Confirm => m_Wrapper.m_XRIRightHandInteraction_Select_Confirm;
+        public InputAction @Select_Confirm_Right => m_Wrapper.m_XRIRightHandInteraction_Select_Confirm_Right;
+        public InputAction @Select_Confirm_Left => m_Wrapper.m_XRIRightHandInteraction_Select_Confirm_Left;
         public InputAction @Select_InventoryRight => m_Wrapper.m_XRIRightHandInteraction_Select_InventoryRight;
         public InputAction @Deselect_Inventroy => m_Wrapper.m_XRIRightHandInteraction_Deselect_Inventroy;
         public InputAction @Select_Weapon => m_Wrapper.m_XRIRightHandInteraction_Select_Weapon;
@@ -2135,9 +2158,12 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Shoot.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
-                @Select_Confirm.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm;
-                @Select_Confirm.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm;
-                @Select_Confirm.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm;
+                @Select_Confirm_Right.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm_Right;
+                @Select_Confirm_Right.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm_Right;
+                @Select_Confirm_Right.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm_Right;
+                @Select_Confirm_Left.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm_Left;
+                @Select_Confirm_Left.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm_Left;
+                @Select_Confirm_Left.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_Confirm_Left;
                 @Select_InventoryRight.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_InventoryRight;
                 @Select_InventoryRight.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_InventoryRight;
                 @Select_InventoryRight.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelect_InventoryRight;
@@ -2181,9 +2207,12 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @Select_Confirm.started += instance.OnSelect_Confirm;
-                @Select_Confirm.performed += instance.OnSelect_Confirm;
-                @Select_Confirm.canceled += instance.OnSelect_Confirm;
+                @Select_Confirm_Right.started += instance.OnSelect_Confirm_Right;
+                @Select_Confirm_Right.performed += instance.OnSelect_Confirm_Right;
+                @Select_Confirm_Right.canceled += instance.OnSelect_Confirm_Right;
+                @Select_Confirm_Left.started += instance.OnSelect_Confirm_Left;
+                @Select_Confirm_Left.performed += instance.OnSelect_Confirm_Left;
+                @Select_Confirm_Left.canceled += instance.OnSelect_Confirm_Left;
                 @Select_InventoryRight.started += instance.OnSelect_InventoryRight;
                 @Select_InventoryRight.performed += instance.OnSelect_InventoryRight;
                 @Select_InventoryRight.canceled += instance.OnSelect_InventoryRight;
@@ -2430,7 +2459,8 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnRotateAnchor(InputAction.CallbackContext context);
         void OnTranslateAnchor(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnSelect_Confirm(InputAction.CallbackContext context);
+        void OnSelect_Confirm_Right(InputAction.CallbackContext context);
+        void OnSelect_Confirm_Left(InputAction.CallbackContext context);
         void OnSelect_InventoryRight(InputAction.CallbackContext context);
         void OnDeselect_Inventroy(InputAction.CallbackContext context);
         void OnSelect_Weapon(InputAction.CallbackContext context);
