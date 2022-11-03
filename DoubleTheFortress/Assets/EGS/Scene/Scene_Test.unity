@@ -5592,6 +5592,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1613792122376627169, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1613792123399080393, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: m_Name
@@ -5651,6 +5656,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _maxValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[0].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[1].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[1].g
+      value: 0.7401557
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[1].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[2].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[2].g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _myColors.Array.data[2].r
+      value: 0.2997123
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
