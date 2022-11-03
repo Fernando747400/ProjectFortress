@@ -11,39 +11,46 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private Transform target;
     private float distance;
     public float maxDistance;
+    private enum Anim { Idle, Walk, Death, Hit, Attack, Dance}
+    private Anim anim;
+    private GameObject DamageTarget;
+    private bool IsAttacking;
+
+    public float WallDamage;
 
     public event Action ZombieDieEvent;
     public event Action <Transform> ZombieTotemEvent;
 
     //Animations
     private Animator animator;
-    private bool _walk = true;
-    private bool _idle = false;
-    private bool _dance = false;
-    private bool _die = false;
-    private bool _damage = false;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         this.speed = UnityEngine.Random.Range(.5f, 4);
         maxDistance = EnemyManagger.Instance.maxDistance;
         SubscribeToPauseEvents();
+        anim = Anim.Walk;
+        IsAttacking = false;
+        GameManager.Instance.FinishGameEvent += LoseAnim;
     }
 
     void Update()
     {
+        animator.SetInteger("Zombie", ((int)anim));
         try 
         {
-            Pursuit();
+           Pursuit();
         }
         catch
         {
-            GetRoute();
+           GetRoute();
         }   
     }
 
     void Pursuit()
     {
+        anim = Anim.Walk;
         if (_isPaused) return;
         distance = Vector3.Distance(this.transform.position, target.transform.position);
         if (distance < maxDistance)
@@ -68,7 +75,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         target = transformQueue.Peek();
     }
 
-    void Die()
+    public void Die()
     {
         transformQueue.Clear();
         target = null;
@@ -82,15 +89,48 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if(other.CompareTag("Final"))
         {
-            Die();
+            anim = Anim.Death;
         }
+
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Wall") && !IsAttacking)
+        {
+            anim = Anim.Attack;
+            DamageTarget = collision.gameObject;
+            IsAttacking = true;
+        }
+        if(collision.gameObject.CompareTag("Core") && !IsAttacking)
+        {
+            DamageTarget.GetComponent<IGeneralTarget>().ReceiveRayCaster(this.gameObject, WallDamage);
+            anim = Anim.Death;
+        }
+    }
+
+    public void DoDamageToTarget()
+    {
+        DamageTarget.GetComponent<IGeneralTarget>().ReceiveRayCaster(this.gameObject, WallDamage);
+    }
+
+    public void FinishAtack()
+    {
+        IsAttacking = false;  
     }
 
     protected virtual void TakeDamage(float dmgValue)
     {
+        anim = Anim.Hit;
         if (_isPaused) return;
         CurrentHp -= dmgValue;
         CurrentHp = Mathf.Clamp(CurrentHp, 0, MaxHp);
+
+    }
+
+    private void LoseAnim()
+    {
+        anim = Anim.Dance;
     }
 
     #region Interface Methods
@@ -106,12 +146,8 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     
     void Pause()
     {
+        anim = Anim.Idle;
         _isPaused = true;
-        _walk = false;
-        _idle = true;
-        _dance = false;
-        _die = false;
-        _damage = false;
     }
 
     void Unpause()

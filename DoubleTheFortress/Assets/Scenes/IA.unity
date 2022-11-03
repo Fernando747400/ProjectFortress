@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 2
+  Damage: 5
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
   ZombiePooling: {fileID: 283135058}
 --- !u!114 &283135058
