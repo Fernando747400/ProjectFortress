@@ -241,8 +241,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _rigidBody = GetComponent<Rigidbody>();
         GetRoute();
         _arrivalDistance = EnemyManagger.Instance.maxDistance;
-        //this.speed = UnityEngine.Random.Range(.2f, .4f);
-        this.speed = 3;
+        this.speed = UnityEngine.Random.Range(.2f, .4f);
 
         _isAttacking = false;
         _isRecivingDamage = false;
