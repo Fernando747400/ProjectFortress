@@ -41,7 +41,7 @@ public class InventoryController : MonoBehaviour
     private bool _timerHasFinished;
 
     private Hand _currentSelectingHand = Hand.None;
-    private List<GameObject> _currentSelectedObjects = new List<GameObject>();
+    private List<GameObject> _currentSelectedObjects;
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
@@ -60,6 +60,8 @@ public class InventoryController : MonoBehaviour
     void Start()
     {
         
+        _currentSelectedObjects = new List<GameObject>();
+        
         DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
         DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
         SelectRightReference.action.performed += ctx => SelectItem(false);
@@ -73,6 +75,17 @@ public class InventoryController : MonoBehaviour
             box.OnHandEnterActionZone += HandleBoxInteraction;
         }
         OnPlayerSelectItem += HandleSelectedItem;
+        
+        foreach (var obj in _objectsLeftHand)
+        {
+            _currentSelectedObjects.Add(obj);
+        }
+
+        foreach (var obj in _objectsRightHand)
+        {
+            _currentSelectedObjects.Add(obj);
+        }
+     
         DeselectItems(_currentSelectedObjects, Hand.None);
     }
 
@@ -92,12 +105,11 @@ public class InventoryController : MonoBehaviour
     
     void DeselectItems(List<GameObject> objects, Hand hand)
     {
-
         if (hand != _currentSelectingHand)
         {
             return;
         }
-
+        
         for (int i = 0; i < objects.Count; i++)
         {
             objects[i].SetActive(false);
