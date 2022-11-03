@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DebugStuff.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,72 +10,92 @@ public class InventoryController : MonoBehaviour
 {
     #region Variables
     [Header("GameObjects")]
-    [SerializeField] private GameObject hammerHand;
-    [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
-    [SerializeField] private GameObject[] _objects;
-
-    [Header("Mesh Renderers")]
-    [SerializeField] private MeshRenderer hammerBlackMesh;
-    [SerializeField] private MeshRenderer hammerWoodMesh;
-    [SerializeField] private MeshRenderer gunMesh;
-    [SerializeField] private MeshRenderer[] _meshes;
+    [SerializeField] private PlayerSelectedItem _playerHandsObjects;
+    [SerializeField] private GameObject[] _objectsRightHand;
+    [SerializeField] private GameObject[] _objectsLeftHand;
     
     [Header("Materials")]
     [SerializeField] private Material shadowMaterial;
-    [SerializeField] private Material hammerBlackMaterial;
-    [SerializeField] private Material hammerWoodMaterial;
-    [SerializeField] private Material gunMaterial;
-    
     
     [Header("Input Actions")]
-    public InputActionReference ConfirmSelectReference;
-    public InputActionReference DeselectReference;
-    public InputActionReference SelectReference;
-    // public InputActionReference WeaponReference;
+    [SerializeField] private InputActionReference ConfirmSelectRightReference;
+    [SerializeField] private InputActionReference ConfirmSelectLeftReference;
+    [SerializeField] private InputActionReference DeselectLeftReference;
+    [SerializeField] private InputActionReference DeselectRightReference;
+    [SerializeField] private InputActionReference SelectRightReference;
+    [SerializeField] private InputActionReference SelectLeftReference;
 
     [Header("Inventory")]
-    public float _maxTimeToSelect = 1.5f;
-    public bool hasObjectSelected = false;
+    [SerializeField] float _maxTimeToSelect = 1.5f;
+    private bool hasObjectSelected = false;
     public List<BoxAreasInteraction> areasInteraction;
-
+    
     private int _currentSelected;
     private int _selectIndex;
     private bool _isInBoxInteraction;
    
     private float _time;
-    private float _initialTimer;
-    private bool _timerHasStarted;
+    private float _initialTimer = 0;
+    private bool _timerIsActive;
     private bool _timerHasFinished;
-    
-    private Action<PlayerSelectedItem> OnPlayerSelectItem;
 
-    
+    private Hand _currentSelectingHand = Hand.None;
+    private List<GameObject> _currentSelectedObjects;
+
+    private Action<PlayerSelectedItem> OnPlayerSelectItem;
+    public Action<bool> OnIsSelecting;
+
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
+    }
+    
+    public PlayerSelectedItem HandsObjects
+    {
+        get => _playerHandsObjects;
     }
     #endregion
     
     void Start()
     {
         
-        DeselectReference.action.performed += ctx => DeselectItems();
-        SelectReference.action.performed += ctx => SelectItem();
-        ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
-        // WeaponReference.action.performed += ctx => SelectWeapon();
+        _currentSelectedObjects = new List<GameObject>();
+        
+        DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
+        DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
+        SelectRightReference.action.performed += ctx => SelectItem(false);
+        SelectLeftReference.action.performed += ctx => SelectItem(true);
+        ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
+        ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
+            box.InventoryPlayer = this;
             box.OnHandEnterActionZone += HandleBoxInteraction;
         }
         OnPlayerSelectItem += HandleSelectedItem;
-        DeselectItems();
+        
+        foreach (var obj in _objectsLeftHand)
+        {
+            _currentSelectedObjects.Add(obj);
+        }
+
+        foreach (var obj in _objectsRightHand)
+        {
+            _currentSelectedObjects.Add(obj);
+        }
+     
+        DeselectItems(_currentSelectedObjects, Hand.None);
     }
 
     private void Update()
     {
-        HandleTimer();
+        if (SelectedItem == PlayerSelectedItem.Selecting)
+        {
+            HandleTimer();
+            
+        }
     }
 
     void HandleSelectedItem(PlayerSelectedItem item)
@@ -83,121 +103,128 @@ public class InventoryController : MonoBehaviour
         _playerSelectedItem = item;
     }
     
-    void DeselectItems()
+    void DeselectItems(List<GameObject> objects, Hand hand)
     {
-        for (int i = 0; i < _objects.Length; i++)
+        if (hand != _currentSelectingHand)
         {
-            _objects[i].SetActive(false);
+            return;
         }
+        
+        for (int i = 0; i < objects.Count; i++)
+        {
+            objects[i].SetActive(false);
+        }
+        _currentSelectedObjects.Clear();
         hasObjectSelected = false;
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
-    }
-
-    void SelectItem()
-    {
+        _currentSelectingHand = Hand.None;
+        _playerHandsObjects = PlayerSelectedItem.None;
         
+    }
+    
+    
+
+    void SelectItem(bool isLeft)
+    {
         if (_isInBoxInteraction) return;
 
         ResetTimer();
         //Deselect current objects in hand
-        DeselectItems();
+        DeselectItems(_currentSelectedObjects , _currentSelectingHand);
+
+        List<GameObject> objects = new List<GameObject>();
         
-        if (_selectIndex >= _objects.Length) _selectIndex = 0;
+        if (isLeft)
+        {
+            objects = _objectsLeftHand.ToList();
+            _currentSelectedObjects = objects;
+            _currentSelectingHand = Hand.LeftHand;
+            
+        }
+        else
+        {
+            objects = _objectsRightHand.ToList();
+            _currentSelectedObjects = objects;
+            _currentSelectingHand = Hand.RightHand;
 
-        Debug.Log(_selectIndex);
+        }
+        
+        if (_selectIndex >= objects.Count) _selectIndex = 0;
+        
         _currentSelected = _selectIndex;
-        _objects[_currentSelected].SetActive(true);
-        MaterialObjectSelecting(_currentSelected);
-        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
-
+        objects[_currentSelected].SetActive(true);
+        MaterialObjectSelecting(_currentSelected, objects);
         _selectIndex++;
-
+        OnIsSelecting?.Invoke(true);
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
         StartTimer();
         
     }
     
-    void ConfirmSelection()
+    void ConfirmSelection(Hand hand)
     {
-        HandleSelectedItem(_currentSelected);
+        if (_playerSelectedItem == PlayerSelectedItem.None) return;
+        if (_currentSelectingHand != hand) return;
+        
+            
+        OnIsSelecting?.Invoke(false);
+        ResetTimer();
+        HandleSelectedItem(_currentSelected, _currentSelectedObjects);
         hasObjectSelected = true;
     }
     
     void HandleBoxInteraction(bool interaction)
     {
-        if (hasObjectSelected) DeselectItems();
-        if (_timerHasStarted) ResetTimer();
-            
         _isInBoxInteraction = !interaction;
     }
 
-    void MaterialObjectSelecting(int item)
+    void MaterialObjectSelecting(int item, List<GameObject> objects)
     {
-        switch (item)
-        {
-            case 0 :
-                hammerBlackMesh.material = shadowMaterial;
-                hammerWoodMesh.material = shadowMaterial;
-                break;
-            
-            case 1 :
-                gunMesh.material = shadowMaterial;
-                break;
-        }
-        
+        objects[item].GetComponent<IGrabbable>().SetMaterials(shadowMaterial);
     }
 
-    void HandleSelectedItem(int itemSelected)
+    void HandleSelectedItem(int itemSelected, List<GameObject> objects)
     {
-        switch (itemSelected)
-        {
-            //hammer selected
-            case 0:
-                hammerBlackMesh.material = hammerBlackMaterial;
-                hammerWoodMesh.material = hammerWoodMaterial;
-                
-                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Hammer);
+        IGrabbable item = objects[itemSelected].GetComponent<IGrabbable>();
+        item.ResetMaterials();
+        OnPlayerSelectItem?.Invoke(item.Item);
+        _playerHandsObjects = item.TypeOfItem;
+        _selectIndex = _currentSelectedObjects.Count;
 
-                break;
-            //Gun selected
-            case 1 :
-                gunMesh.material = gunMaterial;
-                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
-
-                break;
-        }
-
-        _selectIndex = _objects.Length;
-        
     }
 
 
+    #region Timer Inventory
     void HandleTimer()
     {
         if (_isInBoxInteraction) return;
-        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
-        if (!_timerHasStarted && _timerHasFinished) return;
+        if (!_timerIsActive && _timerHasFinished) return;
             
         _time += Time.deltaTime;
-
         if (_time > _maxTimeToSelect)
         {
             ResetTimer();
-            DeselectItems();
+            DeselectItems(_currentSelectedObjects, _currentSelectingHand);
         }
         
     }
     void StartTimer()
     {
+        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
         _time = _initialTimer;
-        _timerHasStarted = true;
+        _timerIsActive = true;
         _timerHasFinished = false;
     }
     void ResetTimer()
     {
-        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
+        Debug.Log("RESET TIMER");
         _time = 0;
+        _timerIsActive = false;
         _timerHasFinished = true;
+
     }
+    #endregion
+
 }
     
     

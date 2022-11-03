@@ -2,10 +2,13 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Hamer_Grab : MonoBehaviour, IGrabbable
+public class Hamer_Grab : IGrabbable
 {
 
     #region Variables
+
+    [Header("Inventory")] 
+    [SerializeField] private InventoryController _inventoryController;
 
     [Header("Settings")]
     [SerializeField] private float _pointsToRepair;
@@ -17,26 +20,13 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
     public event Action<GameObject> ConstructableHitEvent;
     public event Action DisableHammerEvent;
     
-    public Vector3 Position
-    {
-        get;
-        set;
-    }
-
-    public Vector3 Rotation
-    {
-        get;
-        set;
-    }
-
-    
 
     #endregion
 
     #region unity Methods
     void Start()
     {
-
+        _inventoryController.OnIsSelecting += HandleIsSelectingState;
     }
 
     void FixedUpdate()
@@ -66,6 +56,19 @@ public class Hamer_Grab : MonoBehaviour, IGrabbable
         }
     }
 
+    void HandleIsSelectingState(bool isSelecting)
+    {
+        Collider collider = GetComponent<Collider>();
+
+        if (isSelecting)
+        {
+            collider.enabled = false;
+        }
+        else
+        {
+            collider.enabled = true;
+        }
+    }
     #endregion
 
 }

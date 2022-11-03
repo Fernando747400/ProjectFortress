@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     
     public int Kills { get => _zombieKills; }
     public double ElapsedTime { get => _elapsedTime; }
+    public bool IsPaused { get => _isPaused; } //Only zombies use
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;

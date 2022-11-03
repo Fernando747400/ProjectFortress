@@ -6,6 +6,7 @@ public class EnemyManagger : MonoBehaviour
 {
     public static EnemyManagger Instance;
     public float maxDistance;
+    public float Damage;
 
     [SerializeField]
     public GameObject Zombie;
@@ -23,7 +24,6 @@ public class EnemyManagger : MonoBehaviour
         {
             Destroy(this);
         }
-        ZombiePooling.OnAddEvent += SuscribeToEvents;
         ZombiePooling.Preload(Zombie, 1);
     }
 
@@ -40,9 +40,9 @@ public class EnemyManagger : MonoBehaviour
         RouteManagger.Instance.RandomNum();
         Vector3 vector = SpawnPosition().Peek().transform.position;
 
-        GameObject temporal;
-        temporal = ZombiePooling.GetObject(Zombie);
+        GameObject temporal = ZombiePooling.GetObject(Zombie);
         temporal.transform.position = vector;
+        temporal.GetComponent<ZombiePursuit>().ZombieDamage = Damage;
     }
 
     public Queue<Transform> SpawnPosition()
@@ -55,8 +55,4 @@ public class EnemyManagger : MonoBehaviour
         ZombiePooling.RecicleObject(primitive, temporalObject);
     }
 
-    void SuscribeToEvents(GameObject item)
-    {
-        item.GetComponent<ZombiePursuit>().ZombieDieEvent += GameManager.Instance.AddKill;
-    }
 }
