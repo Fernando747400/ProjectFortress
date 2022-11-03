@@ -1,13 +1,21 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Canon_CanonBall : GeneralAgressor
 {
+    [Tooltip("Explosion Radius In Meters")]
+    [SerializeField] private float blastRadius = 1f;
+
+    [Tooltip("Layers with which the cannonball can interact")]
+    [SerializeField] private LayerMask layers;
     private Rigidbody _rb;
     private MeshRenderer _rend;
     private Collider _col;
     private Debug_CannonFire _cannonFire;
+    private ParticleSystem _particleSystem;
+    
     
     // Start is called before the first frame update
     private void Awake()
@@ -46,15 +54,31 @@ public class Canon_CanonBall : GeneralAgressor
 
     public void Fire(Vector3 origin,Vector3 dir, float mag)
     {
-        Vector3 offset = new Vector3(0, 0, 1.3f);
-        transform.position = origin + offset;
+        transform.position = origin;
         Activate();
         _rb.AddForce(dir.normalized * mag);
     }
 
     void Explode()
     {
+        _particleSystem.Stop();
+        _particleSystem.Play();
+        CastDamage();
         Deactivate();
+    }
+
+    void CastDamage()
+    {
+        //Arbitrary Array Initialization
+        //should get max number of zombies in the game through layer
+        var hits = new Collider[31];
+        hits = Physics.OverlapSphere(transform.position,blastRadius,layers);
+        
+        foreach (var hit in hits)
+        {
+            if (!TryGetGeneralTarget(hit.gameObject)) return;
+            hit.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
+        }
     }
 
     private void Prepare()
@@ -80,5 +104,11 @@ public class Canon_CanonBall : GeneralAgressor
             _cannonFire = GameObject.Find("Cannon").GetComponent<Debug_CannonFire>();
         }
         catch { Debug.Log("Missing Debug_CanonFire");}
+
+        try
+        {
+            _particleSystem = GetComponentInChildren<ParticleSystem>();
+        }
+        catch { Debug.Log("Missing ParticleSystem");}
     }
 }

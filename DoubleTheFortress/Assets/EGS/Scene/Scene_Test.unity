@@ -467,6 +467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f8e4d4e314e594bb181b82083bacc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 1970599012}
+  myMaterials:
+  - {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d, type: 3}
+  _selectedItem: 8
+  _typeOfItem: 12
   _inventoryController: {fileID: 8094344047049755825}
   _particles: {fileID: 290376484404728263}
   _collider: {fileID: 897175036}
@@ -9219,6 +9225,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 2028642721474360634}
+  - {fileID: 6450053817135713625}
+  myMaterials:
+  - {fileID: -8796627655084249796, guid: 5536eb113c93aae42a6010fef9b8389c, type: 3}
+  - {fileID: -3522955778539423533, guid: 820da96c311ae524e8e3c78d90d3faee, type: 3}
+  _selectedItem: 1
+  _typeOfItem: 3
   _inventoryController: {fileID: 8094344047049755825}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
@@ -25040,6 +25054,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb773401382b4043a27ff2ce9b76d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 8227264181067993277}
+  myMaterials:
+  - {fileID: 2100000, guid: e90227551fbab5e468eac41f012bb0fa, type: 2}
+  _selectedItem: 2
+  _typeOfItem: 3
   damage: 10
   bulletSpeed: 15
   maxDistance: 900
@@ -34737,20 +34757,10 @@ MonoBehaviour:
   - {fileID: 6103072571006914793}
   _objectsLeftHand:
   - {fileID: 897175033}
-  hammerBlackMesh: {fileID: 2028642721474360634}
-  hammerWoodMesh: {fileID: 6450053817135713625}
-  gunMesh: {fileID: 8227264181067993277}
-  torchMesh: {fileID: 1970599012}
   shadowMaterial: {fileID: 2100000, guid: 0c776d28f600c614584608d9dd72124c, type: 2}
-  hammerBlackMaterial: {fileID: -8796627655084249796, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
+  ConfirmSelectRightReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  hammerWoodMaterial: {fileID: -3522955778539423533, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
-    type: 3}
-  gunMaterial: {fileID: -3263835130708698965, guid: ec0e7fe892981e649897793dfbd7c05c,
-    type: 3}
-  torchMaterial: {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d,
-    type: 3}
-  ConfirmSelectReference: {fileID: 433327710809327822, guid: c348712bda248c246b8c49b3db54643f,
+  ConfirmSelectLeftReference: {fileID: 771906664130552712, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
