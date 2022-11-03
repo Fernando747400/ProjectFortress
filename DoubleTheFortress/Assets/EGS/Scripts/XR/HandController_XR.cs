@@ -70,6 +70,7 @@ public class HandController_XR : MonoBehaviour
 }
 public enum Hand
 {
+    None,
     RightHand,
     LeftHand,
 }

@@ -33,7 +33,8 @@ public class InventoryController : MonoBehaviour
     
     
     [Header("Input Actions")]
-    [SerializeField] private InputActionReference ConfirmSelectReference;
+    [SerializeField] private InputActionReference ConfirmSelectRightReference;
+    [SerializeField] private InputActionReference ConfirmSelectLeftReference;
     [SerializeField] private InputActionReference DeselectReference;
     [SerializeField] private InputActionReference SelectRightReference;
     [SerializeField] private InputActionReference SelectLeftReference;
@@ -52,8 +53,8 @@ public class InventoryController : MonoBehaviour
     private float _initialTimer = 0;
     private bool _timerIsActive;
     private bool _timerHasFinished;
-    
-    Hand _currentSelectingHand;
+
+    private Hand _currentSelectingHand = Hand.None;
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
@@ -75,8 +76,8 @@ public class InventoryController : MonoBehaviour
         DeselectReference.action.performed += ctx => DeselectItems();
         SelectRightReference.action.performed += ctx => SelectItem(false);
         SelectLeftReference.action.performed += ctx => SelectItem(true);
-        ConfirmSelectReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
-        ConfirmSelectReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
+        ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
+        ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
@@ -109,6 +110,8 @@ public class InventoryController : MonoBehaviour
         }
         hasObjectSelected = false;
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
+        _currentSelectingHand = Hand.None;
+        _playerHandsObjects = PlayerSelectedItem.None;
     }
 
     void SelectItem(bool isLeft)
@@ -124,10 +127,13 @@ public class InventoryController : MonoBehaviour
         if (isLeft)
         {
             objects = _objectsLeftHand.ToList();
+            _currentSelectingHand = Hand.LeftHand;
         }
         else
         {
             objects = _objectsRightHand.ToList();
+            _currentSelectingHand = Hand.RightHand;
+
         }
         
         if (_selectIndex >= objects.Count) _selectIndex = 0;
@@ -145,6 +151,8 @@ public class InventoryController : MonoBehaviour
     void ConfirmSelection(Hand hand)
     {
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
+        if (_currentSelectingHand != hand) return;
+        
             
         OnIsSelecting?.Invoke(false);
         ResetTimer();
