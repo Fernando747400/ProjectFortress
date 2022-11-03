@@ -10,6 +10,7 @@ TagManager:
   - Handle
   - Final
   - Core
+  - HandTest
   layers:
   - Default
   - TransparentFX
