@@ -9159,7 +9159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryController: {fileID: 0}
+  _inventoryController: {fileID: 8094344047049755825}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
   _cooldown: 0
