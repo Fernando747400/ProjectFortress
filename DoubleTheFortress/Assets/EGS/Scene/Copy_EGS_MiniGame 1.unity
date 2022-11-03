@@ -6101,7 +6101,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6211,7 +6211,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 5
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -6261,8 +6261,8 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 3
+      repeatInterval: 0.04
       probability: 1
   SizeModule:
     enabled: 1
@@ -6330,17 +6330,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.4335251
-          outSlope: -0.4335251
+          inSlope: 0
+          outSlope: 0
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.5664749
-          inSlope: -0.4335251
-          outSlope: -0.4335251
+          value: 1
+          inSlope: 0
+          outSlope: 0
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -6598,7 +6598,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.99119496, b: 0.9669811, a: 1}
-        key1: {r: 1, g: 0.77919656, b: 0.1745283, a: 1}
+        key1: {r: 1, g: 0.77919656, b: 0.1745283, a: 0}
         key2: {r: 1, g: 0.19049045, b: 0.10849059, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6778,11 +6778,11 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6834,29 +6834,29 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
+          value: -0.67000186
+          inSlope: 8.887309
+          outSlope: 8.887309
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.05288461
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: 1.4171422
+          outSlope: 1.4171422
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.21875012
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -6887,8 +6887,8 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7312,7 +7312,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7972,11 +7972,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.24
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8133,12 +8133,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 2.31
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
     octaveScale: 2
-    quality: 2
+    quality: 1
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
@@ -40429,7 +40429,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -40437,8 +40437,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0.75686276}
+        key1: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0.20784314}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -40454,7 +40454,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
+        atime1: 65342
         atime2: 0
         atime3: 0
         atime4: 0
@@ -69257,6 +69257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers: []
+  myMaterials: []
+  _selectedItem: 0
+  _typeOfItem: 0
   _inventoryController: {fileID: 0}
   _pointsToRepair: 15
   _pointsToUpgrade: 15
@@ -69310,7 +69314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerZone: {fileID: 4259467645591713894}
-  _inventoryController: {fileID: 0}
 --- !u!23 &2509157472931832704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90320,6 +90323,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb773401382b4043a27ff2ce9b76d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers: []
+  myMaterials: []
+  _selectedItem: 0
+  _typeOfItem: 0
   damage: 10
   bulletSpeed: 15
   maxDistance: 900
@@ -90428,7 +90435,6 @@ MonoBehaviour:
   _heavyWeaponRotateVR: {fileID: 6349515867414147461}
   rightHolder: {fileID: 5133902975632339949}
   leftHolder: {fileID: 5133902975632339949}
-  maxDistance: 1
 --- !u!4 &6349515866776552424
 Transform:
   m_ObjectHideFlags: 0
@@ -96122,17 +96128,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSelectedItem: 0
+  _playerHandsObjects: 0
   _objects: []
-  hammerBlackMesh: {fileID: 0}
-  hammerWoodMesh: {fileID: 0}
-  gunMesh: {fileID: 0}
-  torchMesh: {fileID: 0}
+  _objectsRightHand: []
+  _objectsLeftHand: []
   shadowMaterial: {fileID: 0}
-  hammerBlackMaterial: {fileID: 0}
-  hammerWoodMaterial: {fileID: 0}
-  gunMaterial: {fileID: 0}
-  torchMaterial: {fileID: 0}
-  ConfirmSelectReference: {fileID: 0}
+  ConfirmSelectRightReference: {fileID: 0}
+  ConfirmSelectLeftReference: {fileID: 0}
   DeselectReference: {fileID: 0}
   SelectRightReference: {fileID: 0}
   SelectLeftReference: {fileID: 0}
