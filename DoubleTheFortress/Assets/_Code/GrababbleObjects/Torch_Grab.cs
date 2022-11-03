@@ -7,22 +7,27 @@ public class Torch_Grab : MonoBehaviour
 {
     [SerializeField] private InventoryController _inventoryController;
     [SerializeField] private GameObject _particles;
-    private bool isSelected;
+    [SerializeField] private Collider _collider;
     void Start()
     {
+        _inventoryController.OnIsSelecting += HandleSelectingState;
         _particles.SetActive(false);
     }
-
-    void Update()
+    
+    void HandleSelectingState(bool isSelecting)
     {
-        
-        if (_inventoryController.SelectedItem == PlayerSelectedItem.Selecting)
+        if (isSelecting)
         {
-            isSelected = false;
+            _particles.SetActive(false);
+            _collider.enabled = false;
+        }
+        else
+        {
+            _particles.SetActive(true);
+            _collider.enabled = true;
         }
         
     }
-    
     
     
     

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DebugStuff.Inventory;
 using UnityEngine;
@@ -50,7 +49,7 @@ public class InventoryController : MonoBehaviour
     private bool _timerHasFinished;
     
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
-    private Action<bool> OnIsSelecting;
+    public Action<bool> OnIsSelecting;
 
     public PlayerSelectedItem SelectedItem
     {
@@ -124,6 +123,7 @@ public class InventoryController : MonoBehaviour
     {
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
             
+        OnIsSelecting?.Invoke(false);
         ResetTimer();
         HandleSelectedItem(_currentSelected);
         hasObjectSelected = true;
