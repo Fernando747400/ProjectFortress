@@ -2814,6 +2814,7 @@ GameObject:
   - component: {fileID: 9222322647586810375}
   - component: {fileID: 8603568291539727835}
   - component: {fileID: 8795309536152504634}
+  - component: {fileID: 5856071710979874924}
   - component: {fileID: -5414638434888774667}
   - component: {fileID: 900584886756599983}
   m_Layer: 0
@@ -2890,6 +2891,20 @@ MonoBehaviour:
   futurePosition: {x: 0, y: 0, z: 0}
   changeInT: 0
   maxDistance: 0
+  WallDamage: 0
+--- !u!114 &5856071710979874924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8410354908158750909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75301fe7a27cb0c49861fce511a68bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAnimation: 0
 --- !u!136 &-5414638434888774667
 CapsuleCollider:
   m_ObjectHideFlags: 0

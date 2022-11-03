@@ -8,6 +8,7 @@ public class HandController_XR : MonoBehaviour
     [SerializeField] private InventoryController _inventoryController;
     [SerializeField] private SkinnedMeshRenderer handSkinnedMesh;
     [SerializeField] private Hand _hand;
+    [SerializeField] PlayerSelectedItem handObjects;
     private Vector3 _handPos;
 
     private bool _handIsEmpty;
@@ -28,7 +29,8 @@ public class HandController_XR : MonoBehaviour
 
     void Start()
     {
-        _inventoryController.OnIsSelecting += HandleHandsVisible;
+        _inventoryController.OnIsSelecting += HandleIsEmpty;
+        
     }
 
     void Update()
@@ -41,18 +43,25 @@ public class HandController_XR : MonoBehaviour
         handSkinnedMesh.enabled = visible;
     }
 
-    private void HandleIsEmpty(bool isSelecting)
+    public void HandleIsEmpty(bool isSelecting = false)
     {
-        PlayerSelectedItem selectedItem;
+        _handIsEmpty = true;
         switch (Hand)
         {
             case Hand.LeftHand:
                 
-                
+                if (_inventoryController.HandsObjects == handObjects)
+                {
+                    _handIsEmpty = false;
+                }
                 break;
-            
+            case Hand.RightHand:
+                if (_inventoryController.HandsObjects == handObjects)
+                {
+                    _handIsEmpty = false;
+                }
+                break;
         }
-        _handIsEmpty = isSelecting;
         
     }
     
@@ -61,6 +70,7 @@ public class HandController_XR : MonoBehaviour
 }
 public enum Hand
 {
+    None,
     RightHand,
     LeftHand,
 }

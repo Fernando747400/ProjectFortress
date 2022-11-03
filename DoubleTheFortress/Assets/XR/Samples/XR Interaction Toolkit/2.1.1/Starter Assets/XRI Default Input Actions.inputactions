@@ -719,9 +719,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Select_Confirm",
+                    "name": "Select_Confirm_Right",
                     "type": "Button",
                     "id": "c5db3ddb-ea31-4555-ac7f-af99485d15a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select_Confirm_Left",
+                    "type": "Button",
+                    "id": "6f2040f4-9a6f-401d-b25b-efa7fa1d69ae",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -871,18 +880,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Select_Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7c826d19-265a-4b51-a03a-201d112a9eb7",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Select_Confirm",
+                    "action": "Select_Confirm_Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -893,7 +891,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Select_Confirm",
+                    "action": "Select_Confirm_Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -971,6 +969,28 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Select_Inventory_Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40330d28-8f77-480a-bfb9-29bf9d51cd14",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Select_Confirm_Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7703c85-52f0-47d9-9bf9-394ae316e672",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select_Confirm_Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

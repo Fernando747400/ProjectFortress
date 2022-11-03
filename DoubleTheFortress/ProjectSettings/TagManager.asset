@@ -9,6 +9,7 @@ TagManager:
   - Hand
   - Handle
   - Final
+  - Core
   layers:
   - Default
   - TransparentFX

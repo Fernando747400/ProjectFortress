@@ -1,0 +1,305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5405843612515296248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5405843612515296246}
+  - component: {fileID: 5405843612515296249}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &5405843612515296246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405843612515296248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2295053, y: 3.1947336, z: 0.21132565}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5405843612515296249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405843612515296248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47d22a5287cc2c44aee01e45e560bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+  - name: Track1
+    clip: {fileID: 8300000, guid: a526923ea781d4d4c8517331abfc6bb3, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track2
+    clip: {fileID: 8300000, guid: e8b7e96e2d451b744a3d82bbaf3a1a1f, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track3
+    clip: {fileID: 8300000, guid: 1cf9f9dfba3fc7346b8f9891ee73eb13, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track4
+    clip: {fileID: 8300000, guid: 264a142e6cc4d44488ff6a3f6c528c24, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track5
+    clip: {fileID: 8300000, guid: aef61f7472df02343a0691d57e85210d, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track6
+    clip: {fileID: 8300000, guid: 30f02f6a1912ebe4387e9bbf618af638, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track7
+    clip: {fileID: 8300000, guid: cc3bb063f02a5ca4280e14a984223588, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track8
+    clip: {fileID: 8300000, guid: 17691f10fa3241546852aa503fbc89e4, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track9
+    clip: {fileID: 8300000, guid: 21041c4b679891b42998e915233ec7c1, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track10
+    clip: {fileID: 8300000, guid: 89f2ce1eae633fd4bbdf5cba6cc86219, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track11
+    clip: {fileID: 8300000, guid: 770e0eab2d65ff14fa744d89e7636629, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Track12
+    clip: {fileID: 8300000, guid: fd250d1b22801f94baee28c6993970fc, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: ButtonSound
+    clip: {fileID: 8300000, guid: 955acbebe513f814daab5194ba57596e, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: CanonFire
+    clip: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fire
+    clip: {fileID: 8300000, guid: c27a24f79b7ed884ab5dc094a7ab01d1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: HammerBrick
+    clip: {fileID: 8300000, guid: 7089210df25c56b4a86d10abeb5436ca, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: HammerIron
+    clip: {fileID: 8300000, guid: 3473fee9ee760944e9455dda36e67351, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Hammer Wood
+    clip: {fileID: 8300000, guid: 1ae3ca27f49c62a449669fea2e3b6bc9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Rifle
+    clip: {fileID: 8300000, guid: 95b65fa98d7f870448b1b7f04e6c7a6c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack1
+    clip: {fileID: 8300000, guid: 54221acecd0c86d4599e46fc49063fec, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack2
+    clip: {fileID: 8300000, guid: e38e371deb8286140a3970db690ab377, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack3
+    clip: {fileID: 8300000, guid: 689c54c7db07c5848a82c17079b73b84, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack4
+    clip: {fileID: 8300000, guid: 8bffb47873e41c148b9c58294905f86f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack5
+    clip: {fileID: 8300000, guid: 1d0e5790a89a77a48a388ff67983c48a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack6
+    clip: {fileID: 8300000, guid: ba08ae16dddbcea44a75110a425d33a4, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack7
+    clip: {fileID: 8300000, guid: 356076414c631b84ea7f98705fca363d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack8
+    clip: {fileID: 8300000, guid: 4aea8b6ac45a2304a85494dfb024f05d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack9
+    clip: {fileID: 8300000, guid: 4e0f4cb2e641ead4a847b8f589f0312e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack10
+    clip: {fileID: 8300000, guid: 5304552ea0606e44791c51b6c4ebe412, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack11
+    clip: {fileID: 8300000, guid: 6fec35d0a62c48d4e9d2bfc965bf8b81, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack12
+    clip: {fileID: 8300000, guid: 5bfdcd3471924b344878106480d969b5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack13
+    clip: {fileID: 8300000, guid: 23edf627e7d2e5e48a5a628d9041f04a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack14
+    clip: {fileID: 8300000, guid: f339e1be2db45f84696c7b0ee6d2ea32, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack15
+    clip: {fileID: 8300000, guid: 107e31defb1068e4199b8169901a79ac, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack16
+    clip: {fileID: 8300000, guid: 39557aedc67c7d746bbaf37af6a35903, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack17
+    clip: {fileID: 8300000, guid: 2868b17e07d54d6419c647adf2a47f73, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack18
+    clip: {fileID: 8300000, guid: c5924fa524ac7124c80b42f55cdf3181, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack19
+    clip: {fileID: 8300000, guid: 8c1cc63407e39fe4888117376b2fc555, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack20
+    clip: {fileID: 8300000, guid: 3772f7239c26e6146b963d1945245e01, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack21
+    clip: {fileID: 8300000, guid: 7c0d9a6e176003245832f172e13cd3c1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack22
+    clip: {fileID: 8300000, guid: a5f13b0859b4f4b419a99d43a5e9b187, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack23
+    clip: {fileID: 8300000, guid: 15665e3a2b7ca644ab0ec0ea8dc18542, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ZTrack24
+    clip: {fileID: 8300000, guid: 45d25093bc3fd3f40a40346855bd15d1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
