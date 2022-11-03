@@ -34748,10 +34748,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSelectedItem: 0
   _playerHandsObjects: 0
-  _objects:
-  - {fileID: 2416471593635629102}
-  - {fileID: 6103072571006914793}
-  - {fileID: 897175033}
   _objectsRightHand:
   - {fileID: 2416471593635629102}
   - {fileID: 6103072571006914793}
@@ -34762,7 +34758,9 @@ MonoBehaviour:
     type: 3}
   ConfirmSelectLeftReference: {fileID: 771906664130552712, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
+  DeselectLeftReference: {fileID: -882631382372611227, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  DeselectRightReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   SelectRightReference: {fileID: 2551534540674614116, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
