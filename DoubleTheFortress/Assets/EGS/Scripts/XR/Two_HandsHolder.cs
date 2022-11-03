@@ -70,12 +70,14 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            // Debug.Log("Hand is out the handle");
-            _isGrabbing = false;
-            _hand.HandleHandsVisible(!_isGrabbing);
+            if (_isGrabbing)
+            {
+                _isGrabbing = false;
+                _hand.HandleHandsVisible(!_isGrabbing);
+            }
+           
             _hand = null;
             OnHandsOut?.Invoke();
-            print("send event onexit");
 
         }
     }
