@@ -106,7 +106,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         }
         Vector3 pursuit = this.Pursuit(_targetTransform.position);
         //transform.LookAt(_targetTransform);
-        iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", _targetTransform,"axis", "y", "time", 1f));
+        iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", _targetTransform,"axis", "y", "time", 2f));
         transform.position += pursuit * Time.deltaTime;
     }
 
@@ -143,6 +143,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isAttacking = true;
         _rigidBody.velocity = Vector3.zero;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Attack);
+        iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", target.transform, "axis", "y", "time", 1f));
     }
 
     public void DoDamageToTarget() //This is called by Zombie Attack anim
@@ -203,9 +204,9 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void Prepare()
     {
-        GetRoute();
         _zombieAnimator = GetComponent<ZombieAnimator>();
         _rigidBody = GetComponent<Rigidbody>();
+        GetRoute();
         _arrivalDistance = EnemyManagger.Instance.maxDistance;
         this.speed = UnityEngine.Random.Range(.2f, .4f);
 
