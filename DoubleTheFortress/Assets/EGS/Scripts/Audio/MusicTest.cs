@@ -7,6 +7,7 @@ public class MusicTest : MonoBehaviour
 {
    private bool buttonIsPush;
    int songNumber;
+   private AudioManager a;
 
    private void Awake()
    {
@@ -17,22 +18,34 @@ public class MusicTest : MonoBehaviour
    {
       if (Input.GetKeyDown(KeyCode.A))
       {
-         buttonIsPush = true;
+         
       }
-      else
+      // if (buttonIsPush)
+      // {
+      //    FindObjectOfType<AudioManager>().Play("Track13");
+      //    ChangeSong();
+      // }
+   }
+
+   private void OnCollisionEnter(Collision collision)
+   {
+      if (collision.collider.CompareTag("HandTest"))
       {
-         buttonIsPush = false;
-      }
-      if (buttonIsPush)
-      {
-         FindObjectOfType<AudioManager>().Play("Track13");
+         FindObjectOfType<AudioManager>().Play("ButtonSound");
          ChangeSong();
       }
+   }
+
+   private void OnCollisionExit(Collision other)
+   {
+      throw new NotImplementedException();
    }
 
    public void ChangeSong()
    {
       songNumber++;
       Debug.Log("Cancion cambio al numero" + songNumber);
+      
+      FindObjectOfType<AudioManager>().Play("Track13");
    }
 }
