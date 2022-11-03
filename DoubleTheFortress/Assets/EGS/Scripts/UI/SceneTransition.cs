@@ -1,10 +1,24 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class SceneTransition : MonoBehaviour
+[System.Serializable]
+public class SceneTransition: MonoBehaviour
 {
-    public string SceneToLoad;
-    public void LoadScene()
+    public static SceneTransition Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }      
+    }
+    
+    public void LoadScene(string SceneToLoad)
     {
         SceneManager.LoadSceneAsync(SceneToLoad);
     }
@@ -12,5 +26,4 @@ public class SceneTransition : MonoBehaviour
     {
         Application.Quit();
     }
-
 }
