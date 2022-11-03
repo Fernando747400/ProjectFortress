@@ -32,12 +32,7 @@ public class HandController_XR : MonoBehaviour
         _inventoryController.OnIsSelecting += HandleIsEmpty;
         
     }
-
-    void Update()
-    {
-        
-    }
-
+    
     public void HandleHandsVisible(bool visible)
     {
         handSkinnedMesh.enabled = visible;
