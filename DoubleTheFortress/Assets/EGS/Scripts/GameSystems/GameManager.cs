@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         StartGameEvent?.Invoke();
         _gameStarted = true;
         UnpauseGame();
+        Debug.Log("Started Game");
     }
 
     public void FinishGame()
@@ -83,18 +84,27 @@ public class GameManager : MonoBehaviour
         _currentMinute = 0;
         _isPaused = true;
         _gameStarted = false;
-        Debug.LogWarning("The game manager time starts on play for dev purposes. Be sure to change the value to false before game deploy.");
+        //Debug.LogWarning("The game manager time starts on play for dev purposes. Be sure to change the value to false before game deploy.");
     }
 
     private void ProgressGame()
     {
         if (IsPaused) return;
-        if(TimeSpan.FromSeconds(_elapsedTime).Minutes > _currentMinute)
+        TimeSpan currentTime = TimeSpan.FromSeconds(_elapsedTime);
+
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3)
         {
-            _currentMinute++;
-            EnemyManagger.Instance.SpawnWithDelay(1.5f,3);
-            Debug.Log("Spawned 3 more zombies");
+            EnemyManagger.Instance.Damage += 10f;
         }
+
+        if (currentTime.Minutes > _currentMinute)
+        {
+            EnemyManagger.Instance.SpawnWithDelay(1.5f,3);
+            EnemyManagger.Instance.Damage += 5f;
+            Debug.Log("Spawned 3 more zombies");
+            _currentMinute++;
+        }
+
     }
     
 }
