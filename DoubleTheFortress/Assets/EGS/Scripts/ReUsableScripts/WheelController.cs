@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DebugStuff.Inventory;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
-
+[RequireComponent(typeof(BoxAreasInteraction))]
 public class WheelController : MonoBehaviour
 {
     [SerializeField] private HeavyWeaponRotate_VR _heavyWeaponRotateVR;
@@ -12,8 +13,13 @@ public class WheelController : MonoBehaviour
     
     private Vector3 _distanceBetweenHands;
     private bool _canMoveCannon = false;
+    private InventoryController _inventoryController;
+    private BoxAreasInteraction _boxInteraction;
+    
     void Start()
     {
+        _boxInteraction = GetComponent<BoxAreasInteraction>();
+        
         rightHolder.OnGrabbed += HandleWheelInteraction;
         rightHolder.OnReleased += HandleWheelInteraction;
         
@@ -24,15 +30,11 @@ public class WheelController : MonoBehaviour
         rightHolder.OnHandsOut += HandleWheelInteraction;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // LimitDistance();
-        // Debug.Log("Left" + leftHolder.IsGrabbing);
-        // Debug.Log("Right"+ rightHolder.IsGrabbing);
         if (rightHolder.Hand != null && leftHolder.Hand != null)
         {
-            if (_canMoveCannon)
+            if (_canMoveCannon )
             {
                 print("MOVE CANNON");
                 Vector3 leftHand = leftHolder.Hand.HandPos;
@@ -40,8 +42,6 @@ public class WheelController : MonoBehaviour
                 
                 transform.position = GetMidPoint(leftHand, rightHand);
             }
-            // Debug.DrawRay();
-            // Debug.DrawLine(rightHolder.Hand.gameObject.transform.position, leftHolder.Hand.gameObject.transform.position);
         }
     }
 
@@ -58,19 +58,22 @@ public class WheelController : MonoBehaviour
 
     void HandleWheelInteraction()
     {
-        // print("send event ");
 
-        if (!leftHolder.IsGrabbing || !rightHolder.IsGrabbing)
-        {
-            _canMoveCannon = false;
-        }
+        if (_inventoryController== null)
+            _inventoryController = _boxInteraction.InventoryPlayer;
+        
+        _canMoveCannon = false;
 
-        if (leftHolder.IsGrabbing && rightHolder.IsGrabbing)
+        // if (!leftHolder.IsGrabbing || !rightHolder.IsGrabbing)
+            // _canMoveCannon = false;
+        
+        if (leftHolder.IsGrabbing)
         {
+            if (_inventoryController.SelectedItem == PlayerSelectedItem.None || _inventoryController.SelectedItem == PlayerSelectedItem.Torch)
+            {
+                _canMoveCannon = true;
+            }
             
-            print("Entra aqui");
-            _canMoveCannon = true;
-            // print("CAN MOVE CANNON = " + _canMoveCannon);
         }
 
     }

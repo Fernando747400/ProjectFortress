@@ -15,6 +15,14 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     public event Action ZombieDieEvent;
     public event Action <Transform> ZombieTotemEvent;
 
+    //Animations
+    private Animator animator;
+    private bool _walk = true;
+    private bool _idle = false;
+    private bool _dance = false;
+    private bool _die = false;
+    private bool _damage = false;
+
     private void Start()
     {
         this.speed = UnityEngine.Random.Range(.5f, 4);
@@ -36,6 +44,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     void Pursuit()
     {
+        if (_isPaused) return;
         distance = Vector3.Distance(this.transform.position, target.transform.position);
         if (distance < maxDistance)
         {
@@ -77,14 +86,12 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         }
     }
 
-
     protected virtual void TakeDamage(float dmgValue)
     {
         if (_isPaused) return;
         CurrentHp -= dmgValue;
         CurrentHp = Mathf.Clamp(CurrentHp, 0, MaxHp);
     }
-
 
     #region Interface Methods
 
@@ -100,6 +107,11 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     void Pause()
     {
         _isPaused = true;
+        _walk = false;
+        _idle = true;
+        _dance = false;
+        _die = false;
+        _damage = false;
     }
 
     void Unpause()

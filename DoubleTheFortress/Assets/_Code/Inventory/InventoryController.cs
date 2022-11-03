@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DebugStuff.Inventory;
 using UnityEngine;
@@ -10,8 +9,6 @@ public class InventoryController : MonoBehaviour
 {
     #region Variables
     [Header("GameObjects")]
-    [SerializeField] private GameObject hammerHand;
-    [SerializeField] private GameObject musketGunHand;
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
     [SerializeField] private GameObject[] _objects;
 
@@ -19,38 +16,41 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private MeshRenderer hammerBlackMesh;
     [SerializeField] private MeshRenderer hammerWoodMesh;
     [SerializeField] private MeshRenderer gunMesh;
-    [SerializeField] private MeshRenderer[] _meshes;
+    [SerializeField] private MeshRenderer torchMesh;
+    // [SerializeField] private MeshRenderer[] _meshes;
     
     [Header("Materials")]
     [SerializeField] private Material shadowMaterial;
     [SerializeField] private Material hammerBlackMaterial;
     [SerializeField] private Material hammerWoodMaterial;
     [SerializeField] private Material gunMaterial;
+    [SerializeField] private Material torchMaterial;
     
     
     [Header("Input Actions")]
-    public InputActionReference ConfirmSelectReference;
-    public InputActionReference DeselectReference;
-    public InputActionReference SelectReference;
+    [SerializeField] private InputActionReference ConfirmSelectReference;
+    [SerializeField] private InputActionReference DeselectReference;
+    [SerializeField] private InputActionReference SelectRightReference;
+    [SerializeField] private InputActionReference SelectLeftReference;
     // public InputActionReference WeaponReference;
 
     [Header("Inventory")]
-    public float _maxTimeToSelect = 1.5f;
-    public bool hasObjectSelected = false;
+    [SerializeField] float _maxTimeToSelect = 1.5f;
+    private bool hasObjectSelected = false;
     public List<BoxAreasInteraction> areasInteraction;
-
+    
     private int _currentSelected;
     private int _selectIndex;
     private bool _isInBoxInteraction;
    
     private float _time;
-    private float _initialTimer;
-    private bool _timerHasStarted;
+    private float _initialTimer = 0;
+    private bool _timerIsActive;
     private bool _timerHasFinished;
     
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
+    public Action<bool> OnIsSelecting;
 
-    
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
@@ -61,12 +61,13 @@ public class InventoryController : MonoBehaviour
     {
         
         DeselectReference.action.performed += ctx => DeselectItems();
-        SelectReference.action.performed += ctx => SelectItem();
+        SelectRightReference.action.performed += ctx => SelectItem(false);
+        SelectLeftReference.action.performed += ctx => SelectItem(true);
         ConfirmSelectReference.action.performed += ctx => ConfirmSelection();
-        // WeaponReference.action.performed += ctx => SelectWeapon();
 
         foreach (BoxAreasInteraction box in areasInteraction)
         {
+            box.InventoryPlayer = this;
             box.OnHandEnterActionZone += HandleBoxInteraction;
         }
         OnPlayerSelectItem += HandleSelectedItem;
@@ -75,7 +76,11 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
-        HandleTimer();
+        if (SelectedItem == PlayerSelectedItem.Selecting)
+        {
+            HandleTimer();
+            
+        }
     }
 
     void HandleSelectedItem(PlayerSelectedItem item)
@@ -93,40 +98,39 @@ public class InventoryController : MonoBehaviour
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.None);
     }
 
-    void SelectItem()
+    void SelectItem(bool isLeft)
     {
-        
         if (_isInBoxInteraction) return;
 
         ResetTimer();
         //Deselect current objects in hand
         DeselectItems();
-        
-        if (_selectIndex >= _objects.Length) _selectIndex = 0;
 
-        Debug.Log(_selectIndex);
+        if (_selectIndex >= _objects.Length) _selectIndex = 0;
+        if (isLeft) _selectIndex = 2;
+        
         _currentSelected = _selectIndex;
         _objects[_currentSelected].SetActive(true);
         MaterialObjectSelecting(_currentSelected);
-        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
-
         _selectIndex++;
-
+        OnIsSelecting?.Invoke(true);
+        OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
         StartTimer();
         
     }
     
     void ConfirmSelection()
     {
+        if (_playerSelectedItem == PlayerSelectedItem.None) return;
+            
+        OnIsSelecting?.Invoke(false);
+        ResetTimer();
         HandleSelectedItem(_currentSelected);
         hasObjectSelected = true;
     }
     
     void HandleBoxInteraction(bool interaction)
     {
-        if (hasObjectSelected) DeselectItems();
-        if (_timerHasStarted) ResetTimer();
-            
         _isInBoxInteraction = !interaction;
     }
 
@@ -141,6 +145,9 @@ public class InventoryController : MonoBehaviour
             
             case 1 :
                 gunMesh.material = shadowMaterial;
+                break;
+            case 2:
+                torchMesh.material = shadowMaterial;
                 break;
         }
         
@@ -164,6 +171,10 @@ public class InventoryController : MonoBehaviour
                 OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Musket);
 
                 break;
+            case 2:
+                torchMesh.material = torchMaterial;
+                OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Torch);
+                break;
         }
 
         _selectIndex = _objects.Length;
@@ -171,14 +182,13 @@ public class InventoryController : MonoBehaviour
     }
 
 
+    #region Timer Inventory
     void HandleTimer()
     {
         if (_isInBoxInteraction) return;
-        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
-        if (!_timerHasStarted && _timerHasFinished) return;
+        if (!_timerIsActive && _timerHasFinished) return;
             
         _time += Time.deltaTime;
-
         if (_time > _maxTimeToSelect)
         {
             ResetTimer();
@@ -188,16 +198,21 @@ public class InventoryController : MonoBehaviour
     }
     void StartTimer()
     {
+        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
         _time = _initialTimer;
-        _timerHasStarted = true;
+        _timerIsActive = true;
         _timerHasFinished = false;
     }
     void ResetTimer()
     {
-        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
+        Debug.Log("RESET TIMER");
         _time = 0;
+        _timerIsActive = false;
         _timerHasFinished = true;
+
     }
+    #endregion
+
 }
     
     
