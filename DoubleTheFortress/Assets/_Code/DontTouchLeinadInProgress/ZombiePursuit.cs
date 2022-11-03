@@ -25,7 +25,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public event Action ZombieDieEvent;
     public event Action <Transform> ZombieTotemEvent;
-
+    
 
     private void Start()
     {
@@ -47,6 +47,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
             case ZombieState.Walk:
                 Pursuit();
+                CheckIfPause();
             break;
 
             case ZombieState.Death:
@@ -197,8 +198,13 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isAttacking = false;
         _isRecivingDamage = false;
 
-        CurrentState = ZombieState.Idle;
+        CurrentState = ZombieState.Walk;
     } 
+
+    public void CheckIfPause()
+    {
+        //if (GameManager.Instance.IsPaused) CurrentState = ZombieState.Idle;
+    }
 
     #region Interface Methods
 
