@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int Kills { get => _zombieKills; }
     public double ElapsedTime { get => _elapsedTime; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
+    public bool GameStarted { get => _gameStarted; }
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;
@@ -37,7 +38,33 @@ public class GameManager : MonoBehaviour
     {
         AddTime();
         ProgressGame();
-        if (Input.GetKeyDown(KeyCode.L)) StartGame();
+        RecievePauseInput();
+    }
+
+    private void RecievePauseInput()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (_gameFinished) return;
+
+            if (!_gameStarted)
+            {
+                StartGame();
+                return;
+            }
+
+            if (_isPaused)
+            {
+                UnpauseGame();
+                return;
+            }
+
+            if (!_isPaused)
+            {
+                PauseGame();
+                return;
+            }
+        }
     }
 
     public void StartGame()
