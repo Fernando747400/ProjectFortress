@@ -42,7 +42,7 @@ public class IGrabbable : MonoBehaviour
    {
       if (_collider!= null)
       {
-         _collider.enabled = isSelecting;
+         _collider.enabled = !isSelecting;
       }
    }
    

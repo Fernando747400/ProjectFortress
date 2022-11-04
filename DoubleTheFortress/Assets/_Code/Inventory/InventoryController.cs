@@ -66,8 +66,8 @@ public class InventoryController : MonoBehaviour
         
         DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
         DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
-        SelectRightReference.action.performed += ctx => SelectItem(false);
-        SelectLeftReference.action.performed += ctx => SelectItem(true);
+        SelectRightReference.action.performed += ctx => SelectItem( Hand.RightHand);
+        SelectLeftReference.action.performed += ctx => SelectItem( Hand.LeftHand);
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
@@ -170,32 +170,44 @@ public class InventoryController : MonoBehaviour
 
 
 
-    void SelectItem(bool isLeft)
+    void SelectItem(Hand _currentHand)
     {
         if (_isPaused)return;
         if (_isInBoxInteraction) return;
-        if(hasObjectSelected) return;
+        if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
 
+        _currentSelectingHand = _currentHand;
         ResetTimer();
+        
         //Deselect current objects in hand
         DeselectItems(_currentSelectedObjects , _currentSelectingHand);
 
         List<GameObject> objects = new List<GameObject>();
-        
-        if (isLeft)
-        {
-            objects = _objectsLeftHand.ToList();
-            _currentSelectedObjects = objects;
-            _currentSelectingHand = Hand.LeftHand;
-            
-        }
-        else
-        {
-            objects = _objectsRightHand.ToList();
-            _currentSelectedObjects = objects;
-            _currentSelectingHand = Hand.RightHand;
 
+        switch (_currentHand)
+        {
+            case Hand.LeftHand:
+                objects = _objectsLeftHand.ToList();
+                break;
+            case Hand.RightHand:
+                objects = _objectsRightHand.ToList();
+                break;
         }
+        _currentSelectedObjects = objects;
+        
+        // {
+        //     objects = _objectsLeftHand.ToList();
+        //     _currentSelectedObjects = objects;
+        //     _currentSelectingHand = Hand.LeftHand;
+        //     
+        // }
+        // else
+        // {
+        //     objects = _objectsRightHand.ToList();
+        //     _currentSelectedObjects = objects;
+        //     _currentSelectingHand = Hand.RightHand;
+        //
+        // }
         
         if (_selectIndex >= objects.Count) _selectIndex = 0;
         
