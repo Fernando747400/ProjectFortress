@@ -126,6 +126,7 @@ public class InventoryController : MonoBehaviour
     }
     public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
     {
+        Debug.Log("Se agragan al area interaction");
         areasInteraction.Add(interaction);
 
         if (areasInteraction.Count > 0 )
@@ -174,7 +175,7 @@ public class InventoryController : MonoBehaviour
     {
         if (_isPaused)return;
         if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
-        if (_isInBoxInteraction && _currentSelectingHand == _currentHand) return;
+        if (_isInBoxInteraction && _currentSelectingHand == Hand.None) return;
 
         //Deselect current objects in hand
         DeselectItems(_currentSelectedObjects , _currentSelectingHand);
@@ -236,7 +237,7 @@ public class InventoryController : MonoBehaviour
     
     void HandleBoxInteraction(bool interaction)
     {
-        _isInBoxInteraction = !interaction;
+        _isInBoxInteraction = interaction;
         if (_playerSelectedItem == PlayerSelectedItem.Selecting)
         {
             DeselectItems(_currentSelectedObjects, _currentSelectingHand);
