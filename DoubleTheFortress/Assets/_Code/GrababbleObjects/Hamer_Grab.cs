@@ -7,8 +7,8 @@ public class Hamer_Grab : IGrabbable , IPause
 
     #region Variables
 
-    [Header("Inventory")] 
-    [SerializeField] private InventoryController _inventoryController;
+    // [Header("Inventory")] 
+    // [SerializeField] private InventoryController _inventoryController;
 
     [Header("Settings")]
     [SerializeField] private float _pointsToRepair;
@@ -26,7 +26,7 @@ public class Hamer_Grab : IGrabbable , IPause
     #region unity Methods
     void Start()
     {
-        _inventoryController.OnIsSelecting += HandleIsSelectingState;
+        // _inventoryController.OnIsSelecting += HandleIsSelectingState;
         _isPaused = GameManager.Instance.IsPaused;
     }
 
@@ -58,19 +58,19 @@ public class Hamer_Grab : IGrabbable , IPause
         }
     }
 
-    void HandleIsSelectingState(bool isSelecting)
-    {
-        Collider collider = GetComponent<Collider>();
-
-        if (isSelecting)
-        {
-            collider.enabled = false;
-        }
-        else
-        {
-            collider.enabled = true;
-        }
-    }
+    // void HandleIsSelectingState(bool isSelecting)
+    // {
+    //     Collider collider = GetComponent<Collider>();
+    //
+    //     if (isSelecting)
+    //     {
+    //         collider.enabled = false;
+    //     }
+    //     else
+    //     {
+    //         collider.enabled = true;
+    //     }
+    // }
     #endregion
 
     #region Interface Methods

@@ -11,8 +11,6 @@ public class VrGunFire : DebugGunFire
     private PlayerSelectedItem selectedItem;
 
     private bool _isPaused;
-
-    // Start is called before the first frame update
     void Start()
     {
         GunShoot.action.performed += ctx => FireHitScan();
