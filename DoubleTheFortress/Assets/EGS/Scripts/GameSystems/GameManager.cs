@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public double ElapsedTime { get => _elapsedTime; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
     public bool GameStarted { get => _gameStarted; }
-    public bool MainMenu { get => _inMainMenu; set { _inMainMenu = value; UpdateMainMenu(); } }
+    public bool MainMenu { get => _inMainMenu; set { if(_inMainMenu = value) return; _inMainMenu = value; UpdateMainMenu(); } }
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;
