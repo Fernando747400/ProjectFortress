@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,12 +13,14 @@ public class GameManager : MonoBehaviour
     private bool _isPaused;
     private bool _gameStarted;
     private bool _gameFinished;
+    private bool _inMainMenu;
     private int _currentMinute;
     
     public int Kills { get => _zombieKills; }
     public double ElapsedTime { get => _elapsedTime; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
     public bool GameStarted { get => _gameStarted; }
+    public bool MainMenu { get => _inMainMenu; set { _inMainMenu = value; UpdateMainMenu(); } }
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(Instance);
         }
         else
         {
@@ -45,11 +46,6 @@ public class GameManager : MonoBehaviour
         Prepare();
     }
 
-    private void Update()
-    {
-        // RecievePauseInput();
-    }
-
     private void FixedUpdate()
     {
         AddTime();
@@ -58,28 +54,26 @@ public class GameManager : MonoBehaviour
 
     private void RecievePauseInput()
     {
-        // if (Input.GetKeyDown(KeyCode.P))
-        // {
-            if (_gameFinished) return;
+        if (_inMainMenu) return;
+        if (_gameFinished) return;
 
-            if (!_gameStarted)
-            {
-                StartGame();
-                return;
-            }
+        if (!_gameStarted)
+        {
+            StartGame();
+            return;
+        }
 
-            if (_isPaused)
-            {
-                UnpauseGame();
-                return;
-            }
+        if (_isPaused)
+        {
+            UnpauseGame();
+            return;
+        }
 
-            if (!_isPaused)
-            {
-                PauseGame();
-                return;
-            }
-        // }
+        if (!_isPaused)
+        {
+            PauseGame();
+            return;
+        }
     }
 
     public void StartGame()
@@ -90,6 +84,7 @@ public class GameManager : MonoBehaviour
         UnpauseGame();
         Debug.Log("Started Game");
     }
+    
 
     public void FinishGame()
     {
@@ -118,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     private void AddTime()
     {
+        if (_inMainMenu) return;
         if (_isPaused) return;
         _elapsedTime += Time.deltaTime;
     }
@@ -128,11 +124,11 @@ public class GameManager : MonoBehaviour
         _currentMinute = 0;
         _isPaused = true;
         _gameStarted = false;
-        //Debug.LogWarning("The game manager time starts on play for dev purposes. Be sure to change the value to false before game deploy.");
     }
 
     private void ProgressGame()
     {
+        if (_inMainMenu) return;
         if (IsPaused) return;
         TimeSpan currentTime = TimeSpan.FromSeconds(_elapsedTime);
 
@@ -152,5 +148,22 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    
+
+    private void UpdateMainMenu()
+    {
+        if (_inMainMenu) UnpauseGame();
+        if (!_inMainMenu) ResetValues();
+    }
+
+    private void ResetValues()
+    {
+        _zombieKills = 0;
+        _elapsedTime = 0;
+        _currentMinute = 0;
+        _isPaused = true;
+        PauseGame();
+        _gameStarted = false;
+        _gameFinished = false;
+    }
+
 }

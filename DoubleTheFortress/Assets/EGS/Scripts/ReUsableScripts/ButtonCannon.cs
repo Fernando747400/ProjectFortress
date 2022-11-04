@@ -47,7 +47,7 @@ public class ButtonCannon : MonoBehaviour
         OnPushedButton += FireCannon;
         particles.SetActive(false);
         len = myColors.Length;
-        StartTimer();
+        // StartTimer();
     }
 
     void Update()
@@ -115,7 +115,7 @@ public class ButtonCannon : MonoBehaviour
 
     void StartTimer()
     {
-        Debug.Log("Start timer");
+        // Debug.Log("Start timer");
         _time = _intialTimer;
         _timerHasStarted = true;
         _timerHasFinished = false;
