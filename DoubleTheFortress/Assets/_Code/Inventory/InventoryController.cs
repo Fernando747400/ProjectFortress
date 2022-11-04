@@ -69,7 +69,7 @@ public class InventoryController : MonoBehaviour
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
-        HandleAreasInteraction();
+        // HandleAreasInteraction();
         OnPlayerSelectItem += HandleSelectedItem;
         
         foreach (var obj in _objectsLeftHand)

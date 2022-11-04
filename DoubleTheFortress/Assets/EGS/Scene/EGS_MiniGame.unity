@@ -11542,6 +11542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonPrefab: {fileID: 0}
+  _cannonTransform: {fileID: 0}
   _mywallScript: {fileID: 429329431}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -19442,6 +19444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonPrefab: {fileID: 0}
+  _cannonTransform: {fileID: 0}
   _mywallScript: {fileID: 776482836}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -19647,6 +19651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonPrefab: {fileID: 0}
+  _cannonTransform: {fileID: 0}
   _mywallScript: {fileID: 782457045}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -19751,6 +19757,11 @@ PrefabInstance:
     - target: {fileID: 1706550581562239790, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: areasInteraction.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091824464887997568, guid: 75413e9a48194104493c72dd7318578f,
@@ -83138,6 +83149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonPrefab: {fileID: 0}
+  _cannonTransform: {fileID: 0}
   _mywallScript: {fileID: 6595506780152846139}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
