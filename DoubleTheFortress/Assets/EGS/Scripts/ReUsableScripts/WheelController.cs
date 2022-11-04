@@ -57,8 +57,10 @@ public class WheelController : MonoBehaviour
     void HandleWheelInteraction()
     {
 
-        if (_inventoryController== null)
+        if (_inventoryController == null)
+        {
             _inventoryController = _boxInteraction.InventoryPlayer;
+        }
         
         _canMoveCannon = false;
 
