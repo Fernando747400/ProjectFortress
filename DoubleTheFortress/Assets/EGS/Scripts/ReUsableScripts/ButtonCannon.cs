@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ButtonCannon : MonoBehaviour
 {
     [Header("Cannon config")]
+    [SerializeField] private GameObject particles;
+
     [SerializeField] private Collider _collider;
     [SerializeField] private float delay;
     [SerializeField] private bool _isAutomatic;

@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HeavyWeaponRotate_VR : Gun_Rotate
 {
  
     [SerializeField] private GameObject handle;
+
     private Vector3 _handlePos;
     private Vector3 _initialPos;
     public Vector3 InitPos
