@@ -17,9 +17,7 @@ public class ButtonCannon : MonoBehaviour
     
     [SerializeField] private Image fill;
     [SerializeField] private Image background;
-    [SerializeField] private Color[] _myColors;
 
-   [SerializeField]  private Color _lerpedColor;
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
     
     float _time;
@@ -27,7 +25,6 @@ public class ButtonCannon : MonoBehaviour
     private float _initialValue;
     private bool _timerHasStarted;
     private bool _timerHasFinished;
-    private int _colorIndex;
 
     public Action OnPushedButton;
 
@@ -36,7 +33,7 @@ public class ButtonCannon : MonoBehaviour
     int colorIndex = 0;
     float t = 0;
     int len;
-
+    public float LerpChange;
     [SerializeField] Color[] myColors;
 
 
@@ -52,7 +49,6 @@ public class ButtonCannon : MonoBehaviour
     void Update()
     {
         HandleTimer();
-        LerpColor();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,37 +81,29 @@ public class ButtonCannon : MonoBehaviour
         _time = _intialTimer;
         _timerHasStarted = true;
         _timerHasFinished = false;
+        colorIndex = 0;
+        fill.color = myColors[0];
     }
 
     void HandleTimer()
     {
         if (!_timerHasStarted && _timerHasFinished) return;
         
-        _time += Time.deltaTime;
+        _time += Time.deltaTime * 1;
+        LerpColor();
        // Debug.Log(_time);
         if (_time > delay)
         {
             RestartTimer();
         }
 
-        
-        if (_time > 1 && _time < 1.9f)
-        {
-            _colorIndex = 1;
-        }
-        else if (_time > 2 && _time < 2.5f)
-        {
-            _colorIndex = 2;
-        }
-            
-        HandleUICannon(_time);
+        HandleUICannon(_time / delay);
     }
 
     void RestartTimer()
     {
         _time = 0;
         _timerHasFinished = true;
-        _colorIndex = 0;
         
         if(_isAutomatic) StartTimer();
     }
@@ -124,7 +112,7 @@ public class ButtonCannon : MonoBehaviour
     {
         fill.color = Color.Lerp(fill.color, myColors[colorIndex], lerpTime * Time.deltaTime);
 
-        t = Mathf.Lerp(t, 1.5f, lerpTime * Time.deltaTime);
+        t = Mathf.Lerp(t, LerpChange, lerpTime * Time.deltaTime);
         if(t>.9f)
         {
             t = 0;
