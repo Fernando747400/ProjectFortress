@@ -20219,7 +20219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5ceeeb6565da544847f25be73b6ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2327237692435819342, guid: e122b3ded5195014694d1a04c97d258e,
+  projectile: {fileID: 2327237692435819349, guid: e122b3ded5195014694d1a04c97d258e,
     type: 3}
   maxProjectiles: 5
   launchForce: 800

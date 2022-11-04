@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [SerializeField] private InputActionReference _inputAReference;
 
     private int _zombieKills;
     private double _elapsedTime;
@@ -38,12 +41,13 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        _inputAReference.action.performed += ctx => RecievePauseInput();
         Prepare();
     }
 
     private void Update()
     {
-        RecievePauseInput();
+        // RecievePauseInput();
     }
 
     private void FixedUpdate()
@@ -54,8 +58,8 @@ public class GameManager : MonoBehaviour
 
     private void RecievePauseInput()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
             if (_gameFinished) return;
 
             if (!_gameStarted)
@@ -75,7 +79,7 @@ public class GameManager : MonoBehaviour
                 PauseGame();
                 return;
             }
-        }
+        // }
     }
 
     public void StartGame()
@@ -136,6 +140,7 @@ public class GameManager : MonoBehaviour
         {
             EnemyManagger.Instance.Damage += 10f;
             Debug.Log("Added more damage");
+            EnemyManagger.Instance.StrongZombie = true;
         }
 
         if (currentTime.Minutes > _currentMinute)

@@ -19,6 +19,8 @@ public class ButtonCannon : MonoBehaviour
     [SerializeField] private Image background;
 
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
+   
+   private bool _isPaused;
     
     float _time;
     float _intialTimer = 0;
@@ -53,10 +55,34 @@ public class ButtonCannon : MonoBehaviour
         HandleTimer();
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.PauseGameEvent += PauseGame;
+        GameManager.Instance.PlayGameEvent += UnPauseGame;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.PauseGameEvent -= PauseGame;
+        GameManager.Instance.PlayGameEvent -= UnPauseGame;
+    }
+
+    void PauseGame()
+    {
+        _isPaused = true;
+    }
+    void UnPauseGame()
+    {
+        _isPaused = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Torch"))
         {
+            if (_isPaused)
+            {
+                return;
+            }
             if (!_isFiring && _timerHasFinished)
             {
                 StartCoroutine(FireTimer());

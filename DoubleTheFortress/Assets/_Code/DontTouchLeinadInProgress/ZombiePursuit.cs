@@ -233,6 +233,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         if (CurrentState == ZombieState.Idle) CurrentState = ZombieState.Walk;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         CheckIfPause();
+        StrongZombie();
     }
 
     private void Prepare()
@@ -247,6 +248,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isRecivingDamage = false;
 
         CurrentState = ZombieState.Walk;
+        StrongZombie();
         CheckIfPause();
     } 
 
@@ -254,6 +256,24 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if(GameManager.Instance.IsPaused) CurrentState = ZombieState.Idle;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
+    }
+
+    private void StrongZombie()
+    {
+        if (EnemyManagger.Instance.StrongZombie)
+        {
+            foreach (Renderer render in this.GetComponentsInChildren<Renderer>())
+            {
+                if (render.material.name == "Zombieskin (Instance)") render.material = EnemyManagger.Instance.StrongSkin;
+            }
+        }
+        if (!EnemyManagger.Instance.StrongZombie)
+        {
+            foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
+            {
+                if (renderer.material.name == "DefaultSkin (Instance)") renderer.material = EnemyManagger.Instance.DefaultSkin;
+            }
+        }
     }
 
     #region Interface Methods
@@ -300,6 +320,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private void OnEnable()
     {
         SubscribeToEvents();
+
     }
 
     private void OnDisable()
