@@ -173,7 +173,7 @@ public class InventoryController : MonoBehaviour
     void SelectItem(Hand _currentHand)
     {
         if (_isPaused)return;
-        if (_isInBoxInteraction) return;
+        // if (_isInBoxInteraction) return;
         if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
 
         //Deselect current objects in hand
@@ -223,7 +223,7 @@ public class InventoryController : MonoBehaviour
     
     void ConfirmSelection(Hand hand)
     {
-        if (_isInBoxInteraction) return;
+        // if (_isInBoxInteraction) return;
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
         
