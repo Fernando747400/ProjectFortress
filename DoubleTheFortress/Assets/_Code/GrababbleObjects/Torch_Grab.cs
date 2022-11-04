@@ -31,7 +31,10 @@ public class Torch_Grab : IGrabbable
         if (!isSelecting)
         {
             _particles.SetActive(true);
-
+        }
+        else
+        {
+            _particles.SetActive(false);
         }
     }
 }
