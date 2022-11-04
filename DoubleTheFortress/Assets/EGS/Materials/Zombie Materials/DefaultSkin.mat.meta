@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: a7e1e67bb29c96a49826e3c4ef9cd5b5
+<<<<<<< HEAD
+guid: 39b214485958fb1409ae43c692216a26
+=======
+guid: 4e4876a929bf8764db438bb03f9c3abf
+>>>>>>> EGS
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
