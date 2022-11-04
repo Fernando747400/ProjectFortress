@@ -24645,6 +24645,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Torch
       objectReference: {fileID: 0}
+    - target: {fileID: 718755879699070092, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1359395586023538722, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_IsActive
@@ -24839,6 +24844,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112964, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112967, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: m_IsActive
@@ -24864,6 +24874,16 @@ PrefabInstance:
       propertyPath: particles
       value: 
       objectReference: {fileID: 535377156}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: LerpChange
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: _isAutomatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.size
