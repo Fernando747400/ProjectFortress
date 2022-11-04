@@ -41,7 +41,7 @@ public class InventoryController : MonoBehaviour
     private bool _timerIsActive;
     private bool _timerHasFinished;
 
-    private Hand _currentSelectingHand = Hand.None;
+    public Hand _currentSelectingHand = Hand.None;
     private List<GameObject> _currentSelectedObjects;
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
