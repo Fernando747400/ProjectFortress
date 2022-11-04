@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(Instance);
         }
         else
         {
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         _inputAReference.action.performed += ctx => RecievePauseInput();
         Prepare();
+
     }
 
     private void Update()
@@ -89,6 +91,16 @@ public class GameManager : MonoBehaviour
         _gameStarted = true;
         UnpauseGame();
         Debug.Log("Started Game");
+    }
+
+    public void ResetValues()
+    {
+        if (_gameStarted) return;
+        StartGameEvent?.Invoke();
+        _gameStarted = true;
+        PauseGame();
+        Debug.Log("Started Game");
+
     }
 
     public void FinishGame()
