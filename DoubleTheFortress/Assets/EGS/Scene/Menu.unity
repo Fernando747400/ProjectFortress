@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ed436a569e96155478218ae25c2267e4,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -17146,6 +17147,7 @@ MonoBehaviour:
   - {fileID: 4597822129275200943}
   myMaterials:
   - {fileID: 2100000, guid: e90227551fbab5e468eac41f012bb0fa, type: 2}
+  _collider: {fileID: 0}
   _selectedItem: 2
   _typeOfItem: 3
   damage: 10
@@ -40101,11 +40103,10 @@ MonoBehaviour:
   - {fileID: 6494813341354876407}
   myMaterials:
   - {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d, type: 3}
+  _collider: {fileID: 5612509825767536878}
   _selectedItem: 8
   _typeOfItem: 12
-  _inventoryController: {fileID: 4447094579741096355}
   _particles: {fileID: 5324446822593766613}
-  _collider: {fileID: 5612509825767536878}
 --- !u!1 &5612509825767536875
 GameObject:
   m_ObjectHideFlags: 0
@@ -58349,9 +58350,9 @@ MonoBehaviour:
   myMaterials:
   - {fileID: -8796627655084249796, guid: 5536eb113c93aae42a6010fef9b8389c, type: 3}
   - {fileID: -3522955778539423533, guid: 820da96c311ae524e8e3c78d90d3faee, type: 3}
+  _collider: {fileID: 0}
   _selectedItem: 1
   _typeOfItem: 3
-  _inventoryController: {fileID: 4447094579741096355}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
   _cooldown: 0
