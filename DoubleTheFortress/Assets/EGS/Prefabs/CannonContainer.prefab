@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 1613792122376627174}
   - component: {fileID: 1613792122376627169}
   - component: {fileID: 1613792122376627168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9897,7 +9897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1613792122749783365}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CannonFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9934,7 +9934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1613792123399080398}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CannonContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10003,7 +10003,7 @@ GameObject:
   - component: {fileID: 1613792123760087954}
   - component: {fileID: 1613792123760087952}
   - component: {fileID: 1613792123760087955}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10083,7 +10083,7 @@ GameObject:
   - component: {fileID: 1613792123827112964}
   - component: {fileID: 1613792123827112968}
   - component: {fileID: 1613792123827112969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10223,7 +10223,7 @@ GameObject:
   - component: {fileID: 1613792124176153069}
   - component: {fileID: 1613792124176153068}
   - component: {fileID: 1613792124176153071}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: UI_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25339,6 +25339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e1ea3cb4773fe274b915468ce64d1273,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1ea3cb4773fe274b915468ce64d1273,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -25432,6 +25437,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HolderCannon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a71b44d54cbc238418725e478396cb6d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a71b44d54cbc238418725e478396cb6d, type: 3}
 --- !u!4 &6011984736287973623 stripped
@@ -25521,6 +25531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c61520473c6ee24784cb37171c57a4a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4c61520473c6ee24784cb37171c57a4a,
         type: 3}

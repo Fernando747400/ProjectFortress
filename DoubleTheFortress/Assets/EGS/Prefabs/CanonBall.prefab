@@ -84,7 +84,7 @@ MonoBehaviour:
   blastRadius: 1
   layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
 --- !u!1 &2327237693005131231
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,11 +178,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2327237693005131228}
     m_Modifications:
-    - target: {fileID: 1495930440622972800, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
-        type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -191,17 +186,17 @@ PrefabInstance:
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4788103
+      value: -1.4788097
       objectReference: {fileID: 0}
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38338977
+      value: 0.38338766
       objectReference: {fileID: 0}
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.06263415
+      value: -0.06263421
       objectReference: {fileID: 0}
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
@@ -216,12 +211,12 @@ PrefabInstance:
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2602455714089217166, guid: 721a2c76bf6c80f48988fd98b94cb6b3,
         type: 3}
@@ -258,11 +253,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2327237693005131228}
     m_Modifications:
-    - target: {fileID: 5104959940885152346, guid: 41d0db01a86ab114693c1f676e2275b9,
-        type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6395779021511238817, guid: 41d0db01a86ab114693c1f676e2275b9,
         type: 3}
       propertyPath: m_RootOrder
@@ -342,11 +332,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bomb_SmokeBody
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497731821352590596, guid: 2b4d58c7643de1e4aba988baff1e4595,
-        type: 3}
-      propertyPath: looping
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5633245467587421936, guid: 2b4d58c7643de1e4aba988baff1e4595,
         type: 3}
