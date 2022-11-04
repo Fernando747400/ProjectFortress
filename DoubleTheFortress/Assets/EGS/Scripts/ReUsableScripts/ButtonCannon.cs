@@ -57,14 +57,20 @@ public class ButtonCannon : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.PauseGameEvent += PauseGame;
-        GameManager.Instance.PlayGameEvent += UnPauseGame;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent += PauseGame;
+            GameManager.Instance.PlayGameEvent += UnPauseGame;
+        }
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.PauseGameEvent -= PauseGame;
-        GameManager.Instance.PlayGameEvent -= UnPauseGame;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent -= PauseGame;
+            GameManager.Instance.PlayGameEvent -= UnPauseGame;
+        }
     }
 
     void PauseGame()

@@ -44,14 +44,22 @@ public class VrGunFire : DebugGunFire
 
     private void OnEnable()
     {
-        GameManager.Instance.PauseGameEvent += Paused;
-        GameManager.Instance.PlayGameEvent += Unpaused;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent += Paused;
+            GameManager.Instance.PlayGameEvent += Unpaused;
+
+        }
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.PauseGameEvent -= Paused;
-        GameManager.Instance.PlayGameEvent -= Unpaused;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent -= Paused;
+            GameManager.Instance.PlayGameEvent -= Unpaused;
+            
+        }
     }
 
     void Paused()

@@ -102,12 +102,18 @@ public class Hamer_Grab : IGrabbable , IPause
 
     private void OnEnable()
     {
-        SubscribeToEvents();
+        if (GameManager.Instance != null)
+        {
+            SubscribeToEvents();
+        }
     }
 
     private void OnDisable()
     {
-        UnsubscribeToEvents();
+        if (GameManager.Instance != null)
+        {
+            UnsubscribeToEvents();
+        }
     }
     #endregion
 
