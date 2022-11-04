@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DebugStuff.Inventory;
@@ -14,10 +15,12 @@ public class WheelController : MonoBehaviour
     private bool _canMoveCannon = false;
     private InventoryController _inventoryController;
     private BoxAreasInteraction _boxInteraction;
+    private bool _isPaused;
     
     void Start()
     {
         _boxInteraction = GetComponent<BoxAreasInteraction>();
+        
         
         rightHolder.OnGrabbed += HandleWheelInteraction;
         rightHolder.OnReleased += HandleWheelInteraction;
@@ -31,6 +34,7 @@ public class WheelController : MonoBehaviour
 
     void Update()
     {
+        if(_isPaused) return;
         if (rightHolder.Hand != null && leftHolder.Hand != null)
         {
             if (_canMoveCannon )
@@ -42,6 +46,28 @@ public class WheelController : MonoBehaviour
             }
         }
     }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.PauseGameEvent += IsPaused;
+        GameManager.Instance.PauseGameEvent += IsUnPaused;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.PauseGameEvent -= IsPaused;
+        GameManager.Instance.PauseGameEvent -= IsUnPaused;
+    }
+
+    void IsPaused()
+    {
+        _isPaused = true;
+    }
+    void IsUnPaused()
+    {
+        _isPaused = false;
+    }
+    
 
     private Vector3 GetMidPoint(Vector3 p1, Vector3 p2)
     {

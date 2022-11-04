@@ -10,6 +10,7 @@ public class VrGunFire : DebugGunFire
     public InputActionReference GunShoot;
     private PlayerSelectedItem selectedItem;
 
+    private bool _isPaused;
 
     // Start is called before the first frame update
     void Start()
@@ -29,13 +30,36 @@ public class VrGunFire : DebugGunFire
 
     protected override void FireSimulated()
     {
+        if (_isPaused) return;
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
         base.FireSimulated();
     }
 
     protected override void FireHitScan()
     {
+        if (_isPaused) return;
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
         base.FireHitScan();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.PauseGameEvent += Paused;
+        GameManager.Instance.PlayGameEvent += Unpaused;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.PauseGameEvent -= Paused;
+        GameManager.Instance.PlayGameEvent -= Unpaused;
+    }
+
+    void Paused()
+    {
+        _isPaused = true;
+    }
+    void Unpaused()
+    {
+        _isPaused = false;
     }
 }

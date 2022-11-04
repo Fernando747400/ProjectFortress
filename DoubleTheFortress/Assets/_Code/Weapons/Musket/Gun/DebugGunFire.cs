@@ -55,7 +55,7 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireSimulated()
     {
         _savedFirePosition = transform.position;
-        Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, 1, 0)) - _savedFirePosition;
+        Vector3 simulatedHitPos = _hitPosition - _savedFirePosition;
         //Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, _gravity.y / _travelTime / Time.fixedDeltaTime, 0)) - _savedFirePosition;
         Debug.Log(_hitPosition);
         
@@ -64,11 +64,11 @@ public class DebugGunFire :  GeneralAgressor
         Debug.DrawLine(_savedFirePosition,simulatedHit.point,Color.cyan);
         Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
         
-        // if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
-        // {
-        //     simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
-        // }
-        // _canFire = true;
+        if (TryGetGeneralTarget(simulatedHit.collider.gameObject))
+        {
+            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
+        }
+        _canFire = true;
         
     }
   
