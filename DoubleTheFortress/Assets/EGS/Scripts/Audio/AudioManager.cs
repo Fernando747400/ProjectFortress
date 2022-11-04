@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClip clip, float volume = 1f, Vector3 position = default(Vector3))
     {
+        if (clip == null) throw new Exception("Audioclip is null");
         AudioSource.PlayClipAtPoint(clip, position, volume);
     }
 
