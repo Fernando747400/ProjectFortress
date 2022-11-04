@@ -31,7 +31,7 @@ public class Debug_CannonFire : MonoBehaviour
         Launch();
     }
 
-    private void Launch()
+    public void Launch()
     {
         try
         {

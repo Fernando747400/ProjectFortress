@@ -6,6 +6,7 @@ public class ButtonCannon : MonoBehaviour
 {
     [Header("Cannon config")]
     [SerializeField] private GameObject particles;
+    [SerializeField] private Debug_CannonFire cannon;
 
     [SerializeField] private Collider _collider;
     [SerializeField] private float delay;
@@ -51,7 +52,7 @@ public class ButtonCannon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
+        if (other.CompareTag("Torch"))
         {
             OnPushedButton?.Invoke();
             
@@ -61,6 +62,7 @@ public class ButtonCannon : MonoBehaviour
     void FireCannon()
     {
         //.Log("FIRECannon");
+        cannon.Launch();
         StartTimer();
     }
 

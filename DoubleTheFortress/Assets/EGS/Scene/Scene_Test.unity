@@ -24640,6 +24640,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 718755879699070089, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Torch
+      objectReference: {fileID: 0}
     - target: {fileID: 1359395586023538722, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_IsActive
@@ -24841,6 +24846,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
+      propertyPath: cannon
+      value: 
+      objectReference: {fileID: 1613792122392731108}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
       propertyPath: lerpTime
       value: 0.922
       objectReference: {fileID: 0}
@@ -25002,6 +25012,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1613792122392731106}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1613792122392731108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6792457280103045382, guid: 732166c9f10511040a0b8b10bfacb5e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1613792122392731106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5ceeeb6565da544847f25be73b6ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3612603625705238211 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2614300799680394017, guid: 732166c9f10511040a0b8b10bfacb5e5,
