@@ -173,8 +173,8 @@ public class InventoryController : MonoBehaviour
     void SelectItem(Hand _currentHand)
     {
         if (_isPaused)return;
-        // if (_isInBoxInteraction) return;
         if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
+        if (_isInBoxInteraction && _currentSelectingHand == _currentHand) return;
 
         //Deselect current objects in hand
         DeselectItems(_currentSelectedObjects , _currentSelectingHand);
