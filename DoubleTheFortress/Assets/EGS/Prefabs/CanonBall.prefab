@@ -14,11 +14,7 @@ GameObject:
   - component: {fileID: 7518262756132401491}
   m_Layer: 9
   m_Name: CanonBall
-<<<<<<< HEAD
-  m_TagString: MenuCanonBall
-=======
   m_TagString: Cannon
->>>>>>> EGS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,15 +88,11 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 1
-<<<<<<< HEAD
-  _cannonFire: {fileID: 0}
-=======
   cannonFire: {fileID: 0}
   particleSystems:
   - {fileID: 7214095505620697000}
   - {fileID: 2911499361728021392}
   - {fileID: 1153975341919122782}
->>>>>>> EGS
 --- !u!1 &2327237693005131231
 GameObject:
   m_ObjectHideFlags: 0
