@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WallManager : MonoBehaviour
+public class WallManager : MonoBehaviour , IPause
 {
     #region Configuration
 
@@ -47,6 +47,7 @@ public class WallManager : MonoBehaviour
 
     public void ReceiveHammer(float repairPoints, float upgradePoints)
     {
+        if (_isPaused) return;
         if(_mywall.CurrentHealth < _mywall.MaxHealth)
         {
             _mywall.Repair(repairPoints);
@@ -72,6 +73,7 @@ public class WallManager : MonoBehaviour
 
     public void ReceiveDamage(GameObject sender, float damage)
     {
+        if (_isPaused) return;
         if (GetCurrentIndex() == 0) return;
         if (_mywall.CurrentHealth > 0 && damage < _mywall.CurrentHealth)
         {
@@ -130,6 +132,7 @@ public class WallManager : MonoBehaviour
         _mywallScript.onRecieveDamage += ReceiveDamage;
         _mainCollider = this.gameObject.GetComponent<Collider>();
         UpdateTrigger();
+        _isPaused = GameManager.Instance.IsPaused;
         _currentCannon = Instantiate(_cannonPrefab, _cannonTransform.position, _cannonTransform.rotation, _cannonTransform);
     }
 
@@ -158,8 +161,6 @@ public class WallManager : MonoBehaviour
         UpdateCannon();
     }
     
-    
-
     private void UpdateTrigger()
     {
         if(GetCurrentIndex() == 0)
@@ -170,5 +171,43 @@ public class WallManager : MonoBehaviour
             _mainCollider.isTrigger = false;
         }
     }
+
+    #region Interface Methods
+
+    private bool _isPaused;
+    public bool IsPaused { set => _isPaused = value; }
+
+    void Pause()
+    {
+        _isPaused = true;
+    }
+
+    void Unpause()
+    {
+        _isPaused = false;
+    }
+
+    private void SubscribeToEvents()
+    {
+        GameManager.Instance.PauseGameEvent += Pause;
+        GameManager.Instance.PlayGameEvent += Unpause;
+    }
+
+    private void UnsubscribeToEvents()
+    {
+        GameManager.Instance.PauseGameEvent -= Pause;
+        GameManager.Instance.PlayGameEvent -= Unpause;
+    }
+
+    private void OnEnable()
+    {
+        SubscribeToEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeToEvents();
+    }
+    #endregion
 
 }

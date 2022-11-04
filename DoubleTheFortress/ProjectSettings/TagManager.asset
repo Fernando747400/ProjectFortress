@@ -13,6 +13,7 @@ TagManager:
   - HandTest
   - Zombie
   - MenuCanonBall
+  - Torch
   layers:
   - Default
   - TransparentFX

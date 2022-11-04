@@ -516,7 +516,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.7, y: 1.67, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1613792123827112968
 MonoBehaviour:
@@ -535,10 +535,9 @@ MonoBehaviour:
   _isAutomatic: 0
   fill: {fileID: 1613792122376627169}
   background: {fileID: 1613792123760087955}
-  _myColors: []
-  _lerpedColor: {r: 0, g: 0, b: 0, a: 0}
   _maxValue: 0.5
   lerpTime: 0
+  LerpChange: 0
   myColors: []
 --- !u!54 &1613792123827112969
 Rigidbody:
@@ -583,7 +582,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613792124176153065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.003}
+  m_LocalPosition: {x: 0, y: 0, z: 0.191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -593,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.05}
+  m_AnchoredPosition: {x: 0, y: 0.088}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1613792124176153069

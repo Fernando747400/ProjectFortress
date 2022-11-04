@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Hamer_Grab : IGrabbable
+public class Hamer_Grab : IGrabbable , IPause
 {
 
     #region Variables
@@ -27,6 +27,7 @@ public class Hamer_Grab : IGrabbable
     void Start()
     {
         _inventoryController.OnIsSelecting += HandleIsSelectingState;
+        _isPaused = GameManager.Instance.IsPaused;
     }
 
     void FixedUpdate()
@@ -47,6 +48,7 @@ public class Hamer_Grab : IGrabbable
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_isPaused) return;
         if (other.gameObject.GetComponent<IConstructable>() != null && _elapsedTime >= _cooldown)
         {
             _elapsedTime = 0f;
@@ -68,6 +70,44 @@ public class Hamer_Grab : IGrabbable
         {
             collider.enabled = true;
         }
+    }
+    #endregion
+
+    #region Interface Methods
+
+    private bool _isPaused;
+    public bool IsPaused { set => _isPaused = value; }
+
+    void Pause()
+    {
+        _isPaused = true;
+    }
+
+    void Unpause()
+    {
+        _isPaused = false;
+    }
+
+    private void SubscribeToEvents()
+    {
+        GameManager.Instance.PauseGameEvent += Pause;
+        GameManager.Instance.PlayGameEvent += Unpause;
+    }
+
+    private void UnsubscribeToEvents()
+    {
+        GameManager.Instance.PauseGameEvent -= Pause;
+        GameManager.Instance.PlayGameEvent -= Unpause;
+    }
+
+    private void OnEnable()
+    {
+        SubscribeToEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeToEvents();
     }
     #endregion
 
