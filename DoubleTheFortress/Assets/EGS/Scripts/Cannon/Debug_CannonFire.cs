@@ -57,7 +57,7 @@ public class Debug_CannonFire : MonoBehaviour
         {
             GameObject temp = Instantiate(projectile);
             temp.name = "CanonBall " + i;
-            temp.GetComponent<Canon_CanonBall>()._cannonFire = this;
+            temp.GetComponent<Canon_CanonBall>().cannonFire = this;
             _canonBalls.Enqueue(temp.GetComponent<Canon_CanonBall>());
         }    
     }
