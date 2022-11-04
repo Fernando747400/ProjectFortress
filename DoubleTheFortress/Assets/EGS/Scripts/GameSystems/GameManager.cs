@@ -34,11 +34,15 @@ public class GameManager : MonoBehaviour
         Prepare();
     }
 
+    private void Update()
+    {
+        RecievePauseInput();
+    }
+
     private void FixedUpdate()
     {
         AddTime();
-        ProgressGame();
-        RecievePauseInput();
+        ProgressGame();     
     }
 
     private void RecievePauseInput()
@@ -85,12 +89,14 @@ public class GameManager : MonoBehaviour
     {
         _isPaused = true;
         PauseGameEvent?.Invoke();
+        Debug.Log("Paused Game");
     }
 
     public void UnpauseGame()
     {
         _isPaused = false;
         PlayGameEvent?.Invoke();
+        Debug.Log("Unpaused Game");
     }
 
     public void AddKill() 
