@@ -14,7 +14,7 @@ public class Canon_CanonBall : GeneralAgressor
     private Rigidbody _rb;
     private MeshRenderer _rend;
     private Collider _col;
-    private Debug_CannonFire _cannonFire;
+    public Debug_CannonFire _cannonFire;
     private ParticleSystem _particleSystem;
     
     
@@ -101,11 +101,11 @@ public class Canon_CanonBall : GeneralAgressor
         }
         catch { Debug.Log("Missing Collider");}
 
-        try
-        {
-            _cannonFire = GameObject.Find("Cannon").GetComponent<Debug_CannonFire>();
-        }
-        catch { Debug.Log("Missing Debug_CanonFire");}
+        // try
+        // {
+        //     _cannonFire = GameObject.Find("Cannon").GetComponent<Debug_CannonFire>();
+        // }
+        // catch { Debug.Log("Missing Debug_CanonFire");}
 
         try
         {

@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Two_HandsHolder : XRBaseInteractable
 {
-    private HandController_XR _currentHand;
+    public HandController_XR _currentHand;
 
     public List<HandController_XR> _hands;
     public Action OnGrabbed;
@@ -42,7 +42,7 @@ public class Two_HandsHolder : XRBaseInteractable
 
     protected virtual void Grab(XRBaseInteractor interactor)
     {
-        Debug.Log(_currentHand.HandIsEmpty + "  _hand.HandIsEmpty ");
+        _currentHand.HandleIsEmpty();
         if (!_currentHand.HandIsEmpty) return;
         _isGrabbing = true;
         _currentHand.HandleHandsVisible(false);
@@ -80,11 +80,6 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            // if (_isGrabbing)
-            // {
-                // _hand.HandleHandsVisible(!_isGrabbing);
-            // }
-            
             _isGrabbing = false;
 
             foreach (var hand in _hands)

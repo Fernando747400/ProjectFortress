@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform _totemPosition;
     [SerializeField] private GameObject _skullPrefab;
     [SerializeField] private Pooling _skullPooler;
+    [SerializeField] private GameObject _tutorialCanvas;
     
     [Header("Kill Counter")]
     [SerializeField] private GameObject _killCounterCanvas;
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     {
         CoreManager.Instance.LostAHeartEvent += UpdateCoreLife;
         GameManager.Instance.GotKillEvent += UpdateKillCounter;
+        GameManager.Instance.StartGameEvent += CloseTutorialCanvas;
         _skullPooler.Preload(_skullPrefab, 10);
     }
     
@@ -53,6 +55,11 @@ public class UIManager : MonoBehaviour
     {
         heart.transform.parent = null;
         iTween.MoveTo(heart, iTween.Hash("position", _totemPosition.position, "time", 10f, "easetype", _easeType));
+    }
+
+    private void CloseTutorialCanvas()
+    {
+        _tutorialCanvas.SetActive(false);
     }
     
 }

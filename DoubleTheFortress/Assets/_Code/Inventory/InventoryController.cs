@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DebugStuff.Inventory;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,6 +47,7 @@ public class InventoryController : MonoBehaviour
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
 
+    private bool _isPaused;
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
@@ -68,12 +70,8 @@ public class InventoryController : MonoBehaviour
         SelectLeftReference.action.performed += ctx => SelectItem(true);
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
-
-        foreach (BoxAreasInteraction box in areasInteraction)
-        {
-            box.InventoryPlayer = this;
-            box.OnHandEnterActionZone += HandleBoxInteraction;
-        }
+        
+        // HandleAreasInteraction();
         OnPlayerSelectItem += HandleSelectedItem;
         
         foreach (var obj in _objectsLeftHand)
@@ -89,13 +87,50 @@ public class InventoryController : MonoBehaviour
         DeselectItems(_currentSelectedObjects, Hand.None);
     }
 
+    
+    
     private void Update()
     {
         if (SelectedItem == PlayerSelectedItem.Selecting)
         {
             HandleTimer();
-            
         }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.PauseGameEvent += Paused;
+        GameManager.Instance.PlayGameEvent += Unpaused;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.PauseGameEvent -= Paused;
+        GameManager.Instance.PlayGameEvent -= Unpaused;
+    }
+
+    private void Paused()
+    {
+        _isPaused = true;
+    }
+    void Unpaused()
+    {
+        _isPaused = false;
+    }
+    public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
+    {
+        areasInteraction.Add(interaction);
+
+        if (areasInteraction.Count > 0 )
+        {
+            foreach (BoxAreasInteraction box in areasInteraction)
+            {
+                box.InventoryPlayer = this;
+                box.OnHandEnterActionZone += HandleBoxInteraction;
+            }
+        }
+        
+        
     }
 
     void HandleSelectedItem(PlayerSelectedItem item)
@@ -105,6 +140,10 @@ public class InventoryController : MonoBehaviour
     
     void DeselectItems(List<GameObject> objects, Hand hand)
     {
+        if (_isPaused)
+        {
+            return;
+        }
         if (hand != _currentSelectingHand)
         {
             return;
@@ -121,12 +160,14 @@ public class InventoryController : MonoBehaviour
         _playerHandsObjects = PlayerSelectedItem.None;
         
     }
-    
-    
+
+
 
     void SelectItem(bool isLeft)
     {
+        if (_isPaused)return;
         if (_isInBoxInteraction) return;
+        if(hasObjectSelected) return;
 
         ResetTimer();
         //Deselect current objects in hand
@@ -222,7 +263,6 @@ public class InventoryController : MonoBehaviour
     }
     void ResetTimer()
     {
-        Debug.Log("RESET TIMER");
         _time = 0;
         _timerIsActive = false;
         _timerHasFinished = true;

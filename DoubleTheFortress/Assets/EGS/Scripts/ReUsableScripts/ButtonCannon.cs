@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ButtonCannon : MonoBehaviour
 {
     [Header("Cannon config")]
+    [SerializeField] private GameObject particles;
+    [SerializeField] private Debug_CannonFire cannon;
+
     [SerializeField] private Collider _collider;
     [SerializeField] private float delay;
     [SerializeField] private bool _isAutomatic;
@@ -17,17 +17,17 @@ public class ButtonCannon : MonoBehaviour
     
     [SerializeField] private Image fill;
     [SerializeField] private Image background;
-    [SerializeField] private Color[] _myColors;
 
-   [SerializeField]  private Color _lerpedColor;
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
+   
+   private bool _isPaused;
     
     float _time;
     float _intialTimer = 0;
     private float _initialValue;
     private bool _timerHasStarted;
     private bool _timerHasFinished;
-    private int _colorIndex;
+    private bool _isFiring;
 
     public Action OnPushedButton;
 
@@ -36,7 +36,7 @@ public class ButtonCannon : MonoBehaviour
     int colorIndex = 0;
     float t = 0;
     int len;
-
+    public float LerpChange;
     [SerializeField] Color[] myColors;
 
 
@@ -45,86 +45,113 @@ public class ButtonCannon : MonoBehaviour
         _collider = GetComponent<Collider>();
         _collider.isTrigger = true;
         OnPushedButton += FireCannon;
+        particles.SetActive(false);
         len = myColors.Length;
-        StartTimer();
+        // StartTimer();
     }
 
     void Update()
     {
         HandleTimer();
-        LerpColor();
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.PauseGameEvent += PauseGame;
+        GameManager.Instance.PlayGameEvent += UnPauseGame;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.PauseGameEvent -= PauseGame;
+        GameManager.Instance.PlayGameEvent -= UnPauseGame;
+    }
+
+    void PauseGame()
+    {
+        _isPaused = true;
+    }
+    void UnPauseGame()
+    {
+        _isPaused = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
+        if (other.CompareTag("Torch"))
         {
-            OnPushedButton?.Invoke();
+            if (_isPaused)
+            {
+                return;
+            }
+            if (!_isFiring && _timerHasFinished)
+            {
+                StartCoroutine(FireTimer());
+            }
             
         }
     }
 
+    IEnumerator FireTimer()
+    {
+        _isFiring = true;
+        particles.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        OnPushedButton?.Invoke();
+    }
     void FireCannon()
     {
-        //.Log("FIRECannon");
+        Debug.Log("FIRECannon");
+        particles.SetActive(false);
+        cannon.Launch();
+        _isFiring = false;
         StartTimer();
     }
 
     void HandleUICannon(float value)
     {
        _initialValue = Mathf.Lerp(0, _maxValue, value);
-       // _lerpedColor = Color.Lerp(background.material.color, _myColors[_colorIndex], value);
-
-      // Debug.Log(_initialValue);
-       // background.material.color = _lerpedColor;
        fill.fillAmount = _initialValue;
     }
 
     void StartTimer()
     {
+        // Debug.Log("Start timer");
         _time = _intialTimer;
         _timerHasStarted = true;
         _timerHasFinished = false;
+        colorIndex = 0;
+        fill.color = myColors[0];
     }
 
     void HandleTimer()
     {
         if (!_timerHasStarted && _timerHasFinished) return;
         
-        _time += Time.deltaTime;
+        _time += Time.deltaTime * 1;
+        LerpColor();
        // Debug.Log(_time);
         if (_time > delay)
         {
             RestartTimer();
         }
 
-        
-        if (_time > 1 && _time < 1.9f)
-        {
-            _colorIndex = 1;
-        }
-        else if (_time > 2 && _time < 2.5f)
-        {
-            _colorIndex = 2;
-        }
-            
-        HandleUICannon(_time);
+        HandleUICannon(_time / delay);
     }
 
     void RestartTimer()
     {
         _time = 0;
         _timerHasFinished = true;
-        _colorIndex = 0;
+        _timerHasStarted = false;
         
-        if(_isAutomatic) StartTimer();
+        // if(_isAutomatic) StartTimer();
     }
     
     void LerpColor()
     {
         fill.color = Color.Lerp(fill.color, myColors[colorIndex], lerpTime * Time.deltaTime);
 
-        t = Mathf.Lerp(t, 1.5f, lerpTime * Time.deltaTime);
+        t = Mathf.Lerp(t, LerpChange, lerpTime * Time.deltaTime);
         if(t>.9f)
         {
             t = 0;

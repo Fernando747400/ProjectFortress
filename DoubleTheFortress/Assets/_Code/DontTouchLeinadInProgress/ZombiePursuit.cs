@@ -27,7 +27,9 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public event Action ZombieDieEvent;
     public event Action <Transform> ZombieTotemEvent;
-    
+    private bool isAvoid = false;
+
+    public float timeOfAvoid = 2;
 
     private void Start()
     {
@@ -75,8 +77,32 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             _targetToDamage = other.gameObject;
             DoDamageToTarget();
             Despawn();
+        } 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            this.avoidGameObject = collision.gameObject;
+            isAvoid = true;
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            StartCoroutine(AvoidColdown());
+        }
+    }
+
+    IEnumerator AvoidColdown()
+    {
+        yield return new WaitForSeconds(timeOfAvoid);
+        isAvoid = false;
+    }
+
 
     private void OnCollisionStay(Collision collision)
     {
@@ -105,9 +131,16 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             UpdateTarget();
         }
         Vector3 pursuit = this.Pursuit(_targetTransform.position);
+        Vector3 stearing = pursuit;
+        if (isAvoid)
+        {
+            Vector3 avoid = this.Avoid();
+            stearing += avoid;
+        }
+        
         //transform.LookAt(_targetTransform);
         iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", _targetTransform,"axis", "y", "time", 2f));
-        transform.position += pursuit * Time.deltaTime;
+        transform.position += stearing * Time.deltaTime;
     }
 
     private void UpdateTarget()
@@ -200,6 +233,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         if (CurrentState == ZombieState.Idle) CurrentState = ZombieState.Walk;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         CheckIfPause();
+        StrongZombie();
     }
 
     private void Prepare()
@@ -214,6 +248,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isRecivingDamage = false;
 
         CurrentState = ZombieState.Walk;
+        StrongZombie();
         CheckIfPause();
     } 
 
@@ -221,6 +256,24 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if(GameManager.Instance.IsPaused) CurrentState = ZombieState.Idle;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
+    }
+
+    private void StrongZombie()
+    {
+        if (EnemyManagger.Instance.StrongZombie)
+        {
+            foreach (Renderer render in this.GetComponentsInChildren<Renderer>())
+            {
+                if (render.material.name == "Zombieskin (Instance)") render.material = EnemyManagger.Instance.StrongSkin;
+            }
+        }
+        if (!EnemyManagger.Instance.StrongZombie)
+        {
+            foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
+            {
+                if (renderer.material.name == "DefaultSkin (Instance)") renderer.material = EnemyManagger.Instance.DefaultSkin;
+            }
+        }
     }
 
     #region Interface Methods
@@ -267,6 +320,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private void OnEnable()
     {
         SubscribeToEvents();
+
     }
 
     private void OnDisable()

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Debug_CannonFire : MonoBehaviour
 {
     [Tooltip("Object Fired by the cannon")] 
-    [SerializeField] private Rigidbody projectile;
+    [SerializeField] private GameObject projectile;
     [SerializeField] private int maxProjectiles;
     [SerializeField] private float launchForce = 800f;
     
@@ -31,7 +31,7 @@ public class Debug_CannonFire : MonoBehaviour
         Launch();
     }
 
-    private void Launch()
+    public void Launch()
     {
         try
         {
@@ -55,8 +55,9 @@ public class Debug_CannonFire : MonoBehaviour
         _canonBalls = new Queue<Canon_CanonBall>();
         for (int i = 0; i < maxProjectiles; i++)
         {
-            Rigidbody temp = Instantiate(projectile.GetComponent<Rigidbody>());
+            GameObject temp = Instantiate(projectile);
             temp.name = "CanonBall " + i;
+            temp.GetComponent<Canon_CanonBall>()._cannonFire = this;
             _canonBalls.Enqueue(temp.GetComponent<Canon_CanonBall>());
         }    
     }

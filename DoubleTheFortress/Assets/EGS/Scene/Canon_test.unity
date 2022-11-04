@@ -467,6 +467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f8e4d4e314e594bb181b82083bacc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers: []
+  myMaterials: []
+  _selectedItem: 0
+  _typeOfItem: 0
   _inventoryController: {fileID: 8094344047049755825}
   _particles: {fileID: 290376484404728263}
   _collider: {fileID: 897175036}
@@ -676,12 +680,6 @@ PrefabInstance:
 --- !u!4 &1970599010 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3abb891f72f4fa442b71193bbcd848d2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1970599009}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1970599012 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 3abb891f72f4fa442b71193bbcd848d2,
     type: 3}
   m_PrefabInstance: {fileID: 1970599009}
   m_PrefabAsset: {fileID: 0}
@@ -5671,6 +5669,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
+      propertyPath: delay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
       propertyPath: lerpTime
       value: 0.9
       objectReference: {fileID: 0}
@@ -5678,6 +5681,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _maxValue
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: LerpChange
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
@@ -5692,7 +5700,7 @@ PrefabInstance:
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
@@ -5732,12 +5740,12 @@ PrefabInstance:
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.data[1].g
-      value: 1
+      value: 0.771629
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.data[1].r
-      value: 0.93819284
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
@@ -5757,6 +5765,21 @@ PrefabInstance:
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: myColors.Array.data[2].r
+      value: 0.9386786
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: myColors.Array.data[3].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: myColors.Array.data[3].g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: myColors.Array.data[3].r
       value: 0.1358285
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123827112968, guid: 732166c9f10511040a0b8b10bfacb5e5,
@@ -9311,6 +9334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd73dd449904e945a9e6e5bfc63a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers: []
+  myMaterials: []
+  _selectedItem: 0
+  _typeOfItem: 0
   _inventoryController: {fileID: 8094344047049755825}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
@@ -25132,6 +25159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb773401382b4043a27ff2ce9b76d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderers: []
+  myMaterials: []
+  _selectedItem: 0
+  _typeOfItem: 0
   damage: 10
   bulletSpeed: 15
   maxDistance: 900
@@ -34820,32 +34851,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSelectedItem: 0
   _playerHandsObjects: 0
-  _objects:
-  - {fileID: 2416471593635629102}
-  - {fileID: 6103072571006914793}
-  - {fileID: 897175033}
   _objectsRightHand:
   - {fileID: 2416471593635629102}
   - {fileID: 6103072571006914793}
   _objectsLeftHand:
   - {fileID: 897175033}
-  hammerBlackMesh: {fileID: 2028642721474360634}
-  hammerWoodMesh: {fileID: 6450053817135713625}
-  gunMesh: {fileID: 8227264181067993277}
-  torchMesh: {fileID: 1970599012}
   shadowMaterial: {fileID: 2100000, guid: 0c776d28f600c614584608d9dd72124c, type: 2}
-  hammerBlackMaterial: {fileID: -8796627655084249796, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
-    type: 3}
-  hammerWoodMaterial: {fileID: -3522955778539423533, guid: d1c41a34a2ccee1498ac03a7d169ddd5,
-    type: 3}
-  gunMaterial: {fileID: -3263835130708698965, guid: ec0e7fe892981e649897793dfbd7c05c,
-    type: 3}
-  torchMaterial: {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d,
-    type: 3}
   ConfirmSelectRightReference: {fileID: 0}
   ConfirmSelectLeftReference: {fileID: 0}
-  DeselectReference: {fileID: -7959125306553761240, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
+  DeselectLeftReference: {fileID: 0}
+  DeselectRightReference: {fileID: 0}
   SelectRightReference: {fileID: 2551534540674614116, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   SelectLeftReference: {fileID: 132042548074782547, guid: c348712bda248c246b8c49b3db54643f,

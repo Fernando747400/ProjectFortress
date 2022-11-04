@@ -7,6 +7,9 @@ public class EnemyManagger : MonoBehaviour
     public static EnemyManagger Instance;
     public float maxDistance;
     public float Damage;
+    public bool StrongZombie = false;
+    public Material DefaultSkin;
+    public Material StrongSkin;
 
     [SerializeField]
     public GameObject Zombie;
@@ -29,14 +32,16 @@ public class EnemyManagger : MonoBehaviour
     private void Start()
     {
         ZombiePooling.Preload(Zombie, 10);
+        GameManager.Instance.StartGameEvent += FirstSpawn;
+        StrongZombie = false;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            OnSpawn();
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    OnSpawn();
+        //}
     }
 
     public void OnSpawn()
@@ -57,6 +62,25 @@ public class EnemyManagger : MonoBehaviour
     public void Despawn(GameObject primitive, GameObject temporalObject)
     {
         ZombiePooling.RecicleObject(primitive, temporalObject);
+    }
+
+    public void SpawnWithDelay(float delay, int numberOfZombies)
+    {
+        StartCoroutine(SpawnRoutine(delay, numberOfZombies));
+    }
+
+    private void FirstSpawn()
+    {
+        StartCoroutine(SpawnRoutine(1.5f, 10));
+    }
+
+    private IEnumerator SpawnRoutine(float delay = 1, int zombiesToSpawn = 1)
+    {
+        for (int i = 0; i < zombiesToSpawn; i++)
+        {
+            yield return new WaitForSeconds(delay);
+            OnSpawn();
+        }
     }
 
 }
