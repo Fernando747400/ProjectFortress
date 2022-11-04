@@ -14,8 +14,8 @@ public class Canon_CanonBall : GeneralAgressor
     private Rigidbody _rb;
     private MeshRenderer _rend;
     private Collider _col;
-    public Debug_CannonFire _cannonFire;
-    private ParticleSystem _particleSystem;
+    [HideInInspector]public Debug_CannonFire cannonFire;
+    [SerializeField]private ParticleSystem[] particleSystems;
     
     
     // Start is called before the first frame update
@@ -38,7 +38,8 @@ public class Canon_CanonBall : GeneralAgressor
         _rb.isKinematic = true;
         _rend.enabled = false;
         _col.enabled = false;
-        _cannonFire.Reload(this);
+        cannonFire.Reload(this);
+        transform.localEulerAngles = Vector3.zero;
     }
 
     private void OnCollisionEnter(Collision collisionInfo)
@@ -48,7 +49,6 @@ public class Canon_CanonBall : GeneralAgressor
 
     private void Activate()
     {
-        _particleSystem.Stop();
         _rb.isKinematic = false;
         _rend.enabled = true;
         _col.enabled = true;
@@ -64,7 +64,10 @@ public class Canon_CanonBall : GeneralAgressor
 
     void Explode()
     {
-        _particleSystem.Play();
+        foreach (var particle in particleSystems)
+        {
+            particle.Play();
+        }
         CastDamage();
         Deactivate();
     }
@@ -100,17 +103,5 @@ public class Canon_CanonBall : GeneralAgressor
             _col = GetComponent<Collider>();
         }
         catch { Debug.Log("Missing Collider");}
-
-        // try
-        // {
-        //     _cannonFire = GameObject.Find("Cannon").GetComponent<Debug_CannonFire>();
-        // }
-        // catch { Debug.Log("Missing Debug_CanonFire");}
-
-        try
-        {
-            _particleSystem = GetComponentInChildren<ParticleSystem>();
-        }
-        catch { Debug.Log("Missing ParticleSystem");}
     }
 }
