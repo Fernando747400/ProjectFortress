@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
-{
+{   
     public enum ZombieState { Idle, Walk, Death, Hit, Attack, Dance, Start }
     public ZombieState CurrentState;
+
+    [Header("Dependencies")]
+    [SerializeField] private GameObject _alertSignal;
 
     private float _arrivalDistance;
     private float _zombieDamage;
@@ -174,6 +177,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         if (_isPaused) return;
         if (_isAttacking) return;
         _isAttacking = true;
+        _alertSignal.SetActive(true);
         _rigidBody.velocity = Vector3.zero;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Attack);
         iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", target.transform, "axis", "y", "time", 1f));
@@ -187,6 +191,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     public void FinishAttack() //This is called by Zombie Attack anim
     {
         _isAttacking = false;
+        _alertSignal.SetActive(false);
         CurrentState = ZombieState.Walk;
     }
 
@@ -194,6 +199,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if (_isRecivingDamage) return;
         _isAttacking = false;
+        _alertSignal.SetActive(false);
         _isRecivingDamage = true;
         CurrentState = ZombieState.Hit;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Hit);
@@ -234,6 +240,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         CheckIfPause();
         StrongZombie();
+        _alertSignal.SetActive(false);
     }
 
     private void Prepare()
@@ -250,6 +257,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         CurrentState = ZombieState.Walk;
         StrongZombie();
         CheckIfPause();
+        _alertSignal.SetActive(false);
     } 
 
     public void CheckIfPause()
