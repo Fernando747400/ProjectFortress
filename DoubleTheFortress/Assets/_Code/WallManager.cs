@@ -7,8 +7,11 @@ using UnityEngine.Events;
 public class WallManager : MonoBehaviour
 {
     #region Configuration
-    [Header("Dependencies")]
 
+    [Header("Dependencies")] 
+    [SerializeField] private GameObject _cannonPrefab;
+    [SerializeField] private Transform _cannonTransform;
+    
     [Header("Wall Script")]
     [SerializeField] private Wall _mywallScript;
 
@@ -34,6 +37,7 @@ public class WallManager : MonoBehaviour
     private IConstructable _mywall;
     private int _wallIndex;
     private Collider _mainCollider;
+    private GameObject _currentCannon;
     #endregion
 
     private void Start()
@@ -90,7 +94,6 @@ public class WallManager : MonoBehaviour
 
     private void NewWall(WallScriptableObject currentWall)
     {
-        //_mywall.CurrentHealth = currentWall.HealthPool / 2; //for testing only
         _mywall.CurrentHealth = currentWall.HealthPool;
         _mywall.MaxHealth = currentWall.HealthPool;
         _mywall.UpgradePoints = 0f;
@@ -103,6 +106,7 @@ public class WallManager : MonoBehaviour
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
         UpdateTrigger();
+        UpdateCannon();
     }
 
     private int GetCurrentIndex()
@@ -126,6 +130,19 @@ public class WallManager : MonoBehaviour
         _mywallScript.onRecieveDamage += ReceiveDamage;
         _mainCollider = this.gameObject.GetComponent<Collider>();
         UpdateTrigger();
+        _currentCannon = Instantiate(_cannonPrefab, _cannonTransform.position, _cannonTransform.rotation, _cannonTransform);
+    }
+
+    private void UpdateCannon()
+    {
+        if (GetCurrentIndex() ==0)
+        {
+            _currentCannon.SetActive(false);
+        }
+        else
+        {
+            _currentCannon.SetActive(true);
+        }
     }
 
     private void DownGrade()
@@ -138,7 +155,10 @@ public class WallManager : MonoBehaviour
         _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         NewWall(_currentWall);
         UpdateTrigger();
+        UpdateCannon();
     }
+    
+    
 
     private void UpdateTrigger()
     {
