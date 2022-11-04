@@ -185,11 +185,13 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public void DoDamageToTarget() //This is called by Zombie Attack anim
     {
+        if (_isPaused) return;
         _targetToDamage.GetComponent<IGeneralTarget>().ReceiveRayCaster(this.gameObject, _zombieDamage);
     }
 
     public void FinishAttack() //This is called by Zombie Attack anim
     {
+        if (_isPaused) return;
         _isAttacking = false;
         _alertSignal.SetActive(false);
         CurrentState = ZombieState.Walk;
@@ -197,6 +199,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     protected virtual void TakeDamage(float dmgValue)
     {
+        if (_isPaused) return;
         if (_isRecivingDamage) return;
         _isAttacking = false;
         _alertSignal.SetActive(false);
@@ -209,10 +212,10 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private void ReceiveDamage(float damage)
     {
         if (_isPaused) return;
-        CurrentHp -= damage;
-        CurrentHp = Mathf.Clamp(CurrentHp, 0, MaxHp);
+        _life -= damage;
+        _life = Mathf.Clamp(_life, 0, _maxLife);
 
-        if (CurrentHp <= 0) CurrentState = ZombieState.Death;
+        if (_life <= 0) CurrentState = ZombieState.Death;
     }
 
     public void FinishDamage() //This should be called by animator
@@ -241,6 +244,9 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         CheckIfPause();
         StrongZombie();
         _alertSignal.SetActive(false);
+        //_maxLife = EnemyManagger.Instance.ZombieLife;
+        _life = _maxLife;
+        _isSensitive = true;
     }
 
     private void Prepare()
