@@ -4904,7 +4904,7 @@ GameObject:
   - component: {fileID: 718755879699070092}
   m_Layer: 0
   m_Name: Torch
-  m_TagString: Untagged
+  m_TagString: Torch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4942,11 +4942,10 @@ MonoBehaviour:
   - {fileID: 2177522355247520149}
   myMaterials:
   - {fileID: -4705045328168955808, guid: fc5725d220fdcfd429a85b03d94ea35d, type: 3}
+  _collider: {fileID: 718755879699070092}
   _selectedItem: 8
   _typeOfItem: 12
-  _inventoryController: {fileID: 8767782437161057729}
   _particles: {fileID: 1008269161761366199}
-  _collider: {fileID: 718755879699070092}
 --- !u!65 &718755879699070092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23053,9 +23052,9 @@ MonoBehaviour:
   myMaterials:
   - {fileID: -8796627655084249796, guid: 5536eb113c93aae42a6010fef9b8389c, type: 3}
   - {fileID: -3522955778539423533, guid: 820da96c311ae524e8e3c78d90d3faee, type: 3}
+  _collider: {fileID: 630352508329486517}
   _selectedItem: 1
   _typeOfItem: 3
-  _inventoryController: {fileID: 8767782437161057729}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
   _cooldown: 0
@@ -34062,15 +34061,17 @@ MonoBehaviour:
   - {fileID: 8922921159738794445}
   myMaterials:
   - {fileID: 2100000, guid: e90227551fbab5e468eac41f012bb0fa, type: 2}
+  _collider: {fileID: 0}
   _selectedItem: 2
   _typeOfItem: 3
   damage: 10
   bulletSpeed: 15
   maxDistance: 900
-  hitMarkerRed: {fileID: 7379581397031689840, guid: 479778cd0a86707499b9fa88d406daa2,
-    type: 3}
   hitMarkerBlue: {fileID: 3532336229597066646, guid: 722c479d2a452af42ac95610da6e5f6e,
     type: 3}
+  layers:
+    serializedVersion: 2
+    m_Bits: 0
   inventoryController: {fileID: 8767782437161057729}
   GunShoot: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}

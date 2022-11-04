@@ -72,7 +72,7 @@ public class InventoryController : MonoBehaviour
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
         // HandleAreasInteraction();
-        OnPlayerSelectItem += HandleSelectedItem;
+        OnPlayerSelectItem += HandleConfirmItem;
         
         foreach (var obj in _objectsLeftHand)
         {
@@ -140,7 +140,7 @@ public class InventoryController : MonoBehaviour
         
     }
 
-    void HandleSelectedItem(PlayerSelectedItem item)
+    void HandleConfirmItem(PlayerSelectedItem item)
     {
         _playerSelectedItem = item;
     }
@@ -201,11 +201,11 @@ public class InventoryController : MonoBehaviour
         
         _currentSelected = _selectIndex;
         objects[_currentSelected].SetActive(true);
-        MaterialObjectSelecting(_currentSelected, objects);
-        _selectIndex++;
-        OnIsSelecting?.Invoke(true);
+        HandleSelectedItem(_currentSelected, objects, true);
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
+        OnIsSelecting?.Invoke(true);
         StartTimer();
+        _selectIndex++;
         
     }
     
@@ -215,11 +215,11 @@ public class InventoryController : MonoBehaviour
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
         
-            
-        OnIsSelecting?.Invoke(false);
+        HandleSelectedItem(_currentSelected, _currentSelectedObjects, false);
         ResetTimer();
-        HandleSelectedItem(_currentSelected, _currentSelectedObjects);
+        HandleConfirmItem(_currentSelected, _currentSelectedObjects);
         hasObjectSelected = true;
+        OnIsSelecting?.Invoke(false);
     }
     
     void HandleBoxInteraction(bool interaction)
@@ -231,19 +231,20 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    void MaterialObjectSelecting(int item, List<GameObject> objects)
+    void HandleSelectedItem(int item, List<GameObject> objects,bool isSelecting)
     {
-        objects[item].GetComponent<IGrabbable>().SetMaterials(shadowMaterial);
+        IGrabbable selected = objects[item].GetComponent<IGrabbable>();
+        selected.SetMaterials(shadowMaterial);
+        selected.HandleSelectedState(isSelecting);
     }
 
-    void HandleSelectedItem(int itemSelected, List<GameObject> objects)
+    void HandleConfirmItem(int itemSelected, List<GameObject> objects)
     {
         IGrabbable item = objects[itemSelected].GetComponent<IGrabbable>();
         item.ResetMaterials();
         OnPlayerSelectItem?.Invoke(item.Item);
         _playerHandsObjects = item.TypeOfItem;
         _selectIndex = _currentSelectedObjects.Count;
-
     }
 
 
