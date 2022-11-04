@@ -6,8 +6,7 @@ public class WallManager : MonoBehaviour , IPause
     #region Configuration
 
     [Header("Dependencies")] 
-    [SerializeField] private GameObject _cannonPrefab;
-    [SerializeField] private Transform _cannonTransform;
+    [SerializeField] private GameObject _cannonObject;
     
     [Header("Wall Script")]
     [SerializeField] private Wall _mywallScript;
@@ -80,7 +79,7 @@ public class WallManager : MonoBehaviour , IPause
         if (_mywall.CurrentHealth > 0 && damage < _mywall.CurrentHealth)
         {
             _mywall.CurrentHealth -= damage;
-            AudioManager.Instance.PlayAudio(_damageSound, 1f, this.transform.position);
+            //PlayAudio(_damageSound);
             return;
         }
         DownGrade();
@@ -105,7 +104,7 @@ public class WallManager : MonoBehaviour , IPause
         _wallIndex++;
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
-        AudioManager.Instance.PlayAudio(_buildSound, 1f, this.transform.position);
+        //PlayAudio(_buildSound);
         UpdateTrigger();
         UpdateCannon();
     }
@@ -132,7 +131,6 @@ public class WallManager : MonoBehaviour , IPause
         _mainCollider = this.gameObject.GetComponent<Collider>();
         UpdateTrigger();
         _isPaused = GameManager.Instance.IsPaused;
-        _currentCannon = Instantiate(_cannonPrefab, _cannonTransform.position, _cannonTransform.rotation, _cannonTransform);
     }
 
     private void UpdateCannon()
@@ -156,7 +154,7 @@ public class WallManager : MonoBehaviour , IPause
         _currentWallObject = _mywall.CurrentObject;
         _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         NewWall(_currentWall);
-        AudioManager.Instance.PlayAudio(_destroySound, 1f, this.transform.position);
+        //PlayAudio(_destroySound);
         UpdateTrigger();
         UpdateCannon();
     }
@@ -170,6 +168,11 @@ public class WallManager : MonoBehaviour , IPause
         {
             _mainCollider.isTrigger = false;
         }
+    }
+
+    private void PlayAudio(AudioClip clip)
+    {
+        AudioManager.Instance.PlayAudio(clip, 1f, this.transform.position);
     }
 
     #region Interface Methods
