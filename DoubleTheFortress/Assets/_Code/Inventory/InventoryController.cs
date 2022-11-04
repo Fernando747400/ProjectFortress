@@ -176,12 +176,12 @@ public class InventoryController : MonoBehaviour
         if (_isInBoxInteraction) return;
         if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
 
+        //Deselect current objects in hand
+        DeselectItems(_currentSelectedObjects , _currentSelectingHand);
+       
         _currentSelectingHand = _currentHand;
         ResetTimer();
         
-        //Deselect current objects in hand
-        DeselectItems(_currentSelectedObjects , _currentSelectingHand);
-
         List<GameObject> objects = new List<GameObject>();
 
         switch (_currentHand)
