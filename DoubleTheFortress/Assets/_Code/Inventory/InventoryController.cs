@@ -223,7 +223,7 @@ public class InventoryController : MonoBehaviour
     
     void ConfirmSelection(Hand hand)
     {
-        if (_isInBoxInteraction) return;
+        // if (_isInBoxInteraction) return;
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
         
