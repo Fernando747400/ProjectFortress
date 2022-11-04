@@ -1,16 +1,12 @@
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WallManager : MonoBehaviour , IPause
 {
     #region Configuration
 
     [Header("Dependencies")] 
-    [SerializeField] private GameObject _cannonPrefab;
-    [SerializeField] private Transform _cannonTransform;
+    [SerializeField] private GameObject _cannonObject;
     
     [Header("Wall Script")]
     [SerializeField] private Wall _mywallScript;
@@ -29,7 +25,11 @@ public class WallManager : MonoBehaviour , IPause
     [SerializeField] private Vector3 _instanciateRotationOffset;
     [SerializeField] private Vector3 _instanciatePositionOffset;
     [SerializeField] private Vector3 _instanciateScale;
-
+    
+    [Header("AudioClips")]
+    [SerializeField] private AudioClip _buildSound;
+    [SerializeField] private AudioClip _destroySound;
+    [SerializeField] private AudioClip _damageSound;
 
     private List<WallScriptableObject> _wallsList = new List<WallScriptableObject>();
     private WallScriptableObject _currentWall;
@@ -38,6 +38,8 @@ public class WallManager : MonoBehaviour , IPause
     private int _wallIndex;
     private Collider _mainCollider;
     private GameObject _currentCannon;
+
+    public int WallIndex { get => _wallIndex; }
     #endregion
 
     private void Start()
@@ -67,7 +69,6 @@ public class WallManager : MonoBehaviour , IPause
         if (_mywall.CurrentHealth >= _mywall.MaxHealth && _mywall.UpgradePoints >= _mywall.UpgradePointsRequired)
         {
             _mywall.Upgrade(_mywall.CurrentObject, _wallsList[GetCurrentIndex() + 1].Model);
-            Debug.Log("Upgraded to new Model");
         }
     }
 
@@ -77,21 +78,17 @@ public class WallManager : MonoBehaviour , IPause
         if (GetCurrentIndex() == 0) return;
         if (_mywall.CurrentHealth > 0 && damage < _mywall.CurrentHealth)
         {
-            //_mywallScript.ReceiveRayCaster(this.gameObject, damage);
             _mywall.CurrentHealth -= damage;
-            Debug.Log("Reduced life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
+            //PlayAudio(_damageSound);
             return;
         }
-
         DownGrade();
-        Debug.Log("Downgraded wall");
     }
 
     public void UpgradeSuccess()
     {
         UpgradeCurrentWall();
         NewWall(_currentWall);
-        Debug.Log("You got upgraded");
     }
 
     private void NewWall(WallScriptableObject currentWall)
@@ -107,6 +104,7 @@ public class WallManager : MonoBehaviour , IPause
         _wallIndex++;
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
+        //PlayAudio(_buildSound);
         UpdateTrigger();
         UpdateCannon();
     }
@@ -133,7 +131,6 @@ public class WallManager : MonoBehaviour , IPause
         _mainCollider = this.gameObject.GetComponent<Collider>();
         UpdateTrigger();
         _isPaused = GameManager.Instance.IsPaused;
-        _currentCannon = Instantiate(_cannonPrefab, _cannonTransform.position, _cannonTransform.rotation, _cannonTransform);
     }
 
     private void UpdateCannon()
@@ -157,6 +154,7 @@ public class WallManager : MonoBehaviour , IPause
         _currentWallObject = _mywall.CurrentObject;
         _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         NewWall(_currentWall);
+        //PlayAudio(_destroySound);
         UpdateTrigger();
         UpdateCannon();
     }
@@ -170,6 +168,11 @@ public class WallManager : MonoBehaviour , IPause
         {
             _mainCollider.isTrigger = false;
         }
+    }
+
+    private void PlayAudio(AudioClip clip)
+    {
+        AudioManager.Instance.PlayAudio(clip, 1f, this.transform.position);
     }
 
     #region Interface Methods
