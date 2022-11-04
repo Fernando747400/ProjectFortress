@@ -27,9 +27,9 @@ public class WallManager : MonoBehaviour , IPause
     [SerializeField] private Vector3 _instanciateScale;
     
     [Header("AudioClips")]
-    [SerializeField] private AudioClip _buildSound;
-    [SerializeField] private AudioClip _destroySound;
-    [SerializeField] private AudioClip _damageSound;
+     public AudioClip _buildSound;
+     public AudioClip _destroySound;
+     public AudioClip _damageSound;
 
     private List<WallScriptableObject> _wallsList = new List<WallScriptableObject>();
     private WallScriptableObject _currentWall;
@@ -79,7 +79,7 @@ public class WallManager : MonoBehaviour , IPause
         if (_mywall.CurrentHealth > 0 && damage < _mywall.CurrentHealth)
         {
             _mywall.CurrentHealth -= damage;
-            //PlayAudio(_damageSound);
+            PlayAudio(_damageSound);
             return;
         }
         DownGrade();
@@ -104,7 +104,7 @@ public class WallManager : MonoBehaviour , IPause
         _wallIndex++;
         _currentWall = _wallsList[_wallIndex];
         _currentWallObject = _mywall.CurrentObject;
-        //PlayAudio(_buildSound);
+        PlayAudio(_buildSound);
         UpdateTrigger();
         UpdateCannon();
     }
@@ -154,7 +154,7 @@ public class WallManager : MonoBehaviour , IPause
         _currentWallObject = _mywall.CurrentObject;
         _mywall.Build(_currentWallObject, this.transform.position + _instanciatePositionOffset, Quaternion.Euler(_instanciateRotationOffset), this.gameObject, _instanciateScale);
         NewWall(_currentWall);
-        //PlayAudio(_destroySound);
+        PlayAudio(_destroySound);
         UpdateTrigger();
         UpdateCannon();
     }
@@ -172,6 +172,7 @@ public class WallManager : MonoBehaviour , IPause
 
     private void PlayAudio(AudioClip clip)
     {
+        if (clip == null) return;
         AudioManager.Instance.PlayAudio(clip, 1f, this.transform.position);
     }
 
