@@ -242,9 +242,9 @@ public class InventoryController : MonoBehaviour
     {
         IGrabbable item = objects[itemSelected].GetComponent<IGrabbable>();
         item.ResetMaterials();
-        OnPlayerSelectItem?.Invoke(item.Item);
         _playerHandsObjects = item.TypeOfItem;
         _selectIndex = _currentSelectedObjects.Count;
+        OnPlayerSelectItem?.Invoke(item.Item);
     }
 
 
