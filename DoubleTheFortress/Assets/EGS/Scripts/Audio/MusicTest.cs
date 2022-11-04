@@ -31,7 +31,7 @@ public class MusicTest : MonoBehaviour
    {
       if (collision.collider.CompareTag("HandTest"))
       {
-         FindObjectOfType<AudioManager>().Play("ButtonSound");
+         // FindObjectOfType<AudioManager>().Play("ButtonSound");
          ChangeSong();
       }
    }
@@ -46,6 +46,6 @@ public class MusicTest : MonoBehaviour
       songNumber++;
       Debug.Log("Cancion cambio al numero" + songNumber);
       
-      FindObjectOfType<AudioManager>().Play("Track13");
+      // FindObjectOfType<AudioManager>().Play("Track13");
    }
 }
