@@ -35,7 +35,6 @@ public class WheelController : MonoBehaviour
         {
             if (_canMoveCannon )
             {
-                print("MOVE CANNON");
                 Vector3 leftHand = leftHolder.Hand.HandPos;
                 Vector3 rightHand = rightHolder.Hand.HandPos;
                 
