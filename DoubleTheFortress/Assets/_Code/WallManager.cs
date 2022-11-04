@@ -136,6 +136,7 @@ public class WallManager : MonoBehaviour , IPause
 
     private void UpdateCannon()
     {
+        if (_currentCannon == null) return;
         if (GetCurrentIndex() ==0)
         {
             _currentCannon.SetActive(false);

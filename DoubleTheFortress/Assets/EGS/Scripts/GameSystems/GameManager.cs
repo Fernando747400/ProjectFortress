@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
         if (IsPaused) return;
         TimeSpan currentTime = TimeSpan.FromSeconds(_elapsedTime);
 
+        EnemyManagger.Instance.StrongZombie = false;
         if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3)
         {
             EnemyManagger.Instance.Damage += 10f;
