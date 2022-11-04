@@ -130,6 +130,7 @@ public class WallManager : MonoBehaviour , IPause
         _mywallScript.onRecieveDamage += ReceiveDamage;
         _mainCollider = this.gameObject.GetComponent<Collider>();
         UpdateTrigger();
+        UpdateCannon();
         _isPaused = GameManager.Instance.IsPaused;
     }
 
@@ -183,11 +184,13 @@ public class WallManager : MonoBehaviour , IPause
 
     void Pause()
     {
+        Debug.Log("Received paused event");
         _isPaused = true;
     }
 
     void Unpause()
     {
+        Debug.Log("Received unpaused event");
         _isPaused = false;
     }
 
