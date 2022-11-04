@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class ButtonCannon : MonoBehaviour
 {
     [Header("Cannon config")]
     [SerializeField] private GameObject particles;
+    [SerializeField] private Debug_CannonFire cannon;
 
     [SerializeField] private Collider _collider;
     [SerializeField] private float delay;
@@ -23,6 +25,7 @@ public class ButtonCannon : MonoBehaviour
     private float _initialValue;
     private bool _timerHasStarted;
     private bool _timerHasFinished;
+    private bool _isFiring;
 
     public Action OnPushedButton;
 
@@ -40,6 +43,7 @@ public class ButtonCannon : MonoBehaviour
         _collider = GetComponent<Collider>();
         _collider.isTrigger = true;
         OnPushedButton += FireCannon;
+        particles.SetActive(false);
         len = myColors.Length;
         StartTimer();
     }
@@ -51,31 +55,41 @@ public class ButtonCannon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
+        if (other.CompareTag("Torch"))
         {
-            OnPushedButton?.Invoke();
+            if (!_isFiring && _timerHasFinished)
+            {
+                StartCoroutine(FireTimer());
+            }
             
         }
     }
 
+    IEnumerator FireTimer()
+    {
+        _isFiring = true;
+        particles.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        OnPushedButton?.Invoke();
+    }
     void FireCannon()
     {
-        //.Log("FIRECannon");
+        Debug.Log("FIRECannon");
+        particles.SetActive(false);
+        cannon.Launch();
+        _isFiring = false;
         StartTimer();
     }
 
     void HandleUICannon(float value)
     {
        _initialValue = Mathf.Lerp(0, _maxValue, value);
-       // _lerpedColor = Color.Lerp(background.material.color, _myColors[_colorIndex], value);
-
-      // Debug.Log(_initialValue);
-       // background.material.color = _lerpedColor;
        fill.fillAmount = _initialValue;
     }
 
     void StartTimer()
     {
+        Debug.Log("Start timer");
         _time = _intialTimer;
         _timerHasStarted = true;
         _timerHasFinished = false;
@@ -102,8 +116,9 @@ public class ButtonCannon : MonoBehaviour
     {
         _time = 0;
         _timerHasFinished = true;
+        _timerHasStarted = false;
         
-        if(_isAutomatic) StartTimer();
+        // if(_isAutomatic) StartTimer();
     }
     
     void LerpColor()

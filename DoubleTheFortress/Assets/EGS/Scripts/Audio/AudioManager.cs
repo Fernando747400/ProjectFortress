@@ -1,44 +1,64 @@
 using System;
-using UnityEngine.Audio;
+using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public Audio[] audios;
+    public static AudioManager Instance;
 
-    public static AudioManager instance;
+    [Header("Dependencies")]
+    [Header("Music Clips")]
+    [SerializeField] private List<AudioClip> _musicClips = new List<AudioClip>();
+
+    [Header("Settings")]
+    [SerializeField] private bool _playRandom;
+    [SerializeField] private int _musicIndex;
     
-    void Awake()
+    private AudioSource _musicSource;
+    
+    private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
+        if (Instance == null) 
         {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-
-        foreach (Audio a in audios)
+            Instance = this;
+        } else
         {
-            a.source = gameObject.AddComponent<AudioSource>();
-            a.source.clip = a.clip;
-
-            a.source.volume = a.volume;
-            a.source.pitch = a.pitch;
-            a.source.loop = a.loop;
+            Destroy(this);
         }
+        _musicSource = GetComponent<AudioSource>();
     }
 
-    public void Play(string name)
+    private void Start()
     {
-        Audio a = Array.Find(audios, audio => audio.name == name);
-        if (a==null)
-        {
-            Debug.LogWarning("Audio: " + name + " not found!");
-            return;
-        }
-        a.source.Play();
+        Prepare();
+    }
+
+    public void PlayAudio(AudioClip clip, float volume = 1f, Vector3 position = default(Vector3))
+    {
+        if (clip == null) throw new Exception("Audioclip is null");
+        AudioSource.PlayClipAtPoint(clip, position, volume);
+    }
+
+    private void Prepare()
+    {
+        if (_musicClips.Count == 0) throw new Exception("Audio list is empty");
+        if (_playRandom) PlayRandomMusic();
+        if (!_playRandom) PlayFromIndex();
+    }
+
+    private void PlayRandomMusic()
+    {
+        _musicSource.clip = _musicClips[UnityEngine.Random.Range(0, _musicClips.Count)];
+        _musicSource.loop = true;
+        _musicSource.Play();
+    }
+
+    private void PlayFromIndex()
+    {
+        if (_musicIndex > 0 || _musicIndex > _musicClips.Count - 1) throw new IndexOutOfRangeException("Audio clip index out of range");
+        _musicSource.clip = _musicClips[_musicIndex];
+        _musicSource.loop = true;
+        _musicSource.Play();
     }
 }
