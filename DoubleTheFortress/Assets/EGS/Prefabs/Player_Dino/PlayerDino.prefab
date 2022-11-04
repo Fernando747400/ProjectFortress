@@ -67,6 +67,7 @@ MonoBehaviour:
   _maxTimeToSelect: 1.5
   areasInteraction:
   - {fileID: 0}
+  _currentSelectingHand: 0
 --- !u!1 &77738515818183311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4954,11 +4955,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718755879699070089}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Size: {x: 0.1, y: 0.3286653, z: 0.1}
+  m_Center: {x: 0, y: 0.31433636, z: -0.00000011457731}
 --- !u!1 &1008269161761366199
 GameObject:
   m_ObjectHideFlags: 0
@@ -11263,6 +11264,7 @@ MonoBehaviour:
   handSkinnedMesh: {fileID: 6433346272744861401}
   _hand: 1
   handObjects: 3
+  _handIsEmpty: 0
 --- !u!1 &1706550580780994356
 GameObject:
   m_ObjectHideFlags: 0
@@ -12118,6 +12120,7 @@ MonoBehaviour:
   handSkinnedMesh: {fileID: 1597134069405635507}
   _hand: 2
   handObjects: 12
+  _handIsEmpty: 0
 --- !u!1 &1706550580791104323
 GameObject:
   m_ObjectHideFlags: 0
