@@ -5,6 +5,7 @@ using UnityEngine;
 public class SceneTransition: MonoBehaviour
 {
     public static SceneTransition Instance;
+    [SerializeField] private GameObject LoadingScreen;
 
     private void Awake()
     {
@@ -15,11 +16,14 @@ public class SceneTransition: MonoBehaviour
         else
         {
             Destroy(this);
-        }      
+        }
+        
+        LoadingScreen.SetActive(false);
     }
     
     public void LoadScene(string SceneToLoad)
     {
+        LoadingScreen.SetActive(true);
         SceneManager.LoadSceneAsync(SceneToLoad);
     }
     public void Quit()

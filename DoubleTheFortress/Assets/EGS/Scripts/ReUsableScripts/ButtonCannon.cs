@@ -11,12 +11,11 @@ public class ButtonCannon : MonoBehaviour
 
     [SerializeField] private Collider _collider;
     [SerializeField] private float delay;
-    [SerializeField] private bool _isAutomatic;
+    [SerializeField] private bool _isMenuCannon;
 
     [Header("Cannon UI")] 
     
     [SerializeField] private Image fill;
-    [SerializeField] private Image background;
 
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
    
@@ -47,7 +46,6 @@ public class ButtonCannon : MonoBehaviour
         OnPushedButton += FireCannon;
         particles.SetActive(false);
         len = myColors.Length;
-        // StartTimer();
     }
 
     void Update()
@@ -89,6 +87,7 @@ public class ButtonCannon : MonoBehaviour
             {
                 return;
             }
+            
             if (!_isFiring && _timerHasFinished)
             {
                 StartCoroutine(FireTimer());
@@ -106,11 +105,14 @@ public class ButtonCannon : MonoBehaviour
     }
     void FireCannon()
     {
-        Debug.Log("FIRECannon");
         particles.SetActive(false);
         cannon.Launch();
         _isFiring = false;
-        StartTimer();
+        if (!_isMenuCannon)
+        {
+            print("Cañon con cool down");
+            StartTimer();
+        }
     }
 
     void HandleUICannon(float value)
