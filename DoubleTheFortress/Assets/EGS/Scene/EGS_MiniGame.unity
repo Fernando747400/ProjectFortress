@@ -11369,7 +11369,7 @@ GameObject:
   - component: {fileID: 429329433}
   - component: {fileID: 429329432}
   - component: {fileID: 429329431}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallWest
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -13500,6 +13500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139bf10b8ec4f449a9dd09cbc022e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputAReference: {fileID: 0}
 --- !u!4 &544615590
 Transform:
   m_ObjectHideFlags: 0
@@ -19221,7 +19222,7 @@ GameObject:
   - component: {fileID: 776482838}
   - component: {fileID: 776482837}
   - component: {fileID: 776482836}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallEast
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -19430,7 +19431,7 @@ GameObject:
   - component: {fileID: 782457047}
   - component: {fileID: 782457046}
   - component: {fileID: 782457045}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallSouth
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -19619,6 +19620,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: layers.m_Bits
+      value: 563
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722731304910741913, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Musket
       objectReference: {fileID: 0}
     - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
@@ -73220,7 +73231,7 @@ GameObject:
   - component: {fileID: 6595506780152846141}
   - component: {fileID: 6595506780152846140}
   - component: {fileID: 6595506780152846139}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallNorth
   m_TagString: Wall
   m_Icon: {fileID: 0}
