@@ -9,6 +9,8 @@ public class BoxAreasInteraction : MonoBehaviour
     public Action<bool> OnHandEnterActionZone;
     private Action OnInitializeBox;
     private InventoryController _inventoryController;
+    public Action<BoxAreasInteraction> OnBoxAreaInstance;
+
     public InventoryController InventoryPlayer
     {
         get => _inventoryController;
@@ -37,5 +39,9 @@ public class BoxAreasInteraction : MonoBehaviour
         }
     }
 
-    
+    private void OnEnable()
+    {
+        _inventoryController = FindObjectOfType<InventoryController>();
+        _inventoryController.HandleAreasInteraction(this);
+    }
 }

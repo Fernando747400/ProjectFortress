@@ -68,12 +68,8 @@ public class InventoryController : MonoBehaviour
         SelectLeftReference.action.performed += ctx => SelectItem(true);
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
-
-        foreach (BoxAreasInteraction box in areasInteraction)
-        {
-            box.InventoryPlayer = this;
-            box.OnHandEnterActionZone += HandleBoxInteraction;
-        }
+        
+        // HandleAreasInteraction();
         OnPlayerSelectItem += HandleSelectedItem;
         
         foreach (var obj in _objectsLeftHand)
@@ -89,12 +85,30 @@ public class InventoryController : MonoBehaviour
         DeselectItems(_currentSelectedObjects, Hand.None);
     }
 
+    
+    
     private void Update()
     {
         if (SelectedItem == PlayerSelectedItem.Selecting)
         {
             HandleTimer();
         }
+    }
+
+    public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
+    {
+        areasInteraction.Add(interaction);
+
+        if (areasInteraction.Count > 0 )
+        {
+            foreach (BoxAreasInteraction box in areasInteraction)
+            {
+                box.InventoryPlayer = this;
+                box.OnHandEnterActionZone += HandleBoxInteraction;
+            }
+        }
+        
+        
     }
 
     void HandleSelectedItem(PlayerSelectedItem item)
