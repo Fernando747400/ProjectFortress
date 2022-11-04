@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DebugStuff.Inventory;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,6 +47,7 @@ public class InventoryController : MonoBehaviour
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
 
+    private bool _isPaused;
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
@@ -95,6 +97,26 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.PauseGameEvent += Paused;
+        GameManager.Instance.PlayGameEvent += Unpaused;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.PauseGameEvent -= Paused;
+        GameManager.Instance.PlayGameEvent -= Unpaused;
+    }
+
+    private void Paused()
+    {
+        _isPaused = true;
+    }
+    void Unpaused()
+    {
+        _isPaused = false;
+    }
     public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
     {
         areasInteraction.Add(interaction);
@@ -118,6 +140,10 @@ public class InventoryController : MonoBehaviour
     
     void DeselectItems(List<GameObject> objects, Hand hand)
     {
+        if (_isPaused)
+        {
+            return;
+        }
         if (hand != _currentSelectingHand)
         {
             return;
@@ -139,6 +165,7 @@ public class InventoryController : MonoBehaviour
 
     void SelectItem(bool isLeft)
     {
+        if (_isPaused)return;
         if (_isInBoxInteraction) return;
         if(hasObjectSelected) return;
 

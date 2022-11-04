@@ -50326,6 +50326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 0.5
   Damage: 20
+  StrongZombie: 0
+  DefaultSkin: {fileID: 2100000, guid: a7e1e67bb29c96a49826e3c4ef9cd5b5, type: 2}
+  StrongSkin: {fileID: 2100000, guid: a737879090855e54d9d9979645823507, type: 2}
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
   ZombiePooling: {fileID: 2044581463}
 --- !u!114 &2044581463
