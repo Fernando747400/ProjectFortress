@@ -7,6 +7,9 @@ public class EnemyManagger : MonoBehaviour
     public static EnemyManagger Instance;
     public float maxDistance;
     public float Damage;
+    public bool StrongZombie = false;
+    public Material DefaultSkin;
+    public Material StrongSkin;
 
     [SerializeField]
     public GameObject Zombie;
@@ -30,6 +33,7 @@ public class EnemyManagger : MonoBehaviour
     {
         ZombiePooling.Preload(Zombie, 10);
         GameManager.Instance.StartGameEvent += FirstSpawn;
+        StrongZombie = false;
     }
 
     private void Update()

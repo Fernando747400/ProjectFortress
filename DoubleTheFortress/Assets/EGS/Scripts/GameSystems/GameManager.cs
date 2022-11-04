@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
         {
             EnemyManagger.Instance.Damage += 10f;
             Debug.Log("Added more damage");
+            EnemyManagger.Instance.StrongZombie = true;
         }
 
         if (currentTime.Minutes > _currentMinute)
