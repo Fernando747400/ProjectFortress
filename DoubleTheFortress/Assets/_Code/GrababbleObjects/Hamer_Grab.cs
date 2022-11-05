@@ -104,12 +104,15 @@ public class Hamer_Grab : IGrabbable , IPause
         switch (wall.WallIndex)
         {
             case 0:
-                clip = _wooodSound;
+                clip = null;
                 break;
             case 1:
-                clip = _metalSound;
+                clip = _wooodSound;
                 break;
             case 2:
+                clip = _metalSound;
+                break;
+            case 3:
                 clip = _brickSound;
                 break;
         }

@@ -2996,6 +2996,10 @@ MonoBehaviour:
   CurrentState: 0
   _alertSignal: {fileID: 4404104623906163687}
   timeOfAvoid: 2
+  _snarl: {fileID: 8300000, guid: 54221acecd0c86d4599e46fc49063fec, type: 3}
+  _zombieHit: {fileID: 8300000, guid: f339e1be2db45f84696c7b0ee6d2ea32, type: 3}
+  _moan: {fileID: 8300000, guid: 107e31defb1068e4199b8169901a79ac, type: 3}
+  _dieSound: {fileID: 8300000, guid: 3772f7239c26e6146b963d1945245e01, type: 3}
 --- !u!114 &5856071710979874924
 MonoBehaviour:
   m_ObjectHideFlags: 0
