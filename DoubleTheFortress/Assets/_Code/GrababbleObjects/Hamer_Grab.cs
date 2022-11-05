@@ -60,8 +60,7 @@ public class Hamer_Grab : IGrabbable , IPause
             WallManager wallManager = other.GetComponent<WallManager>();
 
             if (wallManager != null)
-            {
-             
+            {            
                 PlayAudio(wallManager, 0.5f );
             }
 
@@ -114,7 +113,7 @@ public class Hamer_Grab : IGrabbable , IPause
                 clip = _brickSound;
                 break;
         }
-            
+        if (clip == null) return;    
         if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
     }
     
