@@ -252,7 +252,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         CheckIfPause();
         StrongZombie();
         _alertSignal.SetActive(false);
-        //_maxLife = EnemyManagger.Instance.ZombieLife;
+        _maxLife = EnemyManagger.Instance.ZombieLife;
         _life = _maxLife;
         _isSensitive = true;
         _isDing = false;
@@ -283,18 +283,18 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void StrongZombie()
     {
-        if (EnemyManagger.Instance.StrongZombie)
+        if (!EnemyManagger.Instance.StrongZombie)
         {
             foreach (Renderer render in this.GetComponentsInChildren<Renderer>())
             {
-                if (render.material.name == "Zombieskin (Instance)") render.material = EnemyManagger.Instance.StrongSkin;
+                if (render.material.name == "Zombieskin (Instance)") render.material = EnemyManagger.Instance.DefaultSkin;
             }
         }
-        if (!EnemyManagger.Instance.StrongZombie)
+        if (EnemyManagger.Instance.StrongZombie)
         {
             foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
             {
-                if (renderer.material.name == "DefaultSkin (Instance)") renderer.material = EnemyManagger.Instance.DefaultSkin;
+                if (renderer.material.name == "DefaultSkin (Instance)") renderer.material = EnemyManagger.Instance.StrongSkin;
             }
         }
     }
