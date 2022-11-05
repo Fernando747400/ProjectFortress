@@ -17,6 +17,8 @@ public class Canon_CanonBall : GeneralAgressor
     [HideInInspector]public Debug_CannonFire cannonFire;
     [SerializeField]private ParticleSystem[] particleSystems;
     
+    [Header("Audio Clips")]
+    public AudioClip explosion;
     
     // Start is called before the first frame update
     private void Awake()
@@ -69,6 +71,7 @@ public class Canon_CanonBall : GeneralAgressor
             particle.Clear();
             particle.Play();
         }
+        PlayAudio(explosion,.5f);
         CastDamage();
         Deactivate();
     }
@@ -91,6 +94,12 @@ public class Canon_CanonBall : GeneralAgressor
             if (!TryGetGeneralTarget(hit.gameObject)) continue;
             hit.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }
+    }
+    
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
     }
 
     private void Prepare()
