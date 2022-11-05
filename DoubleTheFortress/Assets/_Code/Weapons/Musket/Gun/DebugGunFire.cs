@@ -9,6 +9,7 @@ public class DebugGunFire :  GeneralAgressor
     // [SerializeField] private GameObject hitMarkerRed;
     [SerializeField] private GameObject hitMarkerBlue;
     [SerializeField] private LayerMask layers;
+    [SerializeField] private ParticleSystem particleSystem;
 
     [Tooltip("Cooldown Time in seconds")] [SerializeField]
     private float cooldown = 1;
@@ -38,6 +39,7 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireHitScan()
     {
         StopAllCoroutines();
+        particleSystem.Play();
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
         Debug.DrawLine(transform.position,hitScan.point,Color.red,10f);
@@ -58,7 +60,6 @@ public class DebugGunFire :  GeneralAgressor
 
     private IEnumerator CorWaitForCooldown()
     {
-        canFire = false;
         yield return new WaitForSeconds(cooldown);
 
         canFire = true;
@@ -80,6 +81,7 @@ public class DebugGunFire :  GeneralAgressor
             simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }
 
+        canFire = false;
         StartCoroutine(CorWaitForCooldown());
 
     }
