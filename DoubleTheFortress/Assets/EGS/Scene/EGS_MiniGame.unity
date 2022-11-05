@@ -10561,6 +10561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonObject: {fileID: 1602428954}
+  _cannonName: 
   _mywallScript: {fileID: 429329431}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -18113,6 +18114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonObject: {fileID: 985489120}
+  _cannonName: 
   _mywallScript: {fileID: 776482836}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -18322,6 +18324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonObject: {fileID: 1285201037}
+  _cannonName: 
   _mywallScript: {fileID: 782457045}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -18468,9 +18471,19 @@ PrefabInstance:
       objectReference: {fileID: 1507030633}
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
+      propertyPath: hitParticle
+      value: 
+      objectReference: {fileID: 5716235654099307979}
+    - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
       propertyPath: layers.m_Bits
       value: 51
       objectReference: {fileID: 0}
+    - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: shootParticle
+      value: 
+      objectReference: {fileID: 1507030633}
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: particleSystem
@@ -71911,6 +71924,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce0d5c8cddde77489773ee963ff6e9c, type: 3}
+--- !u!1 &5716235654099307979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5716235654170601263, guid: fce0d5c8cddde77489773ee963ff6e9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5716235654099307978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5729912627676835990
 GameObject:
   m_ObjectHideFlags: 0
@@ -72082,6 +72101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonObject: {fileID: 225258602}
+  _cannonName: 
   _mywallScript: {fileID: 6595506780152846139}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -77233,6 +77253,8 @@ MonoBehaviour:
   - {fileID: 1322005385}
   - {fileID: 1582351964}
   - {fileID: 7359792456396574687}
+  DamageSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!23 &8080316142531062470
 MeshRenderer:
   m_ObjectHideFlags: 0
