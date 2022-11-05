@@ -970,6 +970,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.0714
       objectReference: {fileID: 0}
+    - target: {fileID: 1613792124176153065, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792457280103045382, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: projectile
