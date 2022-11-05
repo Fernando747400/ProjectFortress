@@ -9,13 +9,14 @@ public class DebugGunFire :  GeneralAgressor
     // [SerializeField] private GameObject hitMarkerRed;
     [SerializeField] private GameObject hitMarkerBlue;
     [SerializeField] private LayerMask layers;
+    [SerializeField] private ParticleSystem particleSystem;
 
     [Tooltip("Cooldown Time in seconds")] [SerializeField]
     private float cooldown = 1;
     
     private float _bulletMass;
     private float _travelTime;
-    private bool _canFire = true;
+    protected bool canFire = true;
     private Vector3 _hitPosition;
     
     //saves the position the gun was... 
@@ -29,7 +30,7 @@ public class DebugGunFire :  GeneralAgressor
     
     protected virtual void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)  | _canFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0)  | canFire)
         {
             FireHitScan();
         }
@@ -38,13 +39,14 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireHitScan()
     {
         StopAllCoroutines();
+        particleSystem.Play();
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
         Debug.DrawLine(transform.position,hitScan.point,Color.red,10f);
         // Instantiate(hitMarkerRed, hitScan.point, Quaternion.identity);
         _hitPosition = hitScan.point;
         _travelTime = hitScan.distance / (bulletSpeed) * Time.fixedDeltaTime;
-        _canFire = false;
+        canFire = false;
 
         StartCoroutine(CorWaitForTravel());
     }
@@ -58,10 +60,9 @@ public class DebugGunFire :  GeneralAgressor
 
     private IEnumerator CorWaitForCooldown()
     {
-        _canFire = false;
         yield return new WaitForSeconds(cooldown);
 
-        _canFire = true;
+        canFire = true;
 
     }
 
@@ -80,6 +81,7 @@ public class DebugGunFire :  GeneralAgressor
             simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }
 
+        canFire = false;
         StartCoroutine(CorWaitForCooldown());
 
     }

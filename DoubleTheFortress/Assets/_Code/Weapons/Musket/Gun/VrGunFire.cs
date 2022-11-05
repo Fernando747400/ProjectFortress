@@ -28,7 +28,7 @@ public class VrGunFire : DebugGunFire
 
     protected override void FireSimulated()
     {
-        if (_isPaused) return;
+        if (_isPaused && !canFire) return;
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
         base.FireSimulated();
     }

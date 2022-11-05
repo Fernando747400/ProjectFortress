@@ -983,6 +983,18 @@ PrefabInstance:
       objectReference: {fileID: 1506923564}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
+--- !u!114 &636818271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2614300799680394017, guid: 732166c9f10511040a0b8b10bfacb5e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 636818270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3370fadd534011040abc4be675108171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1018181760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9888,6 +9900,7 @@ MonoBehaviour:
   _collider: {fileID: 630352507851303567}
   _selectedItem: 1
   _typeOfItem: 3
+  _uiHammer: {fileID: 9091824465021701164}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
   _cooldown: 0
@@ -30318,6 +30331,7 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 0
+  particleSystem: {fileID: 0}
   cooldown: 1
   inventoryController: {fileID: 8767782437605687291}
   GunShoot: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
@@ -35320,7 +35334,7 @@ MonoBehaviour:
     type: 3}
   _maxTimeToSelect: 1.5
   areasInteraction:
-  - {fileID: 0}
+  - {fileID: 636818271}
   _currentSelectingHand: 0
 --- !u!114 &8840121337559969646
 MonoBehaviour:
@@ -35582,6 +35596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076842989132193705, guid: 6ee20f5325c6ce44180165bf4438fe90,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee20f5325c6ce44180165bf4438fe90, type: 3}

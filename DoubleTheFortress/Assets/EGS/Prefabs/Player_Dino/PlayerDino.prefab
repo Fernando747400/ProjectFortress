@@ -21683,6 +21683,7 @@ MonoBehaviour:
   _collider: {fileID: 630352508329486517}
   _selectedItem: 1
   _typeOfItem: 3
+  _uiHammer: {fileID: 9091824465097166358}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
   _cooldown: 0
@@ -32700,6 +32701,7 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 0
+  particleSystem: {fileID: 0}
   cooldown: 1
   inventoryController: {fileID: 8767782437161057729}
   GunShoot: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,

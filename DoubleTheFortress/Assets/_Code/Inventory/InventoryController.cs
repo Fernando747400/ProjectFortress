@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DebugStuff.Inventory;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -71,7 +70,7 @@ public class InventoryController : MonoBehaviour
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
-        // HandleAreasInteraction();
+        HandleAreasInteraction();
         OnPlayerSelectItem += HandleConfirmItem;
         
         foreach (var obj in _objectsLeftHand)
@@ -126,9 +125,6 @@ public class InventoryController : MonoBehaviour
     }
     public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
     {
-        Debug.Log("Se agragan al area interaction");
-        areasInteraction.Add(interaction);
-
         if (areasInteraction.Count > 0 )
         {
             foreach (BoxAreasInteraction box in areasInteraction)
@@ -137,8 +133,6 @@ public class InventoryController : MonoBehaviour
                 box.OnHandEnterActionZone += HandleBoxInteraction;
             }
         }
-        
-        
     }
 
     void HandleConfirmItem(PlayerSelectedItem item)
@@ -169,15 +163,12 @@ public class InventoryController : MonoBehaviour
         
     }
 
-
-
     void SelectItem(Hand _currentHand)
     {
         if (_isPaused)return;
         if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
-        if (_isInBoxInteraction && _currentSelectingHand == Hand.None) return;
+        if (_isInBoxInteraction && _currentHand == Hand.RightHand) return;
 
-        //Deselect current objects in hand
         DeselectItems(_currentSelectedObjects , _currentSelectingHand);
        
         _currentSelectingHand = _currentHand;
@@ -196,20 +187,6 @@ public class InventoryController : MonoBehaviour
         }
         _currentSelectedObjects = objects;
         
-        // {
-        //     objects = _objectsLeftHand.ToList();
-        //     _currentSelectedObjects = objects;
-        //     _currentSelectingHand = Hand.LeftHand;
-        //     
-        // }
-        // else
-        // {
-        //     objects = _objectsRightHand.ToList();
-        //     _currentSelectedObjects = objects;
-        //     _currentSelectingHand = Hand.RightHand;
-        //
-        // }
-        
         if (_selectIndex >= objects.Count) _selectIndex = 0;
         
         _currentSelected = _selectIndex;
@@ -224,7 +201,6 @@ public class InventoryController : MonoBehaviour
     
     void ConfirmSelection(Hand hand)
     {
-        // if (_isInBoxInteraction) return;
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
         
