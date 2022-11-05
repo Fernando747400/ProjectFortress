@@ -173,6 +173,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         _routeQueue.Clear();
         _targetTransform = null;
+        ResetZombie();
         EnemyManagger.Instance.Despawn(EnemyManagger.Instance.Zombie, this.gameObject);
         EnemyManagger.Instance.OnSpawn();
     }
@@ -191,13 +192,11 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public void DoDamageToTarget() //This is called by Zombie Attack anim
     {
-        if (_isPaused) return;
         _targetToDamage.GetComponent<IGeneralTarget>().ReceiveRayCaster(this.gameObject, _zombieDamage);
     }
 
     public void FinishAttack() //This is called by Zombie Attack anim
     {
-        if (_isPaused) return;
         _isAttacking = false;
         _alertSignal.SetActive(false);
         CurrentState = ZombieState.Walk;
@@ -218,7 +217,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void ReceiveDamage(float damage)
     {
-        if (_isPaused) return;
         _life -= damage;
         _life = Mathf.Clamp(_life, 0, _maxLife);
 
@@ -248,7 +246,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     
     public void ResetZombie()
     {
-        if (CurrentState == ZombieState.Idle) CurrentState = ZombieState.Walk;
+        if (CurrentState == ZombieState.Idle || CurrentState == ZombieState.Death) CurrentState = ZombieState.Walk;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         CheckIfPause();
         StrongZombie();
