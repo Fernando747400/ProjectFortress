@@ -18090,7 +18090,7 @@ PrefabInstance:
     - target: {fileID: 710855593757598198, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: _isDigital
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1706550581562239788, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
@@ -18196,7 +18196,7 @@ PrefabInstance:
     - target: {fileID: 8991318472401330105, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8991318472401330105, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
@@ -18204,6 +18204,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e57b34deac896b549bb36de1b71a554e,
         type: 2}
+    - target: {fileID: 8991318472401330105, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8991318472401330105, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_sharedMaterial
