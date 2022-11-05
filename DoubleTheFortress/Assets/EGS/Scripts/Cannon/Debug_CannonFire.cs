@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Debug_CannonFire : MonoBehaviour
 {
-    [Tooltip("Object Fired by the cannon")] 
+    [Tooltip("Object Fired by the cannon")]
     [SerializeField] private GameObject projectile;
     [SerializeField] private int maxProjectiles;
     [SerializeField] private float launchForce = 800f;
-    
+
+    [Header("Audio Clips")]
+    public AudioClip FireSound;
+
     private Queue<Canon_CanonBall> _canonBalls;
     private int _current;
 
@@ -37,6 +40,7 @@ public class Debug_CannonFire : MonoBehaviour
         {
             Canon_CanonBall current = _canonBalls.Dequeue();
             current.Fire(transform.position,transform.forward,launchForce);
+            PlayAudio(FireSound);
             // Debug.Log("Launched" + current.name);
         }
         catch { Debug.Log("Queue Is empty"); }
@@ -60,5 +64,11 @@ public class Debug_CannonFire : MonoBehaviour
             temp.GetComponent<Canon_CanonBall>().cannonFire = this;
             _canonBalls.Enqueue(temp.GetComponent<Canon_CanonBall>());
         }    
+    }
+
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
     }
 }
