@@ -5612,10 +5612,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9716981, g: 0.7978153, b: 0, a: 1}
-  m_Intensity: 1055
-  m_Range: 211
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 1031.1
+  m_Range: 16.8
+  m_SpotAngle: 62.082466
+  m_InnerSpotAngle: 34.570847
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -28403,7 +28403,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0, g: 0.15767002, b: 1, a: 1}
-  m_Intensity: 6.48
+  m_Intensity: 10.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -34803,6 +34803,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Credits Scene 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753733865288744688, guid: bd97415dacb7a5e41be24e64ac1227e5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.03627543
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753733865288744688, guid: bd97415dacb7a5e41be24e64ac1227e5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.008656368
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753733865288744688, guid: bd97415dacb7a5e41be24e64ac1227e5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9992362
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753733865288744688, guid: bd97415dacb7a5e41be24e64ac1227e5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.01166661
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753733865288744688, guid: bd97415dacb7a5e41be24e64ac1227e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753733865288744691, guid: bd97415dacb7a5e41be24e64ac1227e5,
+        type: 3}
+      propertyPath: m_text
+      value: 'RAYMUNDO
+
+        CRYOsTORAGE'
       objectReference: {fileID: 0}
     - target: {fileID: 2295774599042091083, guid: bd97415dacb7a5e41be24e64ac1227e5,
         type: 3}
