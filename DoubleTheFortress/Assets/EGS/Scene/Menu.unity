@@ -9900,6 +9900,7 @@ MonoBehaviour:
   _collider: {fileID: 630352507851303567}
   _selectedItem: 1
   _typeOfItem: 3
+  _uiHammer: {fileID: 9091824465021701164}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
   _cooldown: 0

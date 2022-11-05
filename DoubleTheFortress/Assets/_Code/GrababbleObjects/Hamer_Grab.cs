@@ -7,8 +7,8 @@ public class Hamer_Grab : IGrabbable , IPause
 
     #region Variables
 
-    // [Header("Inventory")] 
-    // [SerializeField] private InventoryController _inventoryController;
+    [Header("UI")] 
+    [SerializeField] private GameObject _uiHammer;
 
     [Header("Settings")]
     [SerializeField] private float _pointsToRepair;
@@ -58,19 +58,20 @@ public class Hamer_Grab : IGrabbable , IPause
         }
     }
 
-    // void HandleIsSelectingState(bool isSelecting)
-    // {
-    //     Collider collider = GetComponent<Collider>();
-    //
-    //     if (isSelecting)
-    //     {
-    //         collider.enabled = false;
-    //     }
-    //     else
-    //     {
-    //         collider.enabled = true;
-    //     }
-    // }
+  
+    public override void HandleSelectedState(bool isSelecting)
+    {
+        base.HandleSelectedState(isSelecting);
+        
+        if (!isSelecting)
+        {
+            _uiHammer.SetActive(true);
+        }
+        else
+        {
+            _uiHammer.SetActive(false);
+        }
+    }
     #endregion
 
     #region Interface Methods
