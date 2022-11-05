@@ -23,15 +23,17 @@ public class RouteManagger : MonoBehaviour
         Instance = this;
     }
 
-    public void RandomNum()
+    private void RandomNum()
     {
-        int randomRoute = Random.Range(1, 5);
-        randomNum = randomRoute;
+        
+        
     }
 
     public Queue<Transform> RandomRoute()
     {
         theRoute.Clear();
+        int randomRoute = Random.Range(1, 5);
+        randomNum = randomRoute;
         switch (randomNum)
         {
             case 1:

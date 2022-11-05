@@ -14,6 +14,8 @@ TagManager:
   - Zombie
   - MenuCanonBall
   - Torch
+  - Musket
+  - Cannon
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - 
   - 
   - Cannon
-  - 
+  - Defenses
   - 
   - 
   - 

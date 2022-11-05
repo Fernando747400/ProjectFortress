@@ -41,7 +41,7 @@ public class InventoryController : MonoBehaviour
     private bool _timerIsActive;
     private bool _timerHasFinished;
 
-    private Hand _currentSelectingHand = Hand.None;
+    public Hand _currentSelectingHand = Hand.None;
     private List<GameObject> _currentSelectedObjects;
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
@@ -66,13 +66,13 @@ public class InventoryController : MonoBehaviour
         
         DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
         DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
-        SelectRightReference.action.performed += ctx => SelectItem(false);
-        SelectLeftReference.action.performed += ctx => SelectItem(true);
+        SelectRightReference.action.performed += ctx => SelectItem( Hand.RightHand);
+        SelectLeftReference.action.performed += ctx => SelectItem( Hand.LeftHand);
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
         // HandleAreasInteraction();
-        OnPlayerSelectItem += HandleSelectedItem;
+        OnPlayerSelectItem += HandleConfirmItem;
         
         foreach (var obj in _objectsLeftHand)
         {
@@ -99,14 +99,21 @@ public class InventoryController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.PauseGameEvent += Paused;
-        GameManager.Instance.PlayGameEvent += Unpaused;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent += Paused; 
+            GameManager.Instance.PlayGameEvent += Unpaused;
+        }
+
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.PauseGameEvent -= Paused;
-        GameManager.Instance.PlayGameEvent -= Unpaused;
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.PauseGameEvent -= Paused;
+            GameManager.Instance.PlayGameEvent -= Unpaused;
+        }
     }
 
     private void Paused()
@@ -119,6 +126,7 @@ public class InventoryController : MonoBehaviour
     }
     public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
     {
+        Debug.Log("Se agragan al area interaction");
         areasInteraction.Add(interaction);
 
         if (areasInteraction.Count > 0 )
@@ -133,7 +141,7 @@ public class InventoryController : MonoBehaviour
         
     }
 
-    void HandleSelectedItem(PlayerSelectedItem item)
+    void HandleConfirmItem(PlayerSelectedItem item)
     {
         _playerSelectedItem = item;
     }
@@ -163,80 +171,93 @@ public class InventoryController : MonoBehaviour
 
 
 
-    void SelectItem(bool isLeft)
+    void SelectItem(Hand _currentHand)
     {
         if (_isPaused)return;
-        if (_isInBoxInteraction) return;
-        if(hasObjectSelected) return;
+        if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
+        if (_isInBoxInteraction && _currentSelectingHand == Hand.None) return;
 
-        ResetTimer();
         //Deselect current objects in hand
         DeselectItems(_currentSelectedObjects , _currentSelectingHand);
-
-        List<GameObject> objects = new List<GameObject>();
+       
+        _currentSelectingHand = _currentHand;
+        ResetTimer();
         
-        if (isLeft)
-        {
-            objects = _objectsLeftHand.ToList();
-            _currentSelectedObjects = objects;
-            _currentSelectingHand = Hand.LeftHand;
-            
-        }
-        else
-        {
-            objects = _objectsRightHand.ToList();
-            _currentSelectedObjects = objects;
-            _currentSelectingHand = Hand.RightHand;
+        List<GameObject> objects = new List<GameObject>();
 
+        switch (_currentHand)
+        {
+            case Hand.LeftHand:
+                objects = _objectsLeftHand.ToList();
+                break;
+            case Hand.RightHand:
+                objects = _objectsRightHand.ToList();
+                break;
         }
+        _currentSelectedObjects = objects;
+        
+        // {
+        //     objects = _objectsLeftHand.ToList();
+        //     _currentSelectedObjects = objects;
+        //     _currentSelectingHand = Hand.LeftHand;
+        //     
+        // }
+        // else
+        // {
+        //     objects = _objectsRightHand.ToList();
+        //     _currentSelectedObjects = objects;
+        //     _currentSelectingHand = Hand.RightHand;
+        //
+        // }
         
         if (_selectIndex >= objects.Count) _selectIndex = 0;
         
         _currentSelected = _selectIndex;
         objects[_currentSelected].SetActive(true);
-        MaterialObjectSelecting(_currentSelected, objects);
-        _selectIndex++;
-        OnIsSelecting?.Invoke(true);
+        HandleSelectedItem(_currentSelected, objects, true);
         OnPlayerSelectItem?.Invoke(PlayerSelectedItem.Selecting);
+        OnIsSelecting?.Invoke(true);
         StartTimer();
+        _selectIndex++;
         
     }
     
     void ConfirmSelection(Hand hand)
     {
-        if (_isInBoxInteraction) return;
+        // if (_isInBoxInteraction) return;
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
         
-            
-        OnIsSelecting?.Invoke(false);
+        HandleSelectedItem(_currentSelected, _currentSelectedObjects, false);
         ResetTimer();
-        HandleSelectedItem(_currentSelected, _currentSelectedObjects);
+        HandleConfirmItem(_currentSelected, _currentSelectedObjects);
         hasObjectSelected = true;
+        OnIsSelecting?.Invoke(false);
     }
     
     void HandleBoxInteraction(bool interaction)
     {
-        _isInBoxInteraction = !interaction;
+        _isInBoxInteraction = interaction;
         if (_playerSelectedItem == PlayerSelectedItem.Selecting)
         {
             DeselectItems(_currentSelectedObjects, _currentSelectingHand);
         }
     }
 
-    void MaterialObjectSelecting(int item, List<GameObject> objects)
+    void HandleSelectedItem(int item, List<GameObject> objects,bool isSelecting)
     {
-        objects[item].GetComponent<IGrabbable>().SetMaterials(shadowMaterial);
+        IGrabbable selected = objects[item].GetComponent<IGrabbable>();
+        selected.SetMaterials(shadowMaterial);
+        selected.HandleSelectedState(isSelecting);
     }
 
-    void HandleSelectedItem(int itemSelected, List<GameObject> objects)
+    void HandleConfirmItem(int itemSelected, List<GameObject> objects)
     {
         IGrabbable item = objects[itemSelected].GetComponent<IGrabbable>();
         item.ResetMaterials();
-        OnPlayerSelectItem?.Invoke(item.Item);
         _playerHandsObjects = item.TypeOfItem;
         _selectIndex = _currentSelectedObjects.Count;
-
+        OnPlayerSelectItem?.Invoke(item.Item);
     }
 
 

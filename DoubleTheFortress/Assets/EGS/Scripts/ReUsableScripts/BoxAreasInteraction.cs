@@ -27,7 +27,7 @@ public class BoxAreasInteraction : MonoBehaviour
     {
         if (other.CompareTag("Hand"))
         {
-            OnHandEnterActionZone?.Invoke(false);
+            OnHandEnterActionZone?.Invoke(true);
         }
     }
 
@@ -35,7 +35,7 @@ public class BoxAreasInteraction : MonoBehaviour
     {
         if (other.CompareTag("Hand"))
         {
-            OnHandEnterActionZone?.Invoke(true);
+            OnHandEnterActionZone?.Invoke(false);
         }
     }
 

@@ -49,14 +49,20 @@ public class WheelController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.PauseGameEvent += IsPaused;
-        GameManager.Instance.PauseGameEvent += IsUnPaused;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent += IsPaused;
+            GameManager.Instance.PauseGameEvent += IsUnPaused;
+        }
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.PauseGameEvent -= IsPaused;
-        GameManager.Instance.PauseGameEvent -= IsUnPaused;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent -= IsPaused;
+            GameManager.Instance.PauseGameEvent -= IsUnPaused;
+        }
     }
 
     void IsPaused()
