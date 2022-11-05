@@ -24,7 +24,6 @@ public class HandController_XR : MonoBehaviour
     public bool HandIsEmpty
     {
         get => _handIsEmpty;
-        // set => _handIsEmpty = value;
     }
 
     void Start()

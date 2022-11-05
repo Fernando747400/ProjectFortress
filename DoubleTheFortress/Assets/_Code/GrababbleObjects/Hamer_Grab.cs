@@ -7,14 +7,18 @@ public class Hamer_Grab : IGrabbable , IPause
 
     #region Variables
 
-    // [Header("Inventory")] 
-    // [SerializeField] private InventoryController _inventoryController;
+    [Header("UI")] 
+    [SerializeField] private GameObject _uiHammer;
 
     [Header("Settings")]
     [SerializeField] private float _pointsToRepair;
     [SerializeField] private float _pointsToUpgrade;
     [SerializeField] private float _cooldown;
 
+    [Header("AudioClips")]
+    public AudioClip _wooodSound;
+    public AudioClip _metalSound;
+    public AudioClip _brickSound;
     private float _elapsedTime = 0f;
 
     public event Action<GameObject> ConstructableHitEvent;
@@ -26,7 +30,6 @@ public class Hamer_Grab : IGrabbable , IPause
     #region unity Methods
     void Start()
     {
-        // _inventoryController.OnIsSelecting += HandleIsSelectingState;
         _isPaused = GameManager.Instance.IsPaused;
     }
 
@@ -52,25 +55,30 @@ public class Hamer_Grab : IGrabbable , IPause
         if (other.gameObject.GetComponent<IConstructable>() != null && _elapsedTime >= _cooldown)
         {
             _elapsedTime = 0f;
-            // Debug.Log("<color=#FFB233>Receive Hammer</color>");
             other.GetComponent<IConstructable>().RecieveHammer(_pointsToRepair, _pointsToUpgrade);
+
+            WallManager wallManager = other.GetComponent<WallManager>();
+
+            if (wallManager != null)
+            {            
+                PlayAudio(wallManager, 0.5f );
+            }
+
             ConstructableHitEvent?.Invoke(other.gameObject);
         }
     }
 
-    // void HandleIsSelectingState(bool isSelecting)
-    // {
-    //     Collider collider = GetComponent<Collider>();
-    //
-    //     if (isSelecting)
-    //     {
-    //         collider.enabled = false;
-    //     }
-    //     else
-    //     {
-    //         collider.enabled = true;
-    //     }
-    // }
+  
+    public override void HandleSelectedState(bool isSelecting)
+    {
+        base.HandleSelectedState(isSelecting);
+
+        if (isSelecting)
+        {
+            HammerStatusBars hammerStatusBars = GetComponent<HammerStatusBars>();
+            hammerStatusBars.ResetCanvasBars();
+        }
+    }
     #endregion
 
     #region Interface Methods
@@ -88,6 +96,30 @@ public class Hamer_Grab : IGrabbable , IPause
         _isPaused = false;
     }
 
+    private void PlayAudio( WallManager wall ,float volume = 1f)
+    {
+
+        AudioClip clip = null;
+        
+        switch (wall.WallIndex)
+        {
+            case 0:
+                clip = null;
+                break;
+            case 1:
+                clip = _wooodSound;
+                break;
+            case 2:
+                clip = _metalSound;
+                break;
+            case 3:
+                clip = _brickSound;
+                break;
+        }
+        if (clip == null) return;    
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
+    }
+    
     private void SubscribeToEvents()
     {
         GameManager.Instance.PauseGameEvent += Pause;

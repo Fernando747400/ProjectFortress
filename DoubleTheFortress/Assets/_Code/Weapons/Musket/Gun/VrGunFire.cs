@@ -19,6 +19,7 @@ public class VrGunFire : DebugGunFire
     protected override void Update()
     {
         //overriden do not use
+        Debug.Log("canFire is "+canFire);
     }
 
     protected override void CheckInput()
@@ -28,7 +29,8 @@ public class VrGunFire : DebugGunFire
 
     protected override void FireSimulated()
     {
-        if (_isPaused && canFire) return;
+        if (_isPaused) return;
+        //if (!canFire) return;
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
         base.FireSimulated();
     }

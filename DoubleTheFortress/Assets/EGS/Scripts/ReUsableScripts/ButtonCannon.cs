@@ -16,10 +16,15 @@ public class ButtonCannon : MonoBehaviour
     [Header("Cannon UI")] 
     
     [SerializeField] private Image fill;
+    [SerializeField] private Image background;
 
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
    
+   [Header("AudioClips")]
+    public AudioClip _fireSound;
+   
    private bool _isPaused;
+   public bool _isAutomatic;
     
     float _time;
     float _intialTimer = 0;
@@ -46,11 +51,16 @@ public class ButtonCannon : MonoBehaviour
         OnPushedButton += FireCannon;
         particles.SetActive(false);
         len = myColors.Length;
+        _timerHasStarted = false;
+        _timerHasFinished = true;
+        fill.color = myColors[2];
+        // StartTimer();
     }
 
     void Update()
-    {
+    { 
         HandleTimer();
+        
     }
 
     private void OnEnable()
@@ -107,14 +117,19 @@ public class ButtonCannon : MonoBehaviour
     {
         particles.SetActive(false);
         cannon.Launch();
+        PlayAudio(_fireSound,0.5f);
         _isFiring = false;
         if (!_isMenuCannon)
         {
-            print("Cañon con cool down");
             StartTimer();
         }
     }
 
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
+    }
     void HandleUICannon(float value)
     {
        _initialValue = Mathf.Lerp(0, _maxValue, value);
@@ -129,6 +144,8 @@ public class ButtonCannon : MonoBehaviour
         _timerHasFinished = false;
         colorIndex = 0;
         fill.color = myColors[0];
+        background.color = new Color(0, 0, 0, 0);
+
     }
 
     void HandleTimer()
@@ -136,8 +153,8 @@ public class ButtonCannon : MonoBehaviour
         if (!_timerHasStarted && _timerHasFinished) return;
         
         _time += Time.deltaTime * 1;
+        
         LerpColor();
-       // Debug.Log(_time);
         if (_time > delay)
         {
             RestartTimer();
@@ -151,8 +168,9 @@ public class ButtonCannon : MonoBehaviour
         _time = 0;
         _timerHasFinished = true;
         _timerHasStarted = false;
-        
-        // if(_isAutomatic) StartTimer();
+        background.color = new Color(0, 0, 0, 1);
+        background.color = myColors[2];
+        if(_isAutomatic) StartTimer();
     }
     
     void LerpColor()

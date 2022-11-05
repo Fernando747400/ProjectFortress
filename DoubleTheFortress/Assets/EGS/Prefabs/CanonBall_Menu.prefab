@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers: []
   myMaterials: []
+  _collider: {fileID: 0}
   _selectedItem: 0
   _typeOfItem: 0
   damage: 10
@@ -93,6 +94,7 @@ MonoBehaviour:
   - {fileID: 7214095505620697000}
   - {fileID: 2911499361728021392}
   - {fileID: 1153975341919122782}
+  explosion: {fileID: 8300000, guid: d444fab277546954da96b343a708cef4, type: 3}
 --- !u!1 &2327237693005131231
 GameObject:
   m_ObjectHideFlags: 0

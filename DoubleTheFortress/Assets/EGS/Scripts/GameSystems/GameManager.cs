@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public double ElapsedTime { get => _elapsedTime; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
     public bool GameStarted { get => _gameStarted; }
+    public bool GameFinished { get => _gameFinished; }
     public bool MainMenu { get => _inMainMenu; set { if(_inMainMenu = value) return; _inMainMenu = value; UpdateMainMenu(); } }
 
     public event Action PauseGameEvent;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public event Action StartGameEvent;
     public event Action FinishGameEvent;
     public event Action GotKillEvent;
+    public event Action ScoreScreenEvent;
 
     private void Awake()
     {
@@ -55,7 +57,11 @@ public class GameManager : MonoBehaviour
     private void RecievePauseInput()
     {
         if (_inMainMenu) return;
-        if (_gameFinished) return;
+        if (_gameFinished)
+        {
+            ScoreScreenEvent?.Invoke();
+            return;
+        }  
 
         if (!_gameStarted)
         {
@@ -88,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        _gameFinished = true;
         FinishGameEvent?.Invoke();
     }
 
