@@ -50328,7 +50328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f850b2389d23f40b0835ba1fca45b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0.5
+  maxDistance: 0.6
   Damage: 20
   StrongZombie: 0
   DefaultSkin: {fileID: 2100000, guid: a7e1e67bb29c96a49826e3c4ef9cd5b5, type: 2}
