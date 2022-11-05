@@ -71,7 +71,7 @@ public class InventoryController : MonoBehaviour
         ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
         ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
-        // HandleAreasInteraction();
+        HandleAreasInteraction();
         OnPlayerSelectItem += HandleConfirmItem;
         
         foreach (var obj in _objectsLeftHand)
@@ -126,8 +126,8 @@ public class InventoryController : MonoBehaviour
     }
     public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
     {
-        Debug.Log("Se agragan al area interaction");
-        areasInteraction.Add(interaction);
+        // Debug.Log("Se agragan al area interaction");
+        // areasInteraction.Add(interaction);
 
         if (areasInteraction.Count > 0 )
         {

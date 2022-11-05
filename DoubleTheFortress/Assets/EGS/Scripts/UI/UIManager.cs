@@ -11,7 +11,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform _totemPosition;
     [SerializeField] private GameObject _skullPrefab;
     [SerializeField] private Pooling _skullPooler;
+
+    [Header("UI Canvas")]
     [SerializeField] private GameObject _tutorialCanvas;
+    [SerializeField] private GameObject _pauseCanvas;
+    [SerializeField] private GameObject _finishCanvas;
     
     [Header("Kill Counter")]
     [SerializeField] private GameObject _killCounterCanvas;
@@ -27,10 +31,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        CoreManager.Instance.LostAHeartEvent += UpdateCoreLife;
-        GameManager.Instance.GotKillEvent += UpdateKillCounter;
-        GameManager.Instance.StartGameEvent += CloseTutorialCanvas;
-        _skullPooler.Preload(_skullPrefab, 10);
+        Prepare();
     }
     
     public void ZombieDeadEffect(Transform zombiePosition) 
@@ -60,6 +61,34 @@ public class UIManager : MonoBehaviour
     private void CloseTutorialCanvas()
     {
         _tutorialCanvas.SetActive(false);
+    }
+
+    private void OpenPauseCanvas()
+    {
+        if (!GameManager.Instance.GameStarted) return;
+        if (GameManager.Instance.GameFinished) return;
+        _pauseCanvas.SetActive(true);
+    }
+
+    private void ClosePauseCanvas()
+    {
+        _pauseCanvas.SetActive(false);
+    }
+
+    private void FinishGameCanvas()
+    {
+        _finishCanvas.SetActive(true);
+    }
+
+    private void Prepare()
+    {
+        CoreManager.Instance.LostAHeartEvent += UpdateCoreLife;
+        GameManager.Instance.GotKillEvent += UpdateKillCounter;
+        GameManager.Instance.StartGameEvent += CloseTutorialCanvas;
+        GameManager.Instance.PauseGameEvent += OpenPauseCanvas;
+        GameManager.Instance.PlayGameEvent += ClosePauseCanvas;
+        GameManager.Instance.FinishGameEvent += FinishGameCanvas;
+        _skullPooler.Preload(_skullPrefab, 10);
     }
     
 }
