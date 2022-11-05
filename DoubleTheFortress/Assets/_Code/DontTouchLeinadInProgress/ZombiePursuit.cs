@@ -35,6 +35,12 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public float timeOfAvoid = 2;
 
+    [Header("Sounds")]
+    public AudioClip _snarl;
+    public AudioClip _zombieHit;
+    public AudioClip _moan;
+    public AudioClip _dieSound;
+
     private void Start()
     {
         Prepare();
@@ -115,6 +121,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         {
             _targetToDamage = collision.gameObject;
             CurrentState = ZombieState.Attack;
+            PlayAudio(_zombieHit);
         }
     }
 
@@ -135,6 +142,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         if (_distanceToTarget < _arrivalDistance)
         {
             UpdateTarget();
+            PlayAudio(_snarl);
         }
         Vector3 pursuit = this.Pursuit(_targetTransform.position);
         Vector3 stearing = pursuit;
@@ -167,6 +175,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isAttacking = false;
         _alertSignal.SetActive(false);
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Death); //Anim should call Despawn
+        PlayAudio(_dieSound);
         ZombieDieEvent?.Invoke();
         ZombieTotemEvent?.Invoke(this.transform);
     }
@@ -214,6 +223,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isRecivingDamage = true;
         CurrentState = ZombieState.Hit;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Hit);
+        PlayAudio(_moan);
         ReceiveDamage(dmgValue);
     }
 
@@ -319,6 +329,12 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         {
             ResetZombie();
         }
+    }
+
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
     }
 
     #region Interface Methods
