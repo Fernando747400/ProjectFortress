@@ -77,6 +77,7 @@ public class UIManager : MonoBehaviour
 
     private void FinishGameCanvas()
     {
+        _pauseCanvas.SetActive(false);
         _finishCanvas.SetActive(true);
     }
 

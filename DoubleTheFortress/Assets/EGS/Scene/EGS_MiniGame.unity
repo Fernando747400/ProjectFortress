@@ -14957,7 +14957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &411882887
 Transform:
   m_ObjectHideFlags: 0
@@ -27784,8 +27784,8 @@ Transform:
   - {fileID: 1271473096}
   - {fileID: 1161803997695620129}
   - {fileID: 411882887}
-  - {fileID: 1074473598}
   - {fileID: 1657806728}
+  - {fileID: 1074473598}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30113,8 +30113,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1325400063
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.30588236}
+    rgba: 2868903935
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -31262,7 +31262,7 @@ Transform:
   m_Children:
   - {fileID: 1704790406}
   m_Father: {fileID: 950961009}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1078672427
 PrefabInstance:
@@ -35114,16 +35114,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e57b34deac896b549bb36de1b71a554e, type: 2}
-  m_sharedMaterial: {fileID: -4364969097262458435, guid: e57b34deac896b549bb36de1b71a554e,
+  m_fontAsset: {fileID: 11400000, guid: e5dc4760c050d654da93accfeacecaab, type: 2}
+  m_sharedMaterial: {fileID: 6308173845031014813, guid: e5dc4760c050d654da93accfeacecaab,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1325400063
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.30588236}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -45760,7 +45760,7 @@ Transform:
   m_Children:
   - {fileID: 1700124883}
   m_Father: {fileID: 950961009}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1669855609
 PrefabInstance:
