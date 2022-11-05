@@ -15,6 +15,10 @@ public class Hamer_Grab : IGrabbable , IPause
     [SerializeField] private float _pointsToUpgrade;
     [SerializeField] private float _cooldown;
 
+    [Header("AudioClips")]
+    public AudioClip _wooodSound;
+    public AudioClip _metalSound;
+    public AudioClip _brickSound;
     private float _elapsedTime = 0f;
 
     public event Action<GameObject> ConstructableHitEvent;
@@ -52,6 +56,14 @@ public class Hamer_Grab : IGrabbable , IPause
         {
             _elapsedTime = 0f;
             other.GetComponent<IConstructable>().RecieveHammer(_pointsToRepair, _pointsToUpgrade);
+
+            WallManager wallManager = other.GetComponent<WallManager>();
+
+            if (wallManager != null)
+            {            
+                PlayAudio(wallManager, 0.5f );
+            }
+
             ConstructableHitEvent?.Invoke(other.gameObject);
         }
     }
@@ -84,6 +96,27 @@ public class Hamer_Grab : IGrabbable , IPause
         _isPaused = false;
     }
 
+    private void PlayAudio( WallManager wall ,float volume = 1f)
+    {
+
+        AudioClip clip = null;
+        
+        switch (wall.WallIndex)
+        {
+            case 0:
+                clip = _wooodSound;
+                break;
+            case 1:
+                clip = _metalSound;
+                break;
+            case 2:
+                clip = _brickSound;
+                break;
+        }
+        if (clip == null) return;    
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
+    }
+    
     private void SubscribeToEvents()
     {
         GameManager.Instance.PauseGameEvent += Pause;

@@ -11,7 +11,11 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
     [SerializeField] private float _cooldown;
     [SerializeField] private float _heartValue;
     [SerializeField] private List<GameObject> _heartsList;
-    
+
+    [Header("Audio Clips")]
+    public AudioClip DamageSound;
+    public AudioClip DeathSound;
+
     private Queue<GameObject> _heartsQueue = new Queue<GameObject>();
     
     public event Action RecievedDamageEvent;
@@ -65,6 +69,7 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
     {
         if (_life <= 0)
         {
+            PlayAudio(DeathSound, 0.5f);
             GameManager.Instance.PauseGame();
             GameManager.Instance.FinishGame();
         }
@@ -78,7 +83,8 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
         {
             _cumulativeDamage -= _heartValue;
             if (_heartsQueue.Count == 0) return;
-            LostAHeartEvent(_heartsQueue.Dequeue());
+            LostAHeartEvent?.Invoke(_heartsQueue.Dequeue());
+            PlayAudio(DamageSound, 0.5f);
         }
     }
 
@@ -89,6 +95,12 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
         {
             _heartsQueue.Enqueue(heart);
         }
+    }
+
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
     }
 
     private IEnumerator TestMethod()

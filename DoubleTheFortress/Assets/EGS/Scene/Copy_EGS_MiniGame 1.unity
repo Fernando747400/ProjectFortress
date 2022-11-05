@@ -14849,7 +14849,7 @@ MonoBehaviour:
   m_text: 05:45
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e57b34deac896b549bb36de1b71a554e, type: 2}
-  m_sharedMaterial: {fileID: 3685876407198549303, guid: e57b34deac896b549bb36de1b71a554e,
+  m_sharedMaterial: {fileID: -4364969097262458435, guid: e57b34deac896b549bb36de1b71a554e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14939,7 +14939,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3685876407198549303, guid: e57b34deac896b549bb36de1b71a554e, type: 2}
+  - {fileID: -4364969097262458435, guid: e57b34deac896b549bb36de1b71a554e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15668,6 +15668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonObject: {fileID: 0}
   _mywallScript: {fileID: 429329431}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -15678,6 +15679,9 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 0, z: 90}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
+  _buildSound: {fileID: 0}
+  _destroySound: {fileID: 0}
+  _damageSound: {fileID: 0}
 --- !u!54 &429329433
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17285,6 +17289,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 529897591}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &541257571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2295053
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.1947336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.21132565
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296248, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: aef61f7472df02343a0691d57e85210d, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4308c572f39202f4c8f092f241b6e47c, type: 3}
 --- !u!1001 &541706134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17474,6 +17562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139bf10b8ec4f449a9dd09cbc022e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputAReference: {fileID: 0}
 --- !u!4 &544615590
 Transform:
   m_ObjectHideFlags: 0
@@ -23080,6 +23169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonObject: {fileID: 0}
   _mywallScript: {fileID: 776482836}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -23090,6 +23180,9 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 90, z: 0}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
+  _buildSound: {fileID: 0}
+  _destroySound: {fileID: 0}
+  _damageSound: {fileID: 0}
 --- !u!54 &776482838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23285,6 +23378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonObject: {fileID: 0}
   _mywallScript: {fileID: 782457045}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -23295,6 +23389,9 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 0, z: 0}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
+  _buildSound: {fileID: 0}
+  _destroySound: {fileID: 0}
+  _damageSound: {fileID: 0}
 --- !u!54 &782457047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27936,6 +28033,9 @@ MonoBehaviour:
   _totemPosition: {fileID: 1368125839}
   _skullPrefab: {fileID: 1969302531946770075}
   _skullPooler: {fileID: 950961012}
+  _tutorialCanvas: {fileID: 0}
+  _pauseCanvas: {fileID: 0}
+  _finishCanvas: {fileID: 0}
   _killCounterCanvas: {fileID: 1271473095}
   _killCounterText: {fileID: 2107258476}
   _easeType: 0
@@ -58980,7 +59080,7 @@ MonoBehaviour:
   m_text: 000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e57b34deac896b549bb36de1b71a554e, type: 2}
-  m_sharedMaterial: {fileID: 3685876407198549303, guid: e57b34deac896b549bb36de1b71a554e,
+  m_sharedMaterial: {fileID: -4364969097262458435, guid: e57b34deac896b549bb36de1b71a554e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -60331,14 +60431,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c3087f28cfb7245a5ddb369b7fdb34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: {fileID: 0}
+  cannon: {fileID: 0}
   _collider: {fileID: 1168951834961388734}
   delay: 3
-  _isAutomatic: 0
+  _isMenuCannon: 0
   fill: {fileID: 1168951835926907739}
   background: {fileID: 1168951835162639145}
-  _myColors: []
-  _lerpedColor: {r: 0, g: 0, b: 0, a: 0}
   _maxValue: 0.5
+  _isAutomatic: 0
+  lerpTime: 0
+  LerpChange: 0
+  myColors: []
 --- !u!54 &1168951834961388723
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -69259,9 +69363,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers: []
   myMaterials: []
+  _collider: {fileID: 0}
   _selectedItem: 0
   _typeOfItem: 0
-  _inventoryController: {fileID: 0}
+  _uiHammer: {fileID: 0}
   _pointsToRepair: 15
   _pointsToUpgrade: 15
   _cooldown: 0.5
@@ -89168,6 +89273,8 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  _currentHand: {fileID: 0}
+  _hands: []
 --- !u!33 &5222551405991880156
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -90325,15 +90432,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers: []
   myMaterials: []
+  _collider: {fileID: 0}
   _selectedItem: 0
   _typeOfItem: 0
   damage: 10
   bulletSpeed: 15
   maxDistance: 900
-  hitMarkerRed: {fileID: 7379581397031689840, guid: 479778cd0a86707499b9fa88d406daa2,
-    type: 3}
   hitMarkerBlue: {fileID: 3532336229597066646, guid: 722c479d2a452af42ac95610da6e5f6e,
     type: 3}
+  layers:
+    serializedVersion: 2
+    m_Bits: 0
+  particles: {fileID: 0}
+  cooldown: 1
   inventoryController: {fileID: 0}
   GunShoot: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
@@ -90772,6 +90883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cannonObject: {fileID: 0}
   _mywallScript: {fileID: 6595506780152846139}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -90782,6 +90894,9 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 0, z: 0}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
+  _buildSound: {fileID: 0}
+  _destroySound: {fileID: 0}
+  _damageSound: {fileID: 0}
 --- !u!54 &6595506780152846141
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90915,6 +91030,8 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  _currentHand: {fileID: 0}
+  _hands: []
 --- !u!4 &6946838042450907561
 Transform:
   m_ObjectHideFlags: 0
@@ -96129,17 +96246,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSelectedItem: 0
   _playerHandsObjects: 0
-  _objects: []
   _objectsRightHand: []
   _objectsLeftHand: []
   shadowMaterial: {fileID: 0}
   ConfirmSelectRightReference: {fileID: 0}
   ConfirmSelectLeftReference: {fileID: 0}
-  DeselectReference: {fileID: 0}
+  DeselectLeftReference: {fileID: 0}
+  DeselectRightReference: {fileID: 0}
   SelectRightReference: {fileID: 0}
   SelectLeftReference: {fileID: 0}
   _maxTimeToSelect: 1.5
   areasInteraction: []
+  _currentSelectingHand: 0
 --- !u!4 &8170244846415106485
 Transform:
   m_ObjectHideFlags: 0
