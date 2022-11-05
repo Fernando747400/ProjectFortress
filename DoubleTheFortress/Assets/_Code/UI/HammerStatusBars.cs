@@ -37,6 +37,12 @@ public class HammerStatusBars : MonoBehaviour
         _barsCanvas.transform.LookAt(_mainCamera.transform);
     }
 
+    public void ResetCanvasBars()
+    {
+        StopCoroutine(ShowCanvas(_showCanvasTime));
+        _barsCanvas.SetActive(false);
+        _isRunningShowCanvas = false;
+    }
     private void GetConstrutableEvent(GameObject constructable)
     {
         if(constructable.TryGetComponent(typeof(IConstructable), out Component iConstructable))
