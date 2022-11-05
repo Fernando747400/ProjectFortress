@@ -46,6 +46,7 @@ public class ButtonCannon : MonoBehaviour
         OnPushedButton += FireCannon;
         particles.SetActive(false);
         len = myColors.Length;
+        fill.color = myColors[2];
     }
 
     void Update()
