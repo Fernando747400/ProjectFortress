@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2327237692435819342}
   - component: {fileID: 7518262756132401491}
   m_Layer: 9
-  m_Name: CanonBall
-  m_TagString: Cannon
+  m_Name: CanonBall_Menu
+  m_TagString: MenuCanonBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

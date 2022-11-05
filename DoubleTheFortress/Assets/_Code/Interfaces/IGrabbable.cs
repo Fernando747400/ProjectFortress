@@ -5,9 +5,11 @@ using DebugStuff.Inventory;
 
 public class IGrabbable : MonoBehaviour
 {
+   [Header("IGrabbable")]
    [SerializeField] private MeshRenderer[] _renderers;
    public MeshRenderer[] Renderers => _renderers;
    [SerializeField] private Material[] myMaterials;
+   [SerializeField] private Collider _collider;
    
    [SerializeField] private PlayerSelectedItem _selectedItem;
    [SerializeField] private PlayerSelectedItem _typeOfItem;
@@ -33,6 +35,14 @@ public class IGrabbable : MonoBehaviour
       for (int i = 0; i < _renderers.Length; i++)
       {
          _renderers[i].material = myMaterials[i];
+      }
+   }
+
+   public virtual void HandleSelectedState(bool isSelecting)
+   {
+      if (_collider!= null)
+      {
+         _collider.enabled = !isSelecting;
       }
    }
    

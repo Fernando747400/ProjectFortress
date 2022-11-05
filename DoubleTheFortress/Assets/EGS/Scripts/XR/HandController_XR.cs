@@ -11,7 +11,7 @@ public class HandController_XR : MonoBehaviour
     [SerializeField] PlayerSelectedItem handObjects;
     private Vector3 _handPos;
 
-    private bool _handIsEmpty;
+    public bool _handIsEmpty;
     public Hand Hand
     {
         get => _hand;

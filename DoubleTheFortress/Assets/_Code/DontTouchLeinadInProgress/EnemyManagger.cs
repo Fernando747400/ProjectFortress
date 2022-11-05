@@ -10,6 +10,7 @@ public class EnemyManagger : MonoBehaviour
     public bool StrongZombie = false;
     public Material DefaultSkin;
     public Material StrongSkin;
+    public float ZombieLife = 10;
 
     [SerializeField]
     public GameObject Zombie;
@@ -46,12 +47,13 @@ public class EnemyManagger : MonoBehaviour
 
     public void OnSpawn()
     {
-        RouteManagger.Instance.RandomNum();
         Vector3 vector = SpawnPosition().Peek().transform.position;
 
         GameObject temporal = ZombiePooling.GetObject(Zombie);
         temporal.transform.position = vector;
         temporal.GetComponent<ZombiePursuit>().ZombieDamage = Damage;
+        temporal.GetComponent<ZombiePursuit>().MaxHp = ZombieLife;
+        temporal.GetComponent<ZombiePursuit>().ResetZombie();
     }
 
     public Queue<Transform> SpawnPosition()

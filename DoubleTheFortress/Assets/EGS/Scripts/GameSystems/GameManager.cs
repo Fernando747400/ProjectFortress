@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public double ElapsedTime { get => _elapsedTime; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
     public bool GameStarted { get => _gameStarted; }
-    public bool MainMenu { get => _inMainMenu; set { _inMainMenu = value; UpdateMainMenu(); } }
+    public bool MainMenu { get => _inMainMenu; set { if(_inMainMenu = value) return; _inMainMenu = value; UpdateMainMenu(); } }
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;
@@ -132,10 +132,27 @@ public class GameManager : MonoBehaviour
         if (IsPaused) return;
         TimeSpan currentTime = TimeSpan.FromSeconds(_elapsedTime);
 
-        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3)
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3 && currentTime.Minutes <= 6)
         {
             EnemyManagger.Instance.Damage += 10f;
-            Debug.Log("Added more damage");
+            EnemyManagger.Instance.ZombieLife += 5f;
+            Debug.Log("Added more damage and life");
+            EnemyManagger.Instance.StrongZombie = true;
+        }
+
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 6 && currentTime.Minutes <= 10)
+        {
+            EnemyManagger.Instance.Damage += 20f;
+            EnemyManagger.Instance.ZombieLife += 10f;
+            Debug.Log("Added more damage and life");
+            EnemyManagger.Instance.StrongZombie = true;
+        }
+
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 10)
+        {
+            EnemyManagger.Instance.Damage += 50f;
+            EnemyManagger.Instance.ZombieLife += 50f;
+            Debug.Log("Added more damage and life");
             EnemyManagger.Instance.StrongZombie = true;
         }
 
