@@ -912,6 +912,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296249, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: _musicClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296249, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: _musicClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f02f6a1912ebe4387e9bbf618af638, type: 3}
     - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
         type: 3}
       propertyPath: Loop
@@ -921,7 +931,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: fd250d1b22801f94baee28c6993970fc, type: 3}
+      objectReference: {fileID: 8300000, guid: 30f02f6a1912ebe4387e9bbf618af638, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4308c572f39202f4c8f092f241b6e47c, type: 3}
 --- !u!1 &122461414

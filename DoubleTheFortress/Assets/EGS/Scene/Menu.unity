@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 123234708}
-  m_IndirectSpecularColor: {r: 0.17317696, g: 0.216452, b: 0.2984776, a: 1}
+  m_IndirectSpecularColor: {r: 0.1731771, g: 0.21645243, b: 0.29847822, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -387,7 +387,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1591
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -1486,6 +1486,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lazy Games logo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09e708555a740a9419e660fc1c1d0b41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09e708555a740a9419e660fc1c1d0b41, type: 3}
 --- !u!1001 &1622759962
@@ -2191,6 +2196,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296249, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: _musicClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405843612515296249, guid: 4308c572f39202f4c8f092f241b6e47c,
+        type: 3}
+      propertyPath: _musicClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: fd250d1b22801f94baee28c6993970fc, type: 3}
     - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
         type: 3}
       propertyPath: Loop
@@ -2296,6 +2311,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu bUTTON
       objectReference: {fileID: 0}
+    - target: {fileID: 791466441769568088, guid: 6f4da0b1e9d25ff4e9a3f7997d21d75f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1495838096450680187, guid: 6f4da0b1e9d25ff4e9a3f7997d21d75f,
         type: 3}
       propertyPath: m_text
@@ -2345,6 +2365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389545530722829357, guid: 6f4da0b1e9d25ff4e9a3f7997d21d75f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f4da0b1e9d25ff4e9a3f7997d21d75f, type: 3}
