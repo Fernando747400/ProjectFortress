@@ -175,7 +175,7 @@ public class WallManager : MonoBehaviour , IPause
     private void PlayAudio(AudioClip clip, float volume = 1f)
     {
         if (clip == null) return;
-        AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
     }
 
     #region Interface Methods
