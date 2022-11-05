@@ -10189,6 +10189,8 @@ MonoBehaviour:
   fill: {fileID: 1613792122376627169}
   background: {fileID: 1613792123760087955}
   _maxValue: 0.5
+  _fireSound: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
+  _isAutomatic: 0
   lerpTime: 0.922
   LerpChange: 1.3
   myColors:
