@@ -152,6 +152,7 @@ public class ButtonCannon : MonoBehaviour
         _time = 0;
         _timerHasFinished = true;
         _timerHasStarted = false;
+        HandleUICannon(0.5f);
         
         // if(_isAutomatic) StartTimer();
     }
