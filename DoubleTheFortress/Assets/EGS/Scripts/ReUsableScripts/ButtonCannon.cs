@@ -16,6 +16,7 @@ public class ButtonCannon : MonoBehaviour
     [Header("Cannon UI")] 
     
     [SerializeField] private Image fill;
+    [SerializeField] private Image background;
 
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
    
@@ -131,6 +132,8 @@ public class ButtonCannon : MonoBehaviour
         _timerHasFinished = false;
         colorIndex = 0;
         fill.color = myColors[2];
+        background.color = new Color(0, 0, 0, 0);
+
     }
 
     void HandleTimer()
@@ -153,8 +156,8 @@ public class ButtonCannon : MonoBehaviour
         _time = 0;
         _timerHasFinished = true;
         _timerHasStarted = false;
-        HandleUICannon(0.5f);
-        
+        background.color = new Color(0, 0, 0, 1);
+        background.color = myColors[2];
         // if(_isAutomatic) StartTimer();
     }
     
