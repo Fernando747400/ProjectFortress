@@ -10,6 +10,7 @@ public class EnemyManagger : MonoBehaviour
     public bool StrongZombie = false;
     public Material DefaultSkin;
     public Material StrongSkin;
+    public float ZombieLife = 10;
 
     [SerializeField]
     public GameObject Zombie;

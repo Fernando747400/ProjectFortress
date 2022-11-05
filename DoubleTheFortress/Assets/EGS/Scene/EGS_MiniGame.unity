@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 360970513}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19580,6 +19580,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: _cooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: _pointsToRepair
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: _pointsToUpgrade
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
@@ -50318,6 +50333,7 @@ MonoBehaviour:
   StrongZombie: 0
   DefaultSkin: {fileID: 2100000, guid: a7e1e67bb29c96a49826e3c4ef9cd5b5, type: 2}
   StrongSkin: {fileID: 2100000, guid: a737879090855e54d9d9979645823507, type: 2}
+  ZombieLife: 10
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
   ZombiePooling: {fileID: 2044581463}
 --- !u!114 &2044581463
