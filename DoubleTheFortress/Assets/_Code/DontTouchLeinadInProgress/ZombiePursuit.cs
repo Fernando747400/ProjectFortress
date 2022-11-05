@@ -307,7 +307,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         {
             foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
             {
-                if (renderer.material.name == "DefaultSkin (Instance)") renderer.material = EnemyManagger.Instance.StrongSkin;
+                if (renderer.material.name == "DefaultSkin (Instance)" || renderer.material.name == "Zombieskin (Instance)") renderer.material = EnemyManagger.Instance.StrongSkin;
             }
         }
     }
