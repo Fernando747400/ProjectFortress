@@ -60,14 +60,11 @@ public class Hamer_Grab : IGrabbable , IPause
     public override void HandleSelectedState(bool isSelecting)
     {
         base.HandleSelectedState(isSelecting);
-        
-        if (!isSelecting)
+
+        if (isSelecting)
         {
-            _uiHammer.SetActive(true);
-        }
-        else
-        {
-            _uiHammer.SetActive(false);
+            HammerStatusBars hammerStatusBars = GetComponent<HammerStatusBars>();
+            hammerStatusBars.ResetCanvasBars();
         }
     }
     #endregion
