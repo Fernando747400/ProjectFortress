@@ -46,15 +46,13 @@ public class ButtonCannon : MonoBehaviour
         OnPushedButton += FireCannon;
         particles.SetActive(false);
         len = myColors.Length;
-        fill.color = myColors[2];
+        _timerHasStarted = false;
+        _timerHasFinished = true;
     }
 
     void Update()
-    {
-        if (_timerHasStarted)
-        {
-            HandleTimer();
-        }
+    { 
+        HandleTimer();
     }
 
     private void OnEnable()
@@ -114,7 +112,6 @@ public class ButtonCannon : MonoBehaviour
         _isFiring = false;
         if (!_isMenuCannon)
         {
-            print("Cañon con cool down");
             StartTimer();
         }
     }
@@ -139,10 +136,6 @@ public class ButtonCannon : MonoBehaviour
     {
         if (!_timerHasStarted && _timerHasFinished) return;
         
-        
-        
-        Debug.Log("POrquee entra");
-
         _time += Time.deltaTime * 1;
         
         LerpColor();
