@@ -129,6 +129,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if (_isPaused) return;
         if (_targetTransform == null) GetRoute();
+        CheckForReset();
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         _distanceToTarget = Vector3.Distance(this.transform.position, _targetTransform.position);
         if (_distanceToTarget < _arrivalDistance)
@@ -309,6 +310,14 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             {
                 if (renderer.material.name == "DefaultSkin (Instance)" || renderer.material.name == "Zombieskin (Instance)") renderer.material = EnemyManagger.Instance.StrongSkin;
             }
+        }
+    }
+
+    private void CheckForReset()
+    {
+        if(_routeQueue.Count == 10 && Vector3.Distance(this.transform.position, _routeQueue.Peek().transform.position) > 6f)
+        {
+            ResetZombie();
         }
     }
 
