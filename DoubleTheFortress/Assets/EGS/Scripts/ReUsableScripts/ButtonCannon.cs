@@ -48,6 +48,7 @@ public class ButtonCannon : MonoBehaviour
         len = myColors.Length;
         _timerHasStarted = false;
         _timerHasFinished = true;
+        fill.color = myColors[2];
     }
 
     void Update()
@@ -129,7 +130,7 @@ public class ButtonCannon : MonoBehaviour
         _timerHasStarted = true;
         _timerHasFinished = false;
         colorIndex = 0;
-        fill.color = myColors[0];
+        fill.color = myColors[2];
     }
 
     void HandleTimer()
