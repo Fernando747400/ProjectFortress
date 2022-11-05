@@ -9,7 +9,9 @@ public class DebugGunFire :  GeneralAgressor
     // [SerializeField] private GameObject hitMarkerRed;
     [SerializeField] private GameObject hitMarkerBlue;
     [SerializeField] private LayerMask layers;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private GameObject particles;
+    private ParticleSystem _particleSystem;
+    Vector3 _particleOffset = new Vector3(0, 0, 1.3f);
 
     [Tooltip("Cooldown Time in seconds")] [SerializeField]
     private float cooldown = 1;
@@ -22,6 +24,12 @@ public class DebugGunFire :  GeneralAgressor
     //saves the position the gun was... 
     //in when it fired the  hitScan
     private Vector3 _savedFirePosition;
+
+    private void Start()
+    {
+        Prepare();
+    }
+
     protected virtual  void Update()
     {
         CheckInput();
@@ -39,7 +47,7 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireHitScan()
     {
         StopAllCoroutines();
-        particleSystem.Play();
+        PlayParticles();
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
         Debug.DrawLine(transform.position,hitScan.point,Color.red,10f);
@@ -83,6 +91,21 @@ public class DebugGunFire :  GeneralAgressor
 
         canFire = false;
         StartCoroutine(CorWaitForCooldown());
+
+    }
+
+    private void PlayParticles()
+    {
+        
+        particles.transform.position = _savedFirePosition + _particleOffset;
+        _particleSystem.Play();
+
+    }
+    
+    
+    private void Prepare()
+    {
+        _particleSystem = particles.GetComponent<ParticleSystem>();
 
     }
   
