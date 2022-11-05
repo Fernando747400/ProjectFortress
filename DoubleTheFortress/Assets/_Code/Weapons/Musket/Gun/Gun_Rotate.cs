@@ -10,8 +10,8 @@ public class Gun_Rotate : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Application.targetFrameRate = 60;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Application.targetFrameRate = 60;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
