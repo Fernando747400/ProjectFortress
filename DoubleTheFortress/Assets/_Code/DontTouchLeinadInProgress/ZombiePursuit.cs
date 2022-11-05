@@ -21,6 +21,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private GameObject _targetToDamage;
     private bool _isAttacking;
     private bool _isRecivingDamage;
+    private bool _isDing;
 
     private ZombieAnimator _zombieAnimator;
     private Rigidbody _rigidBody;
@@ -159,6 +160,10 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void Die()
     {
+        if (_isDing) return;
+        _isDing = true;
+        _isAttacking = false;
+        _alertSignal.SetActive(false);
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Death); //Anim should call Despawn
         ZombieDieEvent?.Invoke();
         ZombieTotemEvent?.Invoke(this.transform);
@@ -176,6 +181,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if (_isPaused) return;
         if (_isAttacking) return;
+        if (_isDing) return;
         _isAttacking = true;
         _alertSignal.SetActive(true);
         _rigidBody.velocity = Vector3.zero;
@@ -201,6 +207,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if (_isPaused) return;
         if (_isRecivingDamage) return;
+        if (_isDing) return;
         _isAttacking = false;
         _alertSignal.SetActive(false);
         _isRecivingDamage = true;
@@ -226,6 +233,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void GameOverAnim()
     {
+        if (_isDing) return;
         CurrentState = ZombieState.Dance;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Dance);
         _rigidBody.velocity = Vector3.zero;
@@ -247,6 +255,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         //_maxLife = EnemyManagger.Instance.ZombieLife;
         _life = _maxLife;
         _isSensitive = true;
+        _isDing = false;
     }
 
     private void Prepare()
