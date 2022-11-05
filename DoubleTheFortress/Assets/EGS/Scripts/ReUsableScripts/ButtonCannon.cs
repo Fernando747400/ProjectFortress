@@ -20,6 +20,9 @@ public class ButtonCannon : MonoBehaviour
 
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
    
+   [Header("AudioClips")]
+    public AudioClip _fireSound;
+   
    private bool _isPaused;
    public bool _isAutomatic;
     
@@ -114,6 +117,7 @@ public class ButtonCannon : MonoBehaviour
     {
         particles.SetActive(false);
         cannon.Launch();
+        PlayAudio(_fireSound,0.5f);
         _isFiring = false;
         if (!_isMenuCannon)
         {
@@ -121,6 +125,11 @@ public class ButtonCannon : MonoBehaviour
         }
     }
 
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
+    }
     void HandleUICannon(float value)
     {
        _initialValue = Mathf.Lerp(0, _maxValue, value);
