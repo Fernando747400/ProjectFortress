@@ -259,6 +259,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isDying = false;
         _isAttacking = false;
         _isRecivingDamage = false;
+        this.transform.position = RouteQueue.Peek().transform.position;
     }
 
     private void Prepare()
@@ -281,8 +282,15 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public void CheckIfPause()
     {
-        if(GameManager.Instance.IsPaused) CurrentState = ZombieState.Idle;
-        _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
+        if (GameManager.Instance.IsPaused)
+        {
+            CurrentState = ZombieState.Idle;
+            _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
+        } else
+        {
+            CurrentState = ZombieState.Walk;
+            _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
+        }                
     }
 
     private void StrongZombie()
@@ -347,7 +355,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private void OnEnable()
     {
         SubscribeToEvents();
-
     }
 
     private void OnDisable()
