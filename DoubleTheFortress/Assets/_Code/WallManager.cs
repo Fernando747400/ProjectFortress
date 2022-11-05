@@ -53,7 +53,7 @@ public class WallManager : MonoBehaviour , IPause
         if(_mywall.CurrentHealth < _mywall.MaxHealth)
         {
             _mywall.Repair(repairPoints);
-            Debug.Log("Repaired life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
+            //Debug.Log("Repaired life to " + _mywall.CurrentHealth + " out of " + _mywall.MaxHealth);
             return;
         }
 
@@ -62,7 +62,7 @@ public class WallManager : MonoBehaviour , IPause
         if (_mywall.UpgradePoints < _mywall.UpgradePointsRequired)
         {
             _mywall.AddUpgradePoints(upgradePoints);
-            Debug.Log("Upgraded " + _mywall.UpgradePoints + " out of " + _mywall.UpgradePointsRequired);
+            //Debug.Log("Upgraded " + _mywall.UpgradePoints + " out of " + _mywall.UpgradePointsRequired);
             return;
         } 
         
@@ -185,13 +185,13 @@ public class WallManager : MonoBehaviour , IPause
 
     void Pause()
     {
-        Debug.Log("Received paused event");
+        //Debug.Log("Received paused event");
         _isPaused = true;
     }
 
     void Unpause()
     {
-        Debug.Log("Received unpaused event");
+        //Debug.Log("Received unpaused event");
         _isPaused = false;
     }
 

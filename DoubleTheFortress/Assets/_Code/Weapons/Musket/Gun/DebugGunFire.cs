@@ -1,4 +1,5 @@
 using System.Collections;
+using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 
 public class DebugGunFire :  GeneralAgressor
@@ -8,9 +9,13 @@ public class DebugGunFire :  GeneralAgressor
     // [SerializeField] private GameObject hitMarkerRed;
     [SerializeField] private GameObject hitMarkerBlue;
     [SerializeField] private LayerMask layers;
+
+    [Tooltip("Cooldown Time in seconds")] [SerializeField]
+    private float cooldown = 1;
+    
     private float _bulletMass;
     private float _travelTime;
-    private bool _canFire = true;
+    protected bool canFire = true;
     private Vector3 _hitPosition;
     
     //saves the position the gun was... 
@@ -24,7 +29,7 @@ public class DebugGunFire :  GeneralAgressor
     
     protected virtual void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)  | _canFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0)  | canFire)
         {
             FireHitScan();
         }
@@ -39,7 +44,7 @@ public class DebugGunFire :  GeneralAgressor
         // Instantiate(hitMarkerRed, hitScan.point, Quaternion.identity);
         _hitPosition = hitScan.point;
         _travelTime = hitScan.distance / (bulletSpeed) * Time.fixedDeltaTime;
-        _canFire = false;
+        canFire = false;
 
         StartCoroutine(CorWaitForTravel());
     }
@@ -49,6 +54,15 @@ public class DebugGunFire :  GeneralAgressor
         // Debug.Log("waiting " + _travelTime + " seconds");
         yield return new WaitForSeconds(_travelTime);
         FireSimulated();
+    }
+
+    private IEnumerator CorWaitForCooldown()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(cooldown);
+
+        canFire = true;
+
     }
 
     protected virtual void FireSimulated()
@@ -65,8 +79,9 @@ public class DebugGunFire :  GeneralAgressor
         {
             simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }
-        _canFire = true;
-        
+
+        StartCoroutine(CorWaitForCooldown());
+
     }
   
 }
