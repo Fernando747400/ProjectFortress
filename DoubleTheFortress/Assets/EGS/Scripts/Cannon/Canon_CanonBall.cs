@@ -66,6 +66,7 @@ public class Canon_CanonBall : GeneralAgressor
     {
         foreach (var particle in particleSystems)
         {
+            particle.Clear();
             particle.Play();
         }
         CastDamage();
