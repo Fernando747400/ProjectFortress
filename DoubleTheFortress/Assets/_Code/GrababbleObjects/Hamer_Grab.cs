@@ -26,7 +26,6 @@ public class Hamer_Grab : IGrabbable , IPause
     #region unity Methods
     void Start()
     {
-        // _inventoryController.OnIsSelecting += HandleIsSelectingState;
         _isPaused = GameManager.Instance.IsPaused;
     }
 
@@ -52,7 +51,6 @@ public class Hamer_Grab : IGrabbable , IPause
         if (other.gameObject.GetComponent<IConstructable>() != null && _elapsedTime >= _cooldown)
         {
             _elapsedTime = 0f;
-            // Debug.Log("<color=#FFB233>Receive Hammer</color>");
             other.GetComponent<IConstructable>().RecieveHammer(_pointsToRepair, _pointsToUpgrade);
             ConstructableHitEvent?.Invoke(other.gameObject);
         }
