@@ -23,12 +23,6 @@ public class RouteManagger : MonoBehaviour
         Instance = this;
     }
 
-    private void RandomNum()
-    {
-        
-        
-    }
-
     public Queue<Transform> RandomRoute()
     {
         theRoute.Clear();
