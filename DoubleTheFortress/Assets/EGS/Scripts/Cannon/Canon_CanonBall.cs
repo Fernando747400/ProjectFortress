@@ -7,7 +7,7 @@ using UnityEngine;
 public class Canon_CanonBall : GeneralAgressor
 {
     [Tooltip("Explosion Radius In Meters")]
-    [SerializeField] private float blastRadius = 1f;
+    [SerializeField] private float blastRadius = 100f;
 
     [Tooltip("Layers with which the cannonball can interact")]
     [SerializeField] private LayerMask layers;
@@ -72,17 +72,22 @@ public class Canon_CanonBall : GeneralAgressor
         Deactivate();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position,blastRadius);
+    }
+
     void CastDamage()
     {
         //Arbitrary Array Initialization
         //should get max number of zombies in the game through layer
-        var hits = new Collider[31];
-        hits = Physics.OverlapSphere(transform.position,blastRadius,layers);
+        Collider[] hits = Physics.OverlapSphere(transform.position,blastRadius,layers);
         
         foreach (var hit in hits)
         {
             Debug.Log(hit.name);
-            if (!TryGetGeneralTarget(hit.gameObject)) return;
+            if (!TryGetGeneralTarget(hit.gameObject)) continue;
             hit.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }
     }
