@@ -69,7 +69,7 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
     {
         if (_life <= 0)
         {
-            PlayAudio(DeathSound);
+            PlayAudio(DeathSound, 0.5f);
             GameManager.Instance.PauseGame();
             GameManager.Instance.FinishGame();
         }
