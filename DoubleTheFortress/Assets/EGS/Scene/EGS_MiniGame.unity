@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 360970513}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10560,8 +10560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cannonObject: {fileID: 1602428954}
-  _cannonName: 
+  _cannonObject: {fileID: 1285201037}
+  _cannonName: S-CannonContainer
   _mywallScript: {fileID: 429329431}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -10572,8 +10572,8 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 0, z: 90}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
-  _buildSound: {fileID: 0}
-  _destroySound: {fileID: 0}
+  _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
+  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
   _damageSound: {fileID: 0}
 --- !u!54 &429329433
 Rigidbody:
@@ -17373,7 +17373,7 @@ PrefabInstance:
     - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5405843612515296246, guid: 4308c572f39202f4c8f092f241b6e47c,
         type: 3}
@@ -17448,7 +17448,7 @@ PrefabInstance:
     - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
         type: 3}
       propertyPath: m_Volume
-      value: 0.8
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6518127082333003317, guid: 4308c572f39202f4c8f092f241b6e47c,
         type: 3}
@@ -18113,8 +18113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cannonObject: {fileID: 985489120}
-  _cannonName: 
+  _cannonObject: {fileID: 1602428954}
+  _cannonName: W-CannonContainer
   _mywallScript: {fileID: 776482836}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -18125,8 +18125,8 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 90, z: 0}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
-  _buildSound: {fileID: 0}
-  _destroySound: {fileID: 0}
+  _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
+  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
   _damageSound: {fileID: 0}
 --- !u!54 &776482838
 Rigidbody:
@@ -18323,8 +18323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cannonObject: {fileID: 1285201037}
-  _cannonName: 
+  _cannonObject: {fileID: 225258602}
+  _cannonName: N-CannonContainer
   _mywallScript: {fileID: 782457045}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -18335,8 +18335,8 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 0, z: 0}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
-  _buildSound: {fileID: 0}
-  _destroySound: {fileID: 0}
+  _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
+  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
   _damageSound: {fileID: 0}
 --- !u!54 &782457047
 Rigidbody:
@@ -18454,6 +18454,21 @@ PrefabInstance:
       propertyPath: _cooldown
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: _brickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7089210df25c56b4a86d10abeb5436ca, type: 3}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: _metalSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3473fee9ee760944e9455dda36e67351, type: 3}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: _wooodSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ae3ca27f49c62a449669fea2e3b6bc9, type: 3}
     - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: _pointsToRepair
@@ -72100,8 +72115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5128c4f95e041c747a8d4f034ae5bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cannonObject: {fileID: 225258602}
-  _cannonName: 
+  _cannonObject: {fileID: 985489120}
+  _cannonName: E-CannonContainer
   _mywallScript: {fileID: 6595506780152846139}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
   _basic: {fileID: 11400000, guid: 0d914090b8ca4774191bf06c1f17c953, type: 2}
@@ -72112,8 +72127,8 @@ MonoBehaviour:
   _instanciateRotationOffset: {x: -90, y: 0, z: 0}
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
-  _buildSound: {fileID: 0}
-  _destroySound: {fileID: 0}
+  _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
+  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
   _damageSound: {fileID: 0}
 --- !u!54 &6595506780152846141
 Rigidbody:
@@ -77253,7 +77268,7 @@ MonoBehaviour:
   - {fileID: 1322005385}
   - {fileID: 1582351964}
   - {fileID: 7359792456396574687}
-  DamageSound: {fileID: 0}
+  DamageSound: {fileID: 8300000, guid: 12eebaf294aa04a4182626a4ba5faebf, type: 3}
   DeathSound: {fileID: 0}
 --- !u!23 &8080316142531062470
 MeshRenderer:
