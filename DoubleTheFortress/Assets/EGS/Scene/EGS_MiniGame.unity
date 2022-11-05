@@ -19599,7 +19599,7 @@ PrefabInstance:
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: layers.m_Bits
-      value: 563
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 6722731304910741913, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
