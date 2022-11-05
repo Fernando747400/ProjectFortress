@@ -53,6 +53,7 @@ public class EnemyManagger : MonoBehaviour
         temporal.transform.position = vector;
         temporal.GetComponent<ZombiePursuit>().ZombieDamage = Damage;
         temporal.GetComponent<ZombiePursuit>().MaxHp = ZombieLife;
+        temporal.GetComponent<ZombiePursuit>().ResetZombie();
     }
 
     public Queue<Transform> SpawnPosition()
