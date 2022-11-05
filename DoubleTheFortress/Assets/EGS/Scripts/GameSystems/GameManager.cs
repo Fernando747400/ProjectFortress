@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        _gameFinished = true;
         FinishGameEvent?.Invoke();
     }
 
