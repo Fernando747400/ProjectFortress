@@ -5073,6 +5073,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6792457280103045382, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: FireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
 --- !u!1 &225258602 stripped
@@ -10573,8 +10578,8 @@ MonoBehaviour:
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
   _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
-  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
-  _damageSound: {fileID: 0}
+  _destroySound: {fileID: 8300000, guid: 60bf200d364b5e54a871a0dc6461b2cf, type: 3}
+  _damageSound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
 --- !u!54 &429329433
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18126,8 +18131,8 @@ MonoBehaviour:
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
   _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
-  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
-  _damageSound: {fileID: 0}
+  _destroySound: {fileID: 8300000, guid: 60bf200d364b5e54a871a0dc6461b2cf, type: 3}
+  _damageSound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
 --- !u!54 &776482838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18336,8 +18341,8 @@ MonoBehaviour:
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
   _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
-  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
-  _damageSound: {fileID: 0}
+  _destroySound: {fileID: 8300000, guid: 60bf200d364b5e54a871a0dc6461b2cf, type: 3}
+  _damageSound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
 --- !u!54 &782457047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31219,6 +31224,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6792457280103045382, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: FireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
 --- !u!1 &1285201037 stripped
@@ -39161,6 +39171,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6792457280103045382, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: FireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
 --- !u!1 &1602428954 stripped
@@ -40225,6 +40240,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6792457280103045382, guid: 732166c9f10511040a0b8b10bfacb5e5,
+        type: 3}
+      propertyPath: FireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732166c9f10511040a0b8b10bfacb5e5, type: 3}
 --- !u!114 &1642572240 stripped
@@ -72128,8 +72148,8 @@ MonoBehaviour:
   _instanciatePositionOffset: {x: 0, y: -0.2, z: 0}
   _instanciateScale: {x: 1, y: 1.28, z: 1}
   _buildSound: {fileID: 8300000, guid: 926e75fbe457bf94682ab48970483123, type: 3}
-  _destroySound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
-  _damageSound: {fileID: 0}
+  _destroySound: {fileID: 8300000, guid: 60bf200d364b5e54a871a0dc6461b2cf, type: 3}
+  _damageSound: {fileID: 8300000, guid: 9bd487998cb933a44ab480e0d951556f, type: 3}
 --- !u!54 &6595506780152846141
 Rigidbody:
   m_ObjectHideFlags: 0
