@@ -122,6 +122,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
         _rigidBody.velocity = Vector3.zero;
+        CheckIfPause();
     }
 
     private void Pursuit()
@@ -257,6 +258,8 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isDying = false;
         _isAttacking = false;
         _isRecivingDamage = false;
+
+        if (RouteQueue.Count <= 1) return;
         this.transform.position = RouteQueue.Peek().transform.position;
     }
 
