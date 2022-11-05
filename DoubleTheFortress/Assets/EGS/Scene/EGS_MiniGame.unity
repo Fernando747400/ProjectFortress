@@ -18092,6 +18092,11 @@ PrefabInstance:
       propertyPath: _isDigital
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1706550580500073683, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1706550581562239788, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_Name
