@@ -132,11 +132,27 @@ public class GameManager : MonoBehaviour
         if (IsPaused) return;
         TimeSpan currentTime = TimeSpan.FromSeconds(_elapsedTime);
 
-        EnemyManagger.Instance.StrongZombie = false;
-        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3)
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3 && currentTime.Minutes <= 6)
         {
             EnemyManagger.Instance.Damage += 10f;
-            Debug.Log("Added more damage");
+            EnemyManagger.Instance.ZombieLife += 5f;
+            Debug.Log("Added more damage and life");
+            EnemyManagger.Instance.StrongZombie = true;
+        }
+
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 6 && currentTime.Minutes <= 10)
+        {
+            EnemyManagger.Instance.Damage += 20f;
+            EnemyManagger.Instance.ZombieLife += 10f;
+            Debug.Log("Added more damage and life");
+            EnemyManagger.Instance.StrongZombie = true;
+        }
+
+        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 10)
+        {
+            EnemyManagger.Instance.Damage += 50f;
+            EnemyManagger.Instance.ZombieLife += 50f;
+            Debug.Log("Added more damage and life");
             EnemyManagger.Instance.StrongZombie = true;
         }
 
