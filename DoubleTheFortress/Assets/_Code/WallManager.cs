@@ -7,6 +7,7 @@ public class WallManager : MonoBehaviour , IPause
 
     [Header("Dependencies")] 
     [SerializeField] private GameObject _cannonObject;
+    [SerializeField] private string _cannonName;
     
     [Header("Wall Script")]
     [SerializeField] private Wall _mywallScript;
@@ -134,18 +135,6 @@ public class WallManager : MonoBehaviour , IPause
         _isPaused = GameManager.Instance.IsPaused;
     }
 
-    private void UpdateCannon()
-    {
-        if (_currentCannon == null) return;
-        if (GetCurrentIndex() ==0)
-        {
-            _currentCannon.SetActive(false);
-        }
-        else
-        {
-            _currentCannon.SetActive(true);
-        }
-    }
 
     private void DownGrade()
     {
@@ -159,6 +148,28 @@ public class WallManager : MonoBehaviour , IPause
         PlayAudio(_destroySound);
         UpdateTrigger();
         UpdateCannon();
+    }
+    private void UpdateCannon()
+    {
+        if (_currentCannon == null)
+        {
+            FindCannon();
+        }
+        if (_currentCannon == null) return;
+
+        if (GetCurrentIndex() ==0)
+        {
+            _currentCannon.SetActive(false);
+        }
+        else
+        {
+            _currentCannon.SetActive(true);
+        }
+    }
+
+    private void FindCannon()
+    {
+        _currentCannon = GameObject.Find(_cannonName);
     }
     
     private void UpdateTrigger()
