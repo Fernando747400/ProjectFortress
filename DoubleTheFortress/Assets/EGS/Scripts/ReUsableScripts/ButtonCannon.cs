@@ -21,6 +21,7 @@ public class ButtonCannon : MonoBehaviour
    [SerializeField] [Range(0, 1f)] private float _maxValue = 0.5f;
    
    private bool _isPaused;
+   public bool _isAutomatic;
     
     float _time;
     float _intialTimer = 0;
@@ -50,11 +51,13 @@ public class ButtonCannon : MonoBehaviour
         _timerHasStarted = false;
         _timerHasFinished = true;
         fill.color = myColors[2];
+        // StartTimer();
     }
 
     void Update()
     { 
         HandleTimer();
+        
     }
 
     private void OnEnable()
@@ -131,7 +134,7 @@ public class ButtonCannon : MonoBehaviour
         _timerHasStarted = true;
         _timerHasFinished = false;
         colorIndex = 0;
-        fill.color = myColors[2];
+        fill.color = myColors[0];
         background.color = new Color(0, 0, 0, 0);
 
     }
@@ -158,7 +161,7 @@ public class ButtonCannon : MonoBehaviour
         _timerHasStarted = false;
         background.color = new Color(0, 0, 0, 1);
         background.color = myColors[2];
-        // if(_isAutomatic) StartTimer();
+        if(_isAutomatic) StartTimer();
     }
     
     void LerpColor()
