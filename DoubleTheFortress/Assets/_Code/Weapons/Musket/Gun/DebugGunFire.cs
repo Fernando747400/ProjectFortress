@@ -54,7 +54,7 @@ public class DebugGunFire :  GeneralAgressor
         StopAllCoroutines();
         _savedFirePosition = transform.position;
         
-        PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_savedFirePosition,transform.localEulerAngles);
+        PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_savedFirePosition + _particleOffset,transform.localEulerAngles);
         
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
@@ -80,9 +80,9 @@ public class DebugGunFire :  GeneralAgressor
         Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit,
             maxDistance, layers);
         PlayParticles("Musket_HitParticle",hitParticle,_hitParticleSystem,simulatedHit.point, simulatedHit.normal);
-        
+
         Debug.DrawLine(_savedFirePosition,simulatedHit.point,Color.cyan);
-        // Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
+        //Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
         
         StartCoroutine(CorWaitForCooldown());
         
