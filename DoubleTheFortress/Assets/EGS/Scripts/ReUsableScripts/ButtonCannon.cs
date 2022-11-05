@@ -50,7 +50,10 @@ public class ButtonCannon : MonoBehaviour
 
     void Update()
     {
-        HandleTimer();
+        if (_timerHasStarted)
+        {
+            HandleTimer();
+        }
     }
 
     private void OnEnable()
@@ -135,9 +138,13 @@ public class ButtonCannon : MonoBehaviour
     {
         if (!_timerHasStarted && _timerHasFinished) return;
         
+        
+        
+        Debug.Log("POrquee entra");
+
         _time += Time.deltaTime * 1;
+        
         LerpColor();
-       // Debug.Log(_time);
         if (_time > delay)
         {
             RestartTimer();
