@@ -15,10 +15,11 @@ public class DebugGunFire :  GeneralAgressor
     private ParticleSystem _shootParticleSystem;
     [SerializeField] private GameObject hitParticle;
     private ParticleSystem _hitParticleSystem;
-    private Vector3 _particleOffset = new Vector3(0, 0, 1.3f);
+    public GameObject _particleOffset;
 
     [Tooltip("Cooldown Time in seconds")] [SerializeField]
-    private float cooldown = 1;
+    private float cooldown = 5;
+    private float elapsedTime = 0;
     
     private float _bulletMass;
     private float _travelTime;
@@ -32,6 +33,12 @@ public class DebugGunFire :  GeneralAgressor
     private void Start()
     {
         Prepare();
+        elapsedTime = cooldown;
+    }
+
+    private void FixedUpdate()
+    {
+        if (elapsedTime <= cooldown) elapsedTime++;
     }
 
     protected virtual  void Update()
@@ -50,11 +57,13 @@ public class DebugGunFire :  GeneralAgressor
 
     protected virtual void FireHitScan()
     {
+        if (elapsedTime < cooldown) return;
+        
         canFire = false;
         StopAllCoroutines();
         _savedFirePosition = transform.position;
         
-        PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_savedFirePosition + _particleOffset,transform.localEulerAngles);
+        PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_particleOffset.transform.position,transform.localEulerAngles);
         
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
@@ -83,11 +92,17 @@ public class DebugGunFire :  GeneralAgressor
 
         Debug.DrawLine(_savedFirePosition,simulatedHit.point,Color.cyan);
         //Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
-        
-        StartCoroutine(CorWaitForCooldown());
-        
-        if (!TryGetGeneralTarget(simulatedHit.collider.gameObject))return;
+
+        //StartCoroutine(CorWaitForCooldown());
+
+
+        if (!TryGetGeneralTarget(simulatedHit.collider.gameObject))
+        {
+            elapsedTime = 0;
+            return;
+        }
         simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
+        elapsedTime = 0;
     }
 
     private IEnumerator CorWaitForCooldown()
