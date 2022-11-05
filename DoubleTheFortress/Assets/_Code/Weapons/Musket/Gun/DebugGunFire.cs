@@ -15,7 +15,7 @@ public class DebugGunFire :  GeneralAgressor
     
     private float _bulletMass;
     private float _travelTime;
-    private bool _canFire = true;
+    protected bool canFire = true;
     private Vector3 _hitPosition;
     
     //saves the position the gun was... 
@@ -29,7 +29,7 @@ public class DebugGunFire :  GeneralAgressor
     
     protected virtual void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)  | _canFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0)  | canFire)
         {
             FireHitScan();
         }
@@ -44,7 +44,7 @@ public class DebugGunFire :  GeneralAgressor
         // Instantiate(hitMarkerRed, hitScan.point, Quaternion.identity);
         _hitPosition = hitScan.point;
         _travelTime = hitScan.distance / (bulletSpeed) * Time.fixedDeltaTime;
-        _canFire = false;
+        canFire = false;
 
         StartCoroutine(CorWaitForTravel());
     }
@@ -58,10 +58,10 @@ public class DebugGunFire :  GeneralAgressor
 
     private IEnumerator CorWaitForCooldown()
     {
-        _canFire = false;
+        canFire = false;
         yield return new WaitForSeconds(cooldown);
 
-        _canFire = true;
+        canFire = true;
 
     }
 
