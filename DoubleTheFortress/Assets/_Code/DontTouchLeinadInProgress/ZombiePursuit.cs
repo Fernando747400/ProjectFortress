@@ -122,6 +122,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
         _rigidBody.velocity = Vector3.zero;
+        CheckIfPause();
     }
 
     private void Pursuit()
@@ -173,6 +174,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         _routeQueue.Clear();
         _targetTransform = null;
+        ResetZombie();
         EnemyManagger.Instance.Despawn(EnemyManagger.Instance.Zombie, this.gameObject);
         EnemyManagger.Instance.OnSpawn();
     }
@@ -191,13 +193,11 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public void DoDamageToTarget() //This is called by Zombie Attack anim
     {
-        if (_isPaused) return;
         _targetToDamage.GetComponent<IGeneralTarget>().ReceiveRayCaster(this.gameObject, _zombieDamage);
     }
 
     public void FinishAttack() //This is called by Zombie Attack anim
     {
-        if (_isPaused) return;
         _isAttacking = false;
         _alertSignal.SetActive(false);
         CurrentState = ZombieState.Walk;
@@ -218,7 +218,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void ReceiveDamage(float damage)
     {
-        if (_isPaused) return;
         _life -= damage;
         _life = Mathf.Clamp(_life, 0, _maxLife);
 
@@ -248,7 +247,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     
     public void ResetZombie()
     {
-        if (CurrentState == ZombieState.Idle) CurrentState = ZombieState.Walk;
+        if (CurrentState == ZombieState.Idle || CurrentState == ZombieState.Death) CurrentState = ZombieState.Walk;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         CheckIfPause();
         StrongZombie();
@@ -259,6 +258,9 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isDying = false;
         _isAttacking = false;
         _isRecivingDamage = false;
+
+        if (RouteQueue.Count <= 1) return;
+        this.transform.position = RouteQueue.Peek().transform.position;
     }
 
     private void Prepare()
@@ -281,8 +283,15 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public void CheckIfPause()
     {
-        if(GameManager.Instance.IsPaused) CurrentState = ZombieState.Idle;
-        _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
+        if (GameManager.Instance.IsPaused)
+        {
+            CurrentState = ZombieState.Idle;
+            _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Idle);
+        } else
+        {
+            CurrentState = ZombieState.Walk;
+            _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
+        }                
     }
 
     private void StrongZombie()
@@ -347,7 +356,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private void OnEnable()
     {
         SubscribeToEvents();
-
     }
 
     private void OnDisable()
