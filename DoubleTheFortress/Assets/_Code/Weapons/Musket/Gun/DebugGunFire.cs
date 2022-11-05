@@ -30,6 +30,9 @@ public class DebugGunFire :  GeneralAgressor
     //in when it fired the  hitScan
     private Vector3 _savedFirePosition;
 
+    [Header("Audios")]
+    public AudioClip _ShootSound;
+
     private void Start()
     {
         Prepare();
@@ -64,6 +67,7 @@ public class DebugGunFire :  GeneralAgressor
         _savedFirePosition = transform.position;
         
         PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_particleOffset.transform.position,transform.localEulerAngles);
+        PlayAudio(_ShootSound, 0.5f);
         
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
@@ -144,5 +148,10 @@ public class DebugGunFire :  GeneralAgressor
         }
         catch { Debug.LogWarning("Missing hitParticleSystem");}
     }
-  
+
+    private void PlayAudio(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayAudio(clip, volume, this.transform.position);
+    }
 }
