@@ -1,4 +1,5 @@
 using System.Collections;
+using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 
 public class DebugGunFire :  GeneralAgressor
@@ -8,6 +9,10 @@ public class DebugGunFire :  GeneralAgressor
     // [SerializeField] private GameObject hitMarkerRed;
     [SerializeField] private GameObject hitMarkerBlue;
     [SerializeField] private LayerMask layers;
+
+    [Tooltip("Cooldown Time in seconds")] [SerializeField]
+    private float cooldown = 1;
+    
     private float _bulletMass;
     private float _travelTime;
     private bool _canFire = true;
@@ -51,6 +56,15 @@ public class DebugGunFire :  GeneralAgressor
         FireSimulated();
     }
 
+    private IEnumerator CorWaitForCooldown()
+    {
+        _canFire = false;
+        yield return new WaitForSeconds(cooldown);
+
+        _canFire = true;
+
+    }
+
     protected virtual void FireSimulated()
     {
         _savedFirePosition = transform.position;
@@ -65,8 +79,9 @@ public class DebugGunFire :  GeneralAgressor
         {
             simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }
-        _canFire = true;
-        
+
+        StartCoroutine(CorWaitForCooldown());
+
     }
   
 }

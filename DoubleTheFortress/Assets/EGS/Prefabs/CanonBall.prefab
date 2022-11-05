@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers: []
   myMaterials: []
+  _collider: {fileID: 0}
   _selectedItem: 0
   _typeOfItem: 0
   damage: 10
@@ -236,6 +237,11 @@ PrefabInstance:
     - target: {fileID: 1088147999078358739, guid: e55f28614cf3b1841b1ec8b933d0c95c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595566862886088157, guid: e55f28614cf3b1841b1ec8b933d0c95c,
+        type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7636501582191871522, guid: e55f28614cf3b1841b1ec8b933d0c95c,

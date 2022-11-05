@@ -81,6 +81,7 @@ public class Canon_CanonBall : GeneralAgressor
         
         foreach (var hit in hits)
         {
+            Debug.Log(hit.name);
             if (!TryGetGeneralTarget(hit.gameObject)) return;
             hit.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
         }

@@ -37,7 +37,7 @@ public class Debug_CannonFire : MonoBehaviour
         {
             Canon_CanonBall current = _canonBalls.Dequeue();
             current.Fire(transform.position,transform.forward,launchForce);
-            Debug.Log("Launched" + current.name);
+            // Debug.Log("Launched" + current.name);
         }
         catch { Debug.Log("Queue Is empty"); }
     }
