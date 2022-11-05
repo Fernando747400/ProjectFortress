@@ -21,7 +21,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private GameObject _targetToDamage;
     private bool _isAttacking;
     private bool _isRecivingDamage;
-    private bool _isDing;
+    private bool _isDying;
 
     private ZombieAnimator _zombieAnimator;
     private Rigidbody _rigidBody;
@@ -160,8 +160,8 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void Die()
     {
-        if (_isDing) return;
-        _isDing = true;
+        if (_isDying) return;
+        _isDying = true;
         _isAttacking = false;
         _alertSignal.SetActive(false);
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Death); //Anim should call Despawn
@@ -181,7 +181,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if (_isPaused) return;
         if (_isAttacking) return;
-        if (_isDing) return;
+        if (_isDying) return;
         _isAttacking = true;
         _alertSignal.SetActive(true);
         _rigidBody.velocity = Vector3.zero;
@@ -207,7 +207,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         if (_isPaused) return;
         if (_isRecivingDamage) return;
-        if (_isDing) return;
+        if (_isDying) return;
         _isAttacking = false;
         _alertSignal.SetActive(false);
         _isRecivingDamage = true;
@@ -233,13 +233,14 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void GameOverAnim()
     {
-        if (_isDing) return;
+        if (_isDying) return;
         CurrentState = ZombieState.Dance;
         _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Dance);
         _rigidBody.velocity = Vector3.zero;
     }
     private void GetRoute()
     {
+        _routeQueue.Clear();
         _routeQueue = RouteManagger.Instance.RandomRoute();
         _targetTransform = _routeQueue.Peek();
         ResetZombie();
@@ -255,7 +256,9 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _maxLife = EnemyManagger.Instance.ZombieLife;
         _life = _maxLife;
         _isSensitive = true;
-        _isDing = false;
+        _isDying = false;
+        _isAttacking = false;
+        _isRecivingDamage = false;
     }
 
     private void Prepare()
@@ -268,6 +271,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
         _isAttacking = false;
         _isRecivingDamage = false;
+        _isDying = false;
 
         CurrentState = ZombieState.Walk;
         StrongZombie();
