@@ -47,6 +47,7 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireHitScan()
     {
         StopAllCoroutines();
+        _savedFirePosition = transform.position;
         PlayParticles();
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
@@ -76,7 +77,6 @@ public class DebugGunFire :  GeneralAgressor
 
     protected virtual void FireSimulated()
     {
-        _savedFirePosition = transform.position;
         Vector3 simulatedHitPos = _hitPosition - _savedFirePosition;
         //Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, _gravity.y / _travelTime / Time.fixedDeltaTime, 0)) - _savedFirePosition;
         Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit,
