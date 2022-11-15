@@ -7,7 +7,7 @@ using UnityEngine;
 public class Canon_CanonBall : GeneralAgressor
 {
     [Tooltip("Explosion Radius In Meters")]
-    [SerializeField] private float blastRadius = 100f;
+    [SerializeField] private float blastRadius = 1f;
 
     [Tooltip("Layers with which the cannonball can interact")]
     [SerializeField] private LayerMask layers;
@@ -92,7 +92,8 @@ public class Canon_CanonBall : GeneralAgressor
         {
             //Debug.Log(hit.name);
             if (!TryGetGeneralTarget(hit.gameObject)) continue;
-            hit.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
+            hit.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject,
+                damage * Vector3.Distance(-transform.position, hit.transform.position));
         }
     }
     
