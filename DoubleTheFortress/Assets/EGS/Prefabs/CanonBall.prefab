@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2327237692435819346}
   - component: {fileID: 2327237692435819342}
   - component: {fileID: 7518262756132401491}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: CanonBall
   m_TagString: Cannon
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 2327237693005131228}
   - component: {fileID: 2327237693005131229}
   - component: {fileID: 2327237693005131226}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: CanonBall_SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb_SmokeDebris
       objectReference: {fileID: 0}
+    - target: {fileID: 7636501582191871522, guid: e55f28614cf3b1841b1ec8b933d0c95c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55f28614cf3b1841b1ec8b933d0c95c, type: 3}
 --- !u!4 &1781422553570275486 stripped
@@ -331,6 +336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombSmokeRing
       objectReference: {fileID: 0}
+    - target: {fileID: 7900429517097487422, guid: 41d0db01a86ab114693c1f676e2275b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d0db01a86ab114693c1f676e2275b9, type: 3}
 --- !u!4 &1016009575779505061 stripped
@@ -356,6 +366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bomb_SmokeBody
+      objectReference: {fileID: 0}
+    - target: {fileID: 2631909072394922630, guid: 2b4d58c7643de1e4aba988baff1e4595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5633245467587421936, guid: 2b4d58c7643de1e4aba988baff1e4595,
         type: 3}

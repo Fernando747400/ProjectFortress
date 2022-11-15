@@ -18410,10 +18410,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 77738515818183311, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 376298490465073216, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 710855593757598198, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: _isDigital
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 718755879699070089, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008269161761366199, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1706550580500073683, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
@@ -18485,6 +18505,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2075178283261491702, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136953052051103140, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: _cooldown
@@ -18536,6 +18566,11 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5143940195909157234, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547264237720068801, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: m_Layer
       value: 12
