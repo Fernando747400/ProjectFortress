@@ -7045,7 +7045,7 @@ GameObject:
   - component: {fileID: 1706550580172979459}
   - component: {fileID: 1706550580172979458}
   - component: {fileID: 3613755424922992025}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BaseController
   m_TagString: Hand
   m_Icon: {fileID: 0}
@@ -7403,7 +7403,7 @@ GameObject:
   - component: {fileID: 1706550581083778580}
   - component: {fileID: 1706550581083778583}
   - component: {fileID: 4884396708069180682}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BaseController
   m_TagString: Hand
   m_Icon: {fileID: 0}
@@ -33384,7 +33384,7 @@ MonoBehaviour:
     type: 3}
   layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 11831
   shootParticle: {fileID: 0}
   hitParticle: {fileID: 0}
   _particleOffset: {fileID: 2023215345}

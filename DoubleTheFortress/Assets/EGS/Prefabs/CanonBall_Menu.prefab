@@ -85,7 +85,7 @@ MonoBehaviour:
   _selectedItem: 0
   _typeOfItem: 0
   damage: 10
-  blastRadius: 1
+  blastRadius: 1.66
   layers:
     serializedVersion: 2
     m_Bits: 1
