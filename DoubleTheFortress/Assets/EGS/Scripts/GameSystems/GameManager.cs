@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,19 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputActionReference _inputAReference;
 
     private int _zombieKills;
-    private double _elapsedTime;
     private bool _isPaused;
     private bool _gameStarted;
     private bool _gameFinished;
     private bool _inMainMenu;
-    private int _currentMinute;
     
     public int Kills { get => _zombieKills; }
-    public double ElapsedTime { get => _elapsedTime; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
     public bool GameStarted { get => _gameStarted; }
     public bool GameFinished { get => _gameFinished; }
-    public bool MainMenu { get => _inMainMenu; set { if(_inMainMenu = value) return; _inMainMenu = value; UpdateMainMenu(); } }
+    public bool MainMenu { get => _inMainMenu; set { if(_inMainMenu == value) return; _inMainMenu = value; UpdateMainMenu(); } }
 
     public event Action PauseGameEvent;
     public event Action PlayGameEvent;
@@ -46,12 +44,6 @@ public class GameManager : MonoBehaviour
     {
         _inputAReference.action.performed += ctx => RecievePauseInput();
         Prepare();
-    }
-
-    private void FixedUpdate()
-    {
-        AddTime();
-        ProgressGame();     
     }
 
     private void RecievePauseInput()
@@ -87,7 +79,7 @@ public class GameManager : MonoBehaviour
         if (_gameStarted) return;
         StartGameEvent?.Invoke();
         _gameStarted = true;
-        UnpauseGame();
+        if (_isPaused) UnpauseGame();
         Debug.Log("Started Game");
     }
     
@@ -118,59 +110,11 @@ public class GameManager : MonoBehaviour
         GotKillEvent?.Invoke();
     }
 
-    private void AddTime()
-    {
-        if (_inMainMenu) return;
-        if (_isPaused) return;
-        _elapsedTime += Time.deltaTime;
-    }
     private void Prepare()
     {
         _zombieKills = 0;
-        _elapsedTime = 0;
-        _currentMinute = 0;
         _isPaused = true;
         _gameStarted = false;
-    }
-
-    private void ProgressGame()
-    {
-        if (_inMainMenu) return;
-        if (IsPaused) return;
-        TimeSpan currentTime = TimeSpan.FromSeconds(_elapsedTime);
-
-        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 3 && currentTime.Minutes <= 6)
-        {
-            EnemyManagger.Instance.Damage += 10f;
-            EnemyManagger.Instance.ZombieLife += 5f;
-            Debug.Log("Added more damage and life");
-            EnemyManagger.Instance.StrongZombie = true;
-        }
-
-        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 6 && currentTime.Minutes <= 10)
-        {
-            EnemyManagger.Instance.Damage += 20f;
-            EnemyManagger.Instance.ZombieLife += 10f;
-            Debug.Log("Added more damage and life");
-            EnemyManagger.Instance.StrongZombie = true;
-        }
-
-        if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 10)
-        {
-            EnemyManagger.Instance.Damage += 50f;
-            EnemyManagger.Instance.ZombieLife += 50f;
-            Debug.Log("Added more damage and life");
-            EnemyManagger.Instance.StrongZombie = true;
-        }
-
-        if (currentTime.Minutes > _currentMinute)
-        {
-            EnemyManagger.Instance.SpawnWithDelay(1.5f,3);
-            EnemyManagger.Instance.Damage += 5f;
-            Debug.Log("Spawned 3 more zombies");
-            _currentMinute++;
-        }
-
     }
 
     private void UpdateMainMenu()
@@ -182,8 +126,6 @@ public class GameManager : MonoBehaviour
     private void ResetValues()
     {
         _zombieKills = 0;
-        _elapsedTime = 0;
-        _currentMinute = 0;
         _isPaused = true;
         PauseGame();
         _gameStarted = false;
