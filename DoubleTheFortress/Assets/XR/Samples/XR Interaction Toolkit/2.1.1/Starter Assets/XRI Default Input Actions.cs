@@ -750,7 +750,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SelectHammer"",
+                    ""name"": ""SelectHammer_RIGHT"",
                     ""type"": ""Button"",
                     ""id"": ""ebb713ba-4e64-4b2d-aaea-ea8b2a22b8c0"",
                     ""expectedControlType"": ""Button"",
@@ -759,9 +759,27 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SelectMusket"",
+                    ""name"": ""SelectHammer_LEFT"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8488bd8-f4e8-4a52-91e5-560460786e11"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectMusket_RIGHT"",
                     ""type"": ""Button"",
                     ""id"": ""b4c11a00-33f6-4d08-a833-458d53d1245d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectMusket_LEFT"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d806dc6-f47b-45be-80f8-443df28d63b7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -897,7 +915,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectHammer"",
+                    ""action"": ""SelectHammer_RIGHT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -908,7 +926,29 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectMusket"",
+                    ""action"": ""SelectMusket_RIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7be02ea3-b236-4737-ac3b-5da92128a965"",
+                    ""path"": ""<XRController>{LeftHand}/secondaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectMusket_LEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48a2b3d7-c6a7-4eee-a09c-e8a778611339"",
+                    ""path"": ""<XRController>{LeftHand}/primaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectHammer_LEFT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1594,8 +1634,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRIRightHandInteraction_TranslateAnchor = m_XRIRightHandInteraction.FindAction("Translate Anchor", throwIfNotFound: true);
         m_XRIRightHandInteraction_Shoot = m_XRIRightHandInteraction.FindAction("Shoot", throwIfNotFound: true);
         m_XRIRightHandInteraction_Play = m_XRIRightHandInteraction.FindAction("Play", throwIfNotFound: true);
-        m_XRIRightHandInteraction_SelectHammer = m_XRIRightHandInteraction.FindAction("SelectHammer", throwIfNotFound: true);
-        m_XRIRightHandInteraction_SelectMusket = m_XRIRightHandInteraction.FindAction("SelectMusket", throwIfNotFound: true);
+        m_XRIRightHandInteraction_SelectHammer_RIGHT = m_XRIRightHandInteraction.FindAction("SelectHammer_RIGHT", throwIfNotFound: true);
+        m_XRIRightHandInteraction_SelectHammer_LEFT = m_XRIRightHandInteraction.FindAction("SelectHammer_LEFT", throwIfNotFound: true);
+        m_XRIRightHandInteraction_SelectMusket_RIGHT = m_XRIRightHandInteraction.FindAction("SelectMusket_RIGHT", throwIfNotFound: true);
+        m_XRIRightHandInteraction_SelectMusket_LEFT = m_XRIRightHandInteraction.FindAction("SelectMusket_LEFT", throwIfNotFound: true);
         // XRI RightHand Locomotion
         m_XRIRightHandLocomotion = asset.FindActionMap("XRI RightHand Locomotion", throwIfNotFound: true);
         m_XRIRightHandLocomotion_TeleportSelect = m_XRIRightHandLocomotion.FindAction("Teleport Select", throwIfNotFound: true);
@@ -1991,8 +2033,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRIRightHandInteraction_TranslateAnchor;
     private readonly InputAction m_XRIRightHandInteraction_Shoot;
     private readonly InputAction m_XRIRightHandInteraction_Play;
-    private readonly InputAction m_XRIRightHandInteraction_SelectHammer;
-    private readonly InputAction m_XRIRightHandInteraction_SelectMusket;
+    private readonly InputAction m_XRIRightHandInteraction_SelectHammer_RIGHT;
+    private readonly InputAction m_XRIRightHandInteraction_SelectHammer_LEFT;
+    private readonly InputAction m_XRIRightHandInteraction_SelectMusket_RIGHT;
+    private readonly InputAction m_XRIRightHandInteraction_SelectMusket_LEFT;
     public struct XRIRightHandInteractionActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -2007,8 +2051,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @TranslateAnchor => m_Wrapper.m_XRIRightHandInteraction_TranslateAnchor;
         public InputAction @Shoot => m_Wrapper.m_XRIRightHandInteraction_Shoot;
         public InputAction @Play => m_Wrapper.m_XRIRightHandInteraction_Play;
-        public InputAction @SelectHammer => m_Wrapper.m_XRIRightHandInteraction_SelectHammer;
-        public InputAction @SelectMusket => m_Wrapper.m_XRIRightHandInteraction_SelectMusket;
+        public InputAction @SelectHammer_RIGHT => m_Wrapper.m_XRIRightHandInteraction_SelectHammer_RIGHT;
+        public InputAction @SelectHammer_LEFT => m_Wrapper.m_XRIRightHandInteraction_SelectHammer_LEFT;
+        public InputAction @SelectMusket_RIGHT => m_Wrapper.m_XRIRightHandInteraction_SelectMusket_RIGHT;
+        public InputAction @SelectMusket_LEFT => m_Wrapper.m_XRIRightHandInteraction_SelectMusket_LEFT;
         public InputActionMap Get() { return m_Wrapper.m_XRIRightHandInteraction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2048,12 +2094,18 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Play.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnPlay;
                 @Play.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnPlay;
                 @Play.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnPlay;
-                @SelectHammer.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer;
-                @SelectHammer.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer;
-                @SelectHammer.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer;
-                @SelectMusket.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket;
-                @SelectMusket.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket;
-                @SelectMusket.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket;
+                @SelectHammer_RIGHT.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer_RIGHT;
+                @SelectHammer_RIGHT.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer_RIGHT;
+                @SelectHammer_RIGHT.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer_RIGHT;
+                @SelectHammer_LEFT.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer_LEFT;
+                @SelectHammer_LEFT.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer_LEFT;
+                @SelectHammer_LEFT.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectHammer_LEFT;
+                @SelectMusket_RIGHT.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_RIGHT;
+                @SelectMusket_RIGHT.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_RIGHT;
+                @SelectMusket_RIGHT.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_RIGHT;
+                @SelectMusket_LEFT.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_LEFT;
+                @SelectMusket_LEFT.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_LEFT;
+                @SelectMusket_LEFT.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_LEFT;
             }
             m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -2088,12 +2140,18 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @Play.started += instance.OnPlay;
                 @Play.performed += instance.OnPlay;
                 @Play.canceled += instance.OnPlay;
-                @SelectHammer.started += instance.OnSelectHammer;
-                @SelectHammer.performed += instance.OnSelectHammer;
-                @SelectHammer.canceled += instance.OnSelectHammer;
-                @SelectMusket.started += instance.OnSelectMusket;
-                @SelectMusket.performed += instance.OnSelectMusket;
-                @SelectMusket.canceled += instance.OnSelectMusket;
+                @SelectHammer_RIGHT.started += instance.OnSelectHammer_RIGHT;
+                @SelectHammer_RIGHT.performed += instance.OnSelectHammer_RIGHT;
+                @SelectHammer_RIGHT.canceled += instance.OnSelectHammer_RIGHT;
+                @SelectHammer_LEFT.started += instance.OnSelectHammer_LEFT;
+                @SelectHammer_LEFT.performed += instance.OnSelectHammer_LEFT;
+                @SelectHammer_LEFT.canceled += instance.OnSelectHammer_LEFT;
+                @SelectMusket_RIGHT.started += instance.OnSelectMusket_RIGHT;
+                @SelectMusket_RIGHT.performed += instance.OnSelectMusket_RIGHT;
+                @SelectMusket_RIGHT.canceled += instance.OnSelectMusket_RIGHT;
+                @SelectMusket_LEFT.started += instance.OnSelectMusket_LEFT;
+                @SelectMusket_LEFT.performed += instance.OnSelectMusket_LEFT;
+                @SelectMusket_LEFT.canceled += instance.OnSelectMusket_LEFT;
             }
         }
     }
@@ -2329,8 +2387,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnTranslateAnchor(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnPlay(InputAction.CallbackContext context);
-        void OnSelectHammer(InputAction.CallbackContext context);
-        void OnSelectMusket(InputAction.CallbackContext context);
+        void OnSelectHammer_RIGHT(InputAction.CallbackContext context);
+        void OnSelectHammer_LEFT(InputAction.CallbackContext context);
+        void OnSelectMusket_RIGHT(InputAction.CallbackContext context);
+        void OnSelectMusket_LEFT(InputAction.CallbackContext context);
     }
     public interface IXRIRightHandLocomotionActions
     {

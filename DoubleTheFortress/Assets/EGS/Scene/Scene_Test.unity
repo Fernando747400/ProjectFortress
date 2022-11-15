@@ -610,24 +610,28 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
-      propertyPath: _objectsHands.Array.size
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: leftSelectHammer
+      value: 
+      objectReference: {fileID: 4460802499643913225, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
     - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
-      propertyPath: _objectsHands.Array.data[0]
+      propertyPath: leftSelectMusket
       value: 
-      objectReference: {fileID: 718755880020373876}
+      objectReference: {fileID: 6492847335651646179, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
     - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
-      propertyPath: _objectsHands.Array.data[1]
+      propertyPath: rightSelectHammer
       value: 
-      objectReference: {fileID: 718755880020373875}
+      objectReference: {fileID: -1759190361186846896, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
     - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
-      propertyPath: _objectsHands.Array.data[2]
+      propertyPath: rightSelectMusket
       value: 
-      objectReference: {fileID: 718755880020373874}
+      objectReference: {fileID: -5415471690824768337, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
     - target: {fileID: 8767782437161057729, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: areasInteraction.Array.data[0]
@@ -688,24 +692,6 @@ PrefabInstance:
 --- !u!65 &718755880020373873 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 630352508329486517, guid: 75413e9a48194104493c72dd7318578f,
-    type: 3}
-  m_PrefabInstance: {fileID: 718755880020373872}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &718755880020373874 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 718755879699070089, guid: 75413e9a48194104493c72dd7318578f,
-    type: 3}
-  m_PrefabInstance: {fileID: 718755880020373872}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &718755880020373875 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6722731304910741913, guid: 75413e9a48194104493c72dd7318578f,
-    type: 3}
-  m_PrefabInstance: {fileID: 718755880020373872}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &718755880020373876 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2913970480911169886, guid: 75413e9a48194104493c72dd7318578f,
     type: 3}
   m_PrefabInstance: {fileID: 718755880020373872}
   m_PrefabAsset: {fileID: 0}

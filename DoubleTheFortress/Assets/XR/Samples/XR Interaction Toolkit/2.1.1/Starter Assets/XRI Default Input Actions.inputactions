@@ -728,7 +728,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectHammer",
+                    "name": "SelectHammer_RIGHT",
                     "type": "Button",
                     "id": "ebb713ba-4e64-4b2d-aaea-ea8b2a22b8c0",
                     "expectedControlType": "Button",
@@ -737,9 +737,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectMusket",
+                    "name": "SelectHammer_LEFT",
+                    "type": "Button",
+                    "id": "e8488bd8-f4e8-4a52-91e5-560460786e11",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectMusket_RIGHT",
                     "type": "Button",
                     "id": "b4c11a00-33f6-4d08-a833-458d53d1245d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectMusket_LEFT",
+                    "type": "Button",
+                    "id": "2d806dc6-f47b-45be-80f8-443df28d63b7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -875,7 +893,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectHammer",
+                    "action": "SelectHammer_RIGHT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -886,7 +904,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectMusket",
+                    "action": "SelectMusket_RIGHT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7be02ea3-b236-4737-ac3b-5da92128a965",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectMusket_LEFT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48a2b3d7-c6a7-4eee-a09c-e8a778611339",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectHammer_LEFT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
