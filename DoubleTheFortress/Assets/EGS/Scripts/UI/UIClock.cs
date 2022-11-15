@@ -42,7 +42,7 @@ public class UIClock : MonoBehaviour
     
     private void CalculateTime()
     {
-        _timeSpan = TimeSpan.FromSeconds(GameManager.Instance.ElapsedTime);
+        _timeSpan = TimeSpan.FromSeconds(GameProgression.Instance.ElapsedTime);
         _secondsDegrees = (_timeSpan.Seconds / 60f + _timeSpan.Milliseconds / 60000f) * 360f;
         _minutesDegrees = (_timeSpan.Minutes / 60f + _timeSpan.Seconds / 3600) * 360f;
     }
@@ -55,6 +55,6 @@ public class UIClock : MonoBehaviour
 
     private void DisplayTime()
     {
-        _clockText.text = TimeSpan.FromSeconds(GameManager.Instance.ElapsedTime).ToString(@"mm\:ss");
+        _clockText.text = TimeSpan.FromSeconds(GameProgression.Instance.ElapsedTime).ToString(@"mm\:ss");
     }
 }
