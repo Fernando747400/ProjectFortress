@@ -12,19 +12,15 @@ public class InventoryController : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
     [SerializeField] private PlayerSelectedItem _playerHandsObjects;
-    [SerializeField] private GameObject[] _objectsRightHand;
-    [SerializeField] private GameObject[] _objectsLeftHand;
+    [SerializeField] private GameObject[] _objectsHands;
+    // [SerializeField] private GameObject[] _objectsLeftHand;
     
     [Header("Materials")]
     [SerializeField] private Material shadowMaterial;
     
     [Header("Input Actions")]
-    [SerializeField] private InputActionReference ConfirmSelectRightReference;
-    [SerializeField] private InputActionReference ConfirmSelectLeftReference;
-    [SerializeField] private InputActionReference DeselectLeftReference;
-    [SerializeField] private InputActionReference DeselectRightReference;
-    [SerializeField] private InputActionReference SelectRightReference;
-    [SerializeField] private InputActionReference SelectLeftReference;
+    [SerializeField] private InputActionReference inputSelectHammer;
+    [SerializeField] private InputActionReference inputSelectMusket;
 
     [Header("Inventory")]
     [SerializeField] float _maxTimeToSelect = 1.5f;
@@ -41,7 +37,7 @@ public class InventoryController : MonoBehaviour
     private bool _timerHasFinished;
 
     public Hand _currentSelectingHand = Hand.None;
-    private List<GameObject> _currentSelectedObjects;
+    // private List<GameObject> _currentSelectedObjects;
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
@@ -50,6 +46,7 @@ public class InventoryController : MonoBehaviour
     public PlayerSelectedItem SelectedItem
     {
         get => _playerSelectedItem;
+        protected set => _playerSelectedItem = value;
     }
     
     public PlayerSelectedItem HandsObjects
@@ -61,7 +58,7 @@ public class InventoryController : MonoBehaviour
     void Start()
     {
         
-        _currentSelectedObjects = new List<GameObject>();
+        // _currentSelectedObjects = new List<GameObject>();
         
         // DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
         // DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
@@ -73,17 +70,23 @@ public class InventoryController : MonoBehaviour
         // HandleAreasInteraction();
         // OnPlayerSelectItem += HandleConfirmItem;
         
-        foreach (var obj in _objectsLeftHand)
-        {
-            _currentSelectedObjects.Add(obj);
-        }
-
-        foreach (var obj in _objectsRightHand)
-        {
-            _currentSelectedObjects.Add(obj);
-        }
+        // foreach (var obj in _objectsLeftHand)
+        // {
+        //     _currentSelectedObjects.Add(obj);
+        // }
+        //
+        // foreach (var obj in _objectsRightHand)
+        // {
+        //     _currentSelectedObjects.Add(obj);
+        // }
      
         // DeselectItems(_currentSelectedObjects, Hand.None);
+
+
+        inputSelectHammer.action.performed += ctx => SelectObject(PlayerSelectedItem.Hammer, Hand.RightHand);
+
+
+
     }
 
     
@@ -140,7 +143,7 @@ public class InventoryController : MonoBehaviour
         // _playerSelectedItem = item;
     // }
     
-  /*  void DeselectItems(List<GameObject> objects, Hand hand)
+  /*  void DeselectItems(Hand hand)
     {
         if (_isPaused)
         {
@@ -200,10 +203,44 @@ public class InventoryController : MonoBehaviour
     }
 
 */
-    void SelectHammer()
+    void SelectObject(PlayerSelectedItem selectedItem, Hand selectingHand)
     {
+        if (SelectedItem != PlayerSelectedItem.None)
+        {
+            DeselectItems();
+            return;
+        }
         
+        SelectedItem = selectedItem;
+        _currentSelectingHand = selectingHand;
+        TurnOnObject((int)SelectedItem);
+        
+
     }
+
+    void DeselectItems()
+    {
+        TurnOffObjects();
+        SelectedItem = PlayerSelectedItem.None;
+    }
+    
+    void TurnOnObject(int itemIndex)
+    {
+        TurnOffObjects();
+        _objectsHands[itemIndex].SetActive(true);
+
+    }
+
+    void TurnOffObjects()
+    {
+        for (int i = 0; i < _objectsHands.Length; i++)
+        {
+            _objectsHands[i].SetActive(false);
+        }
+    }
+    
+    
+    
   /*  void ConfirmSelection(Hand hand)
     {
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
@@ -242,8 +279,8 @@ public class InventoryController : MonoBehaviour
     }*/
 
 
-    #region Timer Inventory
-    void HandleTimer()
+    // #region Timer Inventory
+  /*  void HandleTimer()
     {
         if (_isInBoxInteraction) return;
         if (!_timerIsActive && _timerHasFinished) return;
@@ -258,7 +295,7 @@ public class InventoryController : MonoBehaviour
     }
     void StartTimer()
     {
-        if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
+        // if (_playerSelectedItem != PlayerSelectedItem.Selecting) return;
         _time = _initialTimer;
         _timerIsActive = true;
         _timerHasFinished = false;
@@ -270,7 +307,8 @@ public class InventoryController : MonoBehaviour
         _timerHasFinished = true;
 
     }
-    #endregion
+    */
+    // #endregion
 
 }
     
