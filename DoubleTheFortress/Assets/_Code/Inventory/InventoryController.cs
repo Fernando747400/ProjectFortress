@@ -63,15 +63,15 @@ public class InventoryController : MonoBehaviour
         
         _currentSelectedObjects = new List<GameObject>();
         
-        DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
-        DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
-        SelectRightReference.action.performed += ctx => SelectItem( Hand.RightHand);
-        SelectLeftReference.action.performed += ctx => SelectItem( Hand.LeftHand);
-        ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
-        ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
+        // DeselectRightReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.RightHand);
+        // DeselectLeftReference.action.performed += ctx => DeselectItems(_currentSelectedObjects, Hand.LeftHand);
+        // SelectRightReference.action.performed += ctx => SelectItem( Hand.RightHand);
+        // SelectLeftReference.action.performed += ctx => SelectItem( Hand.LeftHand);
+        // ConfirmSelectLeftReference.action.performed += ctx => ConfirmSelection(Hand.LeftHand);
+        // ConfirmSelectRightReference.action.performed += ctx => ConfirmSelection(Hand.RightHand);
         
-        HandleAreasInteraction();
-        OnPlayerSelectItem += HandleConfirmItem;
+        // HandleAreasInteraction();
+        // OnPlayerSelectItem += HandleConfirmItem;
         
         foreach (var obj in _objectsLeftHand)
         {
@@ -83,17 +83,17 @@ public class InventoryController : MonoBehaviour
             _currentSelectedObjects.Add(obj);
         }
      
-        DeselectItems(_currentSelectedObjects, Hand.None);
+        // DeselectItems(_currentSelectedObjects, Hand.None);
     }
 
     
     
     private void Update()
     {
-        if (SelectedItem == PlayerSelectedItem.Selecting)
-        {
-            HandleTimer();
-        }
+        // if (SelectedItem == PlayerSelectedItem.Selecting)
+        // {
+            // HandleTimer();
+        // }
     }
 
     private void OnEnable()
@@ -123,24 +123,24 @@ public class InventoryController : MonoBehaviour
     {
         _isPaused = false;
     }
-    public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
+   /* public void HandleAreasInteraction(BoxAreasInteraction interaction = null)
     {
         if (areasInteraction.Count > 0 )
         {
             foreach (BoxAreasInteraction box in areasInteraction)
             {
-                box.InventoryPlayer = this;
-                box.OnHandEnterActionZone += HandleBoxInteraction;
+                // box.InventoryPlayer = this;
+                // box.OnHandEnterActionZone += HandleBoxInteraction;
             }
         }
     }
-
-    void HandleConfirmItem(PlayerSelectedItem item)
-    {
-        _playerSelectedItem = item;
-    }
+*/
+    // void HandleConfirmItem(PlayerSelectedItem item)
+    // {
+        // _playerSelectedItem = item;
+    // }
     
-    void DeselectItems(List<GameObject> objects, Hand hand)
+  /*  void DeselectItems(List<GameObject> objects, Hand hand)
     {
         if (_isPaused)
         {
@@ -161,11 +161,11 @@ public class InventoryController : MonoBehaviour
         _currentSelectingHand = Hand.None;
         _playerHandsObjects = PlayerSelectedItem.None;
         
-    }
+    }*/
 
-    void SelectItem(Hand _currentHand)
+  /*  void SelectItem(Hand _currentHand)
     {
-        if (_isPaused)return;
+        // if (_isPaused)return;
         if(hasObjectSelected && _currentSelectingHand == _currentHand) return;
         if (_isInBoxInteraction && _currentHand == Hand.RightHand) return;
 
@@ -198,8 +198,13 @@ public class InventoryController : MonoBehaviour
         _selectIndex++;
         
     }
-    
-    void ConfirmSelection(Hand hand)
+
+*/
+    void SelectHammer()
+    {
+        
+    }
+  /*  void ConfirmSelection(Hand hand)
     {
         if (_playerSelectedItem == PlayerSelectedItem.None) return;
         if (_currentSelectingHand != hand) return;
@@ -209,32 +214,32 @@ public class InventoryController : MonoBehaviour
         HandleConfirmItem(_currentSelected, _currentSelectedObjects);
         hasObjectSelected = true;
         OnIsSelecting?.Invoke(false);
-    }
+    }*/
     
-    void HandleBoxInteraction(bool interaction)
+   /* void HandleBoxInteraction(bool interaction)
     {
         _isInBoxInteraction = interaction;
         if (_playerSelectedItem == PlayerSelectedItem.Selecting)
         {
-            DeselectItems(_currentSelectedObjects, _currentSelectingHand);
+            // DeselectItems(_currentSelectedObjects, _currentSelectingHand);
         }
-    }
+    }*/
 
-    void HandleSelectedItem(int item, List<GameObject> objects,bool isSelecting)
+   /* void HandleSelectedItem(int item, List<GameObject> objects,bool isSelecting)
     {
         IGrabbable selected = objects[item].GetComponent<IGrabbable>();
         selected.SetMaterials(shadowMaterial);
         selected.HandleSelectedState(isSelecting);
-    }
+    }*/
 
-    void HandleConfirmItem(int itemSelected, List<GameObject> objects)
+   /* void HandleConfirmItem(int itemSelected, List<GameObject> objects)
     {
         IGrabbable item = objects[itemSelected].GetComponent<IGrabbable>();
         item.ResetMaterials();
         _playerHandsObjects = item.TypeOfItem;
         _selectIndex = _currentSelectedObjects.Count;
         OnPlayerSelectItem?.Invoke(item.Item);
-    }
+    }*/
 
 
     #region Timer Inventory
@@ -247,7 +252,7 @@ public class InventoryController : MonoBehaviour
         if (_time > _maxTimeToSelect)
         {
             ResetTimer();
-            DeselectItems(_currentSelectedObjects, _currentSelectingHand);
+            // DeselectItems(_currentSelectedObjects, _currentSelectingHand);
         }
         
     }
