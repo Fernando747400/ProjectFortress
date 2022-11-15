@@ -5231,7 +5231,7 @@ GameObject:
   - component: {fileID: 1412984883690776447}
   - component: {fileID: 2039725240671417393}
   - component: {fileID: 2906339508450328153}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5321,7 +5321,7 @@ GameObject:
   - component: {fileID: 1041230739290349760}
   - component: {fileID: 4169464926350438245}
   - component: {fileID: 2177522355407002543}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5548,7 +5548,7 @@ GameObject:
   - component: {fileID: 718755879371816624}
   - component: {fileID: 718755879371816625}
   - component: {fileID: 718755879371816630}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torch
   m_TagString: Torch
   m_Icon: {fileID: 0}
@@ -5585,7 +5585,7 @@ GameObject:
   - component: {fileID: 3038984159764986815}
   - component: {fileID: 5224743715439824828}
   - component: {fileID: 3687581646624501360}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12637,7 +12637,7 @@ GameObject:
   - component: {fileID: 2775292715710171736}
   - component: {fileID: 7414456492677875455}
   - component: {fileID: 9035035320540108974}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12655,7 +12655,7 @@ GameObject:
   - component: {fileID: 2985953280117439433}
   - component: {fileID: 5692534969215123739}
   - component: {fileID: 170554267976324371}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33311,7 +33311,7 @@ GameObject:
   - component: {fileID: 2712562737615857803}
   - component: {fileID: 6156567147523658831}
   - component: {fileID: 7502962207155199305}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
