@@ -26,6 +26,8 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
     private float _currentCooldown;
     private float _cumulativeDamage;
 
+    public float Cooldown { get => _cooldown; set { _cooldown = value; _currentCooldown = 0f; } }
+
     private void Awake()
     {
         Instance = this;

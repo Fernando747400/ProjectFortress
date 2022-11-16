@@ -23,6 +23,9 @@ public class Hamer_Grab : IGrabbable , IPause
 
     public event Action<GameObject> ConstructableHitEvent;
     public event Action DisableHammerEvent;
+
+    public float PointsToRepair { get => _pointsToRepair; set => _pointsToRepair = value; }
+    public float PointsToUpgrade { get => _pointsToUpgrade; set => _pointsToUpgrade = value; }
     
 
     #endregion
