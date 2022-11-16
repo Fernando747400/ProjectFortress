@@ -7,14 +7,13 @@ public class HandController_XR : MonoBehaviour
 {
     [SerializeField] private InventoryController _inventoryController;
     [SerializeField] private SkinnedMeshRenderer handSkinnedMesh;
-    [SerializeField] private Hand _hand;
-    [SerializeField] PlayerSelectedItem handObjects;
+    [SerializeField] private Hand _myHand;
     private Vector3 _handPos;
 
     public bool _handIsEmpty;
-    public Hand Hand
+    public Hand MyHand
     {
-        get => _hand;
+        get => _myHand;
     }
     public Vector3 HandPos
     {
@@ -40,17 +39,16 @@ public class HandController_XR : MonoBehaviour
     public void HandleIsEmpty(bool isSelecting = false)
     {
         _handIsEmpty = true;
-        switch (Hand)
+        switch (MyHand)
         {
             case Hand.LeftHand:
-                
-                if (_inventoryController.HandsObjects == handObjects)
+                if (_inventoryController.SelectingHand == _myHand )
                 {
                     _handIsEmpty = false;
                 }
                 break;
             case Hand.RightHand:
-                if (_inventoryController.HandsObjects == handObjects)
+                if (_inventoryController.SelectingHand == _myHand)
                 {
                     _handIsEmpty = false;
                 }

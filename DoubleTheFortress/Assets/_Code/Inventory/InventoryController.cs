@@ -11,7 +11,8 @@ public class InventoryController : MonoBehaviour
     #region Variables
     [Header("GameObjects")]
     [SerializeField] private PlayerSelectedItem _playerSelectedItem;
-    [SerializeField] private PlayerSelectedItem _playerHandsObjects;
+    [SerializeField] private Hand _currentSelectingHand = Hand.None;
+
     [SerializeField] private GameObject[] _objectsRightHand;
     [SerializeField] private GameObject[] _objectsLeftHand;
     
@@ -38,7 +39,6 @@ public class InventoryController : MonoBehaviour
     private bool _timerIsActive;
     private bool _timerHasFinished;
 
-    public Hand _currentSelectingHand = Hand.None;
 
     private Action<PlayerSelectedItem> OnPlayerSelectItem;
     public Action<bool> OnIsSelecting;
@@ -50,9 +50,9 @@ public class InventoryController : MonoBehaviour
         protected set => _playerSelectedItem = value;
     }
     
-    public PlayerSelectedItem HandsObjects
+    public Hand SelectingHand
     {
-        get => _playerHandsObjects;
+        get => _currentSelectingHand;
     }
     #endregion
     
@@ -236,6 +236,7 @@ public class InventoryController : MonoBehaviour
     {
         TurnOffObjects();
         SelectedItem = PlayerSelectedItem.None;
+        _currentSelectingHand = Hand.None;
         OnIsSelecting?.Invoke(false);
 
     }

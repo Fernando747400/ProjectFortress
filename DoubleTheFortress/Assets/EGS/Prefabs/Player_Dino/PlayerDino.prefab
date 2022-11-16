@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSelectedItem: -1
-  _playerHandsObjects: -1
+  _currentSelectingHand: 0
   _objectsRightHand:
   - {fileID: 2913970480911169886}
   - {fileID: 6722731304910741913}
@@ -65,7 +65,6 @@ MonoBehaviour:
   _maxTimeToSelect: 1.5
   areasInteraction:
   - {fileID: 0}
-  _currentSelectingHand: 0
 --- !u!1 &77738515818183311
 GameObject:
   m_ObjectHideFlags: 0
@@ -21131,8 +21130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryController: {fileID: 8767782437161057729}
   handSkinnedMesh: {fileID: 6433346272744861401}
-  _hand: 1
-  handObjects: 3
+  _myHand: 1
   _handIsEmpty: 0
 --- !u!1 &1706550580790275091
 GameObject:
@@ -21457,8 +21455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryController: {fileID: 8767782437161057729}
   handSkinnedMesh: {fileID: 1597134069405635507}
-  _hand: 2
-  handObjects: 12
+  _myHand: 2
   _handIsEmpty: 0
 --- !u!1 &1706550581337124687
 GameObject:
