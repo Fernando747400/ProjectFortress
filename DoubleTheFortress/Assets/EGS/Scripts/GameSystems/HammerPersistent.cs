@@ -8,6 +8,8 @@ public class HammerPersistent : MonoBehaviour, IPause
 
     private float _elapsedTime = 0;
 
+    public float Cooldown {get => _cooldown; set => _cooldown = value; }
+
     private void FixedUpdate()
     {
         _elapsedTime += Time.deltaTime;        
