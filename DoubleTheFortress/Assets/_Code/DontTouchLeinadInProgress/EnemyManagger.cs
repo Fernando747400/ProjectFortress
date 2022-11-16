@@ -14,9 +14,11 @@ public class EnemyManagger : MonoBehaviour
 
     [SerializeField]
     public GameObject Zombie;
+    public GameObject SpecialZombie;
 
     [SerializeField]
     private Pooling ZombiePooling;
+    private Pooling SpecialZombiePooling;
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class EnemyManagger : MonoBehaviour
     private void Start()
     {
         ZombiePooling.Preload(Zombie, 10);
+        SpecialZombiePooling.Preload(SpecialZombie, 2);
         GameManager.Instance.StartGameEvent += FirstSpawn;
         StrongZombie = false;
     }
@@ -69,6 +72,15 @@ public class EnemyManagger : MonoBehaviour
     public void SpawnWithDelay(float delay, int numberOfZombies)
     {
         StartCoroutine(SpawnRoutine(delay, numberOfZombies));
+    }
+
+    public void SpawnSpecialZombie()
+    {
+        Vector3 vector = SpawnPosition().Peek().transform.position;
+        GameObject temporal = SpecialZombiePooling.GetObject(SpecialZombie);
+        temporal.transform.position = vector;
+        temporal.GetComponent<ZombiePursuit>().ZombieDamage = Damage / 2;
+        temporal.GetComponent<ZombiePursuit>().MaxHp = ZombieLife * 2;
     }
 
     private void FirstSpawn()
