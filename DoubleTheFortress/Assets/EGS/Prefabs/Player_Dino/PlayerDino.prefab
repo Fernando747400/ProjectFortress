@@ -14914,6 +14914,7 @@ MonoBehaviour:
   _collider: {fileID: 1718937261275394552}
   _selectedItem: 1
   _typeOfItem: 3
+  _persistentData: {fileID: 0}
   _uiHammer: {fileID: 8390576485249322359}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
@@ -31607,6 +31608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2732909003241575019}
   - component: {fileID: 2732909003241575016}
+  - component: {fileID: 4545077185316341955}
   m_Layer: 0
   m_Name: Right Hand Presence
   m_TagString: Untagged
@@ -31644,6 +31646,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerCharacteristics: 576
   handAnimator: {fileID: 6433346272749129753}
+--- !u!114 &4545077185316341955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732909003241575017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d59ae4a778acc4c83d53f05d113d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 0.5
 --- !u!1 &2732909004056775961
 GameObject:
   m_ObjectHideFlags: 0
@@ -31838,8 +31853,9 @@ MonoBehaviour:
   - {fileID: -8796627655084249796, guid: 5536eb113c93aae42a6010fef9b8389c, type: 3}
   - {fileID: -3522955778539423533, guid: 820da96c311ae524e8e3c78d90d3faee, type: 3}
   _collider: {fileID: 630352508329486517}
-  _selectedItem: 1
+  _selectedItem: 0
   _typeOfItem: 3
+  _persistentData: {fileID: 4545077185316341955}
   _uiHammer: {fileID: 9091824465097166358}
   _pointsToRepair: 0
   _pointsToUpgrade: 0
