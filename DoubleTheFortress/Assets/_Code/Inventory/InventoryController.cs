@@ -111,7 +111,7 @@ public class InventoryController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (GameManager.Instance)
+        if (GameManager.Instance != null)
         {
             GameManager.Instance.PauseGameEvent -= Paused;
             GameManager.Instance.PlayGameEvent -= Unpaused;
