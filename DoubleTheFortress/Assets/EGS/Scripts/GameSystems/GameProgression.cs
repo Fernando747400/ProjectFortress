@@ -7,6 +7,7 @@ public class GameProgression : MonoBehaviour, IPause
 
     private double _elapsedTime;
     private int _currentMinute;
+    private int _specialSpawn;
 
     public double ElapsedTime { get => _elapsedTime; }
 
@@ -47,7 +48,7 @@ public class GameProgression : MonoBehaviour, IPause
             EnemyManagger.Instance.ZombieLife += 5f;
             Debug.Log("Added more damage and life");
             EnemyManagger.Instance.StrongZombie = true;
-        }
+        } 
 
         if (currentTime.Minutes > _currentMinute && currentTime.Minutes > 6 && currentTime.Minutes <= 10)
         {
@@ -71,6 +72,12 @@ public class GameProgression : MonoBehaviour, IPause
             EnemyManagger.Instance.Damage += 5f;
             Debug.Log("Spawned 3 more zombies");
             _currentMinute++;
+
+            if(_specialSpawn * 3 == _currentMinute)
+            {
+                SpawnSpecial();
+                _specialSpawn++;
+            }
         }
 
     }
@@ -86,6 +93,12 @@ public class GameProgression : MonoBehaviour, IPause
     {
         _elapsedTime = 0;
         _currentMinute = 0;
+        _specialSpawn = 1;
+    }
+
+    private void SpawnSpecial()
+    {
+        EnemyManagger.Instance.SpawnSpecialZombie();
     }
 
     #region Interface methods
