@@ -44,19 +44,24 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         _currentHand.HandleIsEmpty();
         if (!_currentHand.HandIsEmpty) return;
+        
         _isGrabbing = true;
         _currentHand.HandleHandsVisible(false);
+        _currentHand.HandleIsUsingCannon(true);
         OnGrabbed?.Invoke();
     }
 
     protected virtual void Drop(XRBaseInteractor interactor)
     {
         _isGrabbing = false;
-
-        foreach (var hand in _hands)
-        {
-            hand.HandleHandsVisible(true);
-        }
+        
+        _currentHand.HandleHandsVisible(true);
+        _currentHand.HandleIsUsingCannon(false);
+        // foreach (var hand in _hands)
+        // {
+        //     hand.HandleHandsVisible(true);
+        //     hand.HandleIsUsingCannon(false);
+        // }
         OnReleased?.Invoke();
 
     }
@@ -67,10 +72,10 @@ public class Two_HandsHolder : XRBaseInteractable
         {
             _currentHand = other.GetComponent<HandController_XR>();
             _currentHand.HandleIsEmpty();
-            if (!_hands.Contains(_currentHand))
-            {
-                _hands.Add(_currentHand);
-            }
+            // if (!_hands.Contains(_currentHand))
+            // {
+            //     _hands.Add(_currentHand);
+            // }
             OnHandsOut?.Invoke();
 
         }
@@ -82,11 +87,16 @@ public class Two_HandsHolder : XRBaseInteractable
         {
             _isGrabbing = false;
 
-            foreach (var hand in _hands)
-            {
-                hand.HandleHandsVisible(true);
-            }
-           
+            // foreach (var hand in _hands)
+            // {
+            //     hand.HandleHandsVisible(true);
+            // }
+            //
+            // _hands.Clear();
+            
+            _currentHand.HandleHandsVisible(true);
+            _currentHand.HandleIsUsingCannon(false);
+
             _currentHand = null;
             OnHandsOut?.Invoke();
 

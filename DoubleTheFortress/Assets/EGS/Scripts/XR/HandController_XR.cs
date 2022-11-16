@@ -8,9 +8,10 @@ public class HandController_XR : MonoBehaviour
     [SerializeField] private InventoryController _inventoryController;
     [SerializeField] private SkinnedMeshRenderer handSkinnedMesh;
     [SerializeField] private Hand _myHand;
-    private Vector3 _handPos;
 
-    public bool _handIsEmpty;
+    [SerializeField] private bool _handIsEmpty;
+    [SerializeField] private bool _isUsingCannon;
+    
     public Hand MyHand
     {
         get => _myHand;
@@ -56,9 +57,44 @@ public class HandController_XR : MonoBehaviour
         }
         
     }
-    
-    
-    
+
+
+    public void HandleIsUsingCannon(bool isUsing)
+    {
+        _isUsingCannon = isUsing;
+        
+        switch (MyHand)
+        {
+            case Hand.LeftHand:
+                if (_isUsingCannon)
+                {
+                    _inventoryController.SelectObject(PlayerSelectedItem.Torch, Hand.RightHand);
+                }
+                else
+                {
+                    _inventoryController.DeselectItem();
+                }
+                break;
+            
+            case Hand.RightHand:
+                if (_isUsingCannon)
+                {
+                    _inventoryController.SelectObject(PlayerSelectedItem.Torch, Hand.LeftHand);
+                }
+                else
+                {
+                    _inventoryController.DeselectItem();
+                }
+                
+                break;
+        }
+        
+        
+        
+    }
+
+
+
 }
 public enum Hand
 {
