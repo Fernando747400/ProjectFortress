@@ -229,12 +229,15 @@ public class InventoryController : MonoBehaviour
         }
         
         TurnOnObject((int)SelectedItem, handbOjects);
+        OnIsSelecting?.Invoke(true);
     }
 
     void DeselectItems()
     {
         TurnOffObjects();
         SelectedItem = PlayerSelectedItem.None;
+        OnIsSelecting?.Invoke(false);
+
     }
     
     void TurnOnObject(int itemIndex, GameObject[] handObjects)
