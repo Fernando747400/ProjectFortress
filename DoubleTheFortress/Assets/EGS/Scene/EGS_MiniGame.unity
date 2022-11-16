@@ -18769,6 +18769,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 1ae3ca27f49c62a449669fea2e3b6bc9, type: 3}
     - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
+      propertyPath: _persistentData
+      value: 
+      objectReference: {fileID: 782943296}
+    - target: {fileID: 2913970480911169884, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
       propertyPath: _pointsToRepair
       value: 30
       objectReference: {fileID: 0}
@@ -19049,6 +19054,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 782943292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &782943295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2913970480911169886, guid: 75413e9a48194104493c72dd7318578f,
+    type: 3}
+  m_PrefabInstance: {fileID: 782943292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &782943296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782943295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d59ae4a778acc4c83d53f05d113d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 0.5
 --- !u!1 &783233561
 GameObject:
   m_ObjectHideFlags: 0
@@ -49877,6 +49901,7 @@ MonoBehaviour:
   StrongSkin: {fileID: 2100000, guid: a737879090855e54d9d9979645823507, type: 2}
   ZombieLife: 10
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
+  SpecialZombie: {fileID: 0}
   ZombiePooling: {fileID: 2044581463}
 --- !u!114 &2044581463
 MonoBehaviour:
