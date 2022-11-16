@@ -49135,6 +49135,7 @@ MonoBehaviour:
   StrongSkin: {fileID: 2100000, guid: a737879090855e54d9d9979645823507, type: 2}
   ZombieLife: 10
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
+  SpecialZombie: {fileID: 0}
   ZombiePooling: {fileID: 2044581463}
 --- !u!114 &2044581463
 MonoBehaviour:
