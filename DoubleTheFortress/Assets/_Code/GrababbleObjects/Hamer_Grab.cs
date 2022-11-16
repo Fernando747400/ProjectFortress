@@ -15,7 +15,6 @@ public class Hamer_Grab : IGrabbable , IPause
     [Header("Settings")]
     [SerializeField] private float _pointsToRepair;
     [SerializeField] private float _pointsToUpgrade;
-    [SerializeField] private float _cooldown;
 
     [Header("AudioClips")]
     public AudioClip _wooodSound;
