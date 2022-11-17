@@ -61,9 +61,7 @@ public class InventoryController : MonoBehaviour
         leftSelectMusket.action.performed += ctx => SelectObject(PlayerSelectedItem.Musket, Hand.LeftHand);
         
         DeselectItems();
-
-
-
+        
     }
 
     
@@ -139,9 +137,24 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    public void DeselectItem()
+    public void DeselectItem(PlayerSelectedItem itemToDeselect, Hand hand)
     {
-        
+        int itemIndex = (int)itemToDeselect;
+        switch (hand)
+        {
+            case Hand.LeftHand:
+                if (_objectsLeftHand[itemIndex].activeInHierarchy)
+                {
+                    _objectsLeftHand[itemIndex].SetActive(false);
+                }
+                break;
+            case Hand.RightHand:
+                if (_objectsRightHand[itemIndex].activeInHierarchy)
+                {
+                    _objectsRightHand[itemIndex].SetActive(false);
+                }
+                break;
+        }
     }
     
     
@@ -150,7 +163,6 @@ public class InventoryController : MonoBehaviour
     {
         TurnOffObjects();
         handObjects[itemIndex].SetActive(true);
-
     }
 
     void TurnOffObjects()

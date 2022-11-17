@@ -42,21 +42,26 @@ public class Two_HandsHolder : XRBaseInteractable
 
     protected virtual void Grab(XRBaseInteractor interactor)
     {
+        if (_currentHand == null) return; 
+
         _currentHand.HandleIsEmpty();
         if (!_currentHand.HandIsEmpty) return;
         
         _isGrabbing = true;
         _currentHand.HandleHandsVisible(false);
-        _currentHand.HandleIsUsingCannon(true);
+        _currentHand.HandleTorchCannon(true);
         OnGrabbed?.Invoke();
     }
 
     protected virtual void Drop(XRBaseInteractor interactor)
     {
+        if (_currentHand == null) return; 
+
         _isGrabbing = false;
-        
         _currentHand.HandleHandsVisible(true);
-        _currentHand.HandleIsUsingCannon(false);
+        _currentHand.HandleTorchCannon(false);
+        
+       
         // foreach (var hand in _hands)
         // {
         //     hand.HandleHandsVisible(true);
@@ -95,7 +100,7 @@ public class Two_HandsHolder : XRBaseInteractable
             // _hands.Clear();
             
             _currentHand.HandleHandsVisible(true);
-            _currentHand.HandleIsUsingCannon(false);
+            _currentHand.HandleTorchCannon(false);
 
             _currentHand = null;
             OnHandsOut?.Invoke();
