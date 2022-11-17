@@ -155,6 +155,10 @@ public class InventoryController : MonoBehaviour
                 }
                 break;
         }
+        
+        SelectedItem = PlayerSelectedItem.None;
+        _currentSelectingHand = Hand.None;
+        OnIsSelecting?.Invoke(false);
     }
     
     

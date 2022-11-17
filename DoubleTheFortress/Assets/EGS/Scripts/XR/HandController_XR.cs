@@ -70,6 +70,10 @@ public class HandController_XR : MonoBehaviour
                 {
                     _inventoryController.SelectObject(PlayerSelectedItem.Torch, Hand.RightHand);
                 }
+                else
+                {
+                    _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.RightHand);
+                }
                 break;
             
             case Hand.RightHand:
@@ -77,10 +81,16 @@ public class HandController_XR : MonoBehaviour
                 {
                     _inventoryController.SelectObject(PlayerSelectedItem.Torch, Hand.LeftHand);
                 }
+                else
+                {
+                    _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.LeftHand);
+
+                }
+              
                 break;
         }
-        
-        _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.RightHand);
+
+       
     }
 
 

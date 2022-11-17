@@ -19,8 +19,8 @@ namespace DebugStuff.Inventory
         None = -1,  
         Hammer = 0 ,
         Musket = 1,
-        Defibrillator = 2,
-        Torch = 3,
+        // Defibrillator = 2,
+        Torch = 2,
 
         
         

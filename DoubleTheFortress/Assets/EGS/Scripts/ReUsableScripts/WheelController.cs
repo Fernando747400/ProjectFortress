@@ -27,7 +27,7 @@ public class WheelController : MonoBehaviour
         
         leftHolder.OnReleased += HandleWheelInteraction;
         leftHolder.OnGrabbed += HandleWheelInteraction;
-
+        
         leftHolder.OnHandsOut += HandleWheelInteraction;
         rightHolder.OnHandsOut += HandleWheelInteraction;
     }
@@ -87,20 +87,17 @@ public class WheelController : MonoBehaviour
 
     void HandleWheelInteraction()
     {
-
         if (_inventoryController == null)
         {
             _inventoryController = _boxInteraction.InventoryPlayer;
         }
-        
+
         _canMoveCannon = false;
 
-        
         if (leftHolder.IsGrabbing)
         {
             _canMoveCannon = true;
         }
-
     }
 
 
