@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using ExitGames.Client.Photon.StructWrapping;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class DebugGunFire :  GeneralAgressor
@@ -66,7 +67,7 @@ public class DebugGunFire :  GeneralAgressor
         StopAllCoroutines();
         _savedFirePosition = transform.position;
         
-        PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_particleOffset.transform.position,transform.localEulerAngles);
+        PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,_particleOffset.transform.position,transform.rotation);
         PlayAudio(_ShootSound, 0.5f);
         
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
@@ -92,7 +93,7 @@ public class DebugGunFire :  GeneralAgressor
         //Vector3 simulatedHitPos = (_hitPosition - new Vector3(0, _gravity.y / _travelTime / Time.fixedDeltaTime, 0)) - _savedFirePosition;
         Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit,
             maxDistance, layers);
-        PlayParticles("Musket_HitParticle",hitParticle,_hitParticleSystem,simulatedHit.point, simulatedHit.normal);
+        PlayParticles("Musket_HitParticle",hitParticle,_hitParticleSystem,simulatedHit.point, quaternion.identity);
 
         Debug.DrawLine(_savedFirePosition,simulatedHit.point,Color.cyan);
         //Instantiate(hitMarkerBlue, simulatedHit.point, Quaternion.identity);
@@ -117,7 +118,8 @@ public class DebugGunFire :  GeneralAgressor
         Debug.Log("done waiting");
 
     }
-    void PlayParticles(string name,GameObject particle, ParticleSystem particleSystem, Vector3 pos, Vector3 rot)
+    void PlayParticles(string name,GameObject particle,
+        ParticleSystem particleSystem, Vector3 pos, Quaternion rot)
     {
         if (particleSystem == null)
         {
@@ -125,7 +127,8 @@ public class DebugGunFire :  GeneralAgressor
             
         }
         particle.transform.position = pos;
-        particle.transform.eulerAngles = rot;
+        
+        particle.transform.rotation = rot;
         particleSystem.Clear();
         particleSystem.Play();
 

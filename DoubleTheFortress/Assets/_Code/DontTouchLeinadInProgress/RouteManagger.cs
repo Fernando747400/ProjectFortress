@@ -9,14 +9,23 @@ public class RouteManagger : MonoBehaviour
 
     public Route myRoute;
 
-    public List<Transform> routeOne = new List<Transform>();
-    public List<Transform> routeTwo = new List<Transform>();
-    public List<Transform> routeThree = new List<Transform>();
-    public List<Transform> routeFour = new List<Transform>();
-
     private Queue<Transform> theRoute = new Queue<Transform>();
 
     private int randomNum;
+
+    [System.Serializable]
+    public class Points
+    {
+        public List<Transform> list;
+    }
+
+    [System.Serializable]
+    public class PointsList
+    {
+        public List<Points> listOfList;
+    }
+
+    public PointsList ListOfPointLists = new PointsList();
 
     private void Awake()
     {
@@ -26,18 +35,26 @@ public class RouteManagger : MonoBehaviour
     public Queue<Transform> RandomRoute()
     {
         theRoute.Clear();
-        int randomRoute = Random.Range(1, 5);
+        int randomRoute = Random.Range(1, 9);
         randomNum = randomRoute;
         switch (randomNum)
         {
             case 1:
-                return BuildQueue(routeOne);
+                return BuildQueue(ListOfPointLists.listOfList[0].list);
             case 2:
-                return BuildQueue(routeTwo);
+                return BuildQueue(ListOfPointLists.listOfList[1].list);
             case 3:
-                return BuildQueue(routeThree);
+                return BuildQueue(ListOfPointLists.listOfList[2].list);
             case 4:
-                return BuildQueue(routeFour);
+                return BuildQueue(ListOfPointLists.listOfList[3].list);
+            case 5:
+                return BuildQueue(ListOfPointLists.listOfList[4].list);
+            case 6:
+                return BuildQueue(ListOfPointLists.listOfList[5].list);
+            case 7:
+                return BuildQueue(ListOfPointLists.listOfList[6].list);
+            case 8:
+                return BuildQueue(ListOfPointLists.listOfList[7].list);
         }
         Vector3 nullvect = new Vector3(0, 0, 0);
         return null;
