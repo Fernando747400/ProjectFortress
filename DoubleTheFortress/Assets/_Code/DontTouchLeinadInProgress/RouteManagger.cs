@@ -35,7 +35,7 @@ public class RouteManagger : MonoBehaviour
     public Queue<Transform> RandomRoute()
     {
         theRoute.Clear();
-        int randomRoute = Random.Range(1, 9);
+        int randomRoute = Random.Range(1, 13);
         randomNum = randomRoute;
         switch (randomNum)
         {
@@ -55,6 +55,14 @@ public class RouteManagger : MonoBehaviour
                 return BuildQueue(ListOfPointLists.listOfList[6].list);
             case 8:
                 return BuildQueue(ListOfPointLists.listOfList[7].list);
+            case 9:
+                return BuildQueue(ListOfPointLists.listOfList[8].list);
+            case 10:
+                return BuildQueue(ListOfPointLists.listOfList[9].list);
+            case 11:
+                return BuildQueue(ListOfPointLists.listOfList[10].list);
+            case 12:
+                return BuildQueue(ListOfPointLists.listOfList[11].list);
         }
         Vector3 nullvect = new Vector3(0, 0, 0);
         return null;
