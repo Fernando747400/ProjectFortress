@@ -11,18 +11,18 @@ public class BuffManager : MonoBehaviour
     [SerializeField] private float _buffTime;
     public float CannonDamage;
 
-    [SerializeField] private HammerPersistent _hammerCooldownManager;
+    [SerializeField] private List<HammerPersistent> _hammerCooldownManager;
     private float _hammerCooldown;
 
-    [SerializeField] private Hamer_Grab _hammerManager;
+    [SerializeField] private List<Hamer_Grab> _hammerManager;
     private float _hammerUpgradePoints;
     private float _hammerHealthPoints;
 
-    [SerializeField] private VrGunFire _mosquetManager;
+    [SerializeField] private List<VrGunFire>_mosquetManager;
     private float _mosquetCooldown;
     private float _mosquetDamage;
 
-    [SerializeField] private ButtonCannon _cannonCooldownManager;
+    [SerializeField] private List<ButtonCannon> _cannonCooldownManager;
     private float _cannonCooldown;
     private float _currentCannonDamage; //In the bullet
 
@@ -79,16 +79,30 @@ public class BuffManager : MonoBehaviour
 
     private void BuffHammer()
     {
-        _hammerCooldownManager.Cooldown = 0f;
-        _hammerManager.PointsToRepair = 10000f;
-        _hammerManager.PointsToUpgrade = 10000f;
+        foreach (HammerPersistent Manager in _hammerCooldownManager)
+        {
+            Manager.Cooldown = 0f;
+        }
+
+        foreach (Hamer_Grab Grab in _hammerManager)
+        {
+            Grab.PointsToRepair = 10000f;
+            Grab.PointsToUpgrade = 10000f;
+        }
     }
 
     private void ResetHammer()
     {
-        _hammerCooldownManager.Cooldown = _hammerCooldown;
-        _hammerManager.PointsToRepair = _hammerHealthPoints;
-        _hammerManager.PointsToUpgrade = _hammerUpgradePoints;
+        foreach (HammerPersistent Manager in _hammerCooldownManager)
+        {
+            Manager.Cooldown = _hammerCooldown;
+        }
+
+        foreach (Hamer_Grab Grab in _hammerManager)
+        {
+            Grab.PointsToRepair = _hammerHealthPoints;
+            Grab.PointsToUpgrade = _hammerUpgradePoints;
+        }
     }
 
     private void BuffCannon()

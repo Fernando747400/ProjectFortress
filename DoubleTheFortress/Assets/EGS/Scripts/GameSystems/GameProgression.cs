@@ -17,6 +17,7 @@ public class GameProgression : MonoBehaviour, IPause
         {
             Instance = this;
             DontDestroyOnLoad(Instance);
+            _isPaused = true;
         }
         else
         {

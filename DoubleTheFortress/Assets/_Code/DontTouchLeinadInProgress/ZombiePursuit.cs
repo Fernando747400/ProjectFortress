@@ -264,7 +264,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _routeQueue.Clear();
         _routeQueue = RouteManagger.Instance.RandomSpecialRoute();
         _targetTransform = _routeQueue.Peek();
-    }
+    } 
     
     public void ResetZombie()
     {
