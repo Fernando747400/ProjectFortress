@@ -19,6 +19,13 @@ public class Canon_CanonBall : GeneralAgressor
     
     [Header("Audio Clips")]
     public AudioClip explosion;
+
+    public float Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+
+    }
     
     // Start is called before the first frame update
     private void Awake()

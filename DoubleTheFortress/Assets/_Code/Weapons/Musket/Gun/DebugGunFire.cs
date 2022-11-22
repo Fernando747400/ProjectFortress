@@ -32,6 +32,12 @@ public class DebugGunFire :  GeneralAgressor
         get { return cooldown; }
         set { cooldown = value; }
     }
+
+    public float Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
     private void Start()
     {
         Prepare();
