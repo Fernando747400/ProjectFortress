@@ -7,19 +7,13 @@ using UnityEngine.InputSystem;
 public class VrGunFire : DebugGunFire
 {
     [SerializeField] InventoryController inventoryController;
-    public InputActionReference GunShoot;
-    private PlayerSelectedItem selectedItem;
+    public InputActionReference gunShoot;
+    private PlayerSelectedItem _selectedItem;
 
     private bool _isPaused;
     void Start()
     {
-        GunShoot.action.performed += ctx => FireHitScan();
-    }
-
-    protected override void Update()
-    {
-        //overriden do not use
-        Debug.Log("canFire is "+canFire);
+        gunShoot.action.performed += ctx => FireHitScan();
     }
 
     protected override void CheckInput()
@@ -30,9 +24,10 @@ public class VrGunFire : DebugGunFire
     protected override void FireSimulated()
     {
         if (_isPaused) return;
-        //if (!canFire) return;
+        if (!canFire) return;
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
         base.FireSimulated();
+        StartCoroutine(CorWaitForCoolDown());
     }
 
     protected override void FireHitScan()
@@ -48,9 +43,17 @@ public class VrGunFire : DebugGunFire
         {
             GameManager.Instance.PauseGameEvent += Paused;
             GameManager.Instance.PlayGameEvent += Unpaused;
-
         }
     }
+
+    protected override IEnumerator CorWaitForCoolDown()
+    {
+        Debug.Log("waiting " + cooldown);
+        yield return new WaitForSeconds(cooldown);
+        canFire = true;
+        Debug.Log("done waiting");
+    }
+    
 
     private void OnDisable()
     {
