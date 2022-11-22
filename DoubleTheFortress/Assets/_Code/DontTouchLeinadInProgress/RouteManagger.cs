@@ -26,6 +26,7 @@ public class RouteManagger : MonoBehaviour
     }
 
     public PointsList ListOfPointLists = new PointsList();
+    public PointsList SpecialRoutes = new PointsList();
 
     private void Awake()
     {
@@ -63,6 +64,26 @@ public class RouteManagger : MonoBehaviour
                 return BuildQueue(ListOfPointLists.listOfList[10].list);
             case 12:
                 return BuildQueue(ListOfPointLists.listOfList[11].list);
+        }
+        Vector3 nullvect = new Vector3(0, 0, 0);
+        return null;
+    }
+
+    public Queue<Transform> RandomSpecialRoute()
+    {
+        theRoute.Clear();
+        int randomRoute = Random.Range(1, 5);
+        randomNum = randomRoute;
+        switch (randomNum)
+        {
+            case 1:
+                return BuildQueue(SpecialRoutes.listOfList[0].list);
+            case 2:
+                return BuildQueue(SpecialRoutes.listOfList[1].list);
+            case 3:
+                return BuildQueue(SpecialRoutes.listOfList[2].list);
+            case 4:
+                return BuildQueue(SpecialRoutes.listOfList[3].list);
         }
         Vector3 nullvect = new Vector3(0, 0, 0);
         return null;
