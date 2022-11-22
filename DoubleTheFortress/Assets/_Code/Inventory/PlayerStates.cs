@@ -16,17 +16,17 @@ namespace DebugStuff.Inventory
     [System.Flags]
     public enum PlayerSelectedItem
     {
-        None = 0,  
-        Hammer = 1 ,
-        Musket =2,
-        Defibrillator = 4,
-        Torch = 8,
-        Selecting = 16,
+        None = -1,  
+        Hammer = 0 ,
+        Musket = 1,
+        // Defibrillator = 2,
+        Torch = 2,
 
         
         
-        ObjectsRightHand = Musket | Hammer,
-        ObjectsLeftHand =  Torch | Defibrillator,
+        // Selecting = 16,
+        // ObjectsRightHand = Musket | Hammer,
+        // ObjectsLeftHand =  Torch | Defibrillator,
     }
     
 }

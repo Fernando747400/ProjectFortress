@@ -33,8 +33,11 @@ public class Hamer_Grab : IGrabbable , IPause
     #region unity Methods
     void Start()
     {
-        _isPaused = GameManager.Instance.IsPaused;
-        if (_persistentData == null) throw new NullReferenceException("No persitent data script is set into the Hammer");
+        if (GameManager.Instance != null)
+        {
+            _isPaused = GameManager.Instance.IsPaused;
+          if (_persistentData == null) throw new NullReferenceException("No persitent data script is set into the Hammer");
+        }
     }
    
     #endregion

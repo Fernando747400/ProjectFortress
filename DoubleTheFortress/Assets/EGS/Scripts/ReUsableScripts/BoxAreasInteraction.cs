@@ -41,7 +41,7 @@ public class BoxAreasInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        _inventoryController = FindObjectOfType<InventoryController>();
-        _inventoryController.HandleAreasInteraction(this);
+        // _inventoryController = FindObjectOfType<InventoryController>();
+        // _inventoryController.HandleAreasInteraction(this);
     }
 }
