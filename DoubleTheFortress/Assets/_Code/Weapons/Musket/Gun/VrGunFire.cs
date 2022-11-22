@@ -8,7 +8,6 @@ public class VrGunFire : DebugGunFire
 {
     [SerializeField] InventoryController inventoryController;
     public InputActionReference gunShoot;
-    private PlayerSelectedItem _selectedItem;
 
     private bool _isPaused;
     void Start()
