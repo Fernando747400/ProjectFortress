@@ -44,28 +44,28 @@ public class BuffManager : MonoBehaviour
 
     public void CallRandomBuff()
     {
-        int SelectedBuff = UnityEngine.Random.Range(1,6);
-
+        //int SelectedBuff = UnityEngine.Random.Range(1,6); //6 in prod when all buffs are ready 4 for testing
+        int SelectedBuff = 1;
         switch (SelectedBuff)
         {
             case 1:
-                StartCoroutine(DoBuffAndDebuff(BuffHammer, ResetHammer));
+                DetonateBomb();
             break;
 
             case 2:
-                StartCoroutine(DoBuffAndDebuff(BuffCannon, ResetCannon));
-            break;
-
-            case 3:
-                StartCoroutine(DoBuffAndDebuff(BuffMosquet, ResetMosquet));
-            break;
-
-            case 4:
                 StartCoroutine(DoBuffAndDebuff(BuffCore, ResetCore));
             break;
 
+            case 3:
+                StartCoroutine(DoBuffAndDebuff(BuffHammer, ResetHammer));
+            break;
+
+            case 4:
+                StartCoroutine(DoBuffAndDebuff(BuffCannon, ResetCannon));
+            break;
+
             case 5:
-                DetonateBomb();
+                StartCoroutine(DoBuffAndDebuff(BuffMosquet, ResetMosquet));
             break;
         }
     }

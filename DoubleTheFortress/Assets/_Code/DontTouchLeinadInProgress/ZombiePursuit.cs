@@ -22,6 +22,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     private bool _isAttacking;
     private bool _isRecivingDamage;
     private bool _isDying;
+    private bool _isSpecial;
 
     private ZombieAnimator _zombieAnimator;
     private Rigidbody _rigidBody;
@@ -163,6 +164,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         if(_routeQueue.Count == 0)
         {
             CurrentState = ZombieState.Idle;
+            Despawn();
             return;
         }
         _targetTransform = _routeQueue.Peek();
@@ -178,6 +180,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         PlayAudio(_dieSound, 0.3f);
         ZombieDieEvent?.Invoke();
         ZombieTotemEvent?.Invoke(this.transform);
+        if (_isSpecial) BuffManager.Instance.CallRandomBuff();
     }
 
     public void Despawn()
@@ -255,6 +258,13 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _targetTransform = _routeQueue.Peek();
         ResetZombie();
     }
+
+    private void GetSpecialRoute()
+    {
+        _routeQueue.Clear();
+        _routeQueue = RouteManagger.Instance.RandomSpecialRoute();
+        _targetTransform = _routeQueue.Peek();
+    }
     
     public void ResetZombie()
     {
@@ -269,9 +279,36 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _isDying = false;
         _isAttacking = false;
         _isRecivingDamage = false;
+        _isSpecial = false;
 
         if (RouteQueue.Count <= 1) return;
         this.transform.position = RouteQueue.Peek().transform.position;
+    }
+
+    private void ResetSpecialZombie()
+    {
+        if (CurrentState == ZombieState.Idle || CurrentState == ZombieState.Death) CurrentState = ZombieState.Walk;
+        _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
+        CheckIfPause();
+        SpecialZombieMaterial();
+        _alertSignal.SetActive(false);
+        _maxLife = 20f;
+        _isSensitive = true;
+        _isDying = false;
+        _isAttacking = false;
+        _isRecivingDamage = false;
+        this.speed = 3f;
+        _isSpecial = true;
+
+        if (RouteQueue.Count <= 1) return;
+        this.transform.position = RouteQueue.Peek().transform.position;
+    }
+
+    public void SpecialZombie()
+    {
+        GetSpecialRoute();
+        ResetSpecialZombie();
+        SpecialZombieMaterial();
     }
 
     private void Prepare()
@@ -323,6 +360,25 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         }
     }
 
+    private void SpecialZombieMaterial()
+    {
+        if (!_isSpecial)
+        {
+            StrongZombie();
+        }
+
+        if (_isSpecial)
+        {
+            foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
+            {
+                if (renderer.material.name == "Material.001 (Instance)" || renderer.material.name == "Zombieskin (Instance)" || renderer.material.name == "StrongZ (Instance)") 
+                {
+                    renderer.material = EnemyManagger.Instance.SpecialSkin;
+                }
+            }
+        }
+    }
+
     private void CheckForReset()
     {
         if(_routeQueue.Count == 10 && Vector3.Distance(this.transform.position, _routeQueue.Peek().transform.position) > 6f)
@@ -365,6 +421,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         GameManager.Instance.PauseGameEvent += Pause;
         GameManager.Instance.PlayGameEvent += Unpause;
         GameManager.Instance.FinishGameEvent += GameOverAnim;
+        BuffManager.Instance.AtomicBombEvent += Die;
         ZombieDieEvent += GameManager.Instance.AddKill;
         ZombieTotemEvent += UIManager.Instance.ZombieDeadEffect;
     }
@@ -374,6 +431,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         GameManager.Instance.PauseGameEvent -= Pause;
         GameManager.Instance.PlayGameEvent -= Unpause;
         GameManager.Instance.FinishGameEvent -= GameOverAnim;
+        BuffManager.Instance.AtomicBombEvent -= Die;
         ZombieDieEvent -= GameManager.Instance.AddKill;
         ZombieTotemEvent -= UIManager.Instance.ZombieDeadEffect;
     }
