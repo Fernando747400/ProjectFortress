@@ -7080,12 +7080,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296283800}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.089, z: 1.169}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.89000106, z: 10.85}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 782943293}
+  m_Father: {fileID: 498067446}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &296657941
@@ -12115,6 +12115,12 @@ Transform:
   m_Father: {fileID: 1336302429}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &498067446 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6722731304325646743, guid: 75413e9a48194104493c72dd7318578f,
+    type: 3}
+  m_PrefabInstance: {fileID: 782943292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &503331257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19004,6 +19010,11 @@ PrefabInstance:
       objectReference: {fileID: 1507030633}
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
+      propertyPath: particleOffset
+      value: 
+      objectReference: {fileID: 296283800}
+    - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
       propertyPath: particleSystem
       value: 
       objectReference: {fileID: 0}
@@ -19197,12 +19208,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75413e9a48194104493c72dd7318578f, type: 3}
---- !u!4 &782943293 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6722731304910741917, guid: 75413e9a48194104493c72dd7318578f,
-    type: 3}
-  m_PrefabInstance: {fileID: 782943292}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782943294 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1706550582173854345, guid: 75413e9a48194104493c72dd7318578f,
