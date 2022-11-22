@@ -94,7 +94,7 @@ public class Canon_CanonBall : GeneralAgressor
         //Arbitrary Array Initialization
         //should get max number of zombies in the game through layer
         Collider[] hits = Physics.OverlapSphere(transform.position,blastRadius,layers);
-        
+        if (BuffManager.Instance != null) damage = BuffManager.Instance.CannonDamage;
         foreach (var hit in hits)
         {
             //Debug.Log(hit.name);

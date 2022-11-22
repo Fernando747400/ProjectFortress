@@ -42,6 +42,11 @@ public class BuffManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SaveAllInitialValues();
+    }
+
     public void CallRandomBuff()
     {
         //int SelectedBuff = UnityEngine.Random.Range(1,6); //6 in prod when all buffs are ready 4 for testing
@@ -107,26 +112,38 @@ public class BuffManager : MonoBehaviour
 
     private void BuffCannon()
     {
-        //_cannonCooldownManager.Cooldwon = 0f;
+        foreach (ButtonCannon cannon in _cannonCooldownManager)
+        {
+            cannon.Cooldown = 0f;
+        }
         CannonDamage = 10000f;
     }
 
     private void ResetCannon()
     {
-        //_cannonCooldownManager.Cooldown = _cannonCooldown;
+        foreach (ButtonCannon cannon in _cannonCooldownManager)
+        {
+            cannon.Cooldown = _cannonCooldown;
+        }
         CannonDamage = _currentCannonDamage;
     }
 
     private void BuffMosquet()
     {
-        //_mosquetManager.Cooldown = 0f;
-        //_mosquetManager.Damage = 10000f;
+        foreach (VrGunFire gun in _mosquetManager)
+        {
+            gun.CoolDown = 0f;
+            gun.Damage = 10000f;
+        }
     }
 
     private void ResetMosquet()
     {
-        //_mosquetManager.Cooldwon = _mosquetCooldown;
-        //_mosquetManager.Cooldown = _mosquetDamage;
+        foreach (VrGunFire gun in _mosquetManager)
+        {
+            gun.CoolDown = _mosquetCooldown;
+            gun.Damage = _mosquetDamage;
+        }
     }
 
     private void BuffCore()
@@ -142,5 +159,20 @@ public class BuffManager : MonoBehaviour
     private void DetonateBomb()
     {
         AtomicBombEvent?.Invoke();
+    }
+
+    private void SaveAllInitialValues()
+    {
+        _hammerCooldown = _hammerCooldownManager[0].Cooldown;
+        _hammerHealthPoints = _hammerManager[0].PointsToRepair;
+        _hammerUpgradePoints = _hammerManager[0].PointsToUpgrade;
+
+        _mosquetCooldown = _mosquetManager[0].CoolDown;
+        _mosquetDamage = _mosquetManager[0].Damage;
+
+        _cannonCooldown = _cannonCooldownManager[0].Cooldown;
+        _currentCannonDamage = CannonDamage;
+
+        _coreCooldown = _coreManager.Cooldown;
     }
 }
