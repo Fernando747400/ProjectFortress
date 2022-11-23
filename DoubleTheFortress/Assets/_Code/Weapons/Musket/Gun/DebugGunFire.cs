@@ -59,15 +59,17 @@ public class DebugGunFire :  GeneralAgressor
 
     protected virtual void FireHitScan()
     {
+        if (!canFire) return;
         canFire = false;
         StopAllCoroutines();
         _savedFirePosition = transform.position;
         
         PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,particleOffset.transform.position,transform.rotation);
         PlayAudio(shootSound, 0.5f);
-        
+        Debug.Log(123);
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
+      
         _hitPosition = hitScan.point;
         _travelTime = hitScan.distance / (bulletSpeed) * Time.fixedDeltaTime;
         StartCoroutine(CorWaitForTravel());
@@ -75,7 +77,7 @@ public class DebugGunFire :  GeneralAgressor
     
     private IEnumerator CorWaitForTravel()
     {
-        // Debug.Log("waiting " + _travelTime + " seconds");
+         Debug.Log("waiting " + _travelTime + " seconds");
         yield return new WaitForSeconds(_travelTime);
         FireSimulated();
     }
@@ -84,11 +86,13 @@ public class DebugGunFire :  GeneralAgressor
     {
         StopAllCoroutines();
         Vector3 simulatedHitPos = _hitPosition - _savedFirePosition;
+        Debug.Log(789);
         Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit, maxDistance, layers);
         PlayParticles("Musket_HitParticle",hitParticle,_hitParticleSystem,simulatedHit.point, quaternion.identity);
-
+        
         if (!TryGetGeneralTarget(simulatedHit.collider.gameObject)) return;
         simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRayCaster(gameObject, damage);
+
     }
 
     protected virtual IEnumerator CorWaitForCoolDown()

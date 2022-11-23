@@ -34,7 +34,11 @@ public class SceneTransition: MonoBehaviour
 
     IEnumerator DelayLoadScene(string SceneToLoad)
     {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadSceneAsync(SceneToLoad);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneToLoad);
+
+        while(!asyncLoad.isDone)
+        {
+            yield return null; 
+        }
     }
 }

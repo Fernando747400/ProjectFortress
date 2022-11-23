@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DebugStuff.Inventory;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -173,11 +174,13 @@ public class InventoryController : MonoBehaviour
     {
         for (int i = 0; i < _objectsRightHand.Length; i++)
         {
+            if (_objectsRightHand[i].gameObject == null) continue;
             _objectsRightHand[i].SetActive(false);
         }
 
         for (int i = 0; i < _objectsLeftHand.Length; i++)
         {
+            if (_objectsLeftHand[i].gameObject == null) continue;
             _objectsLeftHand[i].SetActive(false);
         }
     }

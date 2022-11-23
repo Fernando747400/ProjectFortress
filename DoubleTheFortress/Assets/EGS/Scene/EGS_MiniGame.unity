@@ -7415,7 +7415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296283800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89000106, z: 10.85}
+  m_LocalPosition: {x: 0, y: 0.89000106, z: 11.092}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19913,13 +19913,24 @@ PrefabInstance:
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: cooldown
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: gunShoot
+      value: 
+      objectReference: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: particles
       value: 
       objectReference: {fileID: 1507030633}
+    - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 613808cb13e7f3d47851b32af11b4d1c, type: 3}
     - target: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
         type: 3}
       propertyPath: _ShootSound
@@ -20138,6 +20149,37 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: gunShoot
+      value: 
+      objectReference: {fileID: -8439634605675497305, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 613808cb13e7f3d47851b32af11b4d1c, type: 3}
+    - target: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: hitParticle
+      value: 
+      objectReference: {fileID: 5716235654099307979}
+    - target: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: layers.m_Bits
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: shootParticle
+      value: 
+      objectReference: {fileID: 1507030633}
+    - target: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+        type: 3}
+      propertyPath: particleOffset
+      value: 
+      objectReference: {fileID: 1113856845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75413e9a48194104493c72dd7318578f, type: 3}
 --- !u!114 &782943293 stripped
@@ -29513,6 +29555,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1113479320}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1113856845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113856846}
+  m_Layer: 2
+  m_Name: Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113856846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113856845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.074, z: 1.083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1797811269}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1117201172
 GameObject:
   m_ObjectHideFlags: 0
@@ -47639,6 +47712,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794490689}
   m_CullTransparentMesh: 1
+--- !u!4 &1797811269 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2747243263515189526, guid: 75413e9a48194104493c72dd7318578f,
+    type: 3}
+  m_PrefabInstance: {fileID: 782943292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1801415515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52869,7 +52948,6 @@ MonoBehaviour:
   SpecialSkin: {fileID: 0}
   ZombieLife: 10
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
-  SpecialZombie: {fileID: 0}
   ZombiePooling: {fileID: 2044581463}
 --- !u!114 &2044581463
 MonoBehaviour:

@@ -23,10 +23,13 @@ public class VrGunFire : DebugGunFire
     protected override void FireSimulated()
     {
         if (_isPaused) return;
-        if (!canFire) return;
+       
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
+       
         base.FireSimulated();
+        
         StartCoroutine(CorWaitForCoolDown());
+       
     }
 
     protected override void FireHitScan()
