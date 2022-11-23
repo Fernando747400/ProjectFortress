@@ -42,6 +42,7 @@ public class VrGunFire : DebugGunFire
         {
             GameManager.Instance.PauseGameEvent += Paused;
             GameManager.Instance.PlayGameEvent += Unpaused;
+            _isPaused = GameManager.Instance.IsPaused;
         }
     }
 
@@ -60,7 +61,7 @@ public class VrGunFire : DebugGunFire
         {
             GameManager.Instance.PauseGameEvent -= Paused;
             GameManager.Instance.PlayGameEvent -= Unpaused;
-            
+            _isPaused = GameManager.Instance.IsPaused;        
         }
     }
 
