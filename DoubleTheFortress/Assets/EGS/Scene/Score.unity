@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721281481}
-  - component: {fileID: 721281480}
+  - component: {fileID: 721281482}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -261,20 +261,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &721281480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721281479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb130954fd08f27499d9c4d8ec1f71e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneToLoad: Menu
-  _goingToMenu: 1
 --- !u!4 &721281481
 Transform:
   m_ObjectHideFlags: 0
@@ -290,6 +276,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &721281482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721281479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d8999eed5a752439d4b51642964f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneToLoad: Menu
 --- !u!1001 &930277664
 PrefabInstance:
   m_ObjectHideFlags: 0

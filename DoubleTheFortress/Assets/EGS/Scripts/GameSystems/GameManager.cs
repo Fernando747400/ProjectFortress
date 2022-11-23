@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,11 +15,13 @@ public class GameManager : MonoBehaviour
     private bool _gameStarted;
     private bool _gameFinished;
     private bool _inMainMenu;
+    private bool _zombieDanceScene;
     
     public int Kills { get => _zombieKills; }
     public bool IsPaused { get => _isPaused; } //Only zombies use
     public bool GameStarted { get => _gameStarted; }
     public bool GameFinished { get => _gameFinished; }
+    public bool ZombieDanceScene { get => _zombieDanceScene; set => _zombieDanceScene = value; }
     public bool MainMenu { get => _inMainMenu; set { if(_inMainMenu == value) return; _inMainMenu = value; UpdateMainMenu(); } }
 
     public event Action PauseGameEvent;
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
     public event Action FinishGameEvent;
     public event Action GotKillEvent;
     public event Action ScoreScreenEvent;
+    public event Action ZombieScreenEvent;
 
     private void Awake()
     {
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
     private void Start()
@@ -49,8 +53,17 @@ public class GameManager : MonoBehaviour
     private void RecievePauseInput()
     {
         if (_inMainMenu) return;
+
+        if (_zombieDanceScene)
+        {
+            Debug.Log("Going To Main Menu");
+            ZombieScreenEvent?.Invoke();
+            return;
+        }
+
         if (_gameFinished)
         {
+            Debug.Log("Game Finished");
             ScoreScreenEvent?.Invoke();
             return;
         }  
@@ -130,6 +143,7 @@ public class GameManager : MonoBehaviour
         PauseGame();
         _gameStarted = false;
         _gameFinished = false;
+        _zombieDanceScene = false;
     }
 
 }
