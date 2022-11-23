@@ -8,7 +8,6 @@ public class VrGunFire : DebugGunFire
 {
     [SerializeField] InventoryController inventoryController;
     public InputActionReference gunShoot;
-    private PlayerSelectedItem _selectedItem;
 
     private bool _isPaused;
     void Start()
@@ -43,6 +42,7 @@ public class VrGunFire : DebugGunFire
         {
             GameManager.Instance.PauseGameEvent += Paused;
             GameManager.Instance.PlayGameEvent += Unpaused;
+            _isPaused = GameManager.Instance.IsPaused;
         }
     }
 
@@ -61,7 +61,7 @@ public class VrGunFire : DebugGunFire
         {
             GameManager.Instance.PauseGameEvent -= Paused;
             GameManager.Instance.PlayGameEvent -= Unpaused;
-            
+            _isPaused = GameManager.Instance.IsPaused;        
         }
     }
 

@@ -29850,7 +29850,7 @@ MonoBehaviour:
     type: 3}
   maxProjectiles: 5
   launchForce: 800
-  FireSound: {fileID: 0}
+  FireSound: {fileID: 8300000, guid: af1d0080d41e9be45b2e6f9e102e19b1, type: 3}
 --- !u!1 &6792457281806337179
 GameObject:
   m_ObjectHideFlags: 0

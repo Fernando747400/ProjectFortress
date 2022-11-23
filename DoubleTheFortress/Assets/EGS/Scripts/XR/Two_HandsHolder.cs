@@ -42,21 +42,25 @@ public class Two_HandsHolder : XRBaseInteractable
 
     protected virtual void Grab(XRBaseInteractor interactor)
     {
+        if (_currentHand == null) return; 
+
         _currentHand.HandleIsEmpty();
         if (!_currentHand.HandIsEmpty) return;
+        
         _isGrabbing = true;
         _currentHand.HandleHandsVisible(false);
+        _currentHand.HandleTorchCannon(true);
         OnGrabbed?.Invoke();
     }
 
-    protected virtual void Drop(XRBaseInteractor interactor)
+    protected virtual void Drop(XRBaseInteractor interactor = null)
     {
+        if (_currentHand == null) return;
         _isGrabbing = false;
-
-        foreach (var hand in _hands)
-        {
-            hand.HandleHandsVisible(true);
-        }
+        _currentHand.HandleHandsVisible(true);
+        _currentHand.HandleTorchCannon(false);
+        
+       
         OnReleased?.Invoke();
 
     }
@@ -67,12 +71,6 @@ public class Two_HandsHolder : XRBaseInteractable
         {
             _currentHand = other.GetComponent<HandController_XR>();
             _currentHand.HandleIsEmpty();
-            if (!_hands.Contains(_currentHand))
-            {
-                _hands.Add(_currentHand);
-            }
-            OnHandsOut?.Invoke();
-
         }
     }
     
@@ -80,13 +78,10 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            _isGrabbing = false;
-
-            foreach (var hand in _hands)
+            if (_currentHand != null)
             {
-                hand.HandleHandsVisible(true);
+                Drop();
             }
-           
             _currentHand = null;
             OnHandsOut?.Invoke();
 

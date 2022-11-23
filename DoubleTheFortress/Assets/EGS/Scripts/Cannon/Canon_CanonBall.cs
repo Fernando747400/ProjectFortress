@@ -19,6 +19,13 @@ public class Canon_CanonBall : GeneralAgressor
     
     [Header("Audio Clips")]
     public AudioClip explosion;
+
+    public float Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+
+    }
     
     // Start is called before the first frame update
     private void Awake()
@@ -87,7 +94,7 @@ public class Canon_CanonBall : GeneralAgressor
         //Arbitrary Array Initialization
         //should get max number of zombies in the game through layer
         Collider[] hits = Physics.OverlapSphere(transform.position,blastRadius,layers);
-        
+        if (BuffManager.Instance != null) damage = BuffManager.Instance.CannonDamage;
         foreach (var hit in hits)
         {
             //Debug.Log(hit.name);

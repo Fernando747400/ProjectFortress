@@ -7,14 +7,14 @@ public class HandController_XR : MonoBehaviour
 {
     [SerializeField] private InventoryController _inventoryController;
     [SerializeField] private SkinnedMeshRenderer handSkinnedMesh;
-    [SerializeField] private Hand _hand;
-    [SerializeField] PlayerSelectedItem handObjects;
-    private Vector3 _handPos;
+    [SerializeField] private Hand _myHand;
 
-    public bool _handIsEmpty;
-    public Hand Hand
+    [SerializeField] private bool _handIsEmpty;
+    [SerializeField] private bool _isUsingCannon;
+    
+    public Hand MyHand
     {
-        get => _hand;
+        get => _myHand;
     }
     public Vector3 HandPos
     {
@@ -40,17 +40,16 @@ public class HandController_XR : MonoBehaviour
     public void HandleIsEmpty(bool isSelecting = false)
     {
         _handIsEmpty = true;
-        switch (Hand)
+        switch (MyHand)
         {
             case Hand.LeftHand:
-                
-                if (_inventoryController.HandsObjects == handObjects)
+                if (_inventoryController.SelectingHand == _myHand )
                 {
                     _handIsEmpty = false;
                 }
                 break;
             case Hand.RightHand:
-                if (_inventoryController.HandsObjects == handObjects)
+                if (_inventoryController.SelectingHand == _myHand)
                 {
                     _handIsEmpty = false;
                 }
@@ -58,9 +57,44 @@ public class HandController_XR : MonoBehaviour
         }
         
     }
-    
-    
-    
+
+
+    public void HandleTorchCannon(bool isUsing)
+    {
+        _isUsingCannon = isUsing;
+        
+        switch (MyHand)
+        {
+            case Hand.LeftHand:
+                if (_isUsingCannon)
+                {
+                    _inventoryController.SelectObject(PlayerSelectedItem.Torch, Hand.RightHand);
+                }
+                else
+                {
+                    _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.RightHand);
+                }
+                break;
+            
+            case Hand.RightHand:
+                if (_isUsingCannon)
+                {
+                    _inventoryController.SelectObject(PlayerSelectedItem.Torch, Hand.LeftHand);
+                }
+                else
+                {
+                    _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.LeftHand);
+
+                }
+              
+                break;
+        }
+
+       
+    }
+
+
+
 }
 public enum Hand
 {

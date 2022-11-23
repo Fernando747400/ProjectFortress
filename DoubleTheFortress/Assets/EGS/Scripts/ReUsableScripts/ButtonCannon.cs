@@ -25,8 +25,10 @@ public class ButtonCannon : MonoBehaviour
    
    private bool _isPaused;
    public bool _isAutomatic;
-    
-    float _time;
+
+   [SerializeField]private float _cooldown;
+
+   float _time;
     float _intialTimer = 0;
     private float _initialValue;
     private bool _timerHasStarted;
@@ -34,6 +36,12 @@ public class ButtonCannon : MonoBehaviour
     private bool _isFiring;
 
     public Action OnPushedButton;
+
+    public float Cooldown
+    {
+        get { return _cooldown;}
+        set { _cooldown = value; }
+    }
 
     //LerpColor
     [SerializeField][Range(0f, 1f)] float lerpTime;
@@ -110,7 +118,7 @@ public class ButtonCannon : MonoBehaviour
     {
         _isFiring = true;
         particles.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_cooldown);
         OnPushedButton?.Invoke();
     }
     void FireCannon()

@@ -17,6 +17,7 @@ public class GameProgression : MonoBehaviour, IPause
         {
             Instance = this;
             DontDestroyOnLoad(Instance);
+            _isPaused = true;
         }
         else
         {
@@ -75,7 +76,7 @@ public class GameProgression : MonoBehaviour, IPause
 
             if(_specialSpawn * 3 == _currentMinute)
             {
-                SpawnSpecial();
+                EnemyManagger.Instance.SpawnSpecialZombie();
                 _specialSpawn++;
             }
         }
@@ -94,11 +95,6 @@ public class GameProgression : MonoBehaviour, IPause
         _elapsedTime = 0;
         _currentMinute = 0;
         _specialSpawn = 1;
-    }
-
-    private void SpawnSpecial()
-    {
-        EnemyManagger.Instance.SpawnSpecialZombie();
     }
 
     #region Interface methods

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -24,10 +25,16 @@ public class SceneTransition: MonoBehaviour
     public void LoadScene(string SceneToLoad)
     {
         LoadingScreen.SetActive(true);
-        SceneManager.LoadSceneAsync(SceneToLoad);
+        StartCoroutine(DelayLoadScene(SceneToLoad));
     }
     public void Quit()
     {
         Application.Quit();
+    }
+
+    IEnumerator DelayLoadScene(string SceneToLoad)
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadSceneAsync(SceneToLoad);
     }
 }
