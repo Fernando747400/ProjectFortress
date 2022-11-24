@@ -8774,7 +8774,6 @@ Transform:
   - {fileID: 1567706969}
   - {fileID: 2080406934}
   - {fileID: 195375027}
-  - {fileID: 1756486066}
   - {fileID: 276800924}
   - {fileID: 1498895370}
   - {fileID: 804601698}
@@ -8823,6 +8822,7 @@ Transform:
   - {fileID: 816344711}
   - {fileID: 583000149}
   - {fileID: 1805649379}
+  - {fileID: 1756486066}
   - {fileID: 827733093}
   - {fileID: 1463322800}
   - {fileID: 52600736}
@@ -47045,7 +47045,7 @@ PrefabInstance:
     - target: {fileID: 3941083753153746713, guid: 87abedd3113be674faabf73706021bb0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 317
+      value: 309
       objectReference: {fileID: 0}
     - target: {fileID: 3941083753153746713, guid: 87abedd3113be674faabf73706021bb0,
         type: 3}
@@ -47065,7 +47065,7 @@ PrefabInstance:
     - target: {fileID: 3941083753153746713, guid: 87abedd3113be674faabf73706021bb0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.38732404
+      value: 1.088
       objectReference: {fileID: 0}
     - target: {fileID: 3941083753153746713, guid: 87abedd3113be674faabf73706021bb0,
         type: 3}
@@ -49788,10 +49788,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 1736516979, guid: b236219772623334297e0540b4983177, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5992807665290849765, guid: b236219772623334297e0540b4983177,
         type: 3}
       propertyPath: m_RootOrder
-      value: 442
+      value: 433
       objectReference: {fileID: 0}
     - target: {fileID: 5992807665290849765, guid: b236219772623334297e0540b4983177,
         type: 3}
@@ -49816,7 +49820,7 @@ PrefabInstance:
     - target: {fileID: 5992807665290849765, guid: b236219772623334297e0540b4983177,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.093
       objectReference: {fileID: 0}
     - target: {fileID: 5992807665290849765, guid: b236219772623334297e0540b4983177,
         type: 3}
@@ -52945,7 +52949,7 @@ MonoBehaviour:
   StrongZombie: 0
   DefaultSkin: {fileID: 2100000, guid: a7e1e67bb29c96a49826e3c4ef9cd5b5, type: 2}
   StrongSkin: {fileID: 2100000, guid: a737879090855e54d9d9979645823507, type: 2}
-  SpecialSkin: {fileID: 0}
+  SpecialSkin: {fileID: 2100000, guid: f5a40a8097a2a7441bbd8d22e11dc7a5, type: 2}
   ZombieLife: 10
   Zombie: {fileID: 8410354908158750909, guid: 455b5cc6967889442b521fcbee94f765, type: 3}
   ZombiePooling: {fileID: 2044581463}

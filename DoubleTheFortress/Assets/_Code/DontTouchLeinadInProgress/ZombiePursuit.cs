@@ -287,8 +287,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void ResetSpecialZombie()
     {
-        if (CurrentState == ZombieState.Idle || CurrentState == ZombieState.Death) CurrentState = ZombieState.Walk;
-        _zombieAnimator.PlayAnimation(ZombieAnimator.AnimationsEnum.Walk);
         CheckIfPause();
         SpecialZombieMaterial();
         _alertSignal.SetActive(false);
@@ -308,7 +306,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
     {
         GetSpecialRoute();
         ResetSpecialZombie();
-        SpecialZombieMaterial();
     }
 
     private void Prepare()
@@ -331,6 +328,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     public void CheckIfPause()
     {
+        if (_zombieAnimator == null) _zombieAnimator.GetComponent<ZombieAnimator>();
         if (GameManager.Instance.IsPaused)
         {
             CurrentState = ZombieState.Idle;

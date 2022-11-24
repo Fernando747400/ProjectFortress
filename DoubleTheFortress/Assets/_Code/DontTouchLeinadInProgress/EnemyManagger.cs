@@ -38,14 +38,6 @@ public class EnemyManagger : MonoBehaviour
         StrongZombie = false;
     }
 
-    private void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    OnSpawn();
-        //}
-    }
-
     public void OnSpawn()
     {
         Vector3 vector = SpawnPosition().Peek().transform.position;
@@ -92,6 +84,16 @@ public class EnemyManagger : MonoBehaviour
             yield return new WaitForSeconds(delay);
             OnSpawn();
         }
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.StartGameEvent -= FirstSpawn;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.StartGameEvent -= FirstSpawn;
     }
 
 }

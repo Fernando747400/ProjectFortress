@@ -30,13 +30,20 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        } else
+        {
+            Destroy(this);
+        }
+
+        SubscribeToPauseEvents();
+        Prepare();
     }
 
     private void Start()
     {
-        SubscribeToPauseEvents();
-        Prepare();
         _life = _maxLife;
         _currentCooldown = 0f;
         //StartCoroutine(TestMethod());
@@ -134,6 +141,22 @@ public class CoreManager : MonoBehaviour, IPause , IGeneralTarget
     {
         GameManager.Instance.PauseGameEvent += Pause;
         GameManager.Instance.PlayGameEvent += Unpause;
+    }
+
+    private void UnsubscribeToPauseEvent()
+    {
+        GameManager.Instance.PauseGameEvent -= Pause;
+        GameManager.Instance.PlayGameEvent -= Unpause;
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeToPauseEvent();
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeToPauseEvent();
     }
     #endregion
 

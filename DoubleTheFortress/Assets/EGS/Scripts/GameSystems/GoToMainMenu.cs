@@ -15,7 +15,7 @@ public class GoToMainMenu : MonoBehaviour
     {
         Debug.Log("Received main menu event");
         GameManager.Instance.MainMenu = true;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
 
     private void OnEnable()

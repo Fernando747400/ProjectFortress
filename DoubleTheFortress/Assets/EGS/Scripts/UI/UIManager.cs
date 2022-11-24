@@ -26,7 +26,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private void Start()
@@ -83,13 +90,32 @@ public class UIManager : MonoBehaviour
 
     private void Prepare()
     {
-        CoreManager.Instance.LostAHeartEvent += UpdateCoreLife;
         GameManager.Instance.GotKillEvent += UpdateKillCounter;
         GameManager.Instance.StartGameEvent += CloseTutorialCanvas;
         GameManager.Instance.PauseGameEvent += OpenPauseCanvas;
         GameManager.Instance.PlayGameEvent += ClosePauseCanvas;
         GameManager.Instance.FinishGameEvent += FinishGameCanvas;
+        CoreManager.Instance.LostAHeartEvent += UpdateCoreLife;
         _skullPooler.Preload(_skullPrefab, 10);
     }
-    
+
+    private void UnsubscribeToEvents()
+    {
+        CoreManager.Instance.LostAHeartEvent -= UpdateCoreLife;
+        GameManager.Instance.GotKillEvent -= UpdateKillCounter;
+        GameManager.Instance.StartGameEvent -= CloseTutorialCanvas;
+        GameManager.Instance.PauseGameEvent -= OpenPauseCanvas;
+        GameManager.Instance.PlayGameEvent -= ClosePauseCanvas;
+        GameManager.Instance.FinishGameEvent -= FinishGameCanvas;
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeToEvents();
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeToEvents();
+    }
 }

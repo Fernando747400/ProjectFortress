@@ -74,8 +74,9 @@ public class GameProgression : MonoBehaviour, IPause
             Debug.Log("Spawned 3 more zombies");
             _currentMinute++;
 
-            if(_specialSpawn * 3 == _currentMinute)
+            if(_specialSpawn * 1 == _currentMinute)
             {
+                Debug.Log("Spawned Special Zombie");
                 EnemyManagger.Instance.SpawnSpecialZombie();
                 _specialSpawn++;
             }
@@ -95,6 +96,10 @@ public class GameProgression : MonoBehaviour, IPause
         _elapsedTime = 0;
         _currentMinute = 0;
         _specialSpawn = 1;
+    }
+    private void OnEnable()
+    {
+        ResetValues();
     }
 
     #region Interface methods

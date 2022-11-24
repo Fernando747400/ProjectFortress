@@ -145,5 +145,4 @@ public class GameManager : MonoBehaviour
         _gameFinished = false;
         _zombieDanceScene = false;
     }
-
 }
