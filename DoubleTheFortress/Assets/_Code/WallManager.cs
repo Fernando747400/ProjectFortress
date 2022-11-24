@@ -11,6 +11,7 @@ public class WallManager : MonoBehaviour , IPause
     
     [Header("Wall Script")]
     [SerializeField] private Wall _mywallScript;
+    [SerializeField] private ShieldUIManager _shieldsUI;
 
     [Header("Walls Models")]
     [SerializeField] private WallScriptableObject _ghost;
@@ -71,6 +72,8 @@ public class WallManager : MonoBehaviour , IPause
         {
             _mywall.Upgrade(_mywall.CurrentObject, _wallsList[GetCurrentIndex() + 1].Model);
         }
+
+        _shieldsUI.UpdateShields(GetCurrentIndex());
     }
 
     public void ReceiveDamage(GameObject sender, float damage)
@@ -84,6 +87,7 @@ public class WallManager : MonoBehaviour , IPause
             return;
         }
         DownGrade();
+        _shieldsUI.UpdateShields(GetCurrentIndex());
     }
 
     public void UpgradeSuccess()
