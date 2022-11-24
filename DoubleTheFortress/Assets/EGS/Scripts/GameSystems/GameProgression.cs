@@ -16,7 +16,7 @@ public class GameProgression : MonoBehaviour, IPause
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(Instance);
+            //DontDestroyOnLoad(Instance);
             _isPaused = true;
         }
         else
