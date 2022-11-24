@@ -21,24 +21,23 @@ public class VrGunFire : DebugGunFire
     {
         //overriden do not use  
     }
+    protected override void FireHitScan()
+    {
+        if (_isPaused) return;
+        if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
+        if (!persistentData.CooldownPassed()) return;
+        base.FireHitScan();
+    }
 
     protected override void FireSimulated()
     {
         if (_isPaused) return;
-       
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
-        if (!persistentData.CooldownPassed()) return;
         base.FireSimulated();
         persistentData.ResetCooldwon();
         
     }
 
-    protected override void FireHitScan()
-    {
-        if (_isPaused) return;
-        if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
-        base.FireHitScan();
-    }
 
     private void OnEnable()
     {

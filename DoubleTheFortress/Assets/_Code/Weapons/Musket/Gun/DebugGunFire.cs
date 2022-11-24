@@ -18,7 +18,6 @@ public class DebugGunFire :  GeneralAgressor
     [Tooltip("Cooldown Time in seconds")] [SerializeField]
     protected float cooldown = 5;
     private float _travelTime;
-    protected bool canFire = true;
     private Vector3 _hitPosition;
     
     //saves the gun position when hitscan was fired
@@ -51,7 +50,7 @@ public class DebugGunFire :  GeneralAgressor
     
     protected virtual void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)  | canFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireHitScan();
         }
@@ -59,14 +58,11 @@ public class DebugGunFire :  GeneralAgressor
 
     protected virtual void FireHitScan()
     {
-        if (!canFire) return;
-        canFire = false;
         StopAllCoroutines();
         _savedFirePosition = transform.position;
         
         PlayParticles("Musket_SmokeParticle",shootParticle,_shootParticleSystem,particleOffset.transform.position,transform.rotation);
         PlayAudio(shootSound, 0.5f);
-        Debug.Log(123);
         if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hitScan, maxDistance,
                 Physics.DefaultRaycastLayers)) return;
       
@@ -84,8 +80,8 @@ public class DebugGunFire :  GeneralAgressor
     protected virtual void FireSimulated()
     {
         StopAllCoroutines();
-        Vector3 simulatedHitPos = _hitPosition - _savedFirePosition;
-        Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit, maxDistance, layers);
+        Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
+        Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit simulatedHit, maxDistance, layers);
         PlayParticles("Musket_HitParticle",hitParticle,_hitParticleSystem,simulatedHit.point, quaternion.identity);
         
         if (!TryGetGeneralTarget(simulatedHit.collider.gameObject)) return;
@@ -97,7 +93,6 @@ public class DebugGunFire :  GeneralAgressor
     {
         Debug.Log("waiting " + cooldown);
         yield return new WaitForSeconds(cooldown);
-        canFire = true;
         Debug.Log("done waiting");
 
     }
