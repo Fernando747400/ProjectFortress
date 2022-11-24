@@ -42,10 +42,12 @@ public class EnemyManagger : MonoBehaviour
     {
         Vector3 vector = SpawnPosition().Peek().transform.position;
 
+        
         GameObject temporal = ZombiePooling.GetObject(Zombie);
         temporal.transform.position = vector;
         temporal.GetComponent<ZombiePursuit>().ZombieDamage = Damage;
         temporal.GetComponent<ZombiePursuit>().MaxHp = ZombieLife;
+        temporal.GetComponent<ZombiePursuit>().speed = Random.Range(0.2f, 0.4f);
         //temporal.GetComponent<ZombiePursuit>().ResetZombie();
     }
 
@@ -66,11 +68,15 @@ public class EnemyManagger : MonoBehaviour
 
     public void SpawnSpecialZombie()
     {
-        Vector3 vector = SpawnPosition().Peek().transform.position;
-        GameObject temporal = ZombiePooling.GetObject(Zombie);
-        temporal.transform.position = vector;
-        temporal.GetComponent<ZombiePursuit>().SpecialZombie();
+        OnSpawn();
+
+        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
+        GameObject specialZ = zombies[zombies.Length - 1];
+        specialZ.GetComponent<ZombiePursuit>().SpecialZombie();
+        specialZ.GetComponent<ZombiePursuit>().MaxHp = 1;
+        specialZ.GetComponent<ZombiePursuit>().speed = 3;
     }
+
 
     private void FirstSpawn()
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 123234708}
-  m_IndirectSpecularColor: {r: 0.17317696, g: 0.216452, b: 0.2984776, a: 1}
+  m_IndirectSpecularColor: {r: 0.1731771, g: 0.21645243, b: 0.29847822, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4970,7 +4970,11 @@ PrefabInstance:
     - target: {fileID: 1495838096450680187, guid: 6f4da0b1e9d25ff4e9a3f7997d21d75f,
         type: 3}
       propertyPath: m_text
-      value: "A 3 MONT \nGAME MADE BY\nLAZY GAMES"
+      value: 'A 3 MONTH
+
+        GAME MADE BY
+
+        LAZY GAMES'
       objectReference: {fileID: 0}
     - target: {fileID: 1495838096450680187, guid: 6f4da0b1e9d25ff4e9a3f7997d21d75f,
         type: 3}

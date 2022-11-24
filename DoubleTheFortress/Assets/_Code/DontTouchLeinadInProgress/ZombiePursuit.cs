@@ -145,6 +145,8 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             UpdateTarget();
             PlayAudio(_snarl, 0.3f);
         }
+        if (_targetTransform == null) GetRoute();
+        CheckForReset();
         Vector3 pursuit = this.Pursuit(_targetTransform.position);
         Vector3 stearing = pursuit;
         if (isAvoid)
@@ -153,7 +155,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
             stearing += avoid;
         }
         
-        //transform.LookAt(_targetTransform);
         iTween.LookUpdate(this.transform.gameObject, iTween.Hash("looktarget", _targetTransform,"axis", "y", "time", 2f));
         transform.position += stearing * Time.deltaTime;
     }
@@ -164,6 +165,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         if(_routeQueue.Count == 0)
         {
             CurrentState = ZombieState.Idle;
+            _isSpecial = false;
             Despawn();
             return;
         }
@@ -264,6 +266,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         _routeQueue.Clear();
         _routeQueue = RouteManagger.Instance.RandomSpecialRoute();
         _targetTransform = _routeQueue.Peek();
+        ResetSpecialZombie();
     } 
     
     public void ResetZombie()
@@ -287,34 +290,27 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void ResetSpecialZombie()
     {
-        CheckIfPause();
-        SpecialZombieMaterial();
-        _alertSignal.SetActive(false);
-        _maxLife = 20f;
-        _isSensitive = true;
-        _isDying = false;
-        _isAttacking = false;
-        _isRecivingDamage = false;
-        this.speed = 3f;
         _isSpecial = true;
-
+        SpecialZombieMaterial();
+        _maxLife = 20f;
+        
         if (RouteQueue.Count <= 1) return;
         this.transform.position = RouteQueue.Peek().transform.position;
     }
 
+
     public void SpecialZombie()
     {
+        _isSpecial = true;
         GetSpecialRoute();
-        ResetSpecialZombie();
+        
     }
 
     private void Prepare()
     {
         _zombieAnimator = GetComponent<ZombieAnimator>();
         _rigidBody = GetComponent<Rigidbody>();
-        GetRoute();
         _arrivalDistance = EnemyManagger.Instance.maxDistance;
-        this.speed = UnityEngine.Random.Range(.2f, .4f);
 
         _isAttacking = false;
         _isRecivingDamage = false;
@@ -342,18 +338,19 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void StrongZombie()
     {
+        if(_isSpecial) return;
         if (!EnemyManagger.Instance.StrongZombie)
         {
             foreach (Renderer render in this.GetComponentsInChildren<Renderer>())
             {
-                if (render.material.name == "Zombieskin (Instance)") render.material = EnemyManagger.Instance.DefaultSkin;
+                if (render.material.name == "Zombieskin (Instance)" || render.material.name == "SpecialZ (Instance)") render.material = EnemyManagger.Instance.DefaultSkin;
             }
         }
         if (EnemyManagger.Instance.StrongZombie)
         {
             foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
             {
-                if (renderer.material.name == "Material.001 (Instance)" || renderer.material.name == "Zombieskin (Instance)") renderer.material = EnemyManagger.Instance.StrongSkin;
+                if (renderer.material.name == "Material.001 (Instance)" || renderer.material.name == "Zombieskin (Instance)" || renderer.material.name == "SpecialZ (Instance)") renderer.material = EnemyManagger.Instance.StrongSkin;
             }
         }
     }
@@ -364,7 +361,6 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         {
             StrongZombie();
         }
-
         if (_isSpecial)
         {
             foreach (Renderer renderer in this.GetComponentsInChildren<Renderer>())
@@ -374,6 +370,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
                     renderer.material = EnemyManagger.Instance.SpecialSkin;
                 }
             }
+            return;
         }
     }
 
