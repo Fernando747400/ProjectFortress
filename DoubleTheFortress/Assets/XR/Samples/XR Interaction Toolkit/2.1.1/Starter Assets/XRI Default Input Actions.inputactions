@@ -798,6 +798,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a14c763c-d74a-440e-a01c-afb8a1741e0b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dd433817-216c-46b9-8dd3-f3a4ea1767b9",
                     "path": "<XRController>{RightHand}/grip",
                     "interactions": "",
@@ -887,7 +898,7 @@
                 {
                     "name": "",
                     "id": "1545e4e5-5f80-49ae-bd0c-c47714ebccde",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -930,8 +941,30 @@
                 },
                 {
                     "name": "",
+                    "id": "adcf2132-49db-4d30-a91b-d39d2e7a2ef7",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectMusket_RIGHT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7be02ea3-b236-4737-ac3b-5da92128a965",
                     "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectMusket_LEFT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b248d6a-aaa9-4ebc-a351-bce57ee7adad",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
