@@ -73,8 +73,8 @@ public class EnemyManagger : MonoBehaviour
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
         GameObject specialZ = zombies[zombies.Length - 1];
         specialZ.GetComponent<ZombiePursuit>().SpecialZombie();
-        specialZ.GetComponent<ZombiePursuit>().MaxHp = 1;
-        specialZ.GetComponent<ZombiePursuit>().speed = 3;
+        specialZ.GetComponent<ZombiePursuit>().MaxHp = 10;
+        specialZ.GetComponent<ZombiePursuit>().speed = 3f;
     }
 
 

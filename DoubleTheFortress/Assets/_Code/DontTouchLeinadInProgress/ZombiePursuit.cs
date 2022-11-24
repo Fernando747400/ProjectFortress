@@ -290,10 +290,12 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
 
     private void ResetSpecialZombie()
     {
-        _isSpecial = true;
+        _life = 10;
+        _isSensitive = true;
+        _isDying = false;
+        _isAttacking = false;
+        _isRecivingDamage = false;
         SpecialZombieMaterial();
-        _maxLife = 20f;
-        
         if (RouteQueue.Count <= 1) return;
         this.transform.position = RouteQueue.Peek().transform.position;
     }
@@ -416,7 +418,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         GameManager.Instance.PauseGameEvent += Pause;
         GameManager.Instance.PlayGameEvent += Unpause;
         GameManager.Instance.FinishGameEvent += GameOverAnim;
-        BuffManager.Instance.AtomicBombEvent += Die;
+        BuffManager.Instance.AtomicBombEvent += TakeDamage;
         ZombieDieEvent += GameManager.Instance.AddKill;
         ZombieTotemEvent += UIManager.Instance.ZombieDeadEffect;
     }
@@ -426,7 +428,7 @@ public class ZombiePursuit : StearingBehaviours, IGeneralTarget, IPause
         GameManager.Instance.PauseGameEvent -= Pause;
         GameManager.Instance.PlayGameEvent -= Unpause;
         GameManager.Instance.FinishGameEvent -= GameOverAnim;
-        BuffManager.Instance.AtomicBombEvent -= Die;
+        BuffManager.Instance.AtomicBombEvent -= TakeDamage;
         ZombieDieEvent -= GameManager.Instance.AddKill;
         ZombieTotemEvent -= UIManager.Instance.ZombieDeadEffect;
     }
