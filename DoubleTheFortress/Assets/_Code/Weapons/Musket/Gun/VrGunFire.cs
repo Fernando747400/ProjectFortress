@@ -9,6 +9,8 @@ public class VrGunFire : DebugGunFire
     [SerializeField] InventoryController inventoryController;
     public InputActionReference gunShoot;
 
+    [SerializeField]private Gun_Persistent persistentData;
+
     private bool _isPaused;
     void Start()
     {
@@ -25,11 +27,10 @@ public class VrGunFire : DebugGunFire
         if (_isPaused) return;
        
         if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
-       
+        if (!persistentData.CooldownPassed()) return;
         base.FireSimulated();
+        persistentData.ResetCooldwon();
         
-        StartCoroutine(CorWaitForCoolDown());
-       
     }
 
     protected override void FireHitScan()
@@ -49,15 +50,6 @@ public class VrGunFire : DebugGunFire
         }
     }
 
-    protected override IEnumerator CorWaitForCoolDown()
-    {
-        Debug.Log("waiting " + cooldown);
-        yield return new WaitForSeconds(cooldown);
-        canFire = true;
-        Debug.Log("done waiting");
-    }
-    
-
     private void OnDisable()
     {
         if (GameManager.Instance != null)
@@ -75,5 +67,14 @@ public class VrGunFire : DebugGunFire
     void Unpaused()
     {
         _isPaused = false;
+    }
+
+    protected override void Prepare()
+    {
+        base.Prepare();
+        if (persistentData == null)
+        {
+            throw new NullReferenceException("No persistentData found for musket");
+        }
     }
 }
