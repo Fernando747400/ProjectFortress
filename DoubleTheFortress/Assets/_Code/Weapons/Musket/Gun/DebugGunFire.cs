@@ -26,18 +26,12 @@ public class DebugGunFire :  GeneralAgressor
     [Header("Audios")]
     public AudioClip shootSound;
 
-    public float CoolDown
-    {
-        get { return cooldown; }
-        set { cooldown = value; }
-    }
-
     public float Damage
     {
         get { return damage; }
         set { damage = value; }
     }
-    private void Start()
+    protected virtual void Awake()
     {
         Prepare();
     }

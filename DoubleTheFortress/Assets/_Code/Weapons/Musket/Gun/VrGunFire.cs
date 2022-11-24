@@ -12,9 +12,10 @@ public class VrGunFire : DebugGunFire
     [SerializeField]private Gun_Persistent persistentData;
 
     private bool _isPaused;
-    void Start()
+    protected override void Awake()
     {
         gunShoot.action.performed += ctx => FireHitScan();
+        Prepare();
     }
 
     protected override void CheckInput()
