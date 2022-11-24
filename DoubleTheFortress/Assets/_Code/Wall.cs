@@ -18,6 +18,7 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     public UnityEvent UpgradePointsEvent;
     public UnityEvent UpgradeEvent;
     public UnityEvent ReceiveHammerEvent;
+    public UnityEvent ReceiveDamageEvent;
 
     private GameObject _currentObject;
     private float _maxHealth;
@@ -59,6 +60,7 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     public void RecieveHammer(float repairValue, float upgradeValue)
     {
         onRecieveHammer?.Invoke(repairValue, upgradeValue);
+        ReceiveHammerEvent?.Invoke();
     }
 
     protected virtual void TakeDamage(float dmgValue)
@@ -77,6 +79,7 @@ public class Wall : MonoBehaviour, IConstructable, IGeneralTarget
     {
         //needs to evaluate if the sender is on the same team
         onRecieveDamage?.Invoke(sender, dmg);
+        ReceiveDamageEvent?.Invoke();
         Debug.Log("Hit By: " + sender.gameObject.name);
     }
 
