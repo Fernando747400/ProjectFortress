@@ -25,8 +25,10 @@ public class BuffManager : MonoBehaviour
     private float _hammerUpgradePoints;
     private float _hammerHealthPoints;
 
-    [SerializeField] private List<VrGunFire>_mosquetManager;
+    [SerializeField] private List<Gun_Persistent> _mosquetCooldownManager;
     private float _mosquetCooldown;
+    
+    [SerializeField] private List<VrGunFire>_mosquetDamageManager;
     private float _mosquetDamage;
 
     [SerializeField] private List<ButtonCannon> _cannonCooldownManager;
@@ -152,22 +154,33 @@ public class BuffManager : MonoBehaviour
 
     private void BuffMosquet()
     {
-        foreach (VrGunFire gun in _mosquetManager)
+        foreach (VrGunFire gun in _mosquetDamageManager)
         {
-            gun.CoolDown = 0f;
+            
             gun.Damage = 10000f;
         }
+
+        foreach (Gun_Persistent gun in _mosquetCooldownManager)
+        {
+            gun.Cooldown = 0f;
+        }
+        
         if (bulletBuff == null) bulletBuff = GameObject.Find("Bullet Buff");
         bulletBuff.SetActive(true);
     }
 
     private void ResetMosquet()
     {
-        foreach (VrGunFire gun in _mosquetManager)
+        foreach (VrGunFire gun in _mosquetDamageManager)
         {
-            gun.CoolDown = _mosquetCooldown;
             gun.Damage = _mosquetDamage;
         }
+
+        foreach(Gun_Persistent gun in _mosquetCooldownManager)
+        {
+            gun.Cooldown = _mosquetCooldown;         
+        }
+        
         if (bulletBuff == null) bulletBuff = GameObject.Find("Bullet Buff");
         bulletBuff.SetActive(false);
     }
@@ -197,8 +210,8 @@ public class BuffManager : MonoBehaviour
         _hammerHealthPoints = _hammerManager[0].PointsToRepair;
         _hammerUpgradePoints = _hammerManager[0].PointsToUpgrade;
 
-        _mosquetCooldown = _mosquetManager[0].CoolDown;
-        _mosquetDamage = _mosquetManager[0].Damage;
+        _mosquetCooldown = _mosquetCooldownManager[0].Cooldown;
+        _mosquetDamage = _mosquetDamageManager[0].Damage;
 
         _cannonCooldown = _cannonCooldownManager[0].Cooldown;
         _currentCannonDamage = CannonDamage;
