@@ -7,6 +7,13 @@ public class BuffManager : MonoBehaviour
 {
     public static BuffManager Instance;
 
+    [Header("Sprites")] 
+    [SerializeField] private GameObject hammerBuff;
+    [SerializeField] private GameObject bulletBuff;
+    [SerializeField] private GameObject canonBuff;
+    [SerializeField] private GameObject lifeBuff;
+    [SerializeField] private GameObject nuke;
+    
     [Header("Settings")]
     [SerializeField] private float _buffTime;
     public float CannonDamage;
@@ -40,6 +47,12 @@ public class BuffManager : MonoBehaviour
         {
             Destroy(this);
         }
+        
+        hammerBuff.SetActive(false); 
+        bulletBuff.SetActive(false); 
+        canonBuff.SetActive(false); 
+        lifeBuff.SetActive(false); 
+        nuke.SetActive(false);
     }
 
     private void Start()
@@ -54,23 +67,33 @@ public class BuffManager : MonoBehaviour
         switch (SelectedBuff)
         {
             case 1:
+                nuke.SetActive(true);
                 DetonateBomb();
+                nuke.SetActive(false);
             break;
 
             case 2:
+                lifeBuff.SetActive(true);
                 StartCoroutine(DoBuffAndDebuff(BuffCore, ResetCore));
+                lifeBuff.SetActive(false);
             break;
 
             case 3:
+                hammerBuff.SetActive(true); 
                 StartCoroutine(DoBuffAndDebuff(BuffHammer, ResetHammer));
+                hammerBuff.SetActive(false); 
             break;
 
             case 4:
+                canonBuff.SetActive(true); 
                 StartCoroutine(DoBuffAndDebuff(BuffCannon, ResetCannon));
+                canonBuff.SetActive(false); 
             break;
 
             case 5:
+                bulletBuff.SetActive(true); 
                 StartCoroutine(DoBuffAndDebuff(BuffMosquet, ResetMosquet));
+                bulletBuff.SetActive(false); 
             break;
         }
     }
