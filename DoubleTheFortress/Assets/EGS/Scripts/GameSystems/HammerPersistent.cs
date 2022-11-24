@@ -12,6 +12,7 @@ public class HammerPersistent : MonoBehaviour, IPause
 
     private void FixedUpdate()
     {
+        if(_isPaused) return;
         _elapsedTime += Time.deltaTime;        
     }
     public void ResetCooldwon()
