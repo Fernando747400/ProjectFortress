@@ -14,8 +14,12 @@ public class VrGunFire : DebugGunFire
     private bool _isPaused;
     protected override void Awake()
     {
-        gunShoot.action.performed += ctx => FireHitScan();
         Prepare();
+    }
+
+    private void Start()
+    {
+        gunShoot.action.performed += ctx => FireHitScan();
     }
 
     protected override void CheckInput()
