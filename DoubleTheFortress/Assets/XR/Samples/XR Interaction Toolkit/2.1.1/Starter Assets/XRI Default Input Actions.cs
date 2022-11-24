@@ -941,6 +941,17 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 },
                 {
                     ""name"": """",
+                    ""id"": ""75567d73-94fd-4c05-b545-0840d5ad3176"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectHammer_RIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5f736a35-4343-43e7-bf2c-6248def66db0"",
                     ""path"": ""<XRController>{RightHand}/secondaryButton"",
                     ""interactions"": """",
@@ -987,6 +998,17 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""name"": """",
                     ""id"": ""48a2b3d7-c6a7-4eee-a09c-e8a778611339"",
                     ""path"": ""<XRController>{LeftHand}/primaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectHammer_LEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c03e545a-ee22-4958-ac53-931ebd346221"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
