@@ -198,8 +198,8 @@ MonoBehaviour:
   - {fileID: 894060971}
   - {fileID: 894060970}
   _mosquetDamageManager:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 970091580}
+  - {fileID: 970091579}
   _cannonCooldownManager:
   - {fileID: 225258604}
   - {fileID: 1285201039}
@@ -26064,6 +26064,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 969964415}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &970091579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6722731304910741912, guid: 75413e9a48194104493c72dd7318578f,
+    type: 3}
+  m_PrefabInstance: {fileID: 894060968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb773401382b4043a27ff2ce9b76d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &970091580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9191209500296648922, guid: 75413e9a48194104493c72dd7318578f,
+    type: 3}
+  m_PrefabInstance: {fileID: 894060968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb773401382b4043a27ff2ce9b76d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &976032547
 PrefabInstance:
   m_ObjectHideFlags: 0

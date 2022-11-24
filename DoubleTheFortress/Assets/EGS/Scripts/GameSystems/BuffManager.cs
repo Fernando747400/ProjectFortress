@@ -147,7 +147,7 @@ public class BuffManager : MonoBehaviour
         {
             cannon.Cooldown = _cannonCooldown;
         }
-        CannonDamage = _currentCannonDamage;
+        CannonDamage = 10f;
         if (canonBuff == null) canonBuff = GameObject.Find("Canon Buff");
         canonBuff.SetActive(false);
     }
