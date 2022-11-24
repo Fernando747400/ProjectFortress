@@ -77,7 +77,6 @@ public class DebugGunFire :  GeneralAgressor
     
     private IEnumerator CorWaitForTravel()
     {
-         Debug.Log("waiting " + _travelTime + " seconds");
         yield return new WaitForSeconds(_travelTime);
         FireSimulated();
     }
@@ -86,7 +85,6 @@ public class DebugGunFire :  GeneralAgressor
     {
         StopAllCoroutines();
         Vector3 simulatedHitPos = _hitPosition - _savedFirePosition;
-        Debug.Log(789);
         Physics.Raycast(_savedFirePosition, simulatedHitPos.normalized,out RaycastHit simulatedHit, maxDistance, layers);
         PlayParticles("Musket_HitParticle",hitParticle,_hitParticleSystem,simulatedHit.point, quaternion.identity);
         
@@ -95,7 +93,7 @@ public class DebugGunFire :  GeneralAgressor
 
     }
 
-    protected virtual IEnumerator CorWaitForCoolDown()
+    private IEnumerator CorWaitForCoolDown()
     {
         Debug.Log("waiting " + cooldown);
         yield return new WaitForSeconds(cooldown);
@@ -118,7 +116,7 @@ public class DebugGunFire :  GeneralAgressor
         particleSystem.Play();
     }
 
-    private void Prepare()
+    protected virtual void Prepare()
     {
         try
         {
