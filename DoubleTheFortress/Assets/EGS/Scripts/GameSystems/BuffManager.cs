@@ -108,7 +108,7 @@ public class BuffManager : MonoBehaviour
             Grab.PointsToRepair = 10000f;
             Grab.PointsToUpgrade = 10000f;
         }
-
+        if (hammerBuff == null) hammerBuff = GameObject.Find("Hammer Buff");
         hammerBuff.SetActive(true);
     }
 
@@ -124,6 +124,7 @@ public class BuffManager : MonoBehaviour
             Grab.PointsToRepair = _hammerHealthPoints;
             Grab.PointsToUpgrade = _hammerUpgradePoints;
         }
+        if (hammerBuff == null) hammerBuff = GameObject.Find("Hammer Buff");
         hammerBuff.SetActive(false);
     }
 
@@ -134,6 +135,7 @@ public class BuffManager : MonoBehaviour
             cannon.Cooldown = 0f;
         }
         CannonDamage = 10000f;
+        if(canonBuff == null) canonBuff = GameObject.Find("Canon Buff");
         canonBuff.SetActive(true);
     }
 
@@ -144,6 +146,7 @@ public class BuffManager : MonoBehaviour
             cannon.Cooldown = _cannonCooldown;
         }
         CannonDamage = _currentCannonDamage;
+        if (canonBuff == null) canonBuff = GameObject.Find("Canon Buff");
         canonBuff.SetActive(false);
     }
 
@@ -154,6 +157,7 @@ public class BuffManager : MonoBehaviour
             gun.CoolDown = 0f;
             gun.Damage = 10000f;
         }
+        if (bulletBuff == null) bulletBuff = GameObject.Find("Bullet Buff");
         bulletBuff.SetActive(true);
     }
 
@@ -164,18 +168,21 @@ public class BuffManager : MonoBehaviour
             gun.CoolDown = _mosquetCooldown;
             gun.Damage = _mosquetDamage;
         }
+        if (bulletBuff == null) bulletBuff = GameObject.Find("Bullet Buff");
         bulletBuff.SetActive(false);
     }
 
     private void BuffCore()
     {
-        lifeBuff.SetActive(true);
         _coreManager.Cooldown = 30f;
+        if (lifeBuff == null) lifeBuff = GameObject.Find("Life Buff");
+        lifeBuff.SetActive(true);
     }
 
     private void ResetCore()
     {
         _coreManager.Cooldown = _coreCooldown;
+        if (lifeBuff == null) lifeBuff = GameObject.Find("Life Buff");
         lifeBuff.SetActive(false);
     }
 
@@ -198,11 +205,13 @@ public class BuffManager : MonoBehaviour
 
         _coreCooldown = _coreManager.Cooldown;
     }
-
+    
     private IEnumerator AtomicBomb()
     {
+        if (nuke == null) nuke = GameObject.Find("Nuke");
         nuke.SetActive(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
+        if (nuke == null) nuke = GameObject.Find("Nuke");
         nuke.SetActive(false);
     }
 }
