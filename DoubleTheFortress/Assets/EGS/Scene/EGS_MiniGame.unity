@@ -20337,7 +20337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonObject: {fileID: 1937029767}
-  _cannonName: W-CannonContainer
+  _cannonName: W-CannonContaine
   _mywallScript: {fileID: 776482836}
   _shieldsUI: {fileID: 646071551}
   _ghost: {fileID: 11400000, guid: 625cdb00666dc01418985683821ee038, type: 2}
@@ -51663,7 +51663,7 @@ PrefabInstance:
     - target: {fileID: 1613792123399080393, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
       propertyPath: m_Name
-      value: W-CannonContainer (1)
+      value: W-CannonContainer
       objectReference: {fileID: 0}
     - target: {fileID: 1613792123399080398, guid: 732166c9f10511040a0b8b10bfacb5e5,
         type: 3}
