@@ -51950,7 +51950,9 @@ MonoBehaviour:
   cooldown: 1
   shootSound: {fileID: 8300000, guid: 613808cb13e7f3d47851b32af11b4d1c, type: 3}
   inventoryController: {fileID: 8767782437161057729}
-  gunShoot: {fileID: -8439634605675497305, guid: c348712bda248c246b8c49b3db54643f,
+  gunShootRight: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  gunShootLeft: {fileID: -1922870635284412653, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   persistentData: {fileID: 6845859607682869502}
 --- !u!1 &5674077465191704436
@@ -58180,7 +58182,9 @@ MonoBehaviour:
   cooldown: 1
   shootSound: {fileID: 8300000, guid: 613808cb13e7f3d47851b32af11b4d1c, type: 3}
   inventoryController: {fileID: 8767782437161057729}
-  gunShoot: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
+  gunShootRight: {fileID: -2941929375774955701, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  gunShootLeft: {fileID: -1922870635284412653, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   persistentData: {fileID: 6240594962343348767}
 --- !u!1 &6977318222947385368

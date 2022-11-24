@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class VrGunFire : DebugGunFire
 {
     [SerializeField] InventoryController inventoryController;
-    public InputActionReference gunShoot;
+    public InputActionReference gunShootRight;
+    public InputActionReference gunShootLeft;
 
     [SerializeField]private Gun_Persistent persistentData;
 
@@ -19,18 +20,40 @@ public class VrGunFire : DebugGunFire
 
     private void Start()
     {
-        gunShoot.action.performed += ctx => FireHitScan();
+        gunShootRight.action.performed += ctx => CallInput(Hand.RightHand);
+        gunShootLeft.action.performed += ctx => CallInput(Hand.LeftHand);
     }
 
     protected override void CheckInput()
     {
         //overriden do not use  
     }
+
+    void CallInput(Hand hand)
+    {
+        if (!this.isActiveAndEnabled)
+        {
+            return;
+        }
+        if (hand != inventoryController.SelectingHand || hand == Hand.None)
+        {
+            Debug.Log("son  manos diferentes");
+            return;
+        }
+        FireHitScan();
+    }
     protected override void FireHitScan()
     {
+        // Debug.Log(hand);
         if (_isPaused) return;
-        if (inventoryController.SelectedItem != PlayerSelectedItem.Musket) return;
+        if (inventoryController.SelectedItem != PlayerSelectedItem.Musket)
+        {
+            Debug.Log("no debería poder disparar");
+            return;
+        }
+        
         if (!persistentData.CooldownPassed()) return;
+       
         base.FireHitScan();
     }
 

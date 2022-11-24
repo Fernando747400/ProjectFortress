@@ -300,15 +300,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Shoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""313f5cb2-974a-4b8f-bcd3-ced20e4ee27e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -397,17 +388,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""processors"": ""ScaleVector2(x=0),StickDeadzone"",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""Translate Anchor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3fc9995f-ce44-4968-a45e-0f69908473f3"",
-                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/triggerpressed"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -752,7 +732,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""ShootRightHand"",
                     ""type"": ""Button"",
                     ""id"": ""13512dc6-2650-43fe-bdf0-18103e632078"",
                     ""expectedControlType"": ""Button"",
@@ -800,6 +780,15 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""name"": ""SelectMusket_LEFT"",
                     ""type"": ""Button"",
                     ""id"": ""2d806dc6-f47b-45be-80f8-443df28d63b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf92c14d-69e6-4bca-ad1b-c79f450a92cc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -913,7 +902,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootRightHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -924,7 +913,7 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootRightHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1013,6 +1002,28 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb4c7b19-229a-4bf3-a739-18707a2fbc18"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""830742be-d05b-4140-9a7c-f91f55916d01"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1673,7 +1684,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRILeftHandInteraction_UIPressValue = m_XRILeftHandInteraction.FindAction("UI Press Value", throwIfNotFound: true);
         m_XRILeftHandInteraction_RotateAnchor = m_XRILeftHandInteraction.FindAction("Rotate Anchor", throwIfNotFound: true);
         m_XRILeftHandInteraction_TranslateAnchor = m_XRILeftHandInteraction.FindAction("Translate Anchor", throwIfNotFound: true);
-        m_XRILeftHandInteraction_Shoot = m_XRILeftHandInteraction.FindAction("Shoot", throwIfNotFound: true);
         // XRI LeftHand Locomotion
         m_XRILeftHandLocomotion = asset.FindActionMap("XRI LeftHand Locomotion", throwIfNotFound: true);
         m_XRILeftHandLocomotion_TeleportSelect = m_XRILeftHandLocomotion.FindAction("Teleport Select", throwIfNotFound: true);
@@ -1697,12 +1707,13 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRIRightHandInteraction_UIPressValue = m_XRIRightHandInteraction.FindAction("UI Press Value", throwIfNotFound: true);
         m_XRIRightHandInteraction_RotateAnchor = m_XRIRightHandInteraction.FindAction("Rotate Anchor", throwIfNotFound: true);
         m_XRIRightHandInteraction_TranslateAnchor = m_XRIRightHandInteraction.FindAction("Translate Anchor", throwIfNotFound: true);
-        m_XRIRightHandInteraction_Shoot = m_XRIRightHandInteraction.FindAction("Shoot", throwIfNotFound: true);
+        m_XRIRightHandInteraction_ShootRightHand = m_XRIRightHandInteraction.FindAction("ShootRightHand", throwIfNotFound: true);
         m_XRIRightHandInteraction_Play = m_XRIRightHandInteraction.FindAction("Play", throwIfNotFound: true);
         m_XRIRightHandInteraction_SelectHammer_RIGHT = m_XRIRightHandInteraction.FindAction("SelectHammer_RIGHT", throwIfNotFound: true);
         m_XRIRightHandInteraction_SelectHammer_LEFT = m_XRIRightHandInteraction.FindAction("SelectHammer_LEFT", throwIfNotFound: true);
         m_XRIRightHandInteraction_SelectMusket_RIGHT = m_XRIRightHandInteraction.FindAction("SelectMusket_RIGHT", throwIfNotFound: true);
         m_XRIRightHandInteraction_SelectMusket_LEFT = m_XRIRightHandInteraction.FindAction("SelectMusket_LEFT", throwIfNotFound: true);
+        m_XRIRightHandInteraction_ShootLeft = m_XRIRightHandInteraction.FindAction("ShootLeft", throwIfNotFound: true);
         // XRI RightHand Locomotion
         m_XRIRightHandLocomotion = asset.FindActionMap("XRI RightHand Locomotion", throwIfNotFound: true);
         m_XRIRightHandLocomotion_TeleportSelect = m_XRIRightHandLocomotion.FindAction("Teleport Select", throwIfNotFound: true);
@@ -1885,7 +1896,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRILeftHandInteraction_UIPressValue;
     private readonly InputAction m_XRILeftHandInteraction_RotateAnchor;
     private readonly InputAction m_XRILeftHandInteraction_TranslateAnchor;
-    private readonly InputAction m_XRILeftHandInteraction_Shoot;
     public struct XRILeftHandInteractionActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -1898,7 +1908,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @UIPressValue => m_Wrapper.m_XRILeftHandInteraction_UIPressValue;
         public InputAction @RotateAnchor => m_Wrapper.m_XRILeftHandInteraction_RotateAnchor;
         public InputAction @TranslateAnchor => m_Wrapper.m_XRILeftHandInteraction_TranslateAnchor;
-        public InputAction @Shoot => m_Wrapper.m_XRILeftHandInteraction_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_XRILeftHandInteraction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1932,9 +1941,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @TranslateAnchor.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnTranslateAnchor;
                 @TranslateAnchor.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnTranslateAnchor;
                 @TranslateAnchor.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnTranslateAnchor;
-                @Shoot.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -1963,9 +1969,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @TranslateAnchor.started += instance.OnTranslateAnchor;
                 @TranslateAnchor.performed += instance.OnTranslateAnchor;
                 @TranslateAnchor.canceled += instance.OnTranslateAnchor;
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -2104,12 +2107,13 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRIRightHandInteraction_UIPressValue;
     private readonly InputAction m_XRIRightHandInteraction_RotateAnchor;
     private readonly InputAction m_XRIRightHandInteraction_TranslateAnchor;
-    private readonly InputAction m_XRIRightHandInteraction_Shoot;
+    private readonly InputAction m_XRIRightHandInteraction_ShootRightHand;
     private readonly InputAction m_XRIRightHandInteraction_Play;
     private readonly InputAction m_XRIRightHandInteraction_SelectHammer_RIGHT;
     private readonly InputAction m_XRIRightHandInteraction_SelectHammer_LEFT;
     private readonly InputAction m_XRIRightHandInteraction_SelectMusket_RIGHT;
     private readonly InputAction m_XRIRightHandInteraction_SelectMusket_LEFT;
+    private readonly InputAction m_XRIRightHandInteraction_ShootLeft;
     public struct XRIRightHandInteractionActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -2122,12 +2126,13 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @UIPressValue => m_Wrapper.m_XRIRightHandInteraction_UIPressValue;
         public InputAction @RotateAnchor => m_Wrapper.m_XRIRightHandInteraction_RotateAnchor;
         public InputAction @TranslateAnchor => m_Wrapper.m_XRIRightHandInteraction_TranslateAnchor;
-        public InputAction @Shoot => m_Wrapper.m_XRIRightHandInteraction_Shoot;
+        public InputAction @ShootRightHand => m_Wrapper.m_XRIRightHandInteraction_ShootRightHand;
         public InputAction @Play => m_Wrapper.m_XRIRightHandInteraction_Play;
         public InputAction @SelectHammer_RIGHT => m_Wrapper.m_XRIRightHandInteraction_SelectHammer_RIGHT;
         public InputAction @SelectHammer_LEFT => m_Wrapper.m_XRIRightHandInteraction_SelectHammer_LEFT;
         public InputAction @SelectMusket_RIGHT => m_Wrapper.m_XRIRightHandInteraction_SelectMusket_RIGHT;
         public InputAction @SelectMusket_LEFT => m_Wrapper.m_XRIRightHandInteraction_SelectMusket_LEFT;
+        public InputAction @ShootLeft => m_Wrapper.m_XRIRightHandInteraction_ShootLeft;
         public InputActionMap Get() { return m_Wrapper.m_XRIRightHandInteraction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2161,9 +2166,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @TranslateAnchor.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnTranslateAnchor;
                 @TranslateAnchor.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnTranslateAnchor;
                 @TranslateAnchor.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnTranslateAnchor;
-                @Shoot.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShoot;
+                @ShootRightHand.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShootRightHand;
+                @ShootRightHand.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShootRightHand;
+                @ShootRightHand.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShootRightHand;
                 @Play.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnPlay;
                 @Play.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnPlay;
                 @Play.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnPlay;
@@ -2179,6 +2184,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @SelectMusket_LEFT.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_LEFT;
                 @SelectMusket_LEFT.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_LEFT;
                 @SelectMusket_LEFT.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnSelectMusket_LEFT;
+                @ShootLeft.started -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShootLeft;
+                @ShootLeft.performed -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShootLeft;
+                @ShootLeft.canceled -= m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface.OnShootLeft;
             }
             m_Wrapper.m_XRIRightHandInteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -2207,9 +2215,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @TranslateAnchor.started += instance.OnTranslateAnchor;
                 @TranslateAnchor.performed += instance.OnTranslateAnchor;
                 @TranslateAnchor.canceled += instance.OnTranslateAnchor;
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
+                @ShootRightHand.started += instance.OnShootRightHand;
+                @ShootRightHand.performed += instance.OnShootRightHand;
+                @ShootRightHand.canceled += instance.OnShootRightHand;
                 @Play.started += instance.OnPlay;
                 @Play.performed += instance.OnPlay;
                 @Play.canceled += instance.OnPlay;
@@ -2225,6 +2233,9 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @SelectMusket_LEFT.started += instance.OnSelectMusket_LEFT;
                 @SelectMusket_LEFT.performed += instance.OnSelectMusket_LEFT;
                 @SelectMusket_LEFT.canceled += instance.OnSelectMusket_LEFT;
+                @ShootLeft.started += instance.OnShootLeft;
+                @ShootLeft.performed += instance.OnShootLeft;
+                @ShootLeft.canceled += instance.OnShootLeft;
             }
         }
     }
@@ -2432,7 +2443,6 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnUIPressValue(InputAction.CallbackContext context);
         void OnRotateAnchor(InputAction.CallbackContext context);
         void OnTranslateAnchor(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
     }
     public interface IXRILeftHandLocomotionActions
     {
@@ -2459,12 +2469,13 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnUIPressValue(InputAction.CallbackContext context);
         void OnRotateAnchor(InputAction.CallbackContext context);
         void OnTranslateAnchor(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
+        void OnShootRightHand(InputAction.CallbackContext context);
         void OnPlay(InputAction.CallbackContext context);
         void OnSelectHammer_RIGHT(InputAction.CallbackContext context);
         void OnSelectHammer_LEFT(InputAction.CallbackContext context);
         void OnSelectMusket_RIGHT(InputAction.CallbackContext context);
         void OnSelectMusket_LEFT(InputAction.CallbackContext context);
+        void OnShootLeft(InputAction.CallbackContext context);
     }
     public interface IXRIRightHandLocomotionActions
     {

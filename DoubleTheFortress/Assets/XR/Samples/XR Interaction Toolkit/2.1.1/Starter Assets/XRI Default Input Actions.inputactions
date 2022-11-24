@@ -278,15 +278,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "313f5cb2-974a-4b8f-bcd3-ced20e4ee27e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -375,17 +366,6 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Translate Anchor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3fc9995f-ce44-4968-a45e-0f69908473f3",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/triggerpressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -730,7 +710,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "ShootRightHand",
                     "type": "Button",
                     "id": "13512dc6-2650-43fe-bdf0-18103e632078",
                     "expectedControlType": "Button",
@@ -778,6 +758,15 @@
                     "name": "SelectMusket_LEFT",
                     "type": "Button",
                     "id": "2d806dc6-f47b-45be-80f8-443df28d63b7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootLeft",
+                    "type": "Button",
+                    "id": "cf92c14d-69e6-4bca-ad1b-c79f450a92cc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -891,7 +880,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Shoot",
+                    "action": "ShootRightHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -902,7 +891,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootRightHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -991,6 +980,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Play",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb4c7b19-229a-4bf3-a739-18707a2fbc18",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "830742be-d05b-4140-9a7c-f91f55916d01",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
