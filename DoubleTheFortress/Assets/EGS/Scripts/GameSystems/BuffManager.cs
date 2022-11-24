@@ -36,7 +36,7 @@ public class BuffManager : MonoBehaviour
     [SerializeField] private CoreManager _coreManager;
     private float _coreCooldown;
 
-    public event Action AtomicBombEvent;
+    public event Action<float> AtomicBombEvent;
 
     private void Awake()
     {
@@ -62,38 +62,29 @@ public class BuffManager : MonoBehaviour
 
     public void CallRandomBuff()
     {
-        //int SelectedBuff = UnityEngine.Random.Range(1,6); //6 in prod when all buffs are ready 4 for testing
-        int SelectedBuff = 1;
+        int SelectedBuff = UnityEngine.Random.Range(1,6); //6 in prod when all buffs are ready 4 for testing
+        //int SelectedBuff = 1;
         switch (SelectedBuff)
         {
             case 1:
-                nuke.SetActive(true);
                 DetonateBomb();
-                nuke.SetActive(false);
+                StartCoroutine(AtomicBomb());
             break;
 
             case 2:
-                lifeBuff.SetActive(true);
                 StartCoroutine(DoBuffAndDebuff(BuffCore, ResetCore));
-                lifeBuff.SetActive(false);
             break;
 
-            case 3:
-                hammerBuff.SetActive(true); 
+            case 3:           
                 StartCoroutine(DoBuffAndDebuff(BuffHammer, ResetHammer));
-                hammerBuff.SetActive(false); 
             break;
 
             case 4:
-                canonBuff.SetActive(true); 
                 StartCoroutine(DoBuffAndDebuff(BuffCannon, ResetCannon));
-                canonBuff.SetActive(false); 
             break;
 
             case 5:
-                bulletBuff.SetActive(true); 
                 StartCoroutine(DoBuffAndDebuff(BuffMosquet, ResetMosquet));
-                bulletBuff.SetActive(false); 
             break;
         }
     }
@@ -117,6 +108,8 @@ public class BuffManager : MonoBehaviour
             Grab.PointsToRepair = 10000f;
             Grab.PointsToUpgrade = 10000f;
         }
+
+        hammerBuff.SetActive(true);
     }
 
     private void ResetHammer()
@@ -131,6 +124,7 @@ public class BuffManager : MonoBehaviour
             Grab.PointsToRepair = _hammerHealthPoints;
             Grab.PointsToUpgrade = _hammerUpgradePoints;
         }
+        hammerBuff.SetActive(false);
     }
 
     private void BuffCannon()
@@ -140,6 +134,7 @@ public class BuffManager : MonoBehaviour
             cannon.Cooldown = 0f;
         }
         CannonDamage = 10000f;
+        canonBuff.SetActive(true);
     }
 
     private void ResetCannon()
@@ -149,6 +144,7 @@ public class BuffManager : MonoBehaviour
             cannon.Cooldown = _cannonCooldown;
         }
         CannonDamage = _currentCannonDamage;
+        canonBuff.SetActive(false);
     }
 
     private void BuffMosquet()
@@ -158,6 +154,7 @@ public class BuffManager : MonoBehaviour
             gun.CoolDown = 0f;
             gun.Damage = 10000f;
         }
+        bulletBuff.SetActive(true);
     }
 
     private void ResetMosquet()
@@ -167,21 +164,24 @@ public class BuffManager : MonoBehaviour
             gun.CoolDown = _mosquetCooldown;
             gun.Damage = _mosquetDamage;
         }
+        bulletBuff.SetActive(false);
     }
 
     private void BuffCore()
     {
+        lifeBuff.SetActive(true);
         _coreManager.Cooldown = 30f;
     }
 
     private void ResetCore()
     {
         _coreManager.Cooldown = _coreCooldown;
+        lifeBuff.SetActive(false);
     }
 
     private void DetonateBomb()
     {
-        AtomicBombEvent?.Invoke();
+        AtomicBombEvent?.Invoke(1000000000000000);
     }
 
     private void SaveAllInitialValues()
@@ -197,5 +197,12 @@ public class BuffManager : MonoBehaviour
         _currentCannonDamage = CannonDamage;
 
         _coreCooldown = _coreManager.Cooldown;
+    }
+
+    private IEnumerator AtomicBomb()
+    {
+        nuke.SetActive(true);
+        yield return new WaitForSeconds(5);
+        nuke.SetActive(false);
     }
 }
