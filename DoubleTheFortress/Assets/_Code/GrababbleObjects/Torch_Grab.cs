@@ -10,15 +10,5 @@ public class Torch_Grab : IGrabbable
     
     public override void HandleSelectedState(bool isSelecting)
     {
-        // base.HandleSelectedState(isSelecting);
-        //
-        // if (!isSelecting)
-        // {
-        //     _particles.SetActive(true);
-        // }
-        // else
-        // {
-        //     _particles.SetActive(false);
-        // }
     }
 }

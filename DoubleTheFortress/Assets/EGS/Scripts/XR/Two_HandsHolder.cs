@@ -15,6 +15,8 @@ public class Two_HandsHolder : XRBaseInteractable
 
     private bool _isGrabbing = false;
 
+    private Hand _selectedHand;
+
     public HandController_XR Hand
     {
         get => _currentHand;
@@ -59,6 +61,7 @@ public class Two_HandsHolder : XRBaseInteractable
         _isGrabbing = false;
         _currentHand.HandleHandsVisible(true);
         _currentHand.HandleTorchCannon(false);
+        _selectedHand = global::Hand.None;
         
        
         OnReleased?.Invoke();
@@ -69,8 +72,13 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
-            _currentHand = other.GetComponent<HandController_XR>();
-            _currentHand.HandleIsEmpty();
+            if (_currentHand == null)
+            {
+                _currentHand = other.GetComponent<HandController_XR>();
+                _currentHand.HandleIsEmpty();
+                _selectedHand = _currentHand.MyHand;
+            }
+            
         }
     }
     
@@ -78,9 +86,17 @@ public class Two_HandsHolder : XRBaseInteractable
     {
         if (other.CompareTag("Hand"))
         {
+            HandController_XR handControllerXR = other.GetComponent<HandController_XR>();
+            if ( handControllerXR.MyHand != _selectedHand)
+            {
+                return;
+            }
             if (_currentHand != null)
             {
-                Drop();
+                if (_currentHand.IsUsingCannon)
+                {
+                    Drop();
+                }
             }
             _currentHand = null;
             OnHandsOut?.Invoke();

@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 1412984883648865605}
   - component: {fileID: 2039725240881231371}
   - component: {fileID: 2906339508525792355}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5033,7 +5033,7 @@ GameObject:
   - component: {fileID: 718755879699070091}
   - component: {fileID: 718755879699070092}
   - component: {fileID: 5088795108060068314}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torch_Left
   m_TagString: Torch
   m_Icon: {fileID: 0}
@@ -5197,7 +5197,7 @@ GameObject:
   - component: {fileID: 8649997967905351981}
   - component: {fileID: 2493361513996874981}
   - component: {fileID: 429573273279641359}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14962,7 +14962,7 @@ GameObject:
   - component: {fileID: 3888245910244390207}
   - component: {fileID: 149099257351632033}
   - component: {fileID: 1531544663234670299}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21875,7 +21875,7 @@ GameObject:
   - component: {fileID: 2775292715584440418}
   - component: {fileID: 7414456492921111749}
   - component: {fileID: 9035035320078768788}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26699,7 +26699,7 @@ GameObject:
   - component: {fileID: 2985953280612268531}
   - component: {fileID: 5692534969491981089}
   - component: {fileID: 170554267514853161}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31523,7 +31523,7 @@ GameObject:
   - component: {fileID: 7350299128280924951}
   - component: {fileID: 1404569987657513665}
   - component: {fileID: 2484659500818871045}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31977,7 +31977,7 @@ GameObject:
   - component: {fileID: 1806241992740287730}
   - component: {fileID: 4320282738039637095}
   - component: {fileID: 4280279496055235132}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37000,7 +37000,7 @@ GameObject:
   - component: {fileID: 2010320428633779158}
   - component: {fileID: 6571744736659639440}
   - component: {fileID: 6653898699151152667}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46692,7 +46692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5976332814040557334}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46725,7 +46725,7 @@ GameObject:
   - component: {fileID: 6902739995895793579}
   - component: {fileID: 2671058339849206713}
   - component: {fileID: 390368657289505888}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51895,7 +51895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2747243263515189526}
   - component: {fileID: 9191209500296648922}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Musket_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51964,7 +51964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5634433859525964010}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Gun_SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52112,7 +52112,7 @@ GameObject:
   - component: {fileID: 3489743629564734521}
   - component: {fileID: 2530686302747693268}
   - component: {fileID: 138955263481810355}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torch_Right
   m_TagString: Torch
   m_Icon: {fileID: 0}
@@ -53271,7 +53271,7 @@ GameObject:
   - component: {fileID: 2712562737926138545}
   - component: {fileID: 6156567147800516213}
   - component: {fileID: 7502962207666937715}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58128,7 +58128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6722731304910741917}
   - component: {fileID: 6722731304910741912}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Musket_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58198,7 +58198,7 @@ GameObject:
   - component: {fileID: 7755120872189581986}
   - component: {fileID: 6642918083232847111}
   - component: {fileID: 8922921159738794445}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64819,6 +64819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3abb891f72f4fa442b71193bbcd848d2,
         type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3abb891f72f4fa442b71193bbcd848d2,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -64917,6 +64922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torch
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3abb891f72f4fa442b71193bbcd848d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3abb891f72f4fa442b71193bbcd848d2,
         type: 3}

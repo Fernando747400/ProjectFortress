@@ -26,6 +26,11 @@ public class HandController_XR : MonoBehaviour
         get => _handIsEmpty;
     }
 
+    public bool IsUsingCannon
+    {
+        get => _isUsingCannon;
+    }
+
     void Start()
     {
         _inventoryController.OnIsSelecting += HandleIsEmpty;
@@ -62,7 +67,8 @@ public class HandController_XR : MonoBehaviour
     public void HandleTorchCannon(bool isUsing)
     {
         _isUsingCannon = isUsing;
-        
+
+            
         switch (MyHand)
         {
             case Hand.LeftHand:
@@ -72,7 +78,10 @@ public class HandController_XR : MonoBehaviour
                 }
                 else
                 {
-                    _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.RightHand);
+                    if (_inventoryController.SelectedItem == PlayerSelectedItem.Torch)
+                    {
+                        _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.RightHand);
+                    }
                 }
                 break;
             
@@ -83,8 +92,10 @@ public class HandController_XR : MonoBehaviour
                 }
                 else
                 {
-                    _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.LeftHand);
-
+                    if (_inventoryController.SelectedItem == PlayerSelectedItem.Torch)
+                    {
+                        _inventoryController.DeselectItem(PlayerSelectedItem.Torch, Hand.LeftHand);
+                    }
                 }
               
                 break;

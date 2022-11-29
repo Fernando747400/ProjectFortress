@@ -14,14 +14,10 @@ public class WheelController : MonoBehaviour
     private Vector3 _distanceBetweenHands;
     private bool _canMoveCannon = false;
     private InventoryController _inventoryController;
-    private BoxAreasInteraction _boxInteraction;
     private bool _isPaused;
     
     void Start()
     {
-        _boxInteraction = GetComponent<BoxAreasInteraction>();
-        
-        
         rightHolder.OnGrabbed += HandleWheelInteraction;
         rightHolder.OnReleased += HandleWheelInteraction;
         
@@ -87,11 +83,6 @@ public class WheelController : MonoBehaviour
 
     void HandleWheelInteraction()
     {
-        if (_inventoryController == null)
-        {
-            _inventoryController = _boxInteraction.InventoryPlayer;
-        }
-
         _canMoveCannon = false;
 
         if (leftHolder.IsGrabbing)
