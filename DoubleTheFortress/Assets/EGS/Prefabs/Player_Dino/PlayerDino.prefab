@@ -58146,7 +58146,7 @@ MonoBehaviour:
     m_Bits: 51
   shootParticle: {fileID: 110434972196375888}
   hitParticle: {fileID: 3607557516735054691}
-  particleOffset: {fileID: 0}
+  particleOffset: {fileID: 5162152040954144331}
   cooldown: 1
   shootSound: {fileID: 8300000, guid: 613808cb13e7f3d47851b32af11b4d1c, type: 3}
   inventoryController: {fileID: 8767782437161057729}
